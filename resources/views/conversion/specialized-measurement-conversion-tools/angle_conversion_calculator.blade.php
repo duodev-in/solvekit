@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Angle Conversion Calculator - ConvertPro"
+    title="Angle Conversion Calculator - SolveKit"
     description="Professional angle conversion calculator for degrees, radians, gradians, and other angular measurements. Perfect for engineering, mathematics, and scientific calculations."
 >
     <x-slot name="toolUi">

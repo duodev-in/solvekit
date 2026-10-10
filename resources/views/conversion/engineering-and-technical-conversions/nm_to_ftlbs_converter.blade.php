@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Nm to ft-lbs Converter - ConvertPro"
+    title="Nm to ft-lbs Converter - SolveKit"
     description="Professional Newton meters to foot-pounds converter for engineering applications. Convert between Nm and ft-lbs torque units with precision."
 >
     <x-slot name="toolUi">

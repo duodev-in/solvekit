@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Drops to mL Converter - ConvertPro"
+    title="Drops to mL Converter - SolveKit"
     description="Professional drops to milliliters converter for medical dosages and small volume measurements. Convert drops to mL with precision."
 >
     <x-slot name="toolUi">

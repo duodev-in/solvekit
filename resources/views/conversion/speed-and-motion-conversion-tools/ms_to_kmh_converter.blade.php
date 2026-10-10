@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="m/s to km/h Converter - ConvertPro"
+    title="m/s to km/h Converter - SolveKit"
     description="Professional velocity converter between meters per second and kilometers per hour. Convert speed units for physics, engineering, and transportation calculations with precision."
 >
     <x-slot name="toolUi">

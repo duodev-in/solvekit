@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Speed Conversion Calculator - ConvertPro"
+    title="Speed Conversion Calculator - SolveKit"
     description="Universal speed conversion calculator for all velocity units. Convert between km/h, mph, m/s, knots, Mach, and other speed measurements with precision and comprehensive analysis."
 >
     <x-slot name="toolUi">

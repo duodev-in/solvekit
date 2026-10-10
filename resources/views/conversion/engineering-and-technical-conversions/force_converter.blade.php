@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Force Converter - ConvertPro"
+    title="Force Converter - SolveKit"
     description="Professional force converter for engineering applications. Convert between Newtons, pounds-force, kilogram-force and other force units with precision."
 >
     <x-slot name="toolUi">

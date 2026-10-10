@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Temperature Conversion - ConvertPro"
+    title="Temperature Conversion - SolveKit"
     description="Professional temperature conversion calculator for Celsius, Fahrenheit, Kelvin, and Rankine. Convert temperatures with weather applications, cooking conversions, and scientific calculations."
 >
     <x-slot name="toolUi">

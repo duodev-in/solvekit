@@ -6,7 +6,7 @@
                     <svg class="h-8 w-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                     </svg>
-                    <span class="ml-2 text-xl font-bold text-gray-900">ConvertPro</span>
+                    <span class="ml-2 text-xl font-bold text-gray-900">SolveKit</span>
                 </div>
                 <p class="text-gray-600 max-w-md">
                     Professional conversion tools for engineers, scientists, and technical professionals. Accurate, fast, and reliable calculations for all your conversion needs.
@@ -34,7 +34,7 @@
         <div class="border-t border-gray-200 mt-8 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <p class="text-sm text-gray-600">
-                    © {{ date('Y') }} ConvertPro. All rights reserved. Built for precision and reliability.
+                    © {{ date('Y') }} SolveKit. All rights reserved. Built for precision and reliability.
                 </p>
                 <div class="mt-4 md:mt-0 text-sm text-gray-500">
                     Last updated: {{ date('F Y') }} | Version 2.1

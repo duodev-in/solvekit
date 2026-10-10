@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Nm to Joules Calculator - ConvertPro"
+    title="Nm to Joules Calculator - SolveKit"
     description="Professional newton-meter to joules calculator for torque to energy conversion. Calculate rotational energy from torque and angular displacement for mechanical engineering."
 >
     <x-slot name="toolUi">

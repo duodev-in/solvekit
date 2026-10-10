@@ -1,6 +1,6 @@
 <flux:sidebar sticky stashable class="min-w-0 overflow-x-hidden border-e border-zinc-200 bg-white dark:border-zinc-700 dark:bg-zinc-900">
     <flux:sidebar.header>
-        <flux:sidebar.brand href="{{ route('admin.dashboard') }}" name="ConvertPro Admin" />
+        <flux:sidebar.brand href="{{ route('admin.dashboard') }}" name="SolveKit Admin" />
         <flux:sidebar.collapse />
     </flux:sidebar.header>
 

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Cubic Meter Calculator - ConvertPro"
+    title="Cubic Meter Calculator - SolveKit"
     description="Professional cubic meter calculator to calculate volume in m³ from length, width, and height dimensions. Perfect for metric volume calculations."
 >
     <x-slot name="toolUi">

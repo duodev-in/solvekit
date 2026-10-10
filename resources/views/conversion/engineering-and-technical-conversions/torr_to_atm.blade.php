@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Torr to atm Converter - ConvertPro"
+    title="Torr to atm Converter - SolveKit"
     description="Professional Torr to atmosphere converter for vacuum and pressure applications. Convert between Torr, atm, mmHg and other pressure units with precision."
 >
     <x-slot name="toolUi">

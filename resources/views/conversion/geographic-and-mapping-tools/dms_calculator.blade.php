@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Degrees Minutes Seconds Calculator - ConvertPro"
+    title="Degrees Minutes Seconds Calculator - SolveKit"
     description="Professional DMS calculator for navigation, surveying and astronomy. Convert between decimal degrees and degrees minutes seconds format with precision."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Byte Conversion Calculator - ConvertPro"
+    title="Byte Conversion Calculator - SolveKit"
     description="Professional byte conversion calculator for digital storage units. Convert between bytes, kilobytes, megabytes, gigabytes, terabytes, and more with detailed calculations."
 >
     <x-slot name="toolUi">

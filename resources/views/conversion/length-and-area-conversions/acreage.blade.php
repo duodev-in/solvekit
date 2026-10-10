@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Acreage Calculator - ConvertPro"
+    title="Acreage Calculator - SolveKit"
     description="Professional acreage calculator to convert acres to square meters, hectares, square feet, and square yards. Accurate and fast conversions for land measurement."
 >
     <x-slot name="toolUi">

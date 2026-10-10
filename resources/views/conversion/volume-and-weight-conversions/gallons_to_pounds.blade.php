@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Gallons to Pounds Converter - ConvertPro"
+    title="Gallons to Pounds Converter - SolveKit"
     description="Professional gallons to pounds converter for liquids. Convert gallon volume to weight in pounds based on substance density. Perfect for cooking and industry."
 >
     <x-slot name="toolUi">

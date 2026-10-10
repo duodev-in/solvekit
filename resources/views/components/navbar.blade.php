@@ -42,7 +42,7 @@ foreach ($categories as $category) {
                     </svg>
                 </div>
                 <div class="min-w-0">
-                    <p class="truncate text-sm font-semibold leading-tight tracking-tight text-slate-900 sm:text-base">ConvertPro</p>
+                    <p class="truncate text-sm font-semibold leading-tight tracking-tight text-slate-900 sm:text-base">SolveKit</p>
                     <p class="hidden truncate text-[10px] text-slate-500 lg:block">Professional Calculation Tools</p>
                 </div>
             </a>

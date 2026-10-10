@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Million to Billion Converter - ConvertPro"
+    title="Million to Billion Converter - SolveKit"
     description="Professional million to billion converter for finance and business calculations. Convert between millions, billions and other large Western denominations."
 >
     <x-slot name="toolUi">

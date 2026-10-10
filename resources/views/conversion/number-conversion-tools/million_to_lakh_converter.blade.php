@@ -1,4 +1,4 @@
-<x-tool-page-layout title="Million to Lakh Converter - ConvertPro"
+<x-tool-page-layout title="Million to Lakh Converter - SolveKit"
     description="Professional million to lakh converter for cross-cultural business. Convert between Western millions and Indian lakhs with precision.">
     <x-slot name="toolUi">
         <!-- Calculator Card -->

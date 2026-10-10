@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Nickels to Dollars Calculator - ConvertPro"
+    title="Nickels to Dollars Calculator - SolveKit"
     description="Professional nickels to dollars calculator for coin conversion. Convert nickel quantities to dollar amounts with detailed breakdown for counting and financial calculations."
 >
     <x-slot name="toolUi">

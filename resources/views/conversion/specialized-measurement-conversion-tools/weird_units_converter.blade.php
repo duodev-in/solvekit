@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Weird Units Converter - ConvertPro"
+    title="Weird Units Converter - SolveKit"
     description="Fun weird units converter for unusual and unconventional measurements. Convert between Smoots, Beard-seconds, Bananas, Libraries of Congress, and other quirky measurement units."
 >
     <x-slot name="toolUi">

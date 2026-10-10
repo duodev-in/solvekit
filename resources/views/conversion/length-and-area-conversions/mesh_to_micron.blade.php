@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Mesh to Micron Converter - ConvertPro"
+    title="Mesh to Micron Converter - SolveKit"
     description="Professional mesh to micron converter for particle size analysis. Convert US standard mesh sizes to microns for industrial screening and filtration applications."
 >
     <x-slot name="toolUi">

@@ -1,6 +1,6 @@
 @extends('superadmin.layout.app')
 
-@section('title', 'Role: ' . $role->name . ' | ConvertPro')
+@section('title', 'Role: ' . $role->name . ' | SolveKit')
 
 @section('content')
     <div class="flex flex-wrap items-center justify-between gap-3">

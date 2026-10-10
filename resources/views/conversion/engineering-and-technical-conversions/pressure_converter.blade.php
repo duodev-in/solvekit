@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pressure Converter - ConvertPro"
+    title="Pressure Converter - SolveKit"
     description="Professional pressure converter for engineering applications. Convert between Pascal, Bar, PSI, ATM, Torr, and other pressure units with precision."
 >
     <x-slot name="toolUi">

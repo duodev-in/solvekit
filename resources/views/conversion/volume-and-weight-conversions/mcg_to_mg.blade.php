@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Micrograms to Milligrams Converter - ConvertPro"
+    title="Micrograms to Milligrams Converter - SolveKit"
     description="Professional micrograms to milligrams converter for precise weight conversions. Convert mcg to mg with high precision for various applications."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Decagram to Gram Converter - ConvertPro"
+    title="Decagram to Gram Converter - SolveKit"
     description="Professional decagram to gram converter for metric weight conversions. Convert decagrams (dag) to grams (g) with precise calculations."
 >
     <x-slot name="toolUi">

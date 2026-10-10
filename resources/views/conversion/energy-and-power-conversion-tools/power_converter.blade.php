@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Power Converter - ConvertPro"
+    title="Power Converter - SolveKit"
     description="Professional power unit converter between watts, horsepower, BTU/h, and other power measurements. Convert mechanical, electrical, and thermal power units with precision."
 >
     <x-slot name="toolUi">

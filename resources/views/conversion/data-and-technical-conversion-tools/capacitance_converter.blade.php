@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Capacitance Converter - ConvertPro"
+    title="Capacitance Converter - SolveKit"
     description="Professional capacitance converter for electrical engineering and electronics. Convert between farads, millifarads, microfarads, nanofarads, and picofarads with detailed calculations."
 >
     <x-slot name="toolUi">

@@ -1,6 +1,6 @@
 @extends('superadmin.layout.app')
 
-@section('title', 'Dashboard | ConvertPro')
+@section('title', 'Dashboard | SolveKit')
 
 @section('content')
     @php

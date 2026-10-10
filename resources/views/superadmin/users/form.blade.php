@@ -1,6 +1,6 @@
 @extends('superadmin.layout.app')
 
-@section('title', ($user->exists ? 'Edit user' : 'Add user').' | ConvertPro')
+@section('title', ($user->exists ? 'Edit user' : 'Add user').' | SolveKit')
 
 @section('content')
     <div class="mb-6"><flux:button href="{{ route('admin.users.index') }}" variant="outline">Back to users</flux:button><h1 class="mt-4 text-3xl font-semibold">{{ $user->exists ? 'Edit user' : 'Add user' }}</h1></div>

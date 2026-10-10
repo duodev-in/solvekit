@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Inches to Fraction Calculator - ConvertPro"
+    title="Inches to Fraction Calculator - SolveKit"
     description="Professional inches to fraction calculator to convert decimal inches to fractions, millimeters, and centimeters. Perfect for woodworking and construction measurements."
 >
     <x-slot name="toolUi">

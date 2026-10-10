@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pixels to Inches Converter - ConvertPro"
+    title="Pixels to Inches Converter - SolveKit"
     description="Professional pixels to inches converter for digital design and printing. Convert pixels to inches using DPI/PPI settings for accurate print sizing."
 >
     <x-slot name="toolUi">

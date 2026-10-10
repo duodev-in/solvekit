@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Volume Converter - ConvertPro"
+    title="Volume Converter - SolveKit"
     description="Professional volume converter to convert between liters, gallons, cubic units, and other volume measurements. Fast and accurate conversions."
 >
     <x-slot name="toolUi">

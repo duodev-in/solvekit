@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="CCF to Gallons Converter - ConvertPro"
+    title="CCF to Gallons Converter - SolveKit"
     description="Professional CCF to gallons converter for water utility billing. Convert hundred cubic feet to gallons with accurate water volume calculations."
 >
     <x-slot name="toolUi">

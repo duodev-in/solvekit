@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Milliliters to Cups Converter - ConvertPro"
+    title="Milliliters to Cups Converter - SolveKit"
     description="Professional milliliters to cups converter for cooking and baking. Convert mL to cups with precision for recipe measurements and culinary applications."
 >
     <x-slot name="toolUi">

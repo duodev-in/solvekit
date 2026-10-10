@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Number to Billion Converter - ConvertPro"
+    title="Number to Billion Converter - SolveKit"
     description="Professional number to billion converter for large scale analysis. Convert any number to billions and understand its magnitude in different contexts."
 >
     <x-slot name="toolUi">

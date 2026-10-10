@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Cubic Yards to Tons Converter - ConvertPro"
+    title="Cubic Yards to Tons Converter - SolveKit"
     description="Professional cubic yards to tons converter for construction materials. Convert volume to weight for concrete, soil, gravel, and other bulk materials."
 >
     <x-slot name="toolUi">

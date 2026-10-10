@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Ares to Hectares Converter - ConvertPro"
+    title="Ares to Hectares Converter - SolveKit"
     description="Professional converter for ares and hectares land area measurements. Fast and accurate bidirectional conversion for agricultural and real estate calculations."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Joules to Volts Calculator - ConvertPro"
+    title="Joules to Volts Calculator - SolveKit"
     description="Professional joules to volts calculator for energy to electrical potential conversion. Calculate voltage from energy and charge for electrical engineering applications."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Liters to Centiliters Converter - ConvertPro"
+    title="Liters to Centiliters Converter - SolveKit"
     description="Professional liters to centiliters converter for metric volume conversions. Convert liters (L) to centiliters (cL) with precision for laboratory and culinary use."
 >
     <x-slot name="toolUi">

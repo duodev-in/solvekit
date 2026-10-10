@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Time Unit Converter - ConvertPro"
+    title="Time Unit Converter - SolveKit"
     description="Professional time unit converter for all time measurements. Convert between seconds, minutes, hours, days, weeks, months, and years with precision calculations."
 >
     <x-slot name="toolUi">

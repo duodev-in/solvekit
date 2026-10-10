@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Ounces to Cups Converter - ConvertPro"
+    title="Ounces to Cups Converter - SolveKit"
     description="Professional ounces to cups converter for cooking and baking. Convert fluid ounces (fl oz) to cups with precision for recipe measurements."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="CGS System of Units Converter - ConvertPro"
+    title="CGS System of Units Converter - SolveKit"
     description="Professional CGS system converter for scientific calculations. Convert between Centimeter-Gram-Second units and SI, Imperial systems with precision for physics and chemistry applications."
 >
     <x-slot name="toolUi">

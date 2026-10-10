@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="in-lbs ↔ ft-lbs Converter - ConvertPro"
+    title="in-lbs ↔ ft-lbs Converter - SolveKit"
     description="Professional inch-pounds to foot-pounds converter for engineering applications. Convert between in-lbs and ft-lbs torque units with precision."
 >
     <x-slot name="toolUi">

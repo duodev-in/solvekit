@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Crore to Lakh Converter - ConvertPro"
+    title="Crore to Lakh Converter - SolveKit"
     description="Professional crore to lakh converter for Indian numbering system. Convert between crores, lakhs, thousands and other Indian number denominations."
 >
     <x-slot name="toolUi">

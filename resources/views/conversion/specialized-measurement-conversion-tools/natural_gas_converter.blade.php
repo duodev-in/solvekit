@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Natural Gas Converter - ConvertPro"
+    title="Natural Gas Converter - SolveKit"
     description="Professional natural gas converter for volume and energy units. Convert between cubic feet, therms, BTU, cubic meters, and other gas measurement units for energy calculations."
 >
     <x-slot name="toolUi">

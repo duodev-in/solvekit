@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Kg to Gallons Converter (Advanced) - ConvertPro"
+    title="Kg to Gallons Converter (Advanced) - SolveKit"
     description="Advanced kg to gallons converter for various substances. Convert weight to volume based on density for liquids, dairy, oils, and cooking ingredients."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Knots to MPH Converter - ConvertPro"
+    title="Knots to MPH Converter - SolveKit"
     description="Professional nautical to imperial speed converter between knots and miles per hour. Convert marine and aviation speeds for international navigation and transportation."
 >
     <x-slot name="toolUi">

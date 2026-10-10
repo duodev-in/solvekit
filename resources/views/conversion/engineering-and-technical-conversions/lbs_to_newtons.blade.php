@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Lbs ↔ Newtons Converter - ConvertPro"
+    title="Lbs ↔ Newtons Converter - SolveKit"
     description="Professional pound-force to Newtons converter for engineering applications. Convert between lbf and N force units with precision."
 >
     <x-slot name="toolUi">

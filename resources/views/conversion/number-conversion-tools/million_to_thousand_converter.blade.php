@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Million to Thousand Converter - ConvertPro"
+    title="Million to Thousand Converter - SolveKit"
     description="Professional million to thousand converter for financial calculations. Convert between millions, thousands and smaller number denominations with precision."
 >
     <x-slot name="toolUi">

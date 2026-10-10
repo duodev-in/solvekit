@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Binary Converter - ConvertPro"
+    title="Binary Converter - SolveKit"
     description="Professional binary converter for computer science and programming. Convert between binary and decimal with complete base outputs and clear conversion steps."
 >
     <x-slot name="toolUi">

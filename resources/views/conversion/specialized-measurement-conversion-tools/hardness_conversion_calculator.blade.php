@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Hardness Conversion Calculator - ConvertPro"
+    title="Hardness Conversion Calculator - SolveKit"
     description="Professional hardness conversion calculator for materials testing. Convert between Rockwell, Brinell, Vickers, Shore, and other hardness scales with precision."
 >
     <x-slot name="toolUi">

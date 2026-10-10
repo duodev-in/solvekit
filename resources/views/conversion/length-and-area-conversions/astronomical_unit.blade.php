@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Astronomical Unit Calculator - ConvertPro"
+    title="Astronomical Unit Calculator - SolveKit"
     description="Professional astronomical unit calculator to convert AU to kilometers, miles, light years, and parsecs. Accurate space distance conversions for astronomy and education."
 >
     <x-slot name="toolUi">

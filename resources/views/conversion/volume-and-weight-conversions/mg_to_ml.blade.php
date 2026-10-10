@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="mg to mL Converter - ConvertPro"
+    title="mg to mL Converter - SolveKit"
     description="Professional mg to mL converter for concentration-based calculations. Convert between weight and volume using substance concentration values."
 >
     <x-slot name="toolUi">

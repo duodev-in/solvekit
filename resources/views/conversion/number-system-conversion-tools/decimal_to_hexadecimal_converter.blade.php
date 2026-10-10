@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Decimal to Hexadecimal Converter - ConvertPro"
+    title="Decimal to Hexadecimal Converter - SolveKit"
     description="Professional decimal and hexadecimal converter for programming and digital systems. Convert in both directions with complete base outputs and readable steps."
 >
     <x-slot name="toolUi">

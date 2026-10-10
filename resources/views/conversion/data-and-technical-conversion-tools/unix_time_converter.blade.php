@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Unix Time Converter - ConvertPro"
+    title="Unix Time Converter - SolveKit"
     description="Professional Unix timestamp converter for developers and system administrators. Convert between Unix timestamps and human-readable dates with timezone support and detailed analysis."
 >
     <x-slot name="toolUi">

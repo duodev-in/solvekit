@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Nm to in-lbs Converter - ConvertPro"
+    title="Nm to in-lbs Converter - SolveKit"
     description="Professional torque converter for engineering applications. Convert between Newton-meters, inch-pounds, foot-pounds and other torque units with precision."
 >
     <x-slot name="toolUi">

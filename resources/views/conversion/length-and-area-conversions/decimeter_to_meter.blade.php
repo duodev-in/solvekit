@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Decimeter to Meter Converter - ConvertPro"
+    title="Decimeter to Meter Converter - SolveKit"
     description="Professional decimeter to meter converter for simple metric conversions. Fast and accurate bidirectional conversion between decimeters and meters."
 >
     <x-slot name="toolUi">

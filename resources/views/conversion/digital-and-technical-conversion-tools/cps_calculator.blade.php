@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="CPS Calculator - ConvertPro"
+    title="CPS Calculator - SolveKit"
     description="Professional CPS calculator for cycles per second calculations. Convert frequency units, analyze periodic signals, and calculate timing parameters for engineering applications."
 >
     <x-slot name="toolUi">

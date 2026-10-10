@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Number to Million Converter - ConvertPro"
+    title="Number to Million Converter - SolveKit"
     description="Professional number to million converter for medium scale analysis. Convert any number to millions and understand its magnitude in business and everyday contexts."
 >
     <x-slot name="toolUi">

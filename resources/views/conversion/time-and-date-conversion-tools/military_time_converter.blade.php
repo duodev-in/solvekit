@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Military Time Converter - ConvertPro"
+    title="Military Time Converter - SolveKit"
     description="Professional military time converter for 12-hour and 24-hour time formats. Convert between standard time and military time with detailed explanations and examples."
 >
     <x-slot name="toolUi">

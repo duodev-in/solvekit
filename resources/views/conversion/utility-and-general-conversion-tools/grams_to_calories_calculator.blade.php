@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Grams to Calories Calculator - ConvertPro"
+    title="Grams to Calories Calculator - SolveKit"
     description="Professional grams to calories calculator for food weight to energy conversion. Calculate nutritional values, macronutrients, and energy content for diet planning and nutrition tracking."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Energy Conversion Calculator - ConvertPro"
+    title="Energy Conversion Calculator - SolveKit"
     description="Professional energy unit converter between joules, calories, BTU, kWh, and other energy measurements. Convert thermal, electrical, and mechanical energy units with precision."
 >
     <x-slot name="toolUi">

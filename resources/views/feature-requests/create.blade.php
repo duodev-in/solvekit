@@ -1,6 +1,6 @@
 <x-app-layout
-    title="Request a feature | ConvertPro"
-    description="Share a feature idea or improvement request for ConvertPro."
+    title="Request a feature | SolveKit"
+    description="Share a feature idea or improvement request for SolveKit."
 >
     <div class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         @if (session('status'))
@@ -13,7 +13,7 @@
             <p class="text-sm font-medium uppercase tracking-[0.18em] text-primary-600">Product feedback</p>
             <h1 class="mt-3 text-4xl font-bold text-gray-900">Request a feature</h1>
             <p class="mt-3 text-lg text-gray-600">
-                Tell us which tool, workflow, or improvement would make ConvertPro even more useful for you.
+                Tell us which tool, workflow, or improvement would make SolveKit even more useful for you.
             </p>
         </div>
 

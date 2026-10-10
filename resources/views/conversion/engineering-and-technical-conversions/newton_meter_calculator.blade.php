@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Newton Meter Calculator - ConvertPro"
+    title="Newton Meter Calculator - SolveKit"
     description="Professional Newton meter torque calculator for engineering applications. Convert between Nm, kNm, lbf·ft and other torque units with precision."
 >
     <x-slot name="toolUi">

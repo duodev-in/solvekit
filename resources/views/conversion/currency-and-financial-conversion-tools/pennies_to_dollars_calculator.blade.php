@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pennies to Dollars Calculator - ConvertPro"
+    title="Pennies to Dollars Calculator - SolveKit"
     description="Professional pennies to dollars calculator for coin conversion. Convert penny quantities to dollar amounts with detailed breakdown for counting and financial calculations."
 >
     <x-slot name="toolUi">

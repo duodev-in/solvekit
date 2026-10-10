@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Time Zones Converter - ConvertPro"
+    title="Time Zones Converter - SolveKit"
     description="Professional time zone converter for global time calculations. Convert time between different time zones worldwide with DST support and real-time updates."
 >
     <x-slot name="toolUi">

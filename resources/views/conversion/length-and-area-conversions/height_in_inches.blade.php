@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Height in Inches Calculator - ConvertPro"
+    title="Height in Inches Calculator - SolveKit"
     description="Professional height calculator to convert inches to feet and inches, centimeters, and meters. Perfect for height conversions and human measurements."
 >
     <x-slot name="toolUi">

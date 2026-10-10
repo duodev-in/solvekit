@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Dimensional Analysis Calculator - ConvertPro"
+    title="Dimensional Analysis Calculator - SolveKit"
     description="Professional dimensional analysis calculator for complex unit conversions and dimensional relationships. Analyze compound units, verify dimensional consistency, and perform advanced unit calculations."
 >
     <x-slot name="toolUi">

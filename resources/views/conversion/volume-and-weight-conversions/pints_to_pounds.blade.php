@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pints to Pounds Converter - ConvertPro"
+    title="Pints to Pounds Converter - SolveKit"
     description="Professional pints to pounds converter using substance density. Convert volume to weight for various materials and substances."
 >
     <x-slot name="toolUi">

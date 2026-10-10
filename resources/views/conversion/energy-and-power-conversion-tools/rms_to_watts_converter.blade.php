@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="RMS to Watts Converter - ConvertPro"
+    title="RMS to Watts Converter - SolveKit"
     description="Professional RMS to watts converter for AC power calculations. Convert RMS voltage and current to power for electrical engineering and power system analysis."
 >
     <x-slot name="toolUi">

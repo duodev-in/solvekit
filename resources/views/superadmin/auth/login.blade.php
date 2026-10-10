@@ -1,10 +1,10 @@
 @extends('superadmin.layout.auth')
 
-@section('title', 'Admin login | ConvertPro')
+@section('title', 'Admin login | SolveKit')
 
 @section('content')
     <div class="mb-8 text-center">
-        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">ConvertPro</p>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">SolveKit</p>
         <h1 class="mt-3 text-3xl font-semibold tracking-tight">Administration sign in</h1>
         <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">For superadmins and developers only.</p>
     </div>

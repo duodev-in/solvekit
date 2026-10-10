@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Cents to Dollars Calculator - ConvertPro"
+    title="Cents to Dollars Calculator - SolveKit"
     description="Professional cents to dollars calculator for currency conversion. Convert cent amounts to dollars with precise decimal calculations for financial applications."
 >
     <x-slot name="toolUi">

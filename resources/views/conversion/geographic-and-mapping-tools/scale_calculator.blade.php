@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Scale Calculator - ConvertPro"
+    title="Scale Calculator - SolveKit"
     description="Professional scale calculator for maps, drawings and models. Calculate map scales, ratios and convert between different scale representations."
 >
     <x-slot name="toolUi">

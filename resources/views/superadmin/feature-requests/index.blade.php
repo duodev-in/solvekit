@@ -1,6 +1,6 @@
 @extends('superadmin.layout.app')
 
-@section('title', 'Feature requests | ConvertPro')
+@section('title', 'Feature requests | SolveKit')
 
 @section('content')
     <div>

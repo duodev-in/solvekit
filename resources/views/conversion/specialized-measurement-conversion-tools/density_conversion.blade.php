@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Density Conversion Calculator - ConvertPro"
+    title="Density Conversion Calculator - SolveKit"
     description="Professional density conversion calculator for mass per unit volume. Convert between kg/m³, g/cm³, lb/ft³, and other density units for materials and substances."
 >
     <x-slot name="toolUi">

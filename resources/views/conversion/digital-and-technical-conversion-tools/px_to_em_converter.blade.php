@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Px to Em Converter - ConvertPro"
+    title="Px to Em Converter - SolveKit"
     description="Professional px to em converter for CSS unit conversion. Convert pixels to em units for responsive web design and scalable typography with base font size calculations."
 >
     <x-slot name="toolUi">

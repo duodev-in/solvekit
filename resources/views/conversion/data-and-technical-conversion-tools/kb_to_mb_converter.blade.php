@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="kB to MB Converter - ConvertPro"
+    title="kB to MB Converter - SolveKit"
     description="Professional kilobyte to megabyte converter for digital storage calculations. Convert between KB and MB with binary and decimal standards, file size context, and detailed explanations."
 >
     <x-slot name="toolUi">

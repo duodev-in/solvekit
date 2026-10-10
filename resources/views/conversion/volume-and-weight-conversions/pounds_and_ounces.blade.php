@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pounds and Ounces Converter - ConvertPro"
+    title="Pounds and Ounces Converter - SolveKit"
     description="Professional pounds and ounces converter for imperial weight measurements. Convert between pounds, ounces, and metric units with precision."
 >
     <x-slot name="toolUi">

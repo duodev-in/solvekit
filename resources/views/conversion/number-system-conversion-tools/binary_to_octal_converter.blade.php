@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Binary to Octal Converter - ConvertPro"
+    title="Binary to Octal Converter - SolveKit"
     description="Professional binary and octal converter for computer science and digital systems. Convert both ways with complete base outputs and transparent calculation steps."
 >
     <x-slot name="toolUi">

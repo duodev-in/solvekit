@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Mbps to Gbps Converter - ConvertPro"
+    title="Mbps to Gbps Converter - SolveKit"
     description="Professional Mbps to Gbps converter for network speeds. Convert between megabits and gigabits per second with detailed analysis and network performance insights."
 >
     <x-slot name="toolUi">

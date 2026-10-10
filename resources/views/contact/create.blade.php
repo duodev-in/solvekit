@@ -1,6 +1,6 @@
 <x-app-layout
-    title="Contact us | ConvertPro"
-    description="Contact the ConvertPro team with questions, feedback, or support requests."
+    title="Contact us | SolveKit"
+    description="Contact the SolveKit team with questions, feedback, or support requests."
 >
     <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         @if (session('status'))

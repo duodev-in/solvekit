@@ -1,6 +1,6 @@
 <x-app-layout
-    title="Report a bug | ConvertPro"
-    description="Tell the ConvertPro development team about a problem you found."
+    title="Report a bug | SolveKit"
+    description="Tell the SolveKit development team about a problem you found."
 >
     <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
         @if (session('status'))

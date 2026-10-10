@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Torque to HP Calculator - ConvertPro"
+    title="Torque to HP Calculator - SolveKit"
     description="Professional torque to horsepower calculator for engineering applications. Calculate power output from torque and RPM values with precision."
 >
     <x-slot name="toolUi">

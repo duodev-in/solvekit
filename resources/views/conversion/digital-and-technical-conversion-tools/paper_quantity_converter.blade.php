@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Paper Quantity Converter - ConvertPro"
+    title="Paper Quantity Converter - SolveKit"
     description="Professional paper quantity converter for ream, sheet, and paper conversions. Calculate printing costs, office supply quantities, and paper weight conversions for business needs."
 >
     <x-slot name="toolUi">

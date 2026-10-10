@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Grams to Ounces Converter - ConvertPro"
+    title="Grams to Ounces Converter - SolveKit"
     description="Professional grams to ounces converter for metric to imperial weight conversions. Convert grams (g) to ounces (oz) with precision for cooking and measurements."
 >
     <x-slot name="toolUi">

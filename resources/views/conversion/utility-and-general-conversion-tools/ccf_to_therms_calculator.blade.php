@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="CCF to Therms Calculator - ConvertPro"
+    title="CCF to Therms Calculator - SolveKit"
     description="Professional CCF to therms calculator for gas volume to energy conversion. Convert hundred cubic feet to therms for utility billing and energy consumption analysis."
 >
     <x-slot name="toolUi">

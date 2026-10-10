@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Area Calculator - ConvertPro"
+    title="Area Calculator - SolveKit"
     description="Professional area calculator to convert between square meters, square feet, acres, hectares, and other area units. Fast and accurate conversions."
 >
     <x-slot name="toolUi">

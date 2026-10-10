@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Conversion Calculator - ConvertPro"
+    title="Conversion Calculator - SolveKit"
     description="Professional general purpose conversion calculator. Convert between multiple unit categories including length, weight, volume, temperature, and more with comprehensive unit support."
 >
     <x-slot name="toolUi">

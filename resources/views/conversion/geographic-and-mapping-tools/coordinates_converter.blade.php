@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Coordinates Converter - ConvertPro"
+    title="Coordinates Converter - SolveKit"
     description="Professional coordinates converter for GPS, mapping and surveying applications. Convert between decimal degrees, DMS, UTM and other coordinate systems."
 >
     <x-slot name="toolUi">

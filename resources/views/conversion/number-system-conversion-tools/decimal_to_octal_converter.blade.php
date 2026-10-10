@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Decimal to Octal Converter - ConvertPro"
+    title="Decimal to Octal Converter - SolveKit"
     description="Professional decimal and octal converter for computer science and system calculations. Convert both ways with complete base outputs and readable step logic."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Quantity Converter - ConvertPro"
+    title="Quantity Converter - SolveKit"
     description="Professional quantity converter for count and bulk measurements. Convert between different quantity units including dozens, gross, reams, cases, and bulk packaging for business and inventory management."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="PPM to mg/L Converter - ConvertPro"
+    title="PPM to mg/L Converter - SolveKit"
     description="Professional PPM to mg/L converter for water quality concentration units. Convert parts per million to milligrams per liter for accurate water analysis and testing."
 >
     <x-slot name="toolUi">

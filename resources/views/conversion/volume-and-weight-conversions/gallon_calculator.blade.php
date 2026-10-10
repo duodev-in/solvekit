@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Gallon Calculator - ConvertPro"
+    title="Gallon Calculator - SolveKit"
     description="Professional gallon calculator to convert liters, quarts, pints, and fluid ounces to gallons. Comprehensive gallon conversions for all your needs."
 >
     <x-slot name="toolUi">

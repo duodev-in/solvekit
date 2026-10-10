@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="dBm to Watts Calculator - ConvertPro"
+    title="dBm to Watts Calculator - SolveKit"
     description="Professional dBm to watts calculator for RF power conversion. Convert decibel-milliwatts to watts for radio frequency and telecommunications applications."
 >
     <x-slot name="toolUi">

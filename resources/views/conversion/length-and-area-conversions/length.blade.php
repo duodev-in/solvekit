@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Length Calculator - ConvertPro"
+    title="Length Calculator - SolveKit"
     description="Professional length calculator to convert between meters, feet, inches, kilometers, and other length units. Fast and accurate conversions."
 >
     <x-slot name="toolUi">

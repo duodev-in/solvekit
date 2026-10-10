@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Billion to Trillion Converter - ConvertPro"
+    title="Billion to Trillion Converter - SolveKit"
     description="Professional billion to trillion converter for finance and large number calculations. Convert between billions, trillions and other large denominations."
 >
     <x-slot name="toolUi">

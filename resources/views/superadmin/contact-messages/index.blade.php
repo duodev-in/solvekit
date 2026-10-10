@@ -1,6 +1,6 @@
 @extends('superadmin.layout.app')
 
-@section('title', 'Contact messages | ConvertPro')
+@section('title', 'Contact messages | SolveKit')
 
 @section('content')
     <div>

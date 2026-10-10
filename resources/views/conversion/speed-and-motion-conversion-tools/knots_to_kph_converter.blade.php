@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Knots to KPH Converter - ConvertPro"
+    title="Knots to KPH Converter - SolveKit"
     description="Professional nautical speed converter between knots and kilometers per hour. Convert marine and aviation speeds with precision for navigation and transportation calculations."
 >
     <x-slot name="toolUi">

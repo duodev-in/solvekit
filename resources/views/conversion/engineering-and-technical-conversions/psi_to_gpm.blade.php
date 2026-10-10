@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="PSI to GPM Calculator - ConvertPro"
+    title="PSI to GPM Calculator - SolveKit"
     description="Professional PSI to GPM flow rate calculator for engineering applications. Calculate flow rates from pressure and pipe dimensions with precision."
 >
     <x-slot name="toolUi">

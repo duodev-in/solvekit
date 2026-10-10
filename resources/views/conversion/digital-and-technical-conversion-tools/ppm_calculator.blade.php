@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="PPM Calculator - ConvertPro"
+    title="PPM Calculator - SolveKit"
     description="Professional PPM calculator for parts per million calculations. Convert concentrations, analyze solutions, and calculate dilutions for chemistry and water quality testing."
 >
     <x-slot name="toolUi">

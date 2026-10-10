@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Roman Numerals Converter - ConvertPro"
+    title="Roman Numerals Converter - SolveKit"
     description="Professional Roman numerals converter for historical and educational purposes. Convert between Roman numerals and decimal numbers with detailed rules and explanations."
 >
     <x-slot name="toolUi">

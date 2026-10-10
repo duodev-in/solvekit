@@ -1,5 +1,5 @@
 <x-app-layout 
-    title="ConvertPro - Professional Conversion Tools"
+    title="SolveKit - Professional Conversion Tools"
     description="Professional-grade calculators for accurate unit conversions across length, weight, pressure, torque, and more.">
 
     <!-- Hero Section -->
@@ -1592,7 +1592,7 @@
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Choose ConvertPro?</h2>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Choose SolveKit?</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Professional-grade conversion tools designed for accuracy and reliability</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">

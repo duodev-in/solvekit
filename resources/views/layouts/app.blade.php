@@ -1,5 +1,5 @@
 @props([
-    'title' => 'ConvertPro',
+    'title' => 'SolveKit',
     'description' => '',
     'showFooter' => true,
 ])
@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
     <meta name="description" content="{{ $description }}">
-    <meta name="author" content="ConvertPro">
+    <meta name="author" content="SolveKit">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="{{ url()->current() }}">
 

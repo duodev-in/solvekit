@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Cubic Feet Calculator - ConvertPro"
+    title="Cubic Feet Calculator - SolveKit"
     description="Professional cubic feet calculator to calculate volume in ft³ from length, width, and height dimensions. Perfect for construction and storage calculations."
 >
     <x-slot name="toolUi">

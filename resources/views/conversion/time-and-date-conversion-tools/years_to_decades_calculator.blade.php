@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Years to Decades Calculator - ConvertPro"
+    title="Years to Decades Calculator - SolveKit"
     description="Professional years to decades calculator for long-term time periods. Convert years to decades, centuries, millennia with historical context and age calculations."
 >
     <x-slot name="toolUi">

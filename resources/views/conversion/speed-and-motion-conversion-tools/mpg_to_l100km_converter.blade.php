@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="MPG to L/100km Converter - ConvertPro"
+    title="MPG to L/100km Converter - SolveKit"
     description="Professional fuel economy converter between miles per gallon and liters per 100 kilometers. Convert vehicle fuel efficiency for international automotive comparisons."
 >
     <x-slot name="toolUi">

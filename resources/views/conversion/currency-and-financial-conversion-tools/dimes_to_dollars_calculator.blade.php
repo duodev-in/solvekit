@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Dimes to Dollars Calculator - ConvertPro"
+    title="Dimes to Dollars Calculator - SolveKit"
     description="Professional dimes to dollars calculator for coin conversion. Convert dime quantities to dollar amounts with detailed breakdown for counting and financial calculations."
 >
     <x-slot name="toolUi">

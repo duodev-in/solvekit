@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Radiation Converter - ConvertPro"
+    title="Radiation Converter - SolveKit"
     description="Professional radiation converter for dose and exposure units. Convert between Sievert, Gray, Rem, Rad, and other radiation measurement units for safety and medical applications."
 >
     <x-slot name="toolUi">

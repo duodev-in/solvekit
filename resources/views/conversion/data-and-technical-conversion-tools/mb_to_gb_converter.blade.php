@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="MB to GB Converter - ConvertPro"
+    title="MB to GB Converter - SolveKit"
     description="Professional megabyte to gigabyte converter for digital storage calculations. Convert between MB and GB with binary and decimal standards, storage context, and detailed explanations."
 >
     <x-slot name="toolUi">

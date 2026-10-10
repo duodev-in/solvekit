@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Feet &amp; Inches Calculator - ConvertPro"
+    title="Feet &amp; Inches Calculator - SolveKit"
     description="Professional feet and inches calculator to convert imperial measurements to metric units. Convert feet and inches to centimeters, meters, and total inches."
 >
     <x-slot name="toolUi">

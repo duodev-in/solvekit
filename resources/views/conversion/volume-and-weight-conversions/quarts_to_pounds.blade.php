@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Quarts to Pounds Converter - ConvertPro"
+    title="Quarts to Pounds Converter - SolveKit"
     description="Professional quarts to pounds converter for cooking and baking. Convert volume to weight using ingredient density for accurate recipe measurements."
 >
     <x-slot name="toolUi">

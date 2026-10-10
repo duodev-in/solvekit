@@ -1,5 +1,5 @@
 <x-app-layout 
-    title="ConvertPro - Professional Calculation Tools"
+    title="SolveKit - Professional Calculation Tools"
     description="Professional-grade calculators for conversions, construction, finance, and more. Trusted by engineers, scientists, and professionals worldwide."
 >
     <!-- Hero Section -->
@@ -212,7 +212,7 @@
     <section id="features" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose ConvertPro?</h2>
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose SolveKit?</h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                     Professional-grade calculation tools designed for accuracy, speed, and reliability
                 </p>
@@ -263,7 +263,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-4xl font-bold text-white mb-6">Ready to Get Started?</h2>
             <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-                Join thousands of professionals who trust ConvertPro for their daily calculation needs.
+                Join thousands of professionals who trust SolveKit for their daily calculation needs.
             </p>
             <a href="#categories" 
                class="inline-flex items-center bg-white text-primary-600 px-8 py-4 rounded-lg shadow-lg hover:bg-gray-50 transition-all duration-200 font-semibold text-lg transform hover:scale-105">

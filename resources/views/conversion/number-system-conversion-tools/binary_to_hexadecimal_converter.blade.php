@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Binary to Hexadecimal Converter - ConvertPro"
+    title="Binary to Hexadecimal Converter - SolveKit"
     description="Professional binary and hexadecimal converter for programming and digital systems. Convert both ways with base-wide outputs and clear step breakdown."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Weight Converter - ConvertPro"
+    title="Weight Converter - SolveKit"
     description="Professional weight converter to convert between grams, pounds, kilograms, ounces, and other weight units. Fast and accurate conversions."
 >
     <x-slot name="toolUi">

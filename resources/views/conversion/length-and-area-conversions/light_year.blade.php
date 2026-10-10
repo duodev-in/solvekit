@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Light Year Converter - ConvertPro"
+    title="Light Year Converter - SolveKit"
     description="Professional light year converter to convert light years to kilometers, miles, astronomical units, and parsecs. Accurate space distance conversions for astronomy."
 >
     <x-slot name="toolUi">

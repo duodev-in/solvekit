@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Mbps Calculator - ConvertPro"
+    title="Mbps Calculator - SolveKit"
     description="Professional Mbps calculator for network speeds and data transfer rates. Calculate download times, bandwidth requirements, and network performance with detailed analysis."
 >
     <x-slot name="toolUi">

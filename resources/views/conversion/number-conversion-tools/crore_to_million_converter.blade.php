@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Crore to Million Converter - ConvertPro"
+    title="Crore to Million Converter - SolveKit"
     description="Professional crore to million converter for international business. Convert between Indian crores and Western millions with precision."
 >
     <x-slot name="toolUi">

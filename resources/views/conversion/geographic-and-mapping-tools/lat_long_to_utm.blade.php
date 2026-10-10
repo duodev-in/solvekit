@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Lat Long to UTM Converter - ConvertPro"
+    title="Lat Long to UTM Converter - SolveKit"
     description="Professional latitude longitude to UTM converter for surveying and mapping. Convert between geographic and UTM coordinate systems with precision."
 >
     <x-slot name="toolUi">

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Minutes to Hours Converter - ConvertPro"
+    title="Minutes to Hours Converter - SolveKit"
     description="Professional minutes to hours converter for time calculations. Convert between minutes and hours with decimal precision and practical time examples."
 >
     <x-slot name="toolUi">
