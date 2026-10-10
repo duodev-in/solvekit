@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">AC Power Calculation Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">RMS to Watts Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -321,56 +321,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About RMS to Watts Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">RMS Values in AC Systems</h4>
-                                    <p>RMS (Root Mean Square) values represent the effective value of AC voltage or current that produces the same heating effect as an equivalent DC value. RMS values are crucial for power calculations in AC circuits, as they account for the continuously varying nature of alternating current.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Power Calculations</h4>
-                                    <p>AC power calculations involve real power (watts), reactive power (VAR), and apparent power (VA). The power factor determines the relationship between these values. Understanding RMS-to-power conversions is essential for electrical design, energy efficiency, and power system analysis.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>AC Power Tip:</strong> For purely resistive loads, all power is real power (watts). For reactive loads, power factor corrections may be needed to improve efficiency.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Practical Power Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Household Applications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-method="voltage_resistance" data-primary="120" data-secondary="60">Space Heater: 120V, 60Ω</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical electric heater load</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-method="voltage_current" data-primary="120" data-secondary="10">Hair Dryer: 120V, 10A</div>
-                                        <div class="text-xs text-gray-600 mt-1">High-power appliance</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Industrial Applications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-method="voltage_current" data-primary="480" data-secondary="20">Motor: 480V, 20A</div>
-                                        <div class="text-xs text-gray-600 mt-1">Three-phase industrial motor</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-method="voltage_resistance" data-primary="240" data-secondary="10">Heating Element: 240V, 10Ω</div>
-                                        <div class="text-xs text-gray-600 mt-1">Industrial heating system</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -412,12 +362,13 @@
                         const copyResult = document.getElementById('copyResult');
 
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-15 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
@@ -467,6 +418,21 @@
                                     powerFactorContainer.style.display = 'block';
                                     formulaDisplay.textContent = 'P = (V² / Z) × cos φ';
                                     break;
+                            }
+                        }
+
+                        function getCalculationSummary(method, primary, secondary, pf, totalPower) {
+                            const result = `${formatNumber(totalPower)} W`;
+
+                            switch(method) {
+                                case 'current_resistance':
+                                    return `(${formatNumber(primary)} A)² × ${formatNumber(secondary)} Ω = ${result}`;
+                                case 'voltage_current':
+                                    return `${formatNumber(primary)} V × ${formatNumber(secondary)} A = ${result}`;
+                                case 'impedance_power':
+                                    return `(${formatNumber(primary)} V)² ÷ ${formatNumber(secondary)} Ω × ${formatNumber(pf, 2)} = ${result}`;
+                                default:
+                                    return `(${formatNumber(primary)} V)² ÷ ${formatNumber(secondary)} Ω = ${result}`;
                             }
                         }
 
@@ -523,8 +489,8 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(totalPower) + ' W';
-                                resultTitle.textContent = 'Calculated Power';
-                                resultDescription.textContent = `${method.replace('_', ' ')} calculation result`;
+                                resultTitle.textContent = 'Real Power in Watts (W)';
+                                resultDescription.textContent = getCalculationSummary(method, primary, secondary, pf, totalPower);
 
                                 // Display power units
                                 wattsDisplay.textContent = formatNumber(totalPower) + ' W';
@@ -631,25 +597,6 @@
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-purple-100', 'text-purple-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-method]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const method = this.getAttribute('data-method');
-                                const primary = this.getAttribute('data-primary');
-                                const secondary = this.getAttribute('data-secondary');
-                                
-                                if (method && primary && secondary) {
-                                    calculationMethod.value = method;
-                                    primaryValue.value = primary;
-                                    secondaryValue.value = secondary;
-                                    updateInputLabels();
-                                    calculate();
-                                    primaryValue.focus();
-                                }
                             });
                         });
 

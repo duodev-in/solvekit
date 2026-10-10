@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Nickel to Dollar Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Nickels to Dollars Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -137,8 +137,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl border-l-4 border-purple-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value in Dollars</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a number of nickels to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-purple-600 font-mono" id="output">--</div>
@@ -283,56 +283,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Nickels to Dollars Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Nickel History & Types</h4>
-                                    <p>The US nickel, worth 5 cents, has featured various designs since 1866. The current Jefferson nickel has been in use since 1938. Notable types include the Buffalo nickel (1913-1938) and wartime nickels (1942-1945) containing 35% silver, making them valuable to collectors.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Converting nickels to dollars is essential for coin counting, bank deposits, vending operations, and numismatic collections. Understanding the different nickel types helps in identifying potentially valuable coins beyond their face value.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>Collector Tip:</strong> Wartime nickels (1942-1945) with large mint marks contain 35% silver and are worth more than face value.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Nickel Quantities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Standard Rolls & Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-nickels="40">Bank Roll: 40 nickels</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard nickel roll = $2.00</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-nickels="160">Coin Box: 160 nickels</div>
-                                        <div class="text-xs text-gray-600 mt-1">Four rolls = $8.00</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Collection Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-nickels="23">Vending Machine: 23 nickels</div>
-                                        <div class="text-xs text-gray-600 mt-1">$1.15 for snack</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-nickels="87">Piggy Bank: 87 nickels</div>
-                                        <div class="text-xs text-gray-600 mt-1">$4.35 saved</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -358,10 +308,6 @@
                         const penniesDisplay = document.getElementById('penniesDisplay');
                         const dimesDisplay = document.getElementById('dimesDisplay');
                         const quartersDisplay = document.getElementById('quartersDisplay');
-                        const diameterDisplay = document.getElementById('diameterDisplay');
-                        const thicknessDisplay = document.getElementById('thicknessDisplay');
-                        const compositionDisplay = document.getElementById('compositionDisplay');
-                        const designerDisplay = document.getElementById('designerDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Nickel specifications
@@ -435,7 +381,7 @@
                         };
 
                         function formatNumber(num, decimals = 2) {
-                            return num.toLocaleString(undefined, { 
+                            return num.toLocaleString('en-US', { 
                                 maximumFractionDigits: decimals, 
                                 minimumFractionDigits: decimals 
                             });
@@ -447,13 +393,13 @@
                         }
 
                         function calculate() {
-                            const nickels = parseInt(nickelsValue.value) || 0;
+                            const nickels = parseInt(nickelsValue.value, 10);
                             const type = nickelType.value;
                             const valType = valueType.value;
                             const currentNickelPrice = parseFloat(nickelPrice.value) || 8.50;
                             const currentSilverPrice = parseFloat(silverPrice.value) || 24.50;
                             
-                            if (nickels >= 0) {
+                            if (!Number.isNaN(nickels) && nickels >= 0) {
                                 const specs = nickelSpecs[type];
                                 const faceValue = nickels * 0.05; // 5 cents per nickel
                                 let totalValue = faceValue;
@@ -482,9 +428,9 @@
 
                                 // Update primary output
                                 output.textContent = '$' + formatNumber(totalValue);
-                                resultTitle.textContent = valType === 'face_value' ? 'Face Value' : 
-                                                        valType === 'collector_value' ? 'Collector Value' : 'Melt Value';
-                                resultDescription.textContent = `${nickels} nickels = $${formatNumber(totalValue)}`;
+                                resultTitle.textContent = valType === 'face_value' ? 'Face Value in Dollars' : 
+                                                        valType === 'collector_value' ? 'Collector Value in Dollars' : 'Melt Value in Dollars';
+                                resultDescription.textContent = `${nickels.toLocaleString('en-US')} ${nickels === 1 ? 'nickel' : 'nickels'} = $${formatNumber(totalValue)}`;
 
                                 // Display breakdowns
                                 dollarsDisplay.textContent = '$' + formatNumber(totalValue);
@@ -502,12 +448,6 @@
                                 dimesDisplay.textContent = formatNumber(nickels / 2, 1); // 2 nickels per dime
                                 quartersDisplay.textContent = formatNumber(nickels / 5, 1); // 5 nickels per quarter
 
-                                // Coin specifications
-                                diameterDisplay.textContent = specs.diameter;
-                                thicknessDisplay.textContent = specs.thickness;
-                                compositionDisplay.textContent = specs.composition;
-                                designerDisplay.textContent = specs.designer;
-
                             } else {
                                 clearOutputs();
                             }
@@ -515,8 +455,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Total Value';
-                            resultDescription.textContent = 'Converted result';
+                            resultTitle.textContent = 'Total Value in Dollars';
+                            resultDescription.textContent = 'Enter a number of nickels to convert';
                             dollarsDisplay.textContent = '--';
                             centsDisplay.textContent = '--';
                             perNickelDisplay.textContent = '--';
@@ -526,10 +466,6 @@
                             penniesDisplay.textContent = '--';
                             dimesDisplay.textContent = '--';
                             quartersDisplay.textContent = '--';
-                            diameterDisplay.textContent = '--';
-                            thicknessDisplay.textContent = '--';
-                            compositionDisplay.textContent = '--';
-                            designerDisplay.textContent = '--';
                         }
 
                         function clearAll() {

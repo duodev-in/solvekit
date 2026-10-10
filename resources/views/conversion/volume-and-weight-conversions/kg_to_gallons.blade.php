@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Advanced Weight to Volume Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Kg to Gallons</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -317,12 +317,14 @@
                         };
 
                         function formatNumber(num) {
-                            if (num >= 1000) {
+                            if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
+                            } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             }
                         }
 
@@ -391,15 +393,16 @@
                             convert();
                         }
 
+                        function selectDefaultIngredient() {
+                            categorySelect.value = 'Liquids';
+                            populateItems('Liquids');
+                            itemSelect.value = 'Water';
+                            updateDensity();
+                        }
+
                         function clearAll() {
                             kgInput.value = '';
-                            categorySelect.selectedIndex = 0;
-                            itemSelect.innerHTML = '<option>Select a category first</option>';
-                            itemSelect.disabled = true;
-                            itemField.style.display = 'none';
-                            densityField.style.display = 'none';
-                            densityDisplay.value = '';
-                            convert();
+                            selectDefaultIngredient();
                             kgInput.focus();
                         }
 
@@ -448,8 +451,8 @@
                             }
                         });
 
-                        // Initialize conversion
-                        convert();
+                        // Default to water so results appear immediately
+                        selectDefaultIngredient();
                     });
                 </script>
     </x-slot>

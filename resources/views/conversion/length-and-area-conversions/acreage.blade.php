@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Land Area Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Acreage Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -77,8 +77,8 @@
                                                                             <div class="rounded-md border border-slate-200 bg-slate-50 p-2.5">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-xs font-semibold text-slate-900">Converted Value</h4>
-                                                                                        <p class="text-[11px] text-slate-500">Real-time conversion result</p>
+                                                                                        <h4 class="text-xs font-semibold text-slate-900" id="result-title">Converted Area</h4>
+                                                                                        <p class="text-[11px] text-slate-500" id="result-description">Enter a value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="font-serif text-3xl font-bold leading-none text-indigo-700" id="output">--</div>
@@ -160,6 +160,8 @@
                         const clearButton = document.getElementById('clearButton');
                         const output = document.getElementById('output');
                         const unitDisplay = document.getElementById('unit-display');
+                        const resultTitle = document.getElementById('result-title');
+                        const resultDescription = document.getElementById('result-description');
 
                         const conversionRates = {
                             sqm: { rate: 4046.86, symbol: 'm²', name: 'Square Meters' },
@@ -182,20 +184,26 @@
                                 // Format the result appropriately
                                 let formattedResult;
                                 if (result >= 1000000) {
-                                    formattedResult = result.toExponential(4);
+                                    formattedResult = Number(result.toPrecision(5)).toExponential();
                                 } else if (result >= 1000) {
                                     formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (result >= 1) {
                                     formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (result > 0 && result < 0.000001) {
+                                    formattedResult = Number(result.toPrecision(4)).toExponential();
                                 } else {
-                                    formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    formattedResult = result.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                                 
                                 output.textContent = formattedResult;
                                 unitDisplay.textContent = conversion.symbol;
+                                resultTitle.textContent = 'Area in ' + conversion.name;
+                                resultDescription.textContent = `${acres} ac = ${formattedResult} ${conversion.symbol}`;
                             } else {
                                 output.textContent = "--";
                                 unitDisplay.textContent = "Select unit";
+                                resultTitle.textContent = 'Converted Area';
+                                resultDescription.textContent = 'Enter a value to convert';
                             }
                         }
 

@@ -28,3 +28,16 @@
         --color-accent-foreground: #ffffff;
     }
 }
+
+/* AdSense units: show the label only once an ad fills, collapse unfilled slots. */
+[data-ad-unit] .ad-unit-label {
+    display: none;
+}
+
+[data-ad-unit]:has(ins[data-ad-status='filled']) .ad-unit-label {
+    display: block;
+}
+
+[data-ad-unit]:has(ins[data-ad-status='unfilled']) {
+    display: none !important;
+}

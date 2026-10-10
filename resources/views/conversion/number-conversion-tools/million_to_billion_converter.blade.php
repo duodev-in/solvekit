@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Western Number System Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Million to Billion</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -220,56 +220,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Million to Billion Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Financial Markets</h4>
-                                    <p>Essential for understanding company valuations, market capitalizations, revenue figures, and investment amounts. Used extensively in stock markets, venture capital, and financial reporting across global markets.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Business Applications</h4>
-                                    <p>Critical for business planning, financial analysis, investment decisions, and economic research. Understanding the scale helps in comparing companies, analyzing growth, and making informed financial decisions.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>Finance Tip:</strong> In finance, billion-dollar companies are called "unicorns" when private, and "large-cap" when public. 1 Billion = 1,000 Million!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Real-World Financial Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Real-World Financial Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Company Valuations</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="1000">$1 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Unicorn startup threshold</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="10000">$10 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Decacorn company valuation</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Market Cap Examples</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="50000">$50 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large tech company</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="100000">$100 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Mega-cap corporation</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -298,9 +248,6 @@
                         const contextDisplay = document.getElementById('contextDisplay');
                         const scaleLevel = document.getElementById('scaleLevel');
                         const categoryLevel = document.getElementById('categoryLevel');
-                        const companySize = document.getElementById('companySize');
-                        const investmentGrade = document.getElementById('investmentGrade');
-                        const writtenForm = document.getElementById('writtenForm');
                         const copyResult = document.getElementById('copyResult');
 
                         // Context descriptions
@@ -328,27 +275,21 @@
                         }
 
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (num >= 1e15) {
-                                    return num.toExponential(3);
-                                } else if (num >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (num >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function numberToWords(num) {
-                            if (num >= 1e12) return `${(num/1e12).toFixed(1)} Trillion`;
-                            if (num >= 1e9) return `${(num/1e9).toFixed(1)} Billion`;
-                            if (num >= 1e6) return `${(num/1e6).toFixed(1)} Million`;
-                            if (num >= 1e3) return `${(num/1e3).toFixed(1)} Thousand`;
-                            return num.toString();
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
+                            }
+
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            }
+
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function getCompanySize(millions) {
@@ -359,16 +300,6 @@
                             if (millions >= 300) return 'Small Cap';
                             if (millions >= 50) return 'Micro Cap';
                             return 'Nano Cap';
-                        }
-
-                        function getInvestmentGrade(millions) {
-                            const billions = millions / 1000;
-                            if (billions >= 100) return 'Blue Chip';
-                            if (billions >= 10) return 'Large Cap';
-                            if (billions >= 1) return 'Unicorn';
-                            if (millions >= 100) return 'Growth Stage';
-                            if (millions >= 10) return 'Series B/C';
-                            return 'Early Stage';
                         }
 
                         function getScaleLevel(num) {
@@ -454,9 +385,6 @@
                                 
                                 // Analysis
                                 scaleLevel.textContent = getScaleLevel(baseValue);
-                                companySize.textContent = getCompanySize(millions);
-                                investmentGrade.textContent = getInvestmentGrade(millions);
-                                writtenForm.textContent = numberToWords(baseValue);
                                 
                                 // Category based on context
                                 const selectedContext = context.value;
@@ -490,9 +418,6 @@
                             lakhDisplay.textContent = '--';
                             scaleLevel.textContent = '--';
                             categoryLevel.textContent = '--';
-                            companySize.textContent = '--';
-                            investmentGrade.textContent = '--';
-                            writtenForm.textContent = '--';
                         }
 
                         function clearAll() {
@@ -555,17 +480,6 @@
                                 financialExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-purple-100', 'text-purple-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                inputValue.value = value;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

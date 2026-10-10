@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Mass & Weight Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Weight Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,7 +18,8 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-3" id="calculatorForm">
 
-                                                                            <!-- Input Value -->
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-slate-700">
                                                                                     Enter Weight Value
@@ -32,9 +33,6 @@
                                                                                     min="0"
                                                                                 >
                                                                             </div>
-
-                                                                            <!-- From and To Units -->
-                                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                                 <div class="space-y-2">
                                                                                     <label for="fromUnit" class="block text-sm font-semibold text-slate-700">
                                                                                         From Unit
@@ -92,8 +90,8 @@
                                                                             <div class="rounded-md border border-slate-200 bg-slate-50 p-2.5">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-xs font-semibold text-slate-900">Converted Value</h4>
-                                                                                        <p class="text-[11px] text-slate-500">Real-time conversion result</p>
+                                                                                        <h4 class="text-xs font-semibold text-slate-900" id="result-title">Converted Weight</h4>
+                                                                                        <p class="text-[11px] text-slate-500" id="result-description">Enter a value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="font-serif text-3xl font-bold leading-none text-indigo-700" id="output">--</div>
@@ -178,6 +176,8 @@
                         const clearButton = document.getElementById('clearButton');
                         const output = document.getElementById('output');
                         const unitDisplay = document.getElementById('unit-display');
+                        const resultTitle = document.getElementById('result-title');
+                        const resultDescription = document.getElementById('result-description');
 
                         const conversionRates = {
                             mg: { toGrams: 0.001, symbol: 'mg', name: 'Milligrams' },
@@ -191,13 +191,15 @@
 
                         function formatNumber(num) {
                             if (num >= 1000000) {
-                                return num.toExponential(4);
+                                return Number(num.toPrecision(5)).toExponential();
                             } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 
@@ -212,9 +214,13 @@
                                 
                                 output.textContent = formatNumber(result);
                                 unitDisplay.textContent = conversionRates[toUnitValue].symbol;
+                                resultTitle.textContent = 'Weight in ' + conversionRates[toUnitValue].name;
+                                resultDescription.textContent = `${value} ${conversionRates[fromUnitValue].symbol} = ${formatNumber(result)} ${conversionRates[toUnitValue].symbol}`;
                             } else {
                                 output.textContent = "--";
                                 unitDisplay.textContent = "Select units";
+                                resultTitle.textContent = 'Converted Weight';
+                                resultDescription.textContent = 'Enter a value to convert';
                             }
                         }
 

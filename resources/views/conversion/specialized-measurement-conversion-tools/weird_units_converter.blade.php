@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Quirky & Unconventional Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Weird Units Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -160,26 +161,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Weirdness Level -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Weirdness Level
-                                                                                </label>
-                                                                                <div class="flex items-center space-x-4">
-                                                                                    <input 
-                                                                                        type="range" 
-                                                                                        id="weirdnessLevel" 
-                                                                                        min="1" 
-                                                                                        max="10" 
-                                                                                        value="5" 
-                                                                                        class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                                                                                    >
-                                                                                    <span class="text-sm font-mono text-gray-700 min-w-[4rem]" id="weirdnessValue">5 - Normal</span>
-                                                                                </div>
-                                                                                <p class="text-xs text-gray-500">Adjust the level of weirdness in explanations</p>
                                                                             </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -339,65 +321,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Weird Units</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Origins of Weird Units</h4>
-                                    <p>Many unusual units originated from practical jokes, student pranks, or attempts to make measurements more relatable. The Smoot, for example, was created by MIT students measuring a bridge using their classmate as a ruler. These units often become cultural phenomena and teaching tools.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Educational Value</h4>
-                                    <p>Weird units help make abstract measurements more understandable by relating them to familiar objects or concepts. They're excellent for science communication, making complex quantities accessible to general audiences, and adding humor to otherwise dry technical content.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                                <p class="text-sm text-orange-800">
-                                    <strong>Fun Fact:</strong> The Google search engine uses many weird units in its built-in calculator - you can search "convert 5 smoots to meters" and get real results!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Famous Weird Units -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Famous Weird Units</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">MIT & Academic Units</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="364.4" data-from="smoot" data-to="meter">Harvard Bridge: 364.4 Smoots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Actual measurement painted on bridge</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="1" data-from="microcentury" data-to="second">Lecture Length: 1 Microcentury</div>
-                                        <div class="text-xs text-gray-600 mt-1">Perfect university class duration</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Pop Culture Units</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="1" data-from="sheppey" data-to="meter">Douglas Adams: 1 Sheppey</div>
-                                        <div class="text-xs text-gray-600 mt-1">Closest approach to sheep before recognition</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="1440" data-from="library_of_congress" data-to="byte">Internet Archive: 1440 LoCs</div>
-                                        <div class="text-xs text-gray-600 mt-1">Wayback Machine data size</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const weirdnessLevel = document.getElementById('weirdnessLevel');
-                        const weirdnessValue = document.getElementById('weirdnessValue');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -412,11 +341,6 @@
                         const microcenturyDisplay = document.getElementById('microcenturyDisplay');
                         const dogYearDisplay = document.getElementById('dogYearDisplay');
                         const floppyDiskDisplay = document.getElementById('floppyDiskDisplay');
-                        const unitStory = document.getElementById('unitStory');
-                        const weirdnessScore = document.getElementById('weirdnessScore');
-                        const funFactor = document.getElementById('funFactor');
-                        const usability = document.getElementById('usability');
-                        const everydayComparison = document.getElementById('everydayComparison');
                         const copyResult = document.getElementById('copyResult');
 
                         // Weird unit database (values in standard SI units)
@@ -438,7 +362,7 @@
                             jiffy: { value: 1/60, type: 'time', name: 'Jiffy', weirdness: 5, story: 'Computer graphics term, 1/60 second or one frame at 60 FPS.' },
                             moment: { value: 90, type: 'time', name: 'Moment', weirdness: 4, story: 'Medieval time unit, 1/40 of an hour or 90 seconds.' },
                             dog_year: { value: 31557600/7, type: 'time', name: 'Dog Year', weirdness: 3, story: 'Human year divided by 7, based on the myth of dog aging.' },
-                            friedman: { value: 31557600, type: 'time', name: 'Friedman', weirdness: 6, story: 'Academic unit: time for tenure review, about 6 months.' },
+                            friedman: { value: 15778800, type: 'time', name: 'Friedman', weirdness: 6, story: 'Academic unit: time for tenure review, about 6 months.' },
                             
                             // Data units (bytes)
                             library_of_congress: { value: 15e12, type: 'data', name: 'Library of Congress', weirdness: 5, story: 'Estimated 15 TB of text data in Library of Congress, used by tech companies.' },
@@ -485,20 +409,25 @@
                             meter: 'm', second: 's', kilogram: 'kg', joule: 'J', byte: 'bytes'
                         };
 
-                        function formatNumber(num, decimals = 4) {
-                            if (Math.abs(num) >= 1e15) {
-                                return num.toExponential(2);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
+                            if (num === 0) {
+                                return '0';
+                            }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
+                        }
+
+                        function unitLabel(unit, amount) {
+                            return amount === 1 ? weirdUnits[unit].name : unitLabels[unit];
                         }
 
                         function canConvert(fromUnit, toUnit) {
@@ -507,48 +436,37 @@
                             return fromInfo && toInfo && fromInfo.type === toInfo.type;
                         }
 
-                        function getWeirdnessLevel(level) {
-                            const levels = {
-                                1: 'Boring', 2: 'Mild', 3: 'Normal', 4: 'Fun', 5: 'Weird',
-                                6: 'Strange', 7: 'Bizarre', 8: 'Absurd', 9: 'Bonkers', 10: 'Insane'
-                            };
-                            return levels[level] || 'Normal';
-                        }
+                        function syncTargetUnits() {
+                            const fromType = weirdUnits[fromUnit.value]?.type;
+                            let firstCompatible = null;
 
-                        function getEverydayComparison(value, unit, weirdnessLevel) {
-                            const unitInfo = weirdUnits[unit];
-                            const realValue = value * unitInfo.value;
-                            
-                            if (unitInfo.type === 'length') {
-                                if (realValue < 0.001) return `Smaller than a grain of sand!`;
-                                if (realValue < 0.1) return `About the size of your fingernail`;
-                                if (realValue < 2) return `Roughly human height`;
-                                if (realValue < 100) return `Like a large building`;
-                                return `Longer than several city blocks!`;
-                            } else if (unitInfo.type === 'time') {
-                                if (realValue < 60) return `Shorter than a minute`;
-                                if (realValue < 3600) return `Like watching a TV show`;
-                                if (realValue < 86400) return `Part of your day`;
-                                return `Multiple days of your life!`;
-                            } else if (unitInfo.type === 'mass') {
-                                if (realValue < 0.1) return `Lighter than a paperclip`;
-                                if (realValue < 100) return `About human weight`;
-                                if (realValue < 10000) return `Like a large vehicle`;
-                                return `Heavier than multiple trucks!`;
+                            Array.from(toUnit.options).forEach(option => {
+                                const isCompatible = weirdUnits[option.value]?.type === fromType;
+                                option.disabled = !isCompatible;
+                                option.hidden = !isCompatible;
+                                if (isCompatible && option.value !== fromUnit.value && !firstCompatible) {
+                                    firstCompatible = option.value;
+                                }
+                            });
+
+                            Array.from(toUnit.querySelectorAll('optgroup')).forEach(group => {
+                                group.hidden = !Array.from(group.children).some(option => !option.disabled);
+                            });
+
+                            if (toUnit.options[toUnit.selectedIndex].disabled) {
+                                toUnit.value = firstCompatible || fromUnit.value;
                             }
-                            
-                            return `That's a lot of ${unitLabels[unit]}!`;
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const weirdLevel = parseInt(weirdnessLevel.value);
 
                             if (!isNaN(inputVal)) {
                                 if (!canConvert(from, to)) {
                                     output.textContent = 'Cannot convert!';
+                                    resultTitle.textContent = 'Converted Weird Unit';
                                     resultDescription.textContent = 'These units measure different things';
                                     return;
                                 }
@@ -561,9 +479,9 @@
                                 const result = standardValue / toInfo.value;
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
+                                output.textContent = formatNumber(result) + ' ' + unitLabel(to, result);
                                 resultTitle.textContent = `${toInfo.name}`;
-                                resultDescription.textContent = `${inputVal} ${fromInfo.name} = ${formatNumber(result)} ${toInfo.name}`;
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabel(from, inputVal)} = ${formatNumber(result)} ${unitLabel(to, result)}`;
 
                                 // Update weird unit displays (convert input to each type)
                                 if (fromInfo.type === 'length') {
@@ -597,18 +515,6 @@
                                     dogYearDisplay.textContent = 'N/A';
                                 }
 
-                                // Unit stories
-                                unitStory.textContent = `${fromInfo.name}: ${fromInfo.story}`;
-
-                                // Weirdness analysis
-                                const avgWeirdness = (fromInfo.weirdness + toInfo.weirdness) / 2;
-                                weirdnessScore.textContent = `${avgWeirdness.toFixed(1)}/10`;
-                                funFactor.textContent = avgWeirdness > 7 ? 'Hilarious' : avgWeirdness > 5 ? 'Amusing' : avgWeirdness > 3 ? 'Interesting' : 'Serious';
-                                usability.textContent = avgWeirdness > 7 ? 'Joke only' : avgWeirdness > 5 ? 'Educational' : avgWeirdness > 3 ? 'Practical' : 'Standard';
-
-                                // Everyday comparison
-                                everydayComparison.textContent = getEverydayComparison(inputVal, from, weirdLevel);
-
                             } else {
                                 clearOutputs();
                             }
@@ -626,32 +532,24 @@
                             microcenturyDisplay.textContent = '--';
                             dogYearDisplay.textContent = '--';
                             floppyDiskDisplay.textContent = '--';
-                            unitStory.textContent = 'Select units for their fascinating origin stories!';
-                            weirdnessScore.textContent = '--';
-                            funFactor.textContent = '--';
-                            usability.textContent = '--';
-                            everydayComparison.textContent = 'Compare your converted value to familiar objects';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'smoot';
+                            syncTargetUnits();
                             toUnit.value = 'beard_second';
-                            weirdnessLevel.value = 5;
-                            weirdnessValue.textContent = '5 - Normal';
                             clearOutputs();
                             inputValue.focus();
                         }
 
                         // Event listeners
                         inputValue.addEventListener('input', convert);
-                        fromUnit.addEventListener('change', convert);
-                        toUnit.addEventListener('change', convert);
-
-                        weirdnessLevel.addEventListener('input', function() {
-                            weirdnessValue.textContent = this.value + ' - ' + getWeirdnessLevel(parseInt(this.value));
+                        fromUnit.addEventListener('change', function() {
+                            syncTargetUnits();
                             convert();
                         });
+                        toUnit.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -678,6 +576,7 @@
                                 
                                 inputValue.value = value;
                                 fromUnit.value = from;
+                                syncTargetUnits();
                                 toUnit.value = to;
                                 convert();
                                 
@@ -689,24 +588,8 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
-                            });
-                        });
-
                         // Initialize
-                        weirdnessValue.textContent = weirdnessLevel.value + ' - ' + getWeirdnessLevel(parseInt(weirdnessLevel.value));
+                        syncTargetUnits();
                         inputValue.focus();
 
                         // Keyboard shortcuts

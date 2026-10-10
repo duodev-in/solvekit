@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Currency Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Cents to Dollars Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -100,8 +100,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border-l-4 border-green-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Dollar Amount</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">US Dollars (USD)</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a number of cents to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-green-600 font-mono" id="output">--</div>
@@ -217,56 +217,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Cents to Dollars Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Currency Mathematics</h4>
-                                    <p>Converting cents to dollars involves simple division by 100, as there are 100 cents in every dollar. This fundamental relationship forms the basis of decimal currency systems used worldwide, making financial calculations precise and standardized.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>This conversion is essential for retail transactions, accounting, budgeting, and financial record-keeping. Understanding cent-to-dollar relationships helps in pricing strategies, tax calculations, and everyday money management.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Money Tip:</strong> Always round monetary calculations to the nearest cent (2 decimal places) for accuracy in financial transactions.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Cent Amounts</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Common Purchases</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-cents="199">Candy Bar: 199¢</div>
-                                        <div class="text-xs text-gray-600 mt-1">$1.99 in decimal format</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-cents="299">Coffee: 299¢</div>
-                                        <div class="text-xs text-gray-600 mt-1">$2.99 small coffee</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Round Numbers</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-cents="500">Half Dollar: 500¢</div>
-                                        <div class="text-xs text-gray-600 mt-1">$5.00 even amount</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-cents="2000">Twenty Dollars: 2000¢</div>
-                                        <div class="text-xs text-gray-600 mt-1">$20.00 bill amount</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -286,11 +236,6 @@
                         const totalCentsDisplay = document.getElementById('totalCentsDisplay');
                         const dollarBillsDisplay = document.getElementById('dollarBillsDisplay');
                         const remainingCentsDisplay = document.getElementById('remainingCentsDisplay');
-                        const writtenDisplay = document.getElementById('writtenDisplay');
-                        const quartersDisplay = document.getElementById('quartersDisplay');
-                        const dimesDisplay = document.getElementById('dimesDisplay');
-                        const nickelsDisplay = document.getElementById('nickelsDisplay');
-                        const penniesDisplay = document.getElementById('penniesDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Currency symbols
@@ -303,8 +248,17 @@
                             gbp: '£'
                         };
 
+                        const currencyNames = {
+                            usd: 'US Dollars (USD)',
+                            cad: 'Canadian Dollars (CAD)',
+                            aud: 'Australian Dollars (AUD)',
+                            nzd: 'New Zealand Dollars (NZD)',
+                            eur: 'Euros (EUR)',
+                            gbp: 'British Pounds (GBP)'
+                        };
+
                         function formatNumber(num, decimals = 2) {
-                            return num.toLocaleString(undefined, { 
+                            return num.toLocaleString('en-US', { 
                                 maximumFractionDigits: decimals, 
                                 minimumFractionDigits: decimals 
                             });
@@ -352,25 +306,14 @@
                             return result;
                         }
 
-                        function calculateCoinBreakdown(totalCents) {
-                            let remaining = totalCents;
-                            const quarters = Math.floor(remaining / 25);
-                            remaining %= 25;
-                            const dimes = Math.floor(remaining / 10);
-                            remaining %= 10;
-                            const nickels = Math.floor(remaining / 5);
-                            const pennies = remaining % 5;
-                            
-                            return { quarters, dimes, nickels, pennies };
-                        }
 
                         function calculate() {
-                            const cents = parseInt(centsValue.value) || 0;
+                            const cents = parseInt(centsValue.value, 10);
                             const currency = currencyType.value;
                             const format = displayFormat.value;
                             const symbol = currencySymbols[currency];
 
-                            if (cents >= 0) {
+                            if (!Number.isNaN(cents) && cents >= 0) {
                                 const dollars = Math.floor(cents / 100);
                                 const remainingCents = cents % 100;
                                 const decimalAmount = cents / 100;
@@ -403,8 +346,9 @@
                                 }
 
                                 output.textContent = primaryOutput;
-                                resultTitle.textContent = 'Converted Amount';
-                                resultDescription.textContent = `${cents} cents = ${symbol}${formatNumber(decimalAmount)}`;
+                                const minorUnit = currency === 'gbp' ? (cents === 1 ? 'penny' : 'pence') : (cents === 1 ? 'cent' : 'cents');
+                                resultTitle.textContent = currencyNames[currency];
+                                resultDescription.textContent = `${cents.toLocaleString('en-US')} ${minorUnit} = ${symbol}${formatNumber(decimalAmount)}`;
 
                                 // Display all formats
                                 decimalDisplay.textContent = symbol + formatNumber(decimalAmount);
@@ -428,16 +372,6 @@
                                 dollarBillsDisplay.textContent = dollars;
                                 remainingCentsDisplay.textContent = remainingCents + '¢';
 
-                                // Written format
-                                writtenDisplay.textContent = generateWrittenFormat(dollars, remainingCents);
-
-                                // Coin breakdown
-                                const coinBreakdown = calculateCoinBreakdown(cents);
-                                quartersDisplay.textContent = coinBreakdown.quarters;
-                                dimesDisplay.textContent = coinBreakdown.dimes;
-                                nickelsDisplay.textContent = coinBreakdown.nickels;
-                                penniesDisplay.textContent = coinBreakdown.pennies;
-
                             } else {
                                 clearOutputs();
                             }
@@ -445,19 +379,14 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Dollar Amount';
-                            resultDescription.textContent = 'Converted result';
+                            resultTitle.textContent = currencyNames[currencyType.value];
+                            resultDescription.textContent = 'Enter a number of cents to convert';
                             decimalDisplay.textContent = '--';
                             mixedDisplay.textContent = '--';
                             fractionDisplay.textContent = '--';
                             totalCentsDisplay.textContent = '--';
                             dollarBillsDisplay.textContent = '--';
                             remainingCentsDisplay.textContent = '--';
-                            writtenDisplay.textContent = 'Enter cents to see written format';
-                            quartersDisplay.textContent = '--';
-                            dimesDisplay.textContent = '--';
-                            nickelsDisplay.textContent = '--';
-                            penniesDisplay.textContent = '--';
                         }
 
                         function clearAll() {

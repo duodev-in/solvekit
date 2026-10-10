@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Imperial ↔ SI Force Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Lbs ↔ Newtons</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -344,19 +344,19 @@
                         };
 
                         const unitNames = {
-                            lbf: 'Pound-force',
-                            ozf: 'Ounce-force',
-                            kip: 'Kip-force',
-                            tonfUS: 'Ton-force (US)',
-                            poundal: 'Poundal',
-                            N: 'Newton',
-                            kN: 'Kilonewton',
-                            MN: 'Meganewton',
-                            mN: 'Millinewton',
-                            µN: 'Micronewton',
-                            kgf: 'Kilogram-force',
-                            gf: 'Gram-force',
-                            dy: 'Dyne'
+                            lbf: 'Pounds-force',
+                            ozf: 'Ounces-force',
+                            kip: 'Kips',
+                            tonfUS: 'Tons-force (US)',
+                            poundal: 'Poundals',
+                            N: 'Newtons',
+                            kN: 'Kilonewtons',
+                            MN: 'Meganewtons',
+                            mN: 'Millinewtons',
+                            µN: 'Micronewtons',
+                            kgf: 'Kilograms-force',
+                            gf: 'Grams-force',
+                            dy: 'Dynes'
                         };
 
                         const unitSymbols = {
@@ -383,15 +383,20 @@
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'auto') {
                                 if (num >= 1000000) {
-                                    return num.toExponential(4);
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

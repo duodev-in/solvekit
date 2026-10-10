@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Fuel Economy Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">MPG to L/100 km Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -97,25 +98,6 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Vehicle Type -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Vehicle Type
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="vehicleType" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General vehicle</option>
-                                                                                    <option value="compact_car">Compact Car</option>
-                                                                                    <option value="sedan">Sedan</option>
-                                                                                    <option value="suv">SUV</option>
-                                                                                    <option value="pickup_truck">Pickup Truck</option>
-                                                                                    <option value="hybrid">Hybrid Vehicle</option>
-                                                                                    <option value="electric">Electric Vehicle</option>
-                                                                                    <option value="motorcycle">Motorcycle</option>
-                                                                                    <option value="commercial">Commercial Vehicle</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -297,64 +279,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Fuel Economy Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Fuel Economy</h4>
-                                    <p>Fuel economy measures how far a vehicle can travel per unit of fuel consumed. MPG (higher is better) measures distance per fuel volume, while L/100km (lower is better) measures fuel volume per distance. These inverse relationships require reciprocal conversion formulas.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Global Standards</h4>
-                                    <p>Different regions use different fuel economy standards: MPG in the US, L/100km in Europe and most of the world, and km/L in Japan. Understanding these conversions is essential for comparing vehicles internationally and making informed purchasing decisions.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                                <p class="text-sm text-yellow-800">
-                                    <strong>Efficiency Tip:</strong> Remember that L/100km and MPG are inversely related - lower L/100km means higher efficiency, while higher MPG means higher efficiency!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Vehicle Efficiency Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Vehicle Fuel Economy Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Efficient Vehicles</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="50" data-from="mpg_us" data-to="l100km">Toyota Prius: 50 MPG</div>
-                                        <div class="text-xs text-gray-600 mt-1">Hybrid efficiency = 4.7 L/100km</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="35" data-from="mpg_us" data-to="l100km">Honda Civic: 35 MPG</div>
-                                        <div class="text-xs text-gray-600 mt-1">Compact car efficiency</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Standard Vehicles</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="25" data-from="mpg_us" data-to="l100km">Average Sedan: 25 MPG</div>
-                                        <div class="text-xs text-gray-600 mt-1">Mid-size car average</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="15" data-from="mpg_us" data-to="l100km">Large SUV: 15 MPG</div>
-                                        <div class="text-xs text-gray-600 mt-1">Full-size SUV typical</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const vehicleType = document.getElementById('vehicleType');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
@@ -371,17 +301,6 @@
                         const kmplDisplay = document.getElementById('kmplDisplay');
                         const l100miDisplay = document.getElementById('l100miDisplay');
                         const kwh100miDisplay = document.getElementById('kwh100miDisplay');
-                        const efficiencyRating = document.getElementById('efficiencyRating');
-                        const environmentalImpact = document.getElementById('environmentalImpact');
-                        const vehicleCategory = document.getElementById('vehicleCategory');
-                        const annualCost12k = document.getElementById('annualCost12k');
-                        const annualCost15k = document.getElementById('annualCost15k');
-                        const annualCost20k = document.getElementById('annualCost20k');
-                        const costPerMile = document.getElementById('costPerMile');
-                        const co2Emissions = document.getElementById('co2Emissions');
-                        const fuelConsumed = document.getElementById('fuelConsumed');
-                        const treeEquivalent = document.getElementById('treeEquivalent');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         const unitLabels = {
@@ -389,25 +308,52 @@
                             mpg_uk: 'MPG (UK)',
                             gpm_us: 'GPM (US)',
                             gpm_uk: 'GPM (UK)',
-                            l100km: 'L/100km',
+                            l100km: 'L/100 km',
                             kmpl: 'km/L',
-                            l100mi: 'L/100mi',
+                            l100mi: 'L/100 mi',
                             mpg_diesel: 'MPG Diesel',
                             mge: 'MPGe',
-                            kwh_100mi: 'kWh/100mi',
+                            kwh_100mi: 'kWh/100 mi',
                             mi_kwh: 'mi/kWh'
+                        };
+
+                        const unitNames = {
+                            mpg_us: 'Miles per US Gallon (MPG US)',
+                            mpg_uk: 'Miles per Imperial Gallon (MPG UK)',
+                            gpm_us: 'US Gallons per 100 Miles',
+                            gpm_uk: 'Imperial Gallons per 100 Miles',
+                            l100km: 'Liters per 100 Kilometers (L/100 km)',
+                            kmpl: 'Kilometers per Liter (km/L)',
+                            l100mi: 'Liters per 100 Miles (L/100 mi)',
+                            mpg_diesel: 'MPG Diesel Equivalent',
+                            mge: 'Miles per Gallon Equivalent (MPGe)',
+                            kwh_100mi: 'Kilowatt-hours per 100 Miles (kWh/100 mi)',
+                            mi_kwh: 'Miles per Kilowatt-hour (mi/kWh)'
                         };
 
                         function getPrecision() {
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: precision, 
-                                minimumFractionDigits: 0 
-                            });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
+                            }
+                            if (num === 0) {
+                                return '0';
+                            }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
+                        }
+
+                        function withUnit(value, unit) {
+                            return `${value} ${unitLabels[unit]}`;
                         }
 
                         // Core conversion functions
@@ -457,10 +403,10 @@
                                     mpgUs = value; // MPGe is equivalent to MPG for conversion
                                     break;
                                 case 'kwh_100mi':
-                                    mpgUs = value * 3.03; // Approximate conversion
+                                    mpgUs = 3370.5 / value; // 33.705 kWh per gallon equivalent (EPA)
                                     break;
                                 case 'mi_kwh':
-                                    mpgUs = value / 3.03; // Inverse of above
+                                    mpgUs = value * 33.705;
                                     break;
                                 default:
                                     mpgUs = value;
@@ -485,77 +431,11 @@
                                 case 'mge':
                                     return mpgUs;
                                 case 'kwh_100mi':
-                                    return mpgUs / 3.03;
+                                    return 3370.5 / mpgUs;
                                 case 'mi_kwh':
-                                    return mpgUs * 3.03;
+                                    return mpgUs / 33.705;
                                 default:
                                     return mpgUs;
-                            }
-                        }
-
-                        function getEfficiencyRating(mpgUs) {
-                            if (mpgUs >= 40) return 'Excellent';
-                            if (mpgUs >= 30) return 'Good';
-                            if (mpgUs >= 20) return 'Average';
-                            if (mpgUs >= 15) return 'Below Average';
-                            return 'Poor';
-                        }
-
-                        function getEnvironmentalImpact(mpgUs) {
-                            if (mpgUs >= 40) return 'Low Impact';
-                            if (mpgUs >= 30) return 'Moderate Impact';
-                            if (mpgUs >= 20) return 'High Impact';
-                            return 'Very High Impact';
-                        }
-
-                        function getVehicleCategory(mpgUs) {
-                            if (mpgUs >= 50) return 'Hybrid/Electric';
-                            if (mpgUs >= 35) return 'Compact/Efficient';
-                            if (mpgUs >= 25) return 'Mid-size Sedan';
-                            if (mpgUs >= 18) return 'Full-size/SUV';
-                            return 'Truck/Large SUV';
-                        }
-
-                        function calculateCosts(mpgUs) {
-                            const fuelPrice = 3.50; // $/gallon
-                            const costPer12k = (12000 / mpgUs) * fuelPrice;
-                            const costPer15k = (15000 / mpgUs) * fuelPrice;
-                            const costPer20k = (20000 / mpgUs) * fuelPrice;
-                            const costPerMileCalc = fuelPrice / mpgUs;
-                            
-                            return {
-                                cost12k: costPer12k,
-                                cost15k: costPer15k,
-                                cost20k: costPer20k,
-                                costPerMile: costPerMileCalc
-                            };
-                        }
-
-                        function calculateEnvironmentalImpact(mpgUs) {
-                            const milesPerYear = 12000;
-                            const gallonsPerYear = milesPerYear / mpgUs;
-                            const co2PerGallon = 19.6; // lbs CO2 per gallon
-                            const co2PerYear = gallonsPerYear * co2PerGallon;
-                            const treesNeeded = co2PerYear / 48; // ~48 lbs CO2 absorbed per tree per year
-                            
-                            return {
-                                co2: co2PerYear,
-                                fuel: gallonsPerYear,
-                                trees: treesNeeded
-                            };
-                        }
-
-                        function getConversionFormula(from, to) {
-                            if (from === 'mpg_us' && to === 'l100km') {
-                                return '235.214 ÷ MPG = L/100km';
-                            } else if (from === 'l100km' && to === 'mpg_us') {
-                                return '235.214 ÷ L/100km = MPG';
-                            } else if (from === 'mpg_us' && to === 'mpg_uk') {
-                                return 'MPG (US) × 1.201 = MPG (UK)';
-                            } else if (from === 'mpg_uk' && to === 'mpg_us') {
-                                return 'MPG (UK) ÷ 1.201 = MPG (US)';
-                            } else {
-                                return `${unitLabels[from]} → ${unitLabels[to]}`;
                             }
                         }
 
@@ -566,12 +446,11 @@
 
                             if (!isNaN(inputVal) && inputVal > 0) {
                                 const result = convertFuelEconomy(inputVal, from, to);
-                                const mpgUs = convertFuelEconomy(inputVal, from, 'mpg_us');
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), to);
+                                resultTitle.textContent = unitNames[to];
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), from)} = ${withUnit(formatNumber(result), to)}`;
 
                                 // Update all unit displays
                                 mpgUsDisplay.textContent = formatNumber(convertFuelEconomy(inputVal, from, 'mpg_us'));
@@ -582,27 +461,6 @@
                                 kmplDisplay.textContent = formatNumber(convertFuelEconomy(inputVal, from, 'kmpl'));
                                 l100miDisplay.textContent = formatNumber(convertFuelEconomy(inputVal, from, 'l100mi'));
                                 kwh100miDisplay.textContent = formatNumber(convertFuelEconomy(inputVal, from, 'kwh_100mi'));
-
-                                // Efficiency analysis
-                                efficiencyRating.textContent = getEfficiencyRating(mpgUs);
-                                environmentalImpact.textContent = getEnvironmentalImpact(mpgUs);
-                                vehicleCategory.textContent = getVehicleCategory(mpgUs);
-
-                                // Cost analysis
-                                const costs = calculateCosts(mpgUs);
-                                annualCost12k.textContent = '$' + formatNumber(costs.cost12k, 0);
-                                annualCost15k.textContent = '$' + formatNumber(costs.cost15k, 0);
-                                annualCost20k.textContent = '$' + formatNumber(costs.cost20k, 0);
-                                costPerMile.textContent = '$' + formatNumber(costs.costPerMile, 3);
-
-                                // Environmental impact
-                                const envImpact = calculateEnvironmentalImpact(mpgUs);
-                                co2Emissions.textContent = formatNumber(envImpact.co2, 0) + ' lbs';
-                                fuelConsumed.textContent = formatNumber(envImpact.fuel, 0) + ' gallons';
-                                treeEquivalent.textContent = formatNumber(envImpact.trees, 1) + ' trees';
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -621,24 +479,12 @@
                             kmplDisplay.textContent = '--';
                             l100miDisplay.textContent = '--';
                             kwh100miDisplay.textContent = '--';
-                            efficiencyRating.textContent = '--';
-                            environmentalImpact.textContent = '--';
-                            vehicleCategory.textContent = '--';
-                            annualCost12k.textContent = '--';
-                            annualCost15k.textContent = '--';
-                            annualCost20k.textContent = '--';
-                            costPerMile.textContent = '--';
-                            co2Emissions.textContent = '--';
-                            fuelConsumed.textContent = '--';
-                            treeEquivalent.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'mpg_us';
                             toUnit.value = 'l100km';
-                            vehicleType.value = '';
                             precision.value = 2;
                             precisionValue.textContent = '2 digits';
                             clearOutputs();
@@ -649,7 +495,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        vehicleType.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -689,22 +534,6 @@
                                 fuelExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-yellow-100', 'text-yellow-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

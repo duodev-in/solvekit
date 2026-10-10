@@ -6,7 +6,7 @@
 
             <!-- Calculator Header -->
             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                <h2 class="text-lg font-semibold text-white">Cross-Cultural Number System Converter</h2>
+                <h1 class="text-lg font-semibold text-white">Million to Lakh</h1>
             </div>
 
             <!-- Calculator Body -->
@@ -182,65 +182,6 @@
 
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Cross-Cultural Number Systems</h3>
-            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                <div>
-                    <h4 class="font-semibold text-gray-700 mb-2">International Business</h4>
-                    <p>Critical for cross-border business communications, international investments, and multicultural
-                        team collaborations. Understanding both systems prevents miscommunication and builds trust with
-                        stakeholders from different regions.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold text-gray-700 mb-2">Cultural Sensitivity</h4>
-                    <p>Using the appropriate number system shows cultural awareness and professionalism. Indian
-                        stakeholders prefer Lakh/Crore terminology, while Western partners expect Million/Billion format
-                        for clarity.</p>
-                </div>
-            </div>
-            <div class="mt-4 p-3 bg-rose-50 rounded-lg border border-rose-200">
-                <p class="text-sm text-rose-800">
-                    <strong>Communication Tip:</strong> In presentations, show both formats: "₹50 Lakhs (USD $600K)" to
-                    ensure all stakeholders understand the scale clearly!
-                </p>
-            </div>
-        </div>
-
-        <!-- Regional Business Examples -->
-        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-            <h3 class="text-lg font-semibold text-gray-800 mb-4">Regional Business Examples</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-gray-700">Indian Market Context</h4>
-                    <div class="p-3 bg-gray-50 rounded-lg">
-                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="1">₹10
-                            Lakhs</div>
-                        <div class="text-xs text-gray-600 mt-1">= $1M startup funding round</div>
-                    </div>
-                    <div class="p-3 bg-gray-50 rounded-lg">
-                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="5">₹50
-                            Lakhs</div>
-                        <div class="text-xs text-gray-600 mt-1">= $5M Series A funding</div>
-                    </div>
-                </div>
-                <div class="space-y-2">
-                    <h4 class="font-semibold text-gray-700">Western Market Context</h4>
-                    <div class="p-3 bg-gray-50 rounded-lg">
-                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="10">
-                            $10 Million</div>
-                        <div class="text-xs text-gray-600 mt-1">= ₹100 Lakhs Series B</div>
-                    </div>
-                    <div class="p-3 bg-gray-50 rounded-lg">
-                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="50">
-                            $50 Million</div>
-                        <div class="text-xs text-gray-600 mt-1">= ₹500 Lakhs growth fund</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -268,13 +209,6 @@
                 const currencyDisplay = document.getElementById('currencyDisplay');
                 const westernCurrency = document.getElementById('westernCurrency');
                 const indianCurrency = document.getElementById('indianCurrency');
-                const regionDisplay = document.getElementById('regionDisplay');
-                const applicationDisplay = document.getElementById('applicationDisplay');
-                const conversionRatio = document.getElementById('conversionRatio');
-                const westernTip = document.getElementById('westernTip');
-                const indianTip = document.getElementById('indianTip');
-                const internationalFormat = document.getElementById('internationalFormat');
-                const indianFormat = document.getElementById('indianFormat');
                 const copyResult = document.getElementById('copyResult');
 
                 // Currency symbols
@@ -293,17 +227,6 @@
                     }
                 };
 
-                // Regional contexts
-                const regionalContexts = {
-                    'global': 'Global Business',
-                    'usa-india': 'USA-India Trade',
-                    'uk-india': 'UK-India Trade',
-                    'singapore-india': 'Singapore-India',
-                    'uae-india': 'UAE-India',
-                    'australia-india': 'Australia-India',
-                    'canada-india': 'Canada-India'
-                };
-
                 function getPrecision() {
                     const selected = document.querySelector('input[name="precision"]:checked').value;
                     return selected === 'auto' ? 'auto' : parseInt(selected);
@@ -313,94 +236,31 @@
                     return document.querySelector('input[name="mode"]:checked').value;
                 }
 
-                function getApplication() {
-                    return document.querySelector('input[name="application"]:checked').value;
-                }
-
                 function getCurrency() {
                     return document.querySelector('input[name="currency"]:checked').value;
                 }
 
                 function formatNumber(num, precision = 'auto') {
-                    if (precision === 'auto') {
-                        if (num >= 1e12) {
-                            return num.toExponential(3);
-                        } else if (num >= 1000) {
-                            return num.toLocaleString(undefined, {
-                                maximumFractionDigits: 2
-                            });
-                        } else if (num >= 1) {
-                            return num.toLocaleString(undefined, {
-                                maximumFractionDigits: 4
-                            });
-                        } else {
-                            return num.toLocaleString(undefined, {
-                                maximumFractionDigits: 6
-                            });
-                        }
-                    } else {
-                        return num.toLocaleString(undefined, {
-                            maximumFractionDigits: precision
-                        });
-                    }
-                }
-
-                function formatIndianNumber(num) {
-                    const numStr = Math.floor(num).toString();
-                    if (numStr.length <= 3) return numStr;
-
-                    let result = numStr.slice(-3);
-                    let remaining = numStr.slice(0, -3);
-
-                    while (remaining.length > 0) {
-                        if (remaining.length <= 2) {
-                            result = remaining + ',' + result;
-                            break;
-                        } else {
-                            result = remaining.slice(-2) + ',' + result;
-                            remaining = remaining.slice(0, -2);
-                        }
+                    if (!Number.isFinite(num)) {
+                        return '--';
                     }
 
-                    return result;
-                }
-
-                function updateCommunicationTips(application, millions) {
-                    const lakhs = millions * 10;
-
-                    switch (application) {
-                        case 'investment':
-                            westernTip.textContent = `Present as "$${millions}M Series A funding"`;
-                            indianTip.textContent = `Present as "₹${lakhs} Lakh investment round"`;
-                            break;
-                        case 'revenue':
-                            westernTip.textContent = `Report as "$${millions}M annual revenue"`;
-                            indianTip.textContent = `Report as "₹${lakhs} Lakh yearly turnover"`;
-                            break;
-                        case 'valuation':
-                            westernTip.textContent = `Value at "$${millions}M company worth"`;
-                            indianTip.textContent = `Value at "₹${lakhs} Lakh company valuation"`;
-                            break;
-                        case 'salary':
-                            westernTip.textContent = `Package of "$${millions}M total compensation"`;
-                            indianTip.textContent = `Package of "₹${lakhs} Lakh CTC per annum"`;
-                            break;
-                        default:
-                            westernTip.textContent = 'Use Million format for clarity';
-                            indianTip.textContent = 'Use Lakh/Crore format for familiarity';
+                    const absolute = Math.abs(num);
+                    if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                        return num.toExponential(4).replace(/\.?0+e/, 'e');
                     }
+
+                    if (absolute !== 0 && absolute < 1) {
+                        return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                    }
+
+                    const fractionDigits = precision === 'auto' ? 6 : precision;
+                    return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                 }
 
                 function updateInterface() {
                     const mode = getMode();
-                    const selectedRegion = region.value;
-                    const selectedApplication = getApplication();
                     const selectedCurrency = getCurrency();
-
-                    // Update displays
-                    regionDisplay.textContent = regionalContexts[selectedRegion] || 'Global';
-                    applicationDisplay.textContent = selectedApplication.charAt(0).toUpperCase() + selectedApplication
-                        .slice(1);
 
                     // Show/hide currency display
                     currencyDisplay.style.display = selectedCurrency !== 'none' ? 'block' : 'none';
@@ -411,14 +271,12 @@
                         inputHelp.textContent = 'Enter the number of millions to convert to lakhs';
                         resultTitle.textContent = 'Lakhs';
                         resultDescription.textContent = 'Converted to lakhs';
-                        conversionRatio.textContent = '1M = 10L';
                     } else {
                         inputLabel.textContent = 'Enter Lakhs';
                         inputUnit.textContent = 'Lakh';
                         inputHelp.textContent = 'Enter the number of lakhs to convert to millions';
                         resultTitle.textContent = 'Millions';
                         resultDescription.textContent = 'Converted to millions';
-                        conversionRatio.textContent = '10L = 1M';
                     }
                 }
 
@@ -427,7 +285,6 @@
                     const mode = getMode();
                     const precision = getPrecision();
                     const selectedCurrency = getCurrency();
-                    const selectedApplication = getApplication();
 
                     if (!isNaN(inputVal) && inputVal >= 0) {
                         let millions, lakhs, thousands, crores, billions;
@@ -464,14 +321,6 @@
                             indianCurrency.textContent = `${symbols.indian}${formatNumber(lakhs, precision)} L`;
                         }
 
-                        // Formatted displays
-                        const totalValue = millions * 1e6;
-                        internationalFormat.textContent = totalValue.toLocaleString();
-                        indianFormat.textContent = formatIndianNumber(totalValue);
-
-                        // Update communication tips
-                        updateCommunicationTips(selectedApplication, millions);
-
                     } else {
                         clearOutputs();
                     }
@@ -486,10 +335,6 @@
                     billionDisplay.textContent = '--';
                     westernCurrency.textContent = '--';
                     indianCurrency.textContent = '--';
-                    internationalFormat.textContent = '--';
-                    indianFormat.textContent = '--';
-                    westernTip.textContent = 'Use Million format for clarity';
-                    indianTip.textContent = 'Use Lakh/Crore format for familiarity';
                 }
 
                 function clearAll() {
@@ -565,17 +410,6 @@
                             'text-gray-700'));
                         this.classList.remove('bg-gray-100', 'text-gray-700');
                         this.classList.add('bg-rose-100', 'text-rose-700');
-                    });
-                });
-
-                // Clickable examples
-                const examples = document.querySelectorAll('[data-example]');
-                examples.forEach(element => {
-                    element.addEventListener('click', function() {
-                        const value = this.getAttribute('data-example');
-                        inputValue.value = value;
-                        convert();
-                        inputValue.focus();
                     });
                 });
 

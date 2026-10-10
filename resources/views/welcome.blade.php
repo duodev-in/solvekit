@@ -76,9 +76,9 @@
             </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="mx-auto flex max-w-5xl flex-wrap justify-center gap-8">
             <!-- Conversion Tools Category -->
-            <a href="{{ route('conversion.index') }}" class="group bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
+            <a href="{{ route('conversion.index') }}" class="group w-full md:w-80 bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
                 <div class="text-center">
                     <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-lg mb-4 group-hover:bg-blue-200 transition-colors duration-200">
                         <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -97,6 +97,8 @@
                     </div>
                 </div>
             </a>
+
+            <x-ads type="feed" placement="home-category-grid" class="w-full md:w-80" />
 
             {{-- <!-- Construction Tools Category -->
             <a href="{{ route('construction.index') }}" class="group bg-white border border-gray-200 rounded-xl p-6 hover:border-orange-300 hover:shadow-lg transition-all duration-200 transform hover:scale-105">
@@ -272,4 +274,6 @@
             </a>
         </div>
     </section>
+
+    <x-ads type="multiplex" placement="home-bottom" class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" />
 </x-app-layout>

@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Material Hardness Scale Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Hardness Conversion Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -121,28 +122,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Material Type -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Material Type
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="materialType" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="steel">Carbon and Alloy Steels</option>
-                                                                                    <option value="stainless">Stainless Steel</option>
-                                                                                    <option value="aluminum">Aluminum Alloys</option>
-                                                                                    <option value="brass">Brass and Bronze</option>
-                                                                                    <option value="cast_iron">Cast Iron</option>
-                                                                                    <option value="titanium">Titanium Alloys</option>
-                                                                                    <option value="plastics">Plastics and Polymers</option>
-                                                                                    <option value="rubber">Rubber and Elastomers</option>
-                                                                                </select>
                                                                             </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -286,64 +266,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Hardness Testing</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Hardness Scales</h4>
-                                    <p>Hardness measures a material's resistance to indentation or scratching. Different scales use various indenters and loads: Rockwell (diamond/ball), Brinell (ball), Vickers (pyramid), Shore (durometer). Each scale is optimized for specific material types and hardness ranges.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Hardness testing is crucial in quality control, material selection, heat treatment verification, and failure analysis. It helps predict wear resistance, machinability, and mechanical properties for engineering applications and manufacturing processes.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>Testing Tip:</strong> Conversions are approximate - actual values may vary based on material composition, microstructure, and test conditions!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Material Database -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Material Hardness Database</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Common Steels</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="20" data-from="hrc" data-to="hrb">Mild Steel: 20 HRC</div>
-                                        <div class="text-xs text-gray-600 mt-1">Low carbon, easy machining</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="60" data-from="hrc" data-to="hrb">Tool Steel: 60 HRC</div>
-                                        <div class="text-xs text-gray-600 mt-1">Hardened and tempered</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Non-Ferrous Materials</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="75" data-from="hrb" data-to="hrc">Aluminum 6061-T6: 75 HRB</div>
-                                        <div class="text-xs text-gray-600 mt-1">Heat treated aluminum</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="80" data-from="shore_d" data-to="shore_a">Hard Plastic: 80 Shore D</div>
-                                        <div class="text-xs text-gray-600 mt-1">Engineering plastics</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const materialType = document.getElementById('materialType');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -356,12 +284,6 @@
                         const hbDisplay = document.getElementById('hbDisplay');
                         const hvDisplay = document.getElementById('hvDisplay');
                         const shoreDDisplay = document.getElementById('shoreDDisplay');
-                        const materialProperties = document.getElementById('materialProperties');
-                        const hardnessLevel = document.getElementById('hardnessLevel');
-                        const application = document.getElementById('application');
-                        const machinability = document.getElementById('machinability');
-                        const tensileStrengthMPa = document.getElementById('tensileStrengthMPa');
-                        const tensileStrengthPsi = document.getElementById('tensileStrengthPsi');
                         const copyResult = document.getElementById('copyResult');
 
                         const unitLabels = {
@@ -385,139 +307,111 @@
                         };
 
                         // Hardness conversion functions (simplified approximations)
+                        const scaleAliases = {
+                            hbw: 'hb',
+                            hv1: 'hv',
+                            hv5: 'hv',
+                            hv10: 'hv',
+                            hk: 'hv'
+                        };
+
+                        const shoreScales = ['shore_a', 'shore_d', 'shore_00'];
+
+                        function toShoreD(value, fromScale) {
+                            if (fromScale === 'shore_00') {
+                                return toShoreD(2 * value - 120, 'shore_a');
+                            }
+                            if (fromScale === 'shore_a') {
+                                return 0.75 * value - 30;
+                            }
+                            return value;
+                        }
+
+                        function fromShoreD(shoreD, toScale) {
+                            if (toScale === 'shore_a') {
+                                return (shoreD + 30) / 0.75;
+                            }
+                            if (toScale === 'shore_00') {
+                                return (fromShoreD(shoreD, 'shore_a') + 120) / 2;
+                            }
+                            return shoreD;
+                        }
+
                         function convertToHRC(value, fromScale) {
-                            switch(fromScale) {
+                            switch(scaleAliases[fromScale] || fromScale) {
                                 case 'hrc': return value;
                                 case 'hrb': return value > 99 ? 20 + (value - 99) * 0.8 : Math.max(0, (value - 80) * 0.5);
                                 case 'hra': return (value - 60) * 1.5;
+                                case 'hr15n': return (value - 59) / 0.52;
+                                case 'hr30n': return (value - 23.5) / 0.9;
+                                case 'hr45n': return (value + 4.1) / 1.18;
                                 case 'hb': return value < 100 ? 0 : Math.min(70, (value - 100) / 10 + 20);
                                 case 'hv': return value < 150 ? 0 : Math.min(70, (value - 150) / 10 + 15);
-                                case 'shore_d': return value > 90 ? 50 + (value - 90) * 2 : Math.max(0, (value - 40) * 0.5);
+                                case 'shore_a':
+                                case 'shore_00':
+                                case 'shore_d': {
+                                    const shoreD = toShoreD(value, fromScale);
+                                    return shoreD > 90 ? 50 + (shoreD - 90) * 2 : Math.max(0, (shoreD - 40) * 0.5);
+                                }
                                 case 'hl': return Math.min(70, Math.max(0, (value - 200) / 10));
                                 default: return value;
                             }
                         }
 
                         function convertFromHRC(hrcValue, toScale) {
-                            switch(toScale) {
+                            switch(scaleAliases[toScale] || toScale) {
                                 case 'hrc': return hrcValue;
                                 case 'hrb': return hrcValue < 20 ? 80 + hrcValue * 2 : Math.min(110, 99 + (hrcValue - 20) / 0.8);
                                 case 'hra': return 60 + hrcValue / 1.5;
+                                case 'hr15n': return 59 + hrcValue * 0.52;
+                                case 'hr30n': return 23.5 + hrcValue * 0.9;
+                                case 'hr45n': return -4.1 + hrcValue * 1.18;
                                 case 'hb': return hrcValue < 20 ? 100 + hrcValue * 5 : 100 + (hrcValue - 20) * 10;
                                 case 'hv': return hrcValue < 15 ? 150 + hrcValue * 5 : 150 + (hrcValue - 15) * 10;
-                                case 'shore_d': return hrcValue < 50 ? 40 + hrcValue * 2 : Math.min(95, 90 + (hrcValue - 50) / 2);
+                                case 'shore_a':
+                                case 'shore_00':
+                                case 'shore_d': {
+                                    const shoreD = hrcValue < 50 ? 40 + hrcValue * 2 : Math.min(95, 90 + (hrcValue - 50) / 2);
+                                    return Math.max(0, fromShoreD(shoreD, toScale));
+                                }
                                 case 'hl': return 200 + hrcValue * 10;
                                 default: return hrcValue;
                             }
                         }
 
-                        function formatNumber(num, decimals = 1) {
-                            return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
-                        }
-
-                        function getHardnessLevel(hrcValue) {
-                            if (hrcValue < 20) return 'Soft';
-                            if (hrcValue < 35) return 'Medium';
-                            if (hrcValue < 50) return 'Hard';
-                            if (hrcValue < 60) return 'Very Hard';
-                            return 'Extremely Hard';
-                        }
-
-                        function getApplication(hrcValue) {
-                            if (hrcValue < 20) return 'Structural parts';
-                            if (hrcValue < 35) return 'Machine parts';
-                            if (hrcValue < 50) return 'Springs, gears';
-                            if (hrcValue < 60) return 'Cutting tools';
-                            return 'Files, dies';
-                        }
-
-                        function getMachinability(hrcValue) {
-                            if (hrcValue < 20) return 'Excellent';
-                            if (hrcValue < 35) return 'Good';
-                            if (hrcValue < 50) return 'Fair';
-                            if (hrcValue < 60) return 'Difficult';
-                            return 'Very Difficult';
-                        }
-
-                        function estimateTensileStrength(hrcValue) {
-                            // Approximate formula for steel: TS (MPa) ≈ 3.45 × HB
-                            // Convert HRC to HB first, then calculate
-                            const hbValue = convertFromHRC(hrcValue, 'hb');
-                            const tensileStrengthMPa = hbValue * 3.45;
-                            const tensileStrengthPsi = tensileStrengthMPa * 145.038; // Convert MPa to psi
-                            return {
-                                mpa: tensileStrengthMPa,
-                                psi: tensileStrengthPsi
-                            };
-                        }
-
-                        function getMaterialProperties(material, hrcValue) {
-                            const materials = {
-                                steel: {
-                                    name: 'Carbon and Alloy Steels',
-                                    getInfo: (hrc) => {
-                                        if (hrc < 25) return 'Annealed condition - good ductility and machinability';
-                                        if (hrc < 40) return 'Normalized or tempered - balanced properties';
-                                        if (hrc < 55) return 'Quenched and tempered - high strength';
-                                        if (hrc < 65) return 'Hardened condition - wear resistant';
-                                        return 'Maximum hardness - tool steel applications';
-                                    }
-                                },
-                                stainless: {
-                                    name: 'Stainless Steel',
-                                    getInfo: (hrc) => {
-                                        if (hrc < 25) return 'Austenitic grades - corrosion resistant, non-magnetic';
-                                        if (hrc < 40) return 'Ferritic/martensitic - magnetic, moderate corrosion resistance';
-                                        if (hrc < 55) return 'Martensitic grades - hardened stainless steel';
-                                        return 'Precipitation hardening - high strength stainless';
-                                    }
-                                },
-                                aluminum: {
-                                    name: 'Aluminum Alloys',
-                                    getInfo: (hrc) => {
-                                        const hrb = convertFromHRC(hrc, 'hrb');
-                                        if (hrb < 30) return 'Pure aluminum - soft, highly ductile';
-                                        if (hrb < 60) return 'Work hardened alloys - moderate strength';
-                                        if (hrb < 85) return 'Heat treated alloys - T4, T6 tempers';
-                                        return 'High strength alloys - aerospace applications';
-                                    }
-                                },
-                                plastics: {
-                                    name: 'Plastics and Polymers',
-                                    getInfo: (hrc) => {
-                                        const shoreD = convertFromHRC(hrc, 'shore_d');
-                                        if (shoreD < 40) return 'Soft plastics - flexible, impact resistant';
-                                        if (shoreD < 70) return 'Medium hardness - general purpose plastics';
-                                        if (shoreD < 85) return 'Hard plastics - engineering applications';
-                                        return 'Very hard plastics - high performance polymers';
-                                    }
-                                }
-                            };
-
-                            if (material && materials[material]) {
-                                const mat = materials[material];
-                                return `${mat.name}: ${mat.getInfo(hrcValue)}`;
+                        function convertHardness(value, fromScale, toScale) {
+                            if (shoreScales.includes(fromScale) && shoreScales.includes(toScale)) {
+                                return Math.max(0, fromShoreD(toShoreD(value, fromScale), toScale));
                             }
-                            return 'Select a material type for specific information';
+                            return convertFromHRC(convertToHRC(value, fromScale), toScale);
+                        }
+
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
+                            }
+                            if (num !== 0 && Math.abs(num) < 1) {
+                                return num.toPrecision(2);
+                            }
+                            return num.toLocaleString(undefined, { maximumFractionDigits: 1, minimumFractionDigits: 0 });
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const material = materialType.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
                                 // Convert to HRC as intermediate
                                 const hrcValue = convertToHRC(inputVal, from);
                                 
-                                // Convert from HRC to target scale
-                                const result = convertFromHRC(hrcValue, to);
+                                // Convert to target scale
+                                const result = convertHardness(inputVal, from, to);
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]} (${to.toUpperCase()})`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                resultTitle.textContent = toUnit.options[toUnit.selectedIndex].text;
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Convert to all common scales and display
                                 hrcDisplay.textContent = formatNumber(convertFromHRC(hrcValue, 'hrc'));
@@ -526,19 +420,6 @@
                                 hbDisplay.textContent = formatNumber(convertFromHRC(hrcValue, 'hb'));
                                 hvDisplay.textContent = formatNumber(convertFromHRC(hrcValue, 'hv'));
                                 shoreDDisplay.textContent = formatNumber(convertFromHRC(hrcValue, 'shore_d'));
-
-                                // Material properties
-                                materialProperties.textContent = getMaterialProperties(material, hrcValue);
-
-                                // Hardness classification
-                                hardnessLevel.textContent = getHardnessLevel(hrcValue);
-                                application.textContent = getApplication(hrcValue);
-                                machinability.textContent = getMachinability(hrcValue);
-
-                                // Tensile strength estimation
-                                const tensileStrength = estimateTensileStrength(hrcValue);
-                                tensileStrengthMPa.textContent = formatNumber(tensileStrength.mpa, 0) + ' MPa';
-                                tensileStrengthPsi.textContent = formatNumber(tensileStrength.psi, 0) + ' psi';
 
                             } else {
                                 clearOutputs();
@@ -555,19 +436,12 @@
                             hbDisplay.textContent = '--';
                             hvDisplay.textContent = '--';
                             shoreDDisplay.textContent = '--';
-                            materialProperties.textContent = 'Select a material type for specific information';
-                            hardnessLevel.textContent = '--';
-                            application.textContent = '--';
-                            machinability.textContent = '--';
-                            tensileStrengthMPa.textContent = '--';
-                            tensileStrengthPsi.textContent = '--';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'hrc';
                             toUnit.value = 'hrb';
-                            materialType.value = '';
                             clearOutputs();
                             inputValue.focus();
                         }
@@ -576,7 +450,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        materialType.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -611,22 +484,6 @@
                                 hardnessExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-purple-100', 'text-purple-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

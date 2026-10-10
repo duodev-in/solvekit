@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Military Time & Standard Time Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Military Time Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -257,56 +257,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Military Time</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">What is Military Time?</h4>
-                                    <p>Military time, also known as 24-hour time, uses a continuous count from 00:00 to 23:59. It eliminates the need for AM/PM designations and reduces confusion in critical operations, making it standard in military, aviation, healthcare, and emergency services.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Why Use Military Time?</h4>
-                                    <p>Military time prevents ambiguity and scheduling errors. It's universally understood across different cultures and time zones, making it essential for international operations, logistics, and any situation where precise timing is critical.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
-                                <p class="text-sm text-emerald-800">
-                                    <strong>Quick Tip:</strong> For PM times, add 12 to the hour (except 12 PM). For AM times, use as-is (except 12 AM = 00:00)!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Usage Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Usage Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Daily Activities</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-emerald-50" data-example-hour="7" data-example-minute="30" data-example-period="AM">
-                                        <div class="font-medium text-emerald-600">Morning Commute: 7:30 AM</div>
-                                        <div class="text-xs text-gray-600 mt-1">07:30 in military time</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-emerald-50" data-example-hour="5" data-example-minute="15" data-example-period="PM">
-                                        <div class="font-medium text-emerald-600">End of Work: 5:15 PM</div>
-                                        <div class="text-xs text-gray-600 mt-1">17:15 in military time</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Professional Settings</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-emerald-50" data-example-24hour="14" data-example-24minute="30">
-                                        <div class="font-medium text-emerald-600">Meeting: 14:30</div>
-                                        <div class="text-xs text-gray-600 mt-1">2:30 PM in standard time</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg cursor-pointer hover:bg-emerald-50" data-example-24hour="22" data-example-24minute="45">
-                                        <div class="font-medium text-emerald-600">Night Shift: 22:45</div>
-                                        <div class="text-xs text-gray-600 mt-1">10:45 PM in standard time</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -334,20 +284,10 @@
                         const resultDescription = document.getElementById('result-description');
                         const display12Hour = document.getElementById('display12Hour');
                         const display24Hour = document.getElementById('display24Hour');
-                        const timePeriod = document.getElementById('timePeriod');
-                        const minutesSinceMidnight = document.getElementById('minutesSinceMidnight');
-                        const minutesUntilMidnight = document.getElementById('minutesUntilMidnight');
-                        const natoPhonetic = document.getElementById('natoPhonetic');
-                        const timeContext = document.getElementById('timeContext');
-                        const conversionExplanation = document.getElementById('conversionExplanation');
                         const copyResult = document.getElementById('copyResult');
 
                         let updateInterval;
 
-                        const natoNumbers = {
-                            '0': 'Zero', '1': 'One', '2': 'Two', '3': 'Three', '4': 'Four',
-                            '5': 'Five', '6': 'Six', '7': 'Seven', '8': 'Eight', '9': 'Nine'
-                        };
 
                         function updateCurrentTime() {
                             const now = new Date();
@@ -383,68 +323,6 @@
                                 input24Hour.classList.remove('hidden');
                                 resultTitle.textContent = 'Standard Time';
                                 resultDescription.textContent = 'Converted to 12-hour format';
-                            }
-                        }
-
-                        function getTimePeriod(hour24) {
-                            if (hour24 >= 0 && hour24 < 6) return 'Late Night / Early Morning';
-                            if (hour24 >= 6 && hour24 < 12) return 'Morning';
-                            if (hour24 === 12) return 'Noon';
-                            if (hour24 > 12 && hour24 < 18) return 'Afternoon';
-                            if (hour24 >= 18 && hour24 < 22) return 'Evening';
-                            return 'Night';
-                        }
-
-                        function getTimeContext(hour24, minute) {
-                            const totalMinutes = hour24 * 60 + minute;
-                            
-                            if (hour24 === 0 && minute === 0) {
-                                return 'Midnight - Start of a new day, often used for system resets and daily operations';
-                            } else if (hour24 === 12 && minute === 0) {
-                                return 'Noon - Middle of the day, common for lunch breaks and midday meetings';
-                            } else if (hour24 >= 6 && hour24 < 9) {
-                                return 'Morning hours - Typical work start time, breakfast period, morning commute';
-                            } else if (hour24 >= 9 && hour24 < 12) {
-                                return 'Late morning - Peak productivity hours, morning meetings and tasks';
-                            } else if (hour24 >= 12 && hour24 < 14) {
-                                return 'Early afternoon - Lunch time, midday activities and appointments';
-                            } else if (hour24 >= 14 && hour24 < 17) {
-                                return 'Afternoon - Core working hours, meetings and collaborative work';
-                            } else if (hour24 >= 17 && hour24 < 20) {
-                                return 'Evening - End of workday, dinner time, evening activities';
-                            } else if (hour24 >= 20 && hour24 < 24) {
-                                return 'Night - Leisure time, entertainment, preparation for rest';
-                            } else {
-                                return 'Late night / Early morning - Quiet hours, night shifts, emergency operations';
-                            }
-                        }
-
-                        function getNatoPhonetic(time24) {
-                            const digits = time24.replace(':', '');
-                            return digits.split('').map(digit => natoNumbers[digit]).join(' ');
-                        }
-
-                        function getConversionExplanation(mode, hour12Val, hour24Val, periodVal) {
-                            if (mode === '12-to-24') {
-                                if (hour12Val === 12 && periodVal === 'AM') {
-                                    return `12 AM is midnight (00:00). In military time, the day starts at 00:00, not 12:00.`;
-                                } else if (hour12Val === 12 && periodVal === 'PM') {
-                                    return `12 PM is noon (12:00). This stays the same in military time.`;
-                                } else if (periodVal === 'AM') {
-                                    return `AM hours from 1-11 remain the same in military time, just add leading zero if needed.`;
-                                } else {
-                                    return `PM hours (except 12 PM) have 12 added to them. ${hour12Val} PM becomes ${hour12Val + 12}:XX.`;
-                                }
-                            } else {
-                                if (hour24Val === 0) {
-                                    return `00:XX in military time is 12:XX AM (midnight hour). Zero hour becomes 12 AM.`;
-                                } else if (hour24Val < 12) {
-                                    return `Hours 01-11 in military time are the same in standard time with AM designation.`;
-                                } else if (hour24Val === 12) {
-                                    return `12:XX in military time remains 12:XX PM (noon hour).`;
-                                } else {
-                                    return `Hours 13-23 have 12 subtracted to get PM time. ${hour24Val}:XX becomes ${hour24Val - 12}:XX PM.`;
-                                }
                             }
                         }
 
@@ -520,20 +398,10 @@
                                 // Update displays
                                 display12Hour.textContent = time12Format;
                                 display24Hour.textContent = time24Format;
-                                
-                                // Time analysis
-                                timePeriod.textContent = getTimePeriod(hour24Val);
-                                const totalMinutes = hour24Val * 60 + minute24Val;
-                                minutesSinceMidnight.textContent = totalMinutes.toLocaleString();
-                                minutesUntilMidnight.textContent = (1440 - totalMinutes).toLocaleString();
-                                
-                                // NATO phonetic
-                                natoPhonetic.textContent = getNatoPhonetic(time24Format.slice(0, 5));
-                                
-                                // Context and explanation
-                                timeContext.textContent = getTimeContext(hour24Val, minute24Val);
-                                conversionExplanation.textContent = getConversionExplanation(mode, hour12Val, hour24Val, periodVal);
-                                
+
+                                resultDescription.textContent = mode === '12-to-24'
+                                    ? `${time12Format} in 24-hour format`
+                                    : `${time24Format} in 12-hour format`;
                             } else {
                                 clearOutputs();
                             }
@@ -543,12 +411,7 @@
                             output.textContent = '--:--';
                             display12Hour.textContent = '--:-- --';
                             display24Hour.textContent = '--:--';
-                            timePeriod.textContent = '--';
-                            minutesSinceMidnight.textContent = '--';
-                            minutesUntilMidnight.textContent = '--';
-                            natoPhonetic.textContent = '--';
-                            timeContext.textContent = 'Enter a time to see contextual information';
-                            conversionExplanation.textContent = '--';
+                            resultDescription.textContent = getMode() === '12-to-24' ? 'Converted to 24-hour format' : 'Converted to 12-hour format';
                         }
 
                         function clearAll() {
@@ -657,35 +520,6 @@
                                 timeExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-emerald-100', 'text-emerald-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example-hour]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const exampleHour = this.getAttribute('data-example-hour');
-                                const exampleMinute = this.getAttribute('data-example-minute');
-                                const examplePeriod = this.getAttribute('data-example-period');
-                                const example24Hour = this.getAttribute('data-example-24hour');
-                                const example24Minute = this.getAttribute('data-example-24minute');
-                                
-                                if (example24Hour) {
-                                    // Set to 24-to-12 mode
-                                    document.querySelector('input[value="24-to-12"]').checked = true;
-                                    updateInterface();
-                                    hour24.value = example24Hour;
-                                    minute24.value = example24Minute;
-                                } else {
-                                    // Set to 12-to-24 mode
-                                    document.querySelector('input[value="12-to-24"]').checked = true;
-                                    updateInterface();
-                                    hour12.value = exampleHour;
-                                    minute12.value = exampleMinute;
-                                    period.value = examplePeriod;
-                                }
-                                
-                                convert();
                             });
                         });
 

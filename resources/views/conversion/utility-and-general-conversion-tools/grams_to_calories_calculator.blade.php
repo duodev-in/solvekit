@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Nutritional Energy Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Grams To Calories Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -113,26 +113,6 @@
                                                                                     <option value="tsp">Teaspoons</option>
                                                                                 </select>
                                                                             </div>
-
-                                                                            <!-- Serving Information -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Serving Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="servingContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General portion</option>
-                                                                                    <option value="single_serving">Single serving</option>
-                                                                                    <option value="meal_portion">Meal portion</option>
-                                                                                    <option value="snack_portion">Snack portion</option>
-                                                                                    <option value="daily_intake">Daily intake planning</option>
-                                                                                    <option value="recipe_ingredient">Recipe ingredient</option>
-                                                                                </select>
-                                                                            </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -305,27 +285,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Food Calorie Calculations</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Food Calories</h4>
-                                    <p>Food calories (technically kilocalories) measure the energy content in food. The calculation depends on macronutrient composition: carbohydrates and proteins provide 4 calories per gram, while fats provide 9 calories per gram. This calculator uses standard nutritional databases for accurate estimations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Nutrition Applications</h4>
-                                    <p>Use this calculator for meal planning, diet tracking, recipe analysis, and portion control. Understanding calorie content helps with weight management, fitness goals, and nutritional balance. Remember that individual needs vary based on age, gender, activity level, and health conditions.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Health Note:</strong> Calorie calculations are estimates based on standard nutritional data. Actual values may vary based on preparation methods, food variety, and individual factors.
-                                </p>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -335,7 +294,6 @@
                         const customCalories = document.getElementById('customCalories');
                         const weightValue = document.getElementById('weightValue');
                         const weightUnitSelect = document.getElementById('weightUnitSelect');
-                        const servingContext = document.getElementById('servingContext');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Container elements
@@ -355,13 +313,6 @@
                         const dailyCaloriesDisplay = document.getElementById('dailyCaloriesDisplay');
                         const servingSizeDisplay = document.getElementById('servingSizeDisplay');
                         const totalWeightDisplay = document.getElementById('totalWeightDisplay');
-                        const foodTypeDisplay = document.getElementById('foodTypeDisplay');
-                        const categoryDisplay = document.getElementById('categoryDisplay');
-                        const densityDisplay = document.getElementById('densityDisplay');
-                        const commonServingDisplay = document.getElementById('commonServingDisplay');
-                        const carbCaloriesDisplay = document.getElementById('carbCaloriesDisplay');
-                        const proteinCaloriesDisplay = document.getElementById('proteinCaloriesDisplay');
-                        const fatCaloriesDisplay = document.getElementById('fatCaloriesDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Food database with nutritional information
@@ -473,11 +424,32 @@
                             });
                         }
 
+                        function formatCalories(value) {
+                            if (value === 0) {
+                                return '0';
+                            }
+
+                            if (value < 1) {
+                                return value.toLocaleString(undefined, { maximumSignificantDigits: 2 });
+                            }
+
+                            return value.toLocaleString(undefined, { maximumFractionDigits: value < 10 ? 1 : 0 });
+                        }
+
+                        function describeWeight(weight, unit, weightInGrams) {
+                            if (unit === 'g') {
+                                return `${formatNumber(weight, 1)} g`;
+                            }
+
+                            return `${formatNumber(weight, 2)} ${weightUnit.textContent} (${formatNumber(weightInGrams, 0)} g)`;
+                        }
+
                         function updateFoodItems() {
                             const category = foodCategory.value;
                             const isCustom = category === 'custom';
                             
                             customFoodContainer.style.display = isCustom ? 'block' : 'none';
+                            foodItem.closest('.space-y-2').style.display = isCustom ? 'none' : 'block';
                             
                             if (!isCustom) {
                                 const categoryData = foodDatabase[category];
@@ -499,7 +471,7 @@
                                 g: 'grams',
                                 kg: 'kg',
                                 oz: 'oz',
-                                lb: 'lbs',
+                                lb: 'lb',
                                 cup: 'cups',
                                 tbsp: 'tbsp',
                                 tsp: 'tsp'
@@ -552,19 +524,15 @@
                                 const fat = (foodData.fat * weightInGrams) / 100;
                                 const kilojoules = calories * 4.184;
                                 
-                                // Calculate calorie breakdown
-                                const carbCalories = carbs * 4;
-                                const proteinCalories = protein * 4;
-                                const fatCalories = fat * 9;
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(calories, 0) + ' cal';
+                                output.textContent = formatCalories(calories) + ' kcal';
                                 resultTitle.textContent = 'Total Calories';
-                                resultDescription.textContent = `${formatNumber(weightInGrams, 0)}g ${foodData.name} = ${formatNumber(calories, 0)} calories`;
+                                resultDescription.textContent = `${describeWeight(weight, unit, weightInGrams)} of ${foodData.name} = ${formatCalories(calories)} ${calories === 1 ? 'calorie' : 'calories'}`;
 
                                 // Display energy content
-                                caloriesDisplay.textContent = formatNumber(calories, 0) + ' cal';
-                                kilojoulesDisplay.textContent = formatNumber(kilojoules, 0) + ' kJ';
+                                caloriesDisplay.textContent = formatCalories(calories) + ' kcal';
+                                kilojoulesDisplay.textContent = formatCalories(kilojoules) + ' kJ';
                                 caloriesPer100gDisplay.textContent = formatNumber(foodData.calories, 0) + ' cal';
 
                                 // Display macronutrients
@@ -578,23 +546,6 @@
                                 servingSizeDisplay.textContent = formatNumber(weight, 1) + ' ' + weightUnit.textContent;
                                 totalWeightDisplay.textContent = formatNumber(weightInGrams, 0) + 'g';
 
-                                // Food information
-                                foodTypeDisplay.textContent = foodData.name;
-                                categoryDisplay.textContent = foodDatabase[category]?.name || 'Custom';
-                                densityDisplay.textContent = formatNumber(foodData.density, 2) + ' g/ml';
-                                
-                                // Determine common serving
-                                let commonServing = 'Variable';
-                                if (weightInGrams <= 50) commonServing = 'Small portion';
-                                else if (weightInGrams <= 150) commonServing = 'Medium portion';
-                                else if (weightInGrams <= 300) commonServing = 'Large portion';
-                                else commonServing = 'Extra large';
-                                commonServingDisplay.textContent = commonServing;
-
-                                // Calorie breakdown
-                                carbCaloriesDisplay.textContent = formatNumber(carbCalories, 0);
-                                proteinCaloriesDisplay.textContent = formatNumber(proteinCalories, 0);
-                                fatCaloriesDisplay.textContent = formatNumber(fatCalories, 0);
 
                             } else {
                                 clearOutputs();
@@ -604,7 +555,7 @@
                         function clearOutputs() {
                             output.textContent = '--';
                             resultTitle.textContent = 'Total Calories';
-                            resultDescription.textContent = 'Energy content calculation';
+                            resultDescription.textContent = 'Enter a food weight to calculate calories';
                             caloriesDisplay.textContent = '--';
                             kilojoulesDisplay.textContent = '--';
                             caloriesPer100gDisplay.textContent = '--';
@@ -614,13 +565,6 @@
                             dailyCaloriesDisplay.textContent = '--';
                             servingSizeDisplay.textContent = '--';
                             totalWeightDisplay.textContent = '--';
-                            foodTypeDisplay.textContent = '--';
-                            categoryDisplay.textContent = '--';
-                            densityDisplay.textContent = '--';
-                            commonServingDisplay.textContent = '--';
-                            carbCaloriesDisplay.textContent = '--';
-                            proteinCaloriesDisplay.textContent = '--';
-                            fatCaloriesDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -628,7 +572,6 @@
                             foodCategory.value = 'grains';
                             weightUnitSelect.value = 'g';
                             customCalories.value = '';
-                            servingContext.value = '';
                             updateFoodItems();
                             updateWeightUnit();
                             clearOutputs();
@@ -648,7 +591,6 @@
                             updateWeightUnit();
                             calculate();
                         });
-                        servingContext.addEventListener('change', calculate);
 
                         clearButton.addEventListener('click', clearAll);
 

@@ -13,7 +13,7 @@ class ReportBugController extends Controller
 
     public function create(): View
     {
-        return view('superadmin.bug-reports.create');
+        return view('report-bug.create');
     }
 
     public function store(StoreBugReportRequest $request): RedirectResponse

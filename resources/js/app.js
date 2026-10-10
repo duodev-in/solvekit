@@ -1,4 +1,7 @@
 import './bootstrap';
+import { initAdUnits } from './ads';
+
+initAdUnits();
 
 document.querySelectorAll('[data-tab-group]').forEach((group) => {
 	const tabs = group.querySelectorAll('[data-tab-target]');

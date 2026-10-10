@@ -8,26 +8,28 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Long-term Period Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Years to Decades Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
                             <div class="p-5 sm:p-6">
                                 <!-- Current Date Display -->
+                                @php
+                                    $currentYear = (int) now('UTC')->format('Y');
+                                    $centuryProgressPercent = round((($currentYear - 2001) / 100) * 100, 1);
+                                    $millenniumProgressPercent = round((($currentYear - 2001) / 1000) * 100, 1);
+                                @endphp
                                 <div class="mb-6 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border border-blue-200">
                                     <h3 class="text-sm font-semibold text-blue-800 mb-2">Current Date & Time (UTC)</h3>
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                         <div>
                                             <span class="text-gray-600 block">Date & Time:</span>
-                                            <span class="font-mono text-blue-700 text-lg">2025-07-23 14:50:16</span>
+                                            <span class="font-mono text-blue-700 text-lg">{{ now('UTC')->format('Y-m-d H:i:s') }}</span>
                                         </div>
                                         <div>
-                                            <span class="text-gray-600 block">Current User:</span>
-                                            <span class="font-mono text-blue-700 text-lg">kavi-anbu</span>
+                                            <span class="text-gray-600 block">Current Decade:</span>
+                                            <span class="font-mono text-blue-700 text-lg">{{ intdiv($currentYear, 10) * 10 }}s</span>
                                         </div>
-                                    </div>
-                                    <div class="mt-2 text-xs text-blue-600">
-                                        Current year: 2025 • 3rd decade of 21st century
                                     </div>
                                 </div>
 
@@ -113,27 +115,6 @@
                                                                             </div>
 
                                                                             <div class="hidden">
-                                                                                <!-- Age Calculation Mode -->
-                                                                                <div class="space-y-2">
-                                                                                    <label class="block text-sm font-semibold text-gray-700">
-                                                                                        Age Calculation Options
-                                                                                    </label>
-                                                                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                                                                                        <label class="flex items-center space-x-2 p-2 border border-gray-200 rounded-lg hover:border-rose-300 transition-colors cursor-pointer">
-                                                                                            <input type="checkbox" name="showAge" class="text-rose-600 focus:ring-slate-200" checked>
-                                                                                            <span class="text-sm font-medium">Age Context</span>
-                                                                                        </label>
-                                                                                        <label class="flex items-center space-x-2 p-2 border border-gray-200 rounded-lg hover:border-rose-300 transition-colors cursor-pointer">
-                                                                                            <input type="checkbox" name="showHistorical" class="text-rose-600 focus:ring-slate-200" checked>
-                                                                                            <span class="text-sm font-medium">Historical</span>
-                                                                                        </label>
-                                                                                        <label class="flex items-center space-x-2 p-2 border border-gray-200 rounded-lg hover:border-rose-300 transition-colors cursor-pointer">
-                                                                                            <input type="checkbox" name="showGenerations" class="text-rose-600 focus:ring-slate-200" checked>
-                                                                                            <span class="text-sm font-medium">Generations</span>
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-
                                                                                 <!-- Precision Control -->
                                                                                 <div class="space-y-2">
                                                                                     <label class="block text-sm font-semibold text-gray-700">
@@ -240,19 +221,19 @@
                                                                                     <div>
                                                                                         <div class="flex justify-between text-sm mb-1">
                                                                                             <span>21st Century Progress (2001-2100)</span>
-                                                                                            <span id="centuryProgress">25%</span>
+                                                                                            <span id="centuryProgress">{{ $centuryProgressPercent }}%</span>
                                                                                         </div>
                                                                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                                            <div class="bg-green-600 h-2 rounded-full transition-all duration-500" id="centuryBar" style="width: 25%"></div>
+                                                                                            <div class="bg-green-600 h-2 rounded-full transition-all duration-500" id="centuryBar" style="width: {{ $centuryProgressPercent }}%"></div>
                                                                                         </div>
                                                                                     </div>
                                                                                     <div>
                                                                                         <div class="flex justify-between text-sm mb-1">
                                                                                             <span>3rd Millennium Progress (2001-3000)</span>
-                                                                                            <span id="millenniumProgress">2.5%</span>
+                                                                                            <span id="millenniumProgress">{{ $millenniumProgressPercent }}%</span>
                                                                                         </div>
                                                                                         <div class="w-full bg-gray-200 rounded-full h-2">
-                                                                                            <div class="bg-green-600 h-2 rounded-full transition-all duration-500" id="millenniumBar" style="width: 2.5%"></div>
+                                                                                            <div class="bg-green-600 h-2 rounded-full transition-all duration-500" id="millenniumBar" style="width: {{ $millenniumProgressPercent }}%"></div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -298,56 +279,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Long-term Time Periods</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Time Scales</h4>
-                                    <p>Long-term time periods help us understand historical context, plan for the future, and comprehend the scale of human civilization. Decades mark generational changes, centuries define historical eras, and millennia encompass the rise and fall of civilizations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>These calculations are useful for historical research, genealogy, long-term planning, understanding geological time scales, and putting current events in perspective. They help contextualize personal milestones within broader historical frameworks.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-rose-50 rounded-lg border border-rose-200">
-                                <p class="text-sm text-rose-800">
-                                    <strong>Time Perspective:</strong> The current year 2025 places us in the 3rd decade of the 21st century and the 3rd millennium CE!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Historical Period Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Historical Period Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Human Timescales</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="80" data-mode="years-to-periods">Human Lifespan: ~80 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average modern life expectancy</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="25" data-mode="years-to-periods">Generation: ~25 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Time between parent and child</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Historical Eras</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="2025" data-mode="years-to-periods">Since Year 0: 2025 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Common Era timeline</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="500" data-mode="years-to-periods">Medieval Period: ~500 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Middle Ages duration</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -356,13 +287,10 @@
                         const yearsValue = document.getElementById('yearsValue');
                         const periodsValue = document.getElementById('periodsValue');
                         const periodType = document.getElementById('periodType');
-                        const showAge = document.getElementsByName('showAge')[0];
-                        const showHistorical = document.getElementsByName('showHistorical')[0];
-                        const showGenerations = document.getElementsByName('showGenerations')[0];
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
-                        
+
                         // Output elements
                         const output = document.getElementById('output');
                         const resultTitle = document.getElementById('result-title');
@@ -371,230 +299,110 @@
                         const decadesDisplay = document.getElementById('decadesDisplay');
                         const centuriesDisplay = document.getElementById('centuriesDisplay');
                         const millenniaDisplay = document.getElementById('millenniaDisplay');
-                        const ageContext = document.getElementById('ageContext');
-                        const historicalContext = document.getElementById('historicalContext');
-                        const humanGenerations = document.getElementById('humanGenerations');
-                        const familyGenerations = document.getElementById('familyGenerations');
-                        const treeGenerations = document.getElementById('treeGenerations');
-                        const monthsDisplay = document.getElementById('monthsDisplay');
-                        const weeksDisplay = document.getElementById('weeksDisplay');
-                        const daysDisplay = document.getElementById('daysDisplay');
-                        const hoursDisplay = document.getElementById('hoursDisplay');
-                        const centuryProgress = document.getElementById('centuryProgress');
-                        const centuryBar = document.getElementById('centuryBar');
-                        const millenniumProgress = document.getElementById('millenniumProgress');
-                        const millenniumBar = document.getElementById('millenniumBar');
                         const copyResult = document.getElementById('copyResult');
+
+                        const periodYears = {
+                            decades: 10,
+                            centuries: 100,
+                            millennia: 1000
+                        };
+
+                        const periodNames = {
+                            years: ['year', 'years'],
+                            decades: ['decade', 'decades'],
+                            centuries: ['century', 'centuries'],
+                            millennia: ['millennium', 'millennia']
+                        };
+
+                        function unitName(unit, value) {
+                            return periodNames[unit][value === 1 ? 0 : 1];
+                        }
 
                         function getMode() {
                             return document.querySelector('input[name="mode"]:checked').value;
                         }
 
                         function getPrecision() {
-                            return parseInt(precision.value);
+                            return parseInt(precision.value, 10);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                        function formatNumber(num) {
+                            if (num === 0) {
+                                return '0';
                             }
-                        }
 
-                        function getAgeContext(years) {
-                            if (years < 1) {
-                                return 'Infant age - early development and growth milestones';
-                            } else if (years < 5) {
-                                return 'Early childhood - learning basic skills, language development';
-                            } else if (years < 13) {
-                                return 'Childhood - elementary education, personality formation';
-                            } else if (years < 20) {
-                                return 'Adolescence - teenage years, high school, identity development';
-                            } else if (years < 30) {
-                                return 'Young adulthood - career start, higher education, relationships';
-                            } else if (years < 50) {
-                                return 'Adult prime - career development, family building, peak earning years';
-                            } else if (years < 65) {
-                                return 'Middle age - leadership roles, established career, preparation for retirement';
-                            } else if (years < 80) {
-                                return 'Senior years - retirement, wisdom sharing, grandparent role';
-                            } else if (years < 100) {
-                                return 'Advanced age - exceptional longevity, multiple generations witnessed';
-                            } else {
-                                return 'Extraordinary longevity - rare achievement, historical witness';
-                            }
-                        }
+                            const absolute = Math.abs(num);
 
-                        function getHistoricalContext(years) {
-                            if (years < 10) {
-                                return 'Recent events - current decade, contemporary history';
-                            } else if (years < 50) {
-                                return 'Living memory - within one human generation, recent past';
-                            } else if (years < 100) {
-                                return 'Modern era - within living family memory, 20th-21st century';
-                            } else if (years < 500) {
-                                return 'Historical period - Renaissance to modern times, documented history';
-                            } else if (years < 1000) {
-                                return 'Medieval period - Middle Ages, feudalism, early civilizations';
-                            } else if (years < 2000) {
-                                return 'Ancient history - classical civilizations, early empires';
-                            } else if (years < 5000) {
-                                return 'Recorded history - writing systems, early agriculture, cities';
-                            } else if (years < 10000) {
-                                return 'Neolithic period - agriculture revolution, early settlements';
-                            } else {
-                                return 'Prehistoric times - hunter-gatherers, ice ages, human migration';
+                            if (absolute >= 1e15 || absolute < 1e-6) {
+                                return num.toExponential(4);
                             }
+
+                            if (absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: Math.max(getPrecision(), 1) });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
                         }
 
                         function updateInterface() {
                             const mode = getMode();
                             const yearsInput = document.getElementById('yearsInput');
                             const periodsInput = document.getElementById('periodsInput');
-                            
+
                             if (mode === 'years-to-periods') {
                                 yearsInput.classList.remove('hidden');
                                 periodsInput.classList.add('hidden');
-                                resultTitle.textContent = 'Time Periods';
-                                resultDescription.textContent = 'Converted to periods';
+                                resultTitle.textContent = 'Decades';
                             } else {
                                 yearsInput.classList.add('hidden');
                                 periodsInput.classList.remove('hidden');
                                 resultTitle.textContent = 'Years';
-                                resultDescription.textContent = 'Converted to years';
                             }
                         }
 
                         function convert() {
                             const mode = getMode();
                             let years;
+                            let inputVal;
 
                             if (mode === 'years-to-periods') {
-                                const inputVal = parseFloat(yearsValue.value);
-                                if (isNaN(inputVal) || inputVal < 0) {
-                                    clearOutputs();
-                                    return;
-                                }
-                                years = inputVal;
+                                inputVal = parseFloat(yearsValue.value);
                             } else {
-                                const inputVal = parseFloat(periodsValue.value);
-                                const type = periodType.value;
-                                if (isNaN(inputVal) || inputVal < 0) {
-                                    clearOutputs();
-                                    return;
-                                }
-                                
-                                const multipliers = {
-                                    decades: 10,
-                                    centuries: 100,
-                                    millennia: 1000
-                                };
-                                years = inputVal * multipliers[type];
+                                inputVal = parseFloat(periodsValue.value);
                             }
 
-                            // Calculate all period conversions
+                            if (isNaN(inputVal) || inputVal < 0) {
+                                clearOutputs();
+                                return;
+                            }
+
+                            years = mode === 'years-to-periods' ? inputVal : inputVal * periodYears[periodType.value];
+
                             const decades = years / 10;
                             const centuries = years / 100;
                             const millennia = years / 1000;
 
-                            // Update primary output
                             if (mode === 'years-to-periods') {
-                                output.textContent = `${formatNumber(decades)} decades`;
-                                resultDescription.textContent = `${years} years = ${formatNumber(decades)} decades`;
+                                output.textContent = `${formatNumber(decades)} ${unitName('decades', decades)}`;
+                                resultDescription.textContent = `${formatNumber(years)} ${unitName('years', years)} = ${formatNumber(decades)} ${unitName('decades', decades)}`;
                             } else {
-                                output.textContent = formatNumber(years);
-                                resultDescription.textContent = `${periodsValue.value} ${periodType.value} = ${formatNumber(years)} years`;
+                                output.textContent = `${formatNumber(years)} ${unitName('years', years)}`;
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitName(periodType.value, inputVal)} = ${formatNumber(years)} ${unitName('years', years)}`;
                             }
 
-                            // Update displays
                             yearsDisplay.textContent = formatNumber(years);
                             decadesDisplay.textContent = formatNumber(decades);
                             centuriesDisplay.textContent = formatNumber(centuries);
                             millenniaDisplay.textContent = formatNumber(millennia);
-
-                            // Age context
-                            if (showAge.checked) {
-                                ageContext.textContent = getAgeContext(years);
-                                document.getElementById('ageContextSection').style.display = 'block';
-                            } else {
-                                document.getElementById('ageContextSection').style.display = 'none';
-                            }
-
-                            // Historical context
-                            if (showHistorical.checked) {
-                                historicalContext.textContent = getHistoricalContext(years);
-                                document.getElementById('historicalContextSection').style.display = 'block';
-                            } else {
-                                document.getElementById('historicalContextSection').style.display = 'none';
-                            }
-
-                            // Generational analysis
-                            if (showGenerations.checked) {
-                                const humanGenLength = 25; // Average human generation
-                                const familyGenLength = 30; // Family generation
-                                const treeGenLength = 50; // Tree/oak generation
-                                
-                                humanGenerations.textContent = formatNumber(years / humanGenLength);
-                                familyGenerations.textContent = formatNumber(years / familyGenLength);
-                                treeGenerations.textContent = formatNumber(years / treeGenLength);
-                                document.getElementById('generationsSection').style.display = 'block';
-                            } else {
-                                document.getElementById('generationsSection').style.display = 'none';
-                            }
-
-                            // Calendar context
-                            const months = years * 12;
-                            const weeks = years * 52.18; // More precise weeks per year
-                            const days = years * 365.25; // Account for leap years
-                            const hours = days * 24;
-
-                            monthsDisplay.textContent = formatNumber(months, 0);
-                            weeksDisplay.textContent = formatNumber(weeks, 0);
-                            daysDisplay.textContent = formatNumber(days, 0);
-                            hoursDisplay.textContent = formatNumber(hours, 0);
-
-                            // Century and millennium progress (based on current year 2025)
-                            const currentYear = 2025;
-                            const centuryStart = 2001; // 21st century started in 2001
-                            const centuryEnd = 2100;
-                            const millenniumStart = 2001; // 3rd millennium started in 2001
-                            const millenniumEnd = 3000;
-
-                            const centuryProgressPercent = ((currentYear - centuryStart) / (centuryEnd - centuryStart)) * 100;
-                            const millenniumProgressPercent = ((currentYear - millenniumStart) / (millenniumEnd - millenniumStart)) * 100;
-
-                            centuryProgress.textContent = `${centuryProgressPercent.toFixed(1)}%`;
-                            centuryBar.style.width = `${centuryProgressPercent}%`;
-                            millenniumProgress.textContent = `${millenniumProgressPercent.toFixed(1)}%`;
-                            millenniumBar.style.width = `${millenniumProgressPercent}%`;
                         }
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultDescription.textContent = 'Converted result';
+                            resultDescription.textContent = getMode() === 'years-to-periods' ? 'Enter years to convert to decades' : 'Enter a period to convert to years';
                             yearsDisplay.textContent = '--';
                             decadesDisplay.textContent = '--';
                             centuriesDisplay.textContent = '--';
                             millenniaDisplay.textContent = '--';
-                            ageContext.textContent = 'Enter years to see age context';
-                            historicalContext.textContent = 'Historical perspective will appear here';
-                            humanGenerations.textContent = '--';
-                            familyGenerations.textContent = '--';
-                            treeGenerations.textContent = '--';
-                            monthsDisplay.textContent = '--';
-                            weeksDisplay.textContent = '--';
-                            daysDisplay.textContent = '--';
-                            hoursDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -602,9 +410,6 @@
                             periodsValue.value = '';
                             periodType.value = 'decades';
                             document.querySelector('input[value="years-to-periods"]').checked = true;
-                            showAge.checked = true;
-                            showHistorical.checked = true;
-                            showGenerations.checked = true;
                             precision.value = 3;
                             precisionValue.textContent = '3 digits';
                             updateInterface();
@@ -616,16 +421,12 @@
                         yearsValue.addEventListener('input', convert);
                         periodsValue.addEventListener('input', convert);
                         periodType.addEventListener('change', convert);
-                        
+
                         modeRadios.forEach(radio => {
                             radio.addEventListener('change', () => {
                                 updateInterface();
                                 convert();
                             });
-                        });
-
-                        [showAge, showHistorical, showGenerations].forEach(checkbox => {
-                            checkbox.addEventListener('change', convert);
                         });
 
                         precision.addEventListener('input', function() {
@@ -635,7 +436,6 @@
 
                         clearButton.addEventListener('click', clearAll);
 
-                        // Copy functionality
                         copyResult.addEventListener('click', function() {
                             const text = output.textContent;
                             if (text !== '--') {
@@ -648,28 +448,20 @@
                             }
                         });
 
-                        // Example buttons
                         const yearExamples = document.querySelectorAll('.year-example');
                         yearExamples.forEach(button => {
                             button.addEventListener('click', function() {
                                 const value = this.getAttribute('data-value');
                                 const mode = this.getAttribute('data-mode');
                                 const isCurrent = this.getAttribute('data-current');
-                                
-                                if (isCurrent) {
-                                    // Use a typical age for "current age" example
-                                    yearsValue.value = 30;
-                                } else {
-                                    yearsValue.value = value;
-                                }
-                                
-                                if (mode) {
-                                    document.querySelector(`input[value="${mode}"]`).checked = true;
-                                    updateInterface();
-                                }
+
+                                // Use a typical age for the "current age" example
+                                yearsValue.value = isCurrent ? 30 : value;
+
+                                document.querySelector(`input[value="${mode || 'years-to-periods'}"]`).checked = true;
+                                updateInterface();
                                 convert();
-                                
-                                // Update button styles
+
                                 yearExamples.forEach(btn => btn.classList.remove('bg-rose-100', 'text-rose-700'));
                                 yearExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
@@ -677,36 +469,18 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const mode = this.getAttribute('data-mode');
-                                
-                                yearsValue.value = value;
-                                if (mode) {
-                                    document.querySelector(`input[value="${mode}"]`).checked = true;
-                                    updateInterface();
-                                }
-                                convert();
-                                yearsValue.focus();
-                            });
-                        });
-
                         // Initialize
                         updateInterface();
+                        clearOutputs();
                         precisionValue.textContent = precision.value + ' digits';
                         yearsValue.focus();
 
-                        // Keyboard shortcuts
                         document.addEventListener('keydown', function(e) {
                             if (e.key === 'Escape') {
                                 clearAll();
                             } else if (e.ctrlKey && e.key === 'm') {
                                 e.preventDefault();
-                                const currentMode = getMode();
-                                const newMode = currentMode === 'years-to-periods' ? 'periods-to-years' : 'years-to-periods';
+                                const newMode = getMode() === 'years-to-periods' ? 'periods-to-years' : 'years-to-periods';
                                 document.querySelector(`input[value="${newMode}"]`).checked = true;
                                 updateInterface();
                                 convert();

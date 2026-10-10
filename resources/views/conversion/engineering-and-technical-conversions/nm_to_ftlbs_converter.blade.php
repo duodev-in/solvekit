@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">SI to Imperial Torque Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Torque (ft-lbs)</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -107,12 +107,12 @@
                                                                             <div class="p-6 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl border-l-4 border-purple-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Torque in foot-pounds</h4>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Torque in Foot-pounds</h4>
                                                                                         <p class="text-sm text-gray-600" id="result-description">Imperial torque unit</p>
                                                                                     </div>
                                                                                     <div class="text-right">
-                                                                                        <div class="text-3xl font-bold text-purple-600 font-mono" id="output">-- ft-lbs</div>
-                                                                                        <div class="text-sm text-gray-500 font-medium">foot-pounds</div>
+                                                                                        <div class="text-3xl font-bold text-purple-600 font-mono" id="output">--</div>
+                                                                                        <div class="text-sm text-gray-500 font-medium" id="unit-display">ft-lbs</div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -258,6 +258,7 @@
                     document.addEventListener('DOMContentLoaded', function() {
                         const nmInput = document.getElementById('nmInput');
                         const output = document.getElementById('output');
+                        const unitDisplay = document.getElementById('unit-display');
                         const nmDisplay = document.getElementById('nmDisplay');
                         const ftlbsDisplay = document.getElementById('ftlbsDisplay');
                         const inlbsDisplay = document.getElementById('inlbsDisplay');
@@ -294,10 +295,15 @@
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }
@@ -306,12 +312,12 @@
                             const mode = getMode();
                             if (mode === 'nm-to-ftlbs') {
                                 nmInput.placeholder = 'Enter torque in Newton meters';
-                                resultTitle.textContent = 'Torque in foot-pounds';
+                                resultTitle.textContent = 'Torque in Foot-pounds';
                                 resultDescription.textContent = 'Imperial torque unit';
                                 conversionConstant.textContent = '1 Nm = 0.737562 ft-lbs';
                             } else {
                                 nmInput.placeholder = 'Enter torque in foot-pounds';
-                                resultTitle.textContent = 'Torque in Newton meters';
+                                resultTitle.textContent = 'Torque in Newton-meters';
                                 resultDescription.textContent = 'SI torque unit';
                                 conversionConstant.textContent = '1 ft-lbs = 1.35582 Nm';
                             }
@@ -328,11 +334,13 @@
                                 if (mode === 'nm-to-ftlbs') {
                                     nmValue = inputVal;
                                     ftlbsValue = inputVal * NM_TO_FTLBS;
-                                    output.textContent = formatNumber(ftlbsValue, precision) + ' ft-lbs';
+                                    output.textContent = formatNumber(ftlbsValue, precision);
+                                    unitDisplay.textContent = 'ft-lbs';
                                 } else {
                                     ftlbsValue = inputVal;
                                     nmValue = inputVal * FTLBS_TO_NM;
-                                    output.textContent = formatNumber(nmValue, precision) + ' Nm';
+                                    output.textContent = formatNumber(nmValue, precision);
+                                    unitDisplay.textContent = 'Nm';
                                 }
 
                                 // Update all displays
@@ -344,7 +352,8 @@
 
                             } else {
                                 const mode = getMode();
-                                output.textContent = mode === 'nm-to-ftlbs' ? '-- ft-lbs' : '-- Nm';
+                                output.textContent = '--';
+                                unitDisplay.textContent = mode === 'nm-to-ftlbs' ? 'ft-lbs' : 'Nm';
                                 nmDisplay.textContent = '--';
                                 ftlbsDisplay.textContent = '--';
                                 inlbsDisplay.textContent = '--';

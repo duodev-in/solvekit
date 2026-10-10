@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Engineering Pressure Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Pressure Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -337,17 +337,17 @@
                         };
 
                         const unitNames = {
-                            pascal: 'Pascal',
-                            bar: 'Bar',
+                            pascal: 'Pascals',
+                            bar: 'Bars',
                             psi: 'PSI',
-                            atm: 'Atmosphere',
+                            atm: 'Atmospheres',
                             torr: 'Torr',
                             mmhg: 'mmHg',
                             inhg: 'inHg',
-                            kpa: 'Kilopascal',
-                            mpa: 'Megapascal',
+                            kpa: 'Kilopascals',
+                            mpa: 'Megapascals',
                             psf: 'PSF',
-                            mbar: 'Millibar',
+                            mbar: 'Millibars',
                             mmh2o: 'mmH2O',
                             inh2o: 'inH2O'
                         };
@@ -376,15 +376,20 @@
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'auto') {
                                 if (num >= 1000000) {
-                                    return num.toExponential(4);
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

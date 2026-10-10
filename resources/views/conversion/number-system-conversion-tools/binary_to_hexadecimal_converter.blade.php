@@ -5,7 +5,7 @@
     <x-slot name="toolUi">
         <div class="space-y-2">
             <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900">Binary and Hexadecimal Converter</h2>
+                <h1 class="text-sm font-semibold text-slate-900">Binary to Hexadecimal</h1>
                 <p class="mt-0.5 text-[11px] text-slate-600">Readable binary and hexadecimal conversion with strict validation and consistent output rows.</p>
             </section>
 
@@ -94,59 +94,6 @@
         </div>
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <div class="space-y-3 text-sm text-slate-600">
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <div class="flex items-center justify-between gap-2">
-                    <h3 class="text-sm font-semibold text-slate-900">Live Conversion Insights</h3>
-                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">Auto update</span>
-                </div>
-
-                <div id="breakdownDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Breakdown</p>
-                    <p id="conversionSteps" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="rulesDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Rules Applied</p>
-                    <p id="appliedRules" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="historicalContext" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Context Note</p>
-                    <p id="contextInfo" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h4 class="text-sm font-semibold text-slate-900">Binary to Hex Mapping</h4>
-                <div class="mt-2 grid grid-cols-2 gap-1.5 text-[11px] text-slate-700 sm:grid-cols-4">
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">0000 = 0</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">0001 = 1</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1010 = A</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1011 = B</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1100 = C</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1101 = D</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1110 = E</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">1111 = F</div>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h3 class="text-sm font-semibold text-slate-900">Reading Guide</h3>
-                <div class="mt-2 space-y-2 text-xs leading-5 text-slate-700">
-                    <p><span class="font-semibold text-slate-900">Hex digits:</span> each hexadecimal symbol represents exactly 4 bits.</p>
-                    <p><span class="font-semibold text-slate-900">Breakdown:</span> positional math is shown using the active input base.</p>
-                    <p><span class="font-semibold text-slate-900">All Bases:</span> binary, decimal, hexadecimal, and octal values update together.</p>
-                    <p><span class="font-semibold text-slate-900">Constraints:</span> large values are restricted to safe integer precision.</p>
-                </div>
-            </section>
-
-            <div class="rounded-md bg-indigo-50 p-3 text-xs text-indigo-800">
-                Hexadecimal is widely used for memory addresses, machine code, and color values.
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -172,12 +119,6 @@
                 const hexDisplay = document.getElementById('hexDisplay');
                 const octalDisplay = document.getElementById('octalDisplay');
                 const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-                const breakdownDisplay = document.getElementById('breakdownDisplay');
-                const conversionSteps = document.getElementById('conversionSteps');
-                const rulesDisplay = document.getElementById('rulesDisplay');
-                const appliedRules = document.getElementById('appliedRules');
-                const historicalContext = document.getElementById('historicalContext');
-                const contextInfo = document.getElementById('contextInfo');
 
                 const strictBinaryPattern = /^[01]+$/;
                 const strictHexPattern = /^[0-9A-F]+$/i;
@@ -202,51 +143,6 @@
                     return parsed;
                 }
 
-                function buildFromBaseSteps(value, base) {
-                    const chars = value.split('');
-                    const steps = [];
-                    let total = 0;
-
-                    chars.forEach((char, index) => {
-                        const power = chars.length - index - 1;
-                        const digit = parseInt(char, base);
-                        const amount = digit * (base ** power);
-                        total += amount;
-                        steps.push(`${char} x ${base}^${power} = ${amount}`);
-                    });
-
-                    steps.push(`Total = ${total}`);
-                    return steps;
-                }
-
-                function getRules(mode) {
-                    if (mode === 'binary-to-hex') {
-                        return [
-                            'Group binary digits in blocks of 4 from right to left.',
-                            'Each 4-bit group maps to one hexadecimal digit.',
-                            'Hex digits range from 0 to 9 and A to F.'
-                        ];
-                    }
-
-                    return [
-                        'Each hexadecimal digit expands to exactly 4 binary bits.',
-                        'Hex input accepts 0 to 9 and A to F.',
-                        'Leading zeros can appear in binary groups.'
-                    ];
-                }
-
-                function getContextNote(decimal) {
-                    if (decimal <= 255) {
-                        return `${decimal} fits in one byte and can be written as two hex digits.`;
-                    }
-
-                    if (decimal <= 65535) {
-                        return `${decimal} fits in 16-bit range and often appears as four hex digits.`;
-                    }
-
-                    return `${decimal} is represented with ${decimal.toString(2).length} bits in binary form.`;
-                }
-
                 function updateInterface() {
                     const mode = getMode();
 
@@ -266,12 +162,6 @@
                     resultDescription.textContent = 'Hexadecimal converted to binary';
                 }
 
-                function setSectionVisibility() {
-                    breakdownDisplay.style.display = 'block';
-                    rulesDisplay.style.display = 'block';
-                    historicalContext.style.display = 'block';
-                }
-
                 function clearOutputs() {
                     output.textContent = '--';
                     binaryDisplay.textContent = '--';
@@ -279,9 +169,6 @@
                     hexDisplay.textContent = '--';
                     octalDisplay.textContent = '--';
                     bitLengthDisplay.textContent = '--';
-                    conversionSteps.textContent = '--';
-                    appliedRules.textContent = '--';
-                    contextInfo.textContent = '--';
                 }
 
                 function renderInvalid() {
@@ -294,7 +181,6 @@
                     const input = sanitize(inputValue.value);
                     if (!input) {
                         clearOutputs();
-                        setSectionVisibility();
                         return;
                     }
 
@@ -302,13 +188,11 @@
                     let decimal;
                     let binary;
                     let hex;
-                    let steps;
                     let outputValue;
 
                     if (mode === 'binary-to-hex') {
                         if (!strictBinaryPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -316,19 +200,15 @@
                         const parsed = parseBaseToSafeInteger(binary, 2);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         hex = decimal.toString(16).toUpperCase();
-                        steps = buildFromBaseSteps(binary, 2);
-                        steps.push(`Convert decimal ${decimal} to base 16 = ${hex}`);
                         outputValue = hex;
                     } else {
                         if (!strictHexPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -336,14 +216,11 @@
                         const parsed = parseBaseToSafeInteger(hex, 16);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         binary = decimal.toString(2);
-                        steps = buildFromBaseSteps(hex, 16);
-                        steps.push(`Convert decimal ${decimal} to base 2 = ${binary}`);
                         outputValue = groupBinary(binary);
                     }
 
@@ -357,17 +234,11 @@
                     hexDisplay.textContent = hex;
                     octalDisplay.textContent = octal;
                     bitLengthDisplay.textContent = `${binary.length} bits`;
-                    conversionSteps.innerHTML = steps.join('<br>');
-                    appliedRules.innerHTML = '- ' + getRules(mode).join('<br>- ');
-                    contextInfo.textContent = getContextNote(decimal);
-
-                    setSectionVisibility();
                 }
 
                 function clearAll() {
                     inputValue.value = '';
                     clearOutputs();
-                    setSectionVisibility();
                     inputValue.focus();
                 }
 
@@ -418,7 +289,6 @@
 
                 updateInterface();
                 clearOutputs();
-                setSectionVisibility();
             });
         </script>
     </x-slot>

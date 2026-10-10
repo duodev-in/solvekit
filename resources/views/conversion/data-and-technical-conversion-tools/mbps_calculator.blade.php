@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Network Speed & Bandwidth Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Mbps Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -274,56 +274,6 @@
     
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Network Speed Calculations</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Mbps</h4>
-                                    <p>Mbps (Megabits per second) measures data transfer rate. Note that 1 byte = 8 bits, so a 100 Mbps connection can theoretically download 12.5 MB per second. Real-world speeds are typically 70-90% of advertised speeds due to network overhead.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Factors Affecting Speed</h4>
-                                    <p>Network congestion, server capacity, physical distance, wireless interference, and device limitations all impact actual transfer speeds. Our calculator includes efficiency factors to provide realistic estimates for planning purposes.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Pro Tip:</strong> For critical applications, plan for 70-80% of theoretical bandwidth and consider peak usage times!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Usage Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Usage Scenarios</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">File Downloads</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example-file="1" data-example-unit="GB" data-example-speed="100" data-example-speed-unit="Mbps">1 GB at 100 Mbps</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical software download</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example-file="4.7" data-example-unit="GB" data-example-speed="25" data-example-speed-unit="Mbps">4.7 GB at 25 Mbps</div>
-                                        <div class="text-xs text-gray-600 mt-1">DVD movie download</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Streaming Requirements</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600">4K Streaming: 25+ Mbps</div>
-                                        <div class="text-xs text-gray-600 mt-1">Ultra HD video streaming</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600">HD Streaming: 5+ Mbps</div>
-                                        <div class="text-xs text-gray-600 mt-1">1080p video streaming</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -352,17 +302,6 @@
                         const resultDescription = document.getElementById('result-description');
                         const theoreticalSpeed = document.getElementById('theoreticalSpeed');
                         const practicalSpeed = document.getElementById('practicalSpeed');
-                        const dataVolume = document.getElementById('dataVolume');
-                        const transferRate = document.getElementById('transferRate');
-                        const efficiencyDisplay = document.getElementById('efficiencyDisplay');
-                        const bestCaseTime = document.getElementById('bestCaseTime');
-                        const realisticTime = document.getElementById('realisticTime');
-                        const worstCaseTime = document.getElementById('worstCaseTime');
-                        const averageTime = document.getElementById('averageTime');
-                        const throughput = document.getElementById('throughput');
-                        const dataRate = document.getElementById('dataRate');
-                        const bandwidthUsage = document.getElementById('bandwidthUsage');
-                        const connectionQuality = document.getElementById('connectionQuality');
                         const copyResult = document.getElementById('copyResult');
 
                         // Unit conversion factors to Mbps
@@ -387,87 +326,113 @@
                             'hours': 3600
                         };
 
+                        const defaultDescriptions = {
+                            'download-time': 'Estimated download time',
+                            'speed-test': 'Calculated connection speed',
+                            'bandwidth-calc': 'Required total bandwidth'
+                        };
+
                         function getMode() {
-                            return document.querySelector('input[name="mode"]:checked').value;
+                            const checked = document.querySelector('input[name="mode"]:checked');
+                            return checked ? checked.value : 'download-time';
                         }
 
-                        function formatTime(seconds) {
-                            if (seconds < 60) {
-                                return `${seconds.toFixed(1)}s`;
-                            } else if (seconds < 3600) {
-                                return `${(seconds / 60).toFixed(1)}m`;
-                            } else if (seconds < 86400) {
-                                return `${(seconds / 3600).toFixed(1)}h`;
-                            } else {
-                                return `${(seconds / 86400).toFixed(1)}d`;
-                            }
-                        }
+                            function formatDecimal(num, fractionDigits = 2) {
+                                if (!Number.isFinite(num)) {
+                                    return '--';
+                                }
 
-                        function formatSpeed(mbps) {
-                            if (mbps >= 1000) {
-                                return `${(mbps / 1000).toFixed(2)} Gbps`;
-                            } else if (mbps >= 1) {
-                                return `${mbps.toFixed(2)} Mbps`;
-                            } else {
-                                return `${(mbps * 1000).toFixed(0)} Kbps`;
-                            }
-                        }
+                                const abs = Math.abs(num);
 
-                        function formatSize(mb) {
-                            if (mb >= 1000000) {
-                                return `${(mb / 1000000).toFixed(2)} TB`;
-                            } else if (mb >= 1000) {
-                                return `${(mb / 1000).toFixed(2)} GB`;
-                            } else if (mb >= 1) {
-                                return `${mb.toFixed(2)} MB`;
-                            } else {
-                                return `${(mb * 1000).toFixed(0)} KB`;
-                            }
-                        }
+                                if (abs === 0) {
+                                    return '0';
+                                }
 
-                        function getConnectionQuality(speedMbps) {
-                            if (speedMbps >= 1000) {
-                                return 'Excellent - Gigabit fiber connection, ideal for heavy usage and multiple users';
-                            } else if (speedMbps >= 100) {
-                                return 'Very Good - High-speed broadband, suitable for 4K streaming and large downloads';
-                            } else if (speedMbps >= 25) {
-                                return 'Good - Standard broadband, adequate for HD streaming and general use';
-                            } else if (speedMbps >= 10) {
-                                return 'Fair - Basic broadband, sufficient for standard streaming and browsing';
-                            } else if (speedMbps >= 1) {
-                                return 'Limited - Slow connection, suitable only for basic web browsing';
-                            } else {
-                                return 'Poor - Very slow connection, limited functionality';
-                            }
-                        }
+                                if (abs >= 1e15 || abs < 1e-6) {
+                                    return num.toExponential(4).replace(/\.?0+e/, 'e');
+                                }
 
-                        function updateModeInterface() {
-                            const mode = getMode();
-                            
-                            // Hide all field groups
-                            document.getElementById('downloadTimeFields').classList.add('hidden');
-                            document.getElementById('speedTestFields').classList.add('hidden');
-                            document.getElementById('bandwidthFields').classList.add('hidden');
-                            
-                            // Show appropriate fields and update result title
-                            switch (mode) {
-                                case 'download-time':
-                                    document.getElementById('downloadTimeFields').classList.remove('hidden');
-                                    resultTitle.textContent = 'Download Time';
-                                    resultDescription.textContent = 'Estimated download time';
-                                    break;
-                                case 'speed-test':
-                                    document.getElementById('speedTestFields').classList.remove('hidden');
-                                    resultTitle.textContent = 'Connection Speed';
-                                    resultDescription.textContent = 'Calculated connection speed';
-                                    break;
-                                case 'bandwidth-calc':
-                                    document.getElementById('bandwidthFields').classList.remove('hidden');
-                                    resultTitle.textContent = 'Total Bandwidth';
-                                    resultDescription.textContent = 'Required total bandwidth';
-                                    break;
+                                if (abs >= 1) {
+                                    return num.toLocaleString('en-US', { maximumFractionDigits: fractionDigits });
+                                }
+
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: 3 });
                             }
-                        }
+
+                            function formatTime(seconds) {
+                                if (!Number.isFinite(seconds)) {
+                                    return '--';
+                                }
+
+                                if (seconds < 60) {
+                                    return `${formatDecimal(seconds, 1)} s`;
+                                }
+
+                                const totalSeconds = Math.round(seconds);
+                                const days = Math.floor(totalSeconds / 86400);
+                                const hours = Math.floor((totalSeconds % 86400) / 3600);
+                                const minutes = Math.floor((totalSeconds % 3600) / 60);
+                                const secs = totalSeconds % 60;
+
+                                if (days > 0) {
+                                    return `${days.toLocaleString('en-US')} d ${hours} h`;
+                                }
+
+                                if (hours > 0) {
+                                    return `${hours} h ${minutes} min`;
+                                }
+
+                                return `${minutes} min ${secs} s`;
+                            }
+
+                            function formatSpeed(mbps) {
+                                if (mbps >= 1000) {
+                                    return `${formatDecimal(mbps / 1000)} Gbps`;
+                                } else if (mbps >= 1) {
+                                    return `${formatDecimal(mbps)} Mbps`;
+                                }
+
+                                return `${formatDecimal(mbps * 1000)} Kbps`;
+                            }
+
+                            function formatSize(mb) {
+                                if (mb >= 1000000) {
+                                    return `${formatDecimal(mb / 1000000)} TB`;
+                                } else if (mb >= 1000) {
+                                    return `${formatDecimal(mb / 1000)} GB`;
+                                } else if (mb >= 1) {
+                                    return `${formatDecimal(mb)} MB`;
+                                }
+
+                                return `${formatDecimal(mb * 1000)} KB`;
+                            }
+
+                            function updateModeInterface() {
+                                const mode = getMode();
+
+                                // Hide all field groups
+                                document.getElementById('downloadTimeFields').classList.add('hidden');
+                                document.getElementById('speedTestFields').classList.add('hidden');
+                                document.getElementById('bandwidthFields').classList.add('hidden');
+
+                                // Show appropriate fields and update result title
+                                switch (mode) {
+                                    case 'download-time':
+                                        document.getElementById('downloadTimeFields').classList.remove('hidden');
+                                        resultTitle.textContent = 'Download Time';
+                                        break;
+                                    case 'speed-test':
+                                        document.getElementById('speedTestFields').classList.remove('hidden');
+                                        resultTitle.textContent = 'Connection Speed';
+                                        break;
+                                    case 'bandwidth-calc':
+                                        document.getElementById('bandwidthFields').classList.remove('hidden');
+                                        resultTitle.textContent = 'Total Bandwidth';
+                                        break;
+                                }
+
+                                resultDescription.textContent = defaultDescriptions[mode];
+                            }
 
                         function calculate() {
                             const mode = getMode();
@@ -579,101 +544,34 @@
                         }
 
                         function updateDisplay(result) {
-                            // Update primary output
+                            const efficiencyPercent = Math.round(result.efficiencyFactor * 100);
+
                             output.textContent = result.primaryResult;
-                            
-                            // Update efficiency display
-                            efficiencyDisplay.textContent = `${Math.round(result.efficiencyFactor * 100)}%`;
 
                             switch (result.type) {
                                 case 'download-time':
-                                    updateDownloadTimeDisplay(result);
+                                    theoreticalSpeed.textContent = formatSpeed(result.speedInMbps);
+                                    practicalSpeed.textContent = formatSpeed(result.speedInMbps * result.efficiencyFactor);
+                                    resultDescription.textContent = `${formatSize(result.sizeInMB)} at ${formatSpeed(result.speedInMbps)} (${efficiencyPercent}% efficiency)`;
                                     break;
                                 case 'speed-test':
-                                    updateSpeedTestDisplay(result);
+                                    theoreticalSpeed.textContent = formatSpeed(result.theoreticalSpeedMbps);
+                                    practicalSpeed.textContent = formatSpeed(result.actualSpeedMbps);
+                                    resultDescription.textContent = `${formatSize(result.dataInMB)} transferred in ${formatTime(result.timeInSeconds)}`;
                                     break;
                                 case 'bandwidth-calc':
-                                    updateBandwidthDisplay(result);
+                                    theoreticalSpeed.textContent = formatSpeed(result.totalTheoreticalMbps);
+                                    practicalSpeed.textContent = formatSpeed(result.totalRequiredMbps);
+                                    resultDescription.textContent = `${result.userCount.toLocaleString('en-US')} users at ${formatSpeed(result.perUserMbps)} each (${efficiencyPercent}% efficiency)`;
                                     break;
                             }
                         }
 
-                        function updateDownloadTimeDisplay(result) {
-                            theoreticalSpeed.textContent = formatSpeed(result.speedInMbps);
-                            practicalSpeed.textContent = formatSpeed(result.speedInMbps * result.efficiencyFactor);
-                            
-                            dataVolume.textContent = formatSize(result.sizeInMB);
-                            transferRate.textContent = `${result.practicalSpeedMBps.toFixed(2)} MB/s`;
-                            
-                            // Time estimates with different efficiency factors
-                            bestCaseTime.textContent = formatTime(result.sizeInMB / (result.theoreticalSpeedMBps * 0.95));
-                            realisticTime.textContent = formatTime(result.downloadTimeSeconds);
-                            worstCaseTime.textContent = formatTime(result.sizeInMB / (result.theoreticalSpeedMBps * 0.5));
-                            averageTime.textContent = formatTime(result.sizeInMB / (result.theoreticalSpeedMBps * 0.75));
-                            
-                            throughput.textContent = `${result.practicalSpeedMBps.toFixed(2)} MB/s`;
-                            dataRate.textContent = formatSpeed(result.speedInMbps * result.efficiencyFactor);
-                            bandwidthUsage.textContent = `${Math.round(result.efficiencyFactor * 100)}%`;
-                            
-                            connectionQuality.textContent = getConnectionQuality(result.speedInMbps);
-                        }
-
-                        function updateSpeedTestDisplay(result) {
-                            theoreticalSpeed.textContent = formatSpeed(result.theoreticalSpeedMbps);
-                            practicalSpeed.textContent = formatSpeed(result.actualSpeedMbps);
-                            
-                            dataVolume.textContent = formatSize(result.dataInMB);
-                            transferRate.textContent = `${(result.dataInMB / result.timeInSeconds).toFixed(2)} MB/s`;
-                            
-                            // Time estimates are based on the measured speed
-                            const baseTime = result.timeInSeconds;
-                            bestCaseTime.textContent = formatTime(baseTime * 0.8);
-                            realisticTime.textContent = formatTime(baseTime);
-                            worstCaseTime.textContent = formatTime(baseTime * 1.5);
-                            averageTime.textContent = formatTime(baseTime * 1.1);
-                            
-                            throughput.textContent = `${(result.actualSpeedMbps / 8).toFixed(2)} MB/s`;
-                            dataRate.textContent = formatSpeed(result.actualSpeedMbps);
-                            bandwidthUsage.textContent = `${Math.round(result.efficiencyFactor * 100)}%`;
-                            
-                            connectionQuality.textContent = getConnectionQuality(result.theoreticalSpeedMbps);
-                        }
-
-                        function updateBandwidthDisplay(result) {
-                            theoreticalSpeed.textContent = formatSpeed(result.totalTheoreticalMbps);
-                            practicalSpeed.textContent = formatSpeed(result.totalRequiredMbps);
-                            
-                            dataVolume.textContent = `${result.userCount} users`;
-                            transferRate.textContent = formatSpeed(result.perUserMbps);
-                            
-                            // Time estimates don't apply to bandwidth calculations
-                            bestCaseTime.textContent = 'N/A';
-                            realisticTime.textContent = 'N/A';
-                            worstCaseTime.textContent = 'N/A';
-                            averageTime.textContent = 'N/A';
-                            
-                            throughput.textContent = formatSpeed(result.totalRequiredMbps);
-                            dataRate.textContent = formatSpeed(result.perUserMbps);
-                            bandwidthUsage.textContent = `${Math.round(result.efficiencyFactor * 100)}%`;
-                            
-                            connectionQuality.textContent = `Requires ${formatSpeed(result.totalRequiredMbps)} for ${result.userCount} users at ${formatSpeed(result.perUserMbps)} each`;
-                        }
-
                         function clearOutputs() {
                             output.textContent = '--';
+                            resultDescription.textContent = defaultDescriptions[getMode()];
                             theoreticalSpeed.textContent = '--';
                             practicalSpeed.textContent = '--';
-                            dataVolume.textContent = '--';
-                            transferRate.textContent = '--';
-                            efficiencyDisplay.textContent = '--';
-                            bestCaseTime.textContent = '--';
-                            realisticTime.textContent = '--';
-                            worstCaseTime.textContent = '--';
-                            averageTime.textContent = '--';
-                            throughput.textContent = '--';
-                            dataRate.textContent = '--';
-                            bandwidthUsage.textContent = '--';
-                            connectionQuality.textContent = 'Enter values to see connection assessment';
                         }
 
                         function clearAll() {
@@ -742,46 +640,6 @@
                                     }, 2000);
                                 });
                             }
-                        });
-
-                        // Preset buttons
-                        const presetButtons = document.querySelectorAll('.preset-btn');
-                        presetButtons.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const speed = this.getAttribute('data-speed');
-                                const unit = this.getAttribute('data-unit');
-                                
-                                connectionSpeed.value = speed;
-                                speedUnit.value = unit;
-                                calculate();
-                                
-                                // Update button styles
-                                presetButtons.forEach(btn => btn.classList.remove('bg-green-100', 'text-green-700'));
-                                presetButtons.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
-                                this.classList.remove('bg-gray-100', 'text-gray-700');
-                                this.classList.add('bg-green-100', 'text-green-700');
-                            });
-                        });
-
-                        // Example clickable elements
-                        const examples = document.querySelectorAll('[data-example-file]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const file = this.getAttribute('data-example-file');
-                                const fileUnit = this.getAttribute('data-example-unit');
-                                const speed = this.getAttribute('data-example-speed');
-                                const speedUnitValue = this.getAttribute('data-example-speed-unit');
-                                
-                                // Set to download-time mode
-                                document.querySelector('input[value="download-time"]').checked = true;
-                                updateModeInterface();
-                                
-                                fileSize.value = file;
-                                fileSizeUnit.value = fileUnit;
-                                connectionSpeed.value = speed;
-                                speedUnit.value = speedUnitValue;
-                                calculate();
-                            });
                         });
 
                         // Initialize

@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Concentration Analysis Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">PPM Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -166,7 +166,7 @@
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
                                                                                         <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Concentration (PPM)</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Calculated concentration result</p>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter values to calculate the concentration</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-teal-600 font-mono" id="output">--</div>
@@ -344,56 +344,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About PPM Calculations</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding PPM</h4>
-                                    <p>Parts per million (PPM) is a unit of concentration expressing the ratio of one part solute to one million parts solution. It's widely used in chemistry, environmental science, and water quality testing because it provides an intuitive way to express very small concentrations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Applications</h4>
-                                    <p>PPM calculations are essential in water treatment, environmental monitoring, food safety, pharmaceutical manufacturing, and agricultural soil testing. Understanding PPM helps in quality control, regulatory compliance, and safety assessments.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-teal-50 rounded-lg border border-teal-200">
-                                <p class="text-sm text-teal-800">
-                                    <strong>Important Note:</strong> For aqueous solutions, 1 PPM ≈ 1 mg/L due to water's density of ~1 g/mL. This approximation may not hold for other solvents.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common PPM Applications</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Water Quality</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-solute="1" data-solution="1" data-method="mass_volume">Chlorine: 1-3 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">Swimming pool disinfection</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-solute="500" data-solution="1" data-method="mass_volume">TDS: 500 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">Total dissolved solids limit</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Environmental</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-solute="400" data-solution="1000000" data-method="volume_volume">CO₂: 400 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">Atmospheric carbon dioxide</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-solute="0.01" data-solution="1" data-method="mass_volume">Arsenic: 0.01 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">WHO drinking water limit</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -446,13 +396,43 @@
                         };
 
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e6 || (Math.abs(num) <= 1e-6 && num !== 0)) {
-                                return num.toExponential(3);
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: 0 
+
+                            const abs = Math.abs(num);
+
+                            if (abs >= 1e9 || (abs < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            }
+
+                            if (abs !== 0 && abs < 1) {
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: Math.max(decimals, 4) });
+                            }
+
+                            return num.toLocaleString('en-US', {
+                                maximumFractionDigits: decimals,
+                                minimumFractionDigits: 0
                             });
+                        }
+
+                        function describeInput(method, solute, solution, molWeight) {
+                            switch (method) {
+                                case 'mass_volume':
+                                    return `${formatNumber(solute)} mg in ${formatNumber(solution)} L`;
+                                case 'mass_mass':
+                                    return `${formatNumber(solute)} mg in ${formatNumber(solution)} kg`;
+                                case 'volume_volume':
+                                    return `${formatNumber(solute)} mL in ${formatNumber(solution)} L`;
+                                case 'percentage':
+                                    return `${formatNumber(solute)}%`;
+                                case 'molarity':
+                                    return `${formatNumber(solute)} M at ${formatNumber(molWeight)} g/mol`;
+                                case 'dilution':
+                                    return `${formatNumber(solute)} PPM diluted ${formatNumber(solution)}:1`;
+                                default:
+                                    return 'Concentration';
+                            }
                         }
 
                         function updateInputLabels() {
@@ -579,7 +559,7 @@
                                     // Update primary output
                                     output.textContent = formatNumber(ppm) + ' PPM';
                                     resultTitle.textContent = 'Concentration (PPM)';
-                                    resultDescription.textContent = `Calculated concentration: ${formatNumber(ppm)} PPM`;
+                                    resultDescription.textContent = `${describeInput(method, solute, solution, molWeight)} = ${formatNumber(ppm)} PPM`;
 
                                     // Display all PPM variants
                                     ppmWvDisplay.textContent = formatNumber(ppm) + ' PPM';
@@ -633,7 +613,7 @@
                         function clearOutputs() {
                             output.textContent = '--';
                             resultTitle.textContent = 'Concentration (PPM)';
-                            resultDescription.textContent = 'Calculated concentration result';
+                            resultDescription.textContent = 'Enter values to calculate the concentration';
                             ppmWvDisplay.textContent = '--';
                             ppmWwDisplay.textContent = '--';
                             ppmVvDisplay.textContent = '--';

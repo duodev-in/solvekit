@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Hydraulic Flow Rate Calculation</h2>
+                                <h1 class="text-lg font-semibold text-white">PSI to GPM</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -336,12 +336,12 @@
                         };
 
                         const unitNames = {
-                            gpm: 'Gallons per minute',
-                            lpm: 'Liters per minute',
-                            cfs: 'Cubic feet per second',
-                            cms: 'Cubic meters per second',
-                            gph: 'Gallons per hour',
-                            lps: 'Liters per second'
+                            gpm: 'Gallons per Minute',
+                            lpm: 'Liters per Minute',
+                            cfs: 'Cubic Feet per Second',
+                            cms: 'Cubic Meters per Second',
+                            gph: 'Gallons per Hour',
+                            lps: 'Liters per Second'
                         };
 
                         const unitSymbols = {
@@ -360,8 +360,10 @@
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 5 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 

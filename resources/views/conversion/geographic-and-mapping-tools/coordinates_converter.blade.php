@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">GPS & Coordinate System Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Coordinates</h1>
                             </div>
 
                             <!-- Calculator Body -->

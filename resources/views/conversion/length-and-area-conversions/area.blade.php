@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Area Unit Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Area Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,7 +18,8 @@
                                     <div class="lg:col-span-3">
                                         <form class="space-y-3" id="calculatorForm">
 
-                                                                            <!-- Input Value -->
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                                                                             <div class="space-y-2">
                                                                                 <label for="value" class="block text-xs font-semibold text-slate-700">
                                                                                     Enter Area Value
@@ -77,6 +78,8 @@
                                                                                 </select>
                                                                             </div>
 
+                                                                            </div>
+
                                                                             <div class="flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
                                                                                 <p class="text-[11px] text-slate-500">Shortcut: Ctrl + Shift + C to clear</p>
                                                                                 <button
@@ -97,8 +100,8 @@
                                                                             <div class="rounded-md border border-slate-200 bg-slate-50 p-2.5">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-xs font-semibold text-slate-900">Converted Value</h4>
-                                                                                        <p class="text-[11px] text-slate-500">Real-time conversion result</p>
+                                                                                        <h4 class="text-xs font-semibold text-slate-900" id="result-title">Converted Area</h4>
+                                                                                        <p class="text-[11px] text-slate-500" id="result-description">Enter a value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="font-serif text-3xl font-bold leading-none text-indigo-700" id="output">--</div>
@@ -182,6 +185,8 @@
                         const clearButton = document.getElementById('clearButton');
                         const output = document.getElementById('output');
                         const unitDisplay = document.getElementById('unit-display');
+                        const resultTitle = document.getElementById('result-title');
+                        const resultDescription = document.getElementById('result-description');
 
                         // Conversion rates to square meters
                         const conversionRates = {
@@ -210,20 +215,26 @@
                                 // Format the result appropriately
                                 let formattedResult;
                                 if (result >= 1000000) {
-                                    formattedResult = result.toExponential(4);
+                                    formattedResult = Number(result.toPrecision(5)).toExponential();
                                 } else if (result >= 1000) {
                                     formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (result >= 1) {
                                     formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (result > 0 && result < 0.000001) {
+                                    formattedResult = Number(result.toPrecision(4)).toExponential();
                                 } else {
-                                    formattedResult = result.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    formattedResult = result.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                                 
                                 output.textContent = formattedResult;
                                 unitDisplay.textContent = conversionRates[toUnit].symbol;
+                                resultTitle.textContent = 'Area in ' + conversionRates[toUnit].name;
+                                resultDescription.textContent = `${value} ${conversionRates[fromUnit].symbol} = ${formattedResult} ${conversionRates[toUnit].symbol}`;
                             } else {
                                 output.textContent = "--";
                                 unitDisplay.textContent = "Select units";
+                                resultTitle.textContent = 'Converted Area';
+                                resultDescription.textContent = 'Enter a value to convert';
                             }
                         }
 

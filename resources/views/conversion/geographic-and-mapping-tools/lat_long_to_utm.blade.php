@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Geographic to UTM Coordinate Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Lat/Long to UTM</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -476,7 +476,7 @@
                             }
                         }
 
-                        function getUTMZone(lng) {
+                        function getUTMZone(lat, lng) {
                             let zone = Math.floor((lng + 180) / 6) + 1;
                             // Special cases for Norway and Svalbard
                             if (lng >= 3 && lng < 12 && lat >= 56 && lat <= 64) zone = 32;
@@ -516,7 +516,7 @@
                         }
 
                         function latLongToUTM(lat, lng) {
-                            const zone = getUTMZone(lng);
+                            const zone = getUTMZone(lat, lng);
                             const band = getUTMBand(lat);
                             
                             // Simplified UTM calculation

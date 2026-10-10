@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Natural Gas Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">CCF to Therms Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -29,7 +29,6 @@
                                                                                 >
                                                                                     <option value="ccf_to_therms" selected>CCF to Therms</option>
                                                                                     <option value="therms_to_ccf">Therms to CCF</option>
-                                                                                    <option value="both">Show Both Conversions</option>
                                                                                 </select>
                                                                             </div>
 
@@ -91,23 +90,6 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Custom heating value ratio</p>
-                                                                            </div>
-
-                                                                            <!-- Billing Period -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Billing Period
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="billingPeriod" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">Single conversion</option>
-                                                                                    <option value="monthly">Monthly Usage</option>
-                                                                                    <option value="yearly">Annual Usage</option>
-                                                                                    <option value="daily">Daily Usage</option>
-                                                                                    <option value="seasonal">Seasonal Analysis</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Gas Price (optional) -->
@@ -276,7 +258,7 @@
                                                         <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-value="100" data-direction="ccf_to_therms">100 CCF</button>
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-value="50" data-direction="ccf_to_therms">50 CCF</button>
-                                                            <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-value="100" data-direction="therms_to_ccf">100 Therms</button>
+                                                            <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-value="100" data-direction="therms_to_ccf">100 therms</button>
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-blue-100 text-gray-700 hover:text-blue-700 rounded-lg transition-colors" data-value="200" data-direction="ccf_to_therms">200 CCF</button>
                                                         </div>
                                                     </div>
@@ -304,27 +286,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About CCF to Therms Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Gas Measurement</h4>
-                                    <p>CCF (hundred cubic feet) measures gas volume, while therms measure energy content. The conversion depends on the heating value of the gas. Standard natural gas contains approximately 1.037 therms per CCF, but this can vary based on gas composition and heating value.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Utility Billing Applications</h4>
-                                    <p>Gas utilities often bill in therms because it represents actual energy delivered, regardless of gas density variations. Understanding this conversion helps analyze energy costs, compare heating options, and track consumption patterns across different seasons and gas types.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>Billing Tip:</strong> Gas meters measure volume (cubic feet), but bills show therms. The conversion factor appears on your utility bill and accounts for local gas heating value.
-                                </p>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -333,16 +294,15 @@
                         const inputValue = document.getElementById('inputValue');
                         const gasType = document.getElementById('gasType');
                         const customHeating = document.getElementById('customHeating');
-                        const billingPeriod = document.getElementById('billingPeriod');
                         const gasPrice = document.getElementById('gasPrice');
                         const clearButton = document.getElementById('clearButton');
-                        
+
                         // Container elements
                         const customHeatingContainer = document.getElementById('customHeatingContainer');
                         const inputLabel = document.getElementById('inputLabel');
                         const inputUnit = document.getElementById('inputUnit');
                         const inputHint = document.getElementById('inputHint');
-                        
+
                         // Output elements
                         const output = document.getElementById('output');
                         const resultTitle = document.getElementById('result-title');
@@ -356,13 +316,9 @@
                         const totalCostDisplay = document.getElementById('totalCostDisplay');
                         const costPerCcfDisplay = document.getElementById('costPerCcfDisplay');
                         const monthlyAvgDisplay = document.getElementById('monthlyAvgDisplay');
-                        const gasTypeDisplay = document.getElementById('gasTypeDisplay');
-                        const heatingValueDisplay = document.getElementById('heatingValueDisplay');
-                        const conversionFactorDisplay = document.getElementById('conversionFactorDisplay');
-                        const energyDensityDisplay = document.getElementById('energyDensityDisplay');
                         const copyResult = document.getElementById('copyResult');
 
-                        // Gas heating values (Therms per CCF)
+                        // Gas heating values (therms per CCF)
                         const gasHeatingValues = {
                             standard: 1.037,
                             high_heating: 1.10,
@@ -372,50 +328,51 @@
                         };
 
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
+                            if (num === 0) {
+                                return '0';
                             }
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: 0 
-                            });
+
+                            const absolute = Math.abs(num);
+
+                            if (absolute >= 1e15 || absolute < 1e-6) {
+                                return num.toExponential(3);
+                            }
+
+                            if (absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
+                        }
+
+                        function formatCurrency(amount) {
+                            return '$' + amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
                         }
 
                         function updateInputLabels() {
-                            const direction = conversionDirection.value;
-                            
-                            switch(direction) {
-                                case 'ccf_to_therms':
-                                    inputLabel.textContent = 'CCF Value';
-                                    inputUnit.textContent = 'CCF';
-                                    inputHint.textContent = 'Enter hundred cubic feet value';
-                                    break;
-                                case 'therms_to_ccf':
-                                    inputLabel.textContent = 'Therms Value';
-                                    inputUnit.textContent = 'Therms';
-                                    inputHint.textContent = 'Enter therms value';
-                                    break;
-                                case 'both':
-                                    inputLabel.textContent = 'Gas Value';
-                                    inputUnit.textContent = 'CCF';
-                                    inputHint.textContent = 'Enter value (will show both conversions)';
-                                    break;
+                            if (conversionDirection.value === 'therms_to_ccf') {
+                                inputLabel.textContent = 'Therms Value';
+                                inputUnit.textContent = 'therms';
+                                inputHint.textContent = 'Enter the energy in therms';
+                            } else {
+                                inputLabel.textContent = 'CCF Value';
+                                inputUnit.textContent = 'CCF';
+                                inputHint.textContent = 'Enter hundred cubic feet value';
                             }
                         }
 
                         function updateCustomHeatingVisibility() {
-                            const type = gasType.value;
-                            customHeatingContainer.style.display = type === 'custom' ? 'block' : 'none';
+                            customHeatingContainer.style.display = gasType.value === 'custom' ? 'block' : 'none';
                         }
 
                         function getHeatingValue() {
-                            const type = gasType.value;
-                            if (type === 'custom') {
-                                return parseFloat(customHeating.value) || 1.037;
+                            if (gasType.value === 'custom') {
+                                const customValue = parseFloat(customHeating.value);
+
+                                return customValue > 0 ? customValue : 1.037;
                             }
-                            return gasHeatingValues[type] || 1.037;
+
+                            return gasHeatingValues[gasType.value] || 1.037;
                         }
 
                         function calculate() {
@@ -423,97 +380,52 @@
                             const value = parseFloat(inputValue.value);
                             const heatingValue = getHeatingValue();
                             const price = parseFloat(gasPrice.value) || 0;
-                            
-                            if (!isNaN(value) && value >= 0) {
-                                let ccf, therms;
-                                
-                                // Core conversion logic
-                                if (direction === 'ccf_to_therms' || direction === 'both') {
-                                    ccf = value;
-                                    therms = ccf * heatingValue;
-                                } else if (direction === 'therms_to_ccf') {
-                                    therms = value;
-                                    ccf = therms / heatingValue;
-                                }
-                                
-                                // Update primary output
-                                if (direction === 'ccf_to_therms') {
-                                    output.textContent = formatNumber(therms) + ' Therms';
-                                    resultTitle.textContent = 'Converted to Therms';
-                                    resultDescription.textContent = `${value} CCF = ${formatNumber(therms)} Therms`;
-                                } else if (direction === 'therms_to_ccf') {
-                                    output.textContent = formatNumber(ccf) + ' CCF';
-                                    resultTitle.textContent = 'Converted to CCF';
-                                    resultDescription.textContent = `${value} Therms = ${formatNumber(ccf)} CCF`;
-                                } else {
-                                    output.textContent = formatNumber(therms) + ' Therms';
-                                    resultTitle.textContent = 'Both Conversions';
-                                    resultDescription.textContent = `${value} CCF ⇔ ${formatNumber(therms)} Therms`;
-                                }
 
-                                // Display volume units
-                                ccfDisplay.textContent = formatNumber(ccf) + ' CCF';
-                                cubicFeetDisplay.textContent = formatNumber(ccf * 100) + ' ft³';
-                                cubicMetersDisplay.textContent = formatNumber(ccf * 2.83168) + ' m³';
-
-                                // Display energy units
-                                thermsDisplay.textContent = formatNumber(therms) + ' Therms';
-                                const btu = therms * 100000;
-                                btuDisplay.textContent = formatNumber(btu) + ' BTU';
-                                const kwh = therms * 29.3;
-                                kwhDisplay.textContent = formatNumber(kwh) + ' kWh';
-
-                                // Cost analysis
-                                if (price > 0) {
-                                    const totalCost = therms * price;
-                                    const costPerCcf = ccf > 0 ? totalCost / ccf : 0;
-                                    const monthlyAvg = totalCost; // Assuming input is monthly
-                                    
-                                    totalCostDisplay.textContent = '$' + formatNumber(totalCost, 2);
-                                    costPerCcfDisplay.textContent = '$' + formatNumber(costPerCcf, 2);
-                                    monthlyAvgDisplay.textContent = '$' + formatNumber(monthlyAvg, 2);
-                                } else {
-                                    totalCostDisplay.textContent = 'Enter price';
-                                    costPerCcfDisplay.textContent = 'Enter price';
-                                    monthlyAvgDisplay.textContent = 'Enter price';
-                                }
-
-                                // Conversion information
-                                const gasTypeNames = {
-                                    standard: 'Standard Natural Gas',
-                                    high_heating: 'High Heating Value',
-                                    low_heating: 'Low Heating Value',
-                                    propane: 'Propane',
-                                    custom: 'Custom Gas'
-                                };
-                                
-                                gasTypeDisplay.textContent = gasTypeNames[gasType.value] || 'Standard';
-                                heatingValueDisplay.textContent = formatNumber(heatingValue, 3) + ' Therms/CCF';
-                                conversionFactorDisplay.textContent = formatNumber(heatingValue, 3);
-                                energyDensityDisplay.textContent = formatNumber(heatingValue * 100000) + ' BTU/CCF';
-
-                            } else {
+                            if (isNaN(value) || value < 0) {
                                 clearOutputs();
+                                return;
+                            }
+
+                            const ccf = direction === 'therms_to_ccf' ? value / heatingValue : value;
+                            const therms = direction === 'therms_to_ccf' ? value : value * heatingValue;
+                            const totalCost = therms * price;
+                            const costSuffix = price > 0 ? ` (estimated cost ${formatCurrency(totalCost)})` : '';
+
+                            if (direction === 'therms_to_ccf') {
+                                output.textContent = formatNumber(ccf) + ' CCF';
+                                resultTitle.textContent = 'CCF';
+                                resultDescription.textContent = `${formatNumber(value)} ${value === 1 ? 'therm' : 'therms'} = ${formatNumber(ccf)} CCF${costSuffix}`;
+                            } else {
+                                output.textContent = formatNumber(therms) + ' therms';
+                                resultTitle.textContent = 'Therms';
+                                resultDescription.textContent = `${formatNumber(value)} CCF = ${formatNumber(therms)} ${therms === 1 ? 'therm' : 'therms'}${costSuffix}`;
+                            }
+
+                            ccfDisplay.textContent = formatNumber(ccf) + ' CCF';
+                            cubicFeetDisplay.textContent = formatNumber(ccf * 100) + ' ft³';
+                            cubicMetersDisplay.textContent = formatNumber(ccf * 2.83168) + ' m³';
+                            thermsDisplay.textContent = formatNumber(therms) + ' therms';
+                            btuDisplay.textContent = formatNumber(therms * 100000) + ' BTU';
+                            kwhDisplay.textContent = formatNumber(therms * 29.3071) + ' kWh';
+
+                            if (price > 0) {
+                                totalCostDisplay.textContent = formatCurrency(totalCost);
+                                costPerCcfDisplay.textContent = formatCurrency(heatingValue * price);
+                                monthlyAvgDisplay.textContent = formatCurrency(totalCost);
+                            } else {
+                                totalCostDisplay.textContent = 'Enter price';
+                                costPerCcfDisplay.textContent = 'Enter price';
+                                monthlyAvgDisplay.textContent = 'Enter price';
                             }
                         }
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Converted Value';
-                            resultDescription.textContent = 'Conversion result';
-                            ccfDisplay.textContent = '--';
-                            cubicFeetDisplay.textContent = '--';
-                            cubicMetersDisplay.textContent = '--';
-                            thermsDisplay.textContent = '--';
-                            btuDisplay.textContent = '--';
-                            kwhDisplay.textContent = '--';
-                            totalCostDisplay.textContent = '--';
-                            costPerCcfDisplay.textContent = '--';
-                            monthlyAvgDisplay.textContent = '--';
-                            gasTypeDisplay.textContent = '--';
-                            heatingValueDisplay.textContent = '--';
-                            conversionFactorDisplay.textContent = '--';
-                            energyDensityDisplay.textContent = '--';
+                            resultTitle.textContent = conversionDirection.value === 'therms_to_ccf' ? 'CCF' : 'Therms';
+                            resultDescription.textContent = 'Enter a value to convert';
+                            [ccfDisplay, cubicFeetDisplay, cubicMetersDisplay, thermsDisplay, btuDisplay, kwhDisplay, totalCostDisplay, costPerCcfDisplay, monthlyAvgDisplay].forEach(element => {
+                                element.textContent = '--';
+                            });
                         }
 
                         function clearAll() {
@@ -521,7 +433,6 @@
                             conversionDirection.value = 'ccf_to_therms';
                             gasType.value = 'standard';
                             customHeating.value = '1.037';
-                            billingPeriod.value = '';
                             gasPrice.value = '';
                             updateInputLabels();
                             updateCustomHeatingVisibility();
@@ -534,19 +445,18 @@
                             updateInputLabels();
                             calculate();
                         });
-                        
+
                         inputValue.addEventListener('input', calculate);
+
                         gasType.addEventListener('change', function() {
                             updateCustomHeatingVisibility();
                             calculate();
                         });
-                        customHeating.addEventListener('input', calculate);
-                        billingPeriod.addEventListener('change', calculate);
-                        gasPrice.addEventListener('input', calculate);
 
+                        customHeating.addEventListener('input', calculate);
+                        gasPrice.addEventListener('input', calculate);
                         clearButton.addEventListener('click', clearAll);
 
-                        // Copy functionality
                         copyResult.addEventListener('click', function() {
                             const text = output.textContent;
                             if (text !== '--') {
@@ -559,19 +469,14 @@
                             }
                         });
 
-                        // Example buttons
                         const exampleBtns = document.querySelectorAll('.example-btn');
                         exampleBtns.forEach(button => {
                             button.addEventListener('click', function() {
-                                const value = this.getAttribute('data-value');
-                                const direction = this.getAttribute('data-direction');
-                                
-                                inputValue.value = value;
-                                conversionDirection.value = direction;
+                                inputValue.value = this.getAttribute('data-value');
+                                conversionDirection.value = this.getAttribute('data-direction');
                                 updateInputLabels();
                                 calculate();
-                                
-                                // Update button styles
+
                                 exampleBtns.forEach(btn => btn.classList.remove('bg-blue-100', 'text-blue-700'));
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
@@ -582,9 +487,9 @@
                         // Initialize
                         updateInputLabels();
                         updateCustomHeatingVisibility();
+                        clearOutputs();
                         inputValue.focus();
 
-                        // Keyboard shortcuts
                         document.addEventListener('keydown', function(e) {
                             if (e.key === 'Escape') {
                                 clearAll();

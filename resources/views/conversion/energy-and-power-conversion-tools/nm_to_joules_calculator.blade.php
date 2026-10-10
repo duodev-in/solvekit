@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Torque to Rotational Energy Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Nm to Joules Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                                                             <!-- Torque Input -->
                                                                             <div class="space-y-2">
                                                                                 <label for="torqueValue" class="block text-sm font-semibold text-gray-700">
@@ -41,7 +42,7 @@
 
                                                                             <!-- Torque Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="torqueUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     Torque Unit
                                                                                 </label>
                                                                                 <select 
@@ -58,7 +59,9 @@
                                                                                     <option value="ounce_inch">Ounce-inch (oz⋅in)</option>
                                                                                 </select>
                                                                             </div>
+                                                                            </div>
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                                                             <!-- Angular Displacement Input -->
                                                                             <div class="space-y-2">
                                                                                 <label for="angleValue" class="block text-sm font-semibold text-gray-700">
@@ -82,7 +85,7 @@
 
                                                                             <!-- Angle Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="angleUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     Angle Unit
                                                                                 </label>
                                                                                 <select 
@@ -95,6 +98,7 @@
                                                                                     <option value="gradian">Gradian (gon)</option>
                                                                                     <option value="milliradian">Milliradian (mrad)</option>
                                                                                 </select>
+                                                                            </div>
                                                                             </div>
 
                                                                             <!-- Application Type -->
@@ -289,56 +293,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Torque to Energy Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Rotational Work</h4>
-                                    <p>When torque causes angular displacement, rotational work is done: W = τ × θ. This work converts to rotational kinetic energy. The relationship is fundamental in mechanical engineering for motors, engines, gearboxes, and any rotating machinery where torque and angular motion are involved.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Engineering Applications</h4>
-                                    <p>This conversion is essential in automotive engineering, robotics, power transmission, and manufacturing. Understanding torque-energy relationships helps in motor sizing, fastener tightening specifications, energy efficiency calculations, and mechanical system design.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Note:</strong> This calculator assumes constant torque over the angular displacement. For variable torque, integration over the rotation angle is required.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Practical Torque Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Automotive Applications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-torque="100" data-torque-unit="newton_meter" data-angle="90" data-angle-unit="degree">Lug Nuts: 100 N⋅m, 90°</div>
-                                        <div class="text-xs text-gray-600 mt-1">Wheel bolt tightening</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-torque="300" data-torque-unit="newton_meter" data-angle="1" data-angle-unit="revolution">Engine: 300 N⋅m, 1 rev</div>
-                                        <div class="text-xs text-gray-600 mt-1">Engine crankshaft rotation</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Industrial Applications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-torque="500" data-torque-unit="foot_pound" data-angle="180" data-angle-unit="degree">Heavy Machinery: 500 ft⋅lb, 180°</div>
-                                        <div class="text-xs text-gray-600 mt-1">Industrial fastener</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-torque="1000" data-torque-unit="newton_meter" data-angle="10" data-angle-unit="revolution">Motor: 1000 N⋅m, 10 rev</div>
-                                        <div class="text-xs text-gray-600 mt-1">Industrial motor operation</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -363,10 +317,6 @@
                         const motorPowerDisplay = document.getElementById('motorPowerDisplay');
                         const fastenerTypeDisplay = document.getElementById('fastenerTypeDisplay');
                         const energyClassDisplay = document.getElementById('energyClassDisplay');
-                        const momentInertiaDisplay = document.getElementById('momentInertiaDisplay');
-                        const angularVelocityDisplay = document.getElementById('angularVelocityDisplay');
-                        const frequencyDisplay = document.getElementById('frequencyDisplay');
-                        const periodDisplay = document.getElementById('periodDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Conversion factors to base units
@@ -389,17 +339,33 @@
                             milliradian: 0.001
                         };
 
+                        const torqueSymbols = {
+                            newton_meter: 'N⋅m',
+                            kilonewton_meter: 'kN⋅m',
+                            foot_pound: 'ft⋅lb',
+                            inch_pound: 'in⋅lb',
+                            dyne_centimeter: 'dyn⋅cm',
+                            kilogram_meter: 'kgf⋅m',
+                            pound_inch: 'lb⋅in',
+                            ounce_inch: 'oz⋅in'
+                        };
+
+                        const angleSymbols = {
+                            radian: 'rad',
+                            degree: '°',
+                            revolution: 'rev',
+                            gradian: 'gon',
+                            milliradian: 'mrad'
+                        };
+
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-15 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'G';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
@@ -449,8 +415,8 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(energy) + ' J';
-                                resultTitle.textContent = 'Calculated Energy';
-                                resultDescription.textContent = `${torque} ${tUnit} × ${angle} ${aUnit} = ${formatNumber(energy)} J`;
+                                resultTitle.textContent = 'Energy in Joules (J)';
+                                resultDescription.textContent = `${torque} ${torqueSymbols[tUnit]} × ${angle} ${angleSymbols[aUnit]} = ${formatNumber(energy)} J`;
 
                                 // Display in different energy units
                                 joulesDisplay.textContent = formatNumber(energy) + ' J';
@@ -467,11 +433,6 @@
                                 fastenerTypeDisplay.textContent = getFastenerType(torqueNm);
                                 energyClassDisplay.textContent = getEnergyClass(energy);
 
-                                // Rotational mechanics (assuming some typical values)
-                                momentInertiaDisplay.textContent = 'Depends on object';
-                                angularVelocityDisplay.textContent = angleRad > 0 ? formatNumber(angleRad) + ' rad/s' : '--';
-                                frequencyDisplay.textContent = angleRad > 0 ? formatNumber(angleRad / (2 * Math.PI)) + ' Hz' : '--';
-                                periodDisplay.textContent = angleRad > 0 ? formatNumber(2 * Math.PI / angleRad) + ' s' : '--';
 
                             } else {
                                 clearOutputs();
@@ -491,10 +452,6 @@
                             motorPowerDisplay.textContent = '--';
                             fastenerTypeDisplay.textContent = '--';
                             energyClassDisplay.textContent = '--';
-                            momentInertiaDisplay.textContent = '--';
-                            angularVelocityDisplay.textContent = '--';
-                            frequencyDisplay.textContent = '--';
-                            periodDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -549,26 +506,6 @@
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-green-100', 'text-green-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-torque]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const torque = this.getAttribute('data-torque');
-                                const tUnit = this.getAttribute('data-torque-unit');
-                                const angle = this.getAttribute('data-angle');
-                                const aUnit = this.getAttribute('data-angle-unit');
-                                
-                                if (torque && angle) {
-                                    torqueValue.value = torque;
-                                    torqueUnit.value = tUnit;
-                                    angleValue.value = angle;
-                                    angleUnit.value = aUnit;
-                                    calculate();
-                                    torqueValue.focus();
-                                }
                             });
                         });
 

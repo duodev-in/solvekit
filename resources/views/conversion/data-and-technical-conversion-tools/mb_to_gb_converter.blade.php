@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Megabyte to Gigabyte Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">MB to GB Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -78,30 +78,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="hidden" aria-hidden="true">
-                                                                                <select id="deviceType">
-                                                                                    <option value="" selected>General conversion</option>
-                                                                                </select>
-                                                                            </div>
 
-                                                                            <!-- Precision Level -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Display Precision
-                                                                                </label>
-                                                                                <div class="flex items-center space-x-4">
-                                                                                    <input 
-                                                                                        type="range" 
-                                                                                        id="precision" 
-                                                                                        min="2" 
-                                                                                        max="10" 
-                                                                                        value="6" 
-                                                                                        class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
-                                                                                    >
-                                                                                    <span class="text-sm font-mono text-gray-700 min-w-[3rem]" id="precisionValue">6 digits</span>
-                                                                                </div>
-                                                                                <p class="text-xs text-gray-500">Adjust decimal places for display precision</p>
-                                                                            </div>
 
 
 
@@ -131,7 +108,7 @@
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
                                                                                         <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Gigabytes (GB)</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted result</p>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted to gigabytes</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-indigo-600 font-mono" id="output">--</div>
@@ -171,467 +148,159 @@
 
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About MB to GB Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Storage Standards</h4>
-                                    <p>The difference between binary (1024) and decimal (1000) standards is significant in storage. Operating systems use binary calculations, while manufacturers use decimal. This explains why a 500 GB drive shows as ~465 GB in your system.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Impact</h4>
-                                    <p>Understanding this conversion is crucial for storage planning, comparing drive specifications, estimating backup requirements, and managing storage capacity across different devices and platforms.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-                                <p class="text-sm text-indigo-800">
-                                    <strong>Storage Tip:</strong> Always account for the ~7% difference between manufacturer specs (decimal) and system display (binary) when planning storage needs!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Storage Device Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Storage Device Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Consumer Storage</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="4700" data-mode="mb-to-gb">DVD Movie: ~4.7 GB</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard single-layer DVD capacity</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="32" data-mode="gb-to-mb">USB Drive: 32 GB</div>
-                                        <div class="text-xs text-gray-600 mt-1">Common USB flash drive size</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Professional Storage</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="1000" data-mode="gb-to-mb">External HDD: 1 TB</div>
-                                        <div class="text-xs text-gray-600 mt-1">1000 GB external hard drive</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="512" data-mode="gb-to-mb">SSD: 512 GB</div>
-                                        <div class="text-xs text-gray-600 mt-1">Modern laptop SSD capacity</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const inputValue = document.getElementById('inputValue');
-                        const modeRadios = document.getElementsByName('mode');
-                        const standardRadios = document.getElementsByName('standard');
-                        const deviceType = document.getElementById('deviceType');
-                        const precision = document.getElementById('precision');
-                        const precisionValue = document.getElementById('precisionValue');
-                        const clearButton = document.getElementById('clearButton');
-                        const inputLabel = document.getElementById('inputLabel');
-                        const inputUnit = document.getElementById('inputUnit');
-                        const inputHelp = document.getElementById('inputHelp');
-                        
-                        // Output elements
-                        const output = document.getElementById('output');
-                        const resultTitle = document.getElementById('result-title');
-                        const resultDescription = document.getElementById('result-description');
-                        const mbDisplay = document.getElementById('mbDisplay');
-                        const gbDisplay = document.getElementById('gbDisplay');
-                        const binaryResult = document.getElementById('binaryResult');
-                        const decimalResult = document.getElementById('decimalResult');
-                        const standardUsed = document.getElementById('standardUsed');
-                        const conversionFactor = document.getElementById('conversionFactor');
-                        const precisionDisplay = document.getElementById('precisionDisplay');
-                        const contextInfo = document.getElementById('contextInfo');
-                        const kbDisplay = document.getElementById('kbDisplay');
-                        const tbDisplay = document.getElementById('tbDisplay');
-                        const bytesDisplay = document.getElementById('bytesDisplay');
-                        const bitsDisplay = document.getElementById('bitsDisplay');
-                        const compatibilityInfo = document.getElementById('compatibilityInfo');
-                        const photoCount = document.getElementById('photoCount');
-                        const songCount = document.getElementById('songCount');
-                        const movieCount = document.getElementById('movieCount');
-                        const docCount = document.getElementById('docCount');
-                        const copyResult = document.getElementById('copyResult');
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const inputValue = document.getElementById('inputValue');
+                            const modeRadios = document.getElementsByName('mode');
+                            const standardRadios = document.getElementsByName('standard');
+                            const clearButton = document.getElementById('clearButton');
+                            const inputLabel = document.getElementById('inputLabel');
+                            const inputUnit = document.getElementById('inputUnit');
+                            const inputHelp = document.getElementById('inputHelp');
 
-                        function getMode() {
-                            return document.querySelector('input[name="mode"]:checked').value;
-                        }
+                            // Output elements
+                            const output = document.getElementById('output');
+                            const resultTitle = document.getElementById('result-title');
+                            const resultDescription = document.getElementById('result-description');
+                            const mbDisplay = document.getElementById('mbDisplay');
+                            const gbDisplay = document.getElementById('gbDisplay');
+                            const copyResult = document.getElementById('copyResult');
 
-                        function getStandard() {
-                            return document.querySelector('input[name="standard"]:checked').value;
-                        }
-
-                        function getPrecision() {
-                            return parseInt(precision.value);
-                        }
-
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals || getPrecision();
-                            if (num >= 1e12) {
-                                return num.toExponential(3);
-                            } else if (num >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (num >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (num >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            function getMode() {
+                                const checked = document.querySelector('input[name="mode"]:checked');
+                                return checked ? checked.value : 'mb-to-gb';
                             }
-                        }
 
-                        function getStorageContext(sizeInGB, deviceTypeValue) {
-                            const contexts = {
-                                hdd: {
-                                    name: 'Hard Disk Drive (HDD)',
-                                    getInfo: (gb) => {
-                                        if (gb >= 8000) return 'Enterprise/NAS drives - massive storage capacity';
-                                        if (gb >= 2000) return 'High-capacity desktop drives - bulk storage';
-                                        if (gb >= 500) return 'Standard desktop drives - general purpose';
-                                        if (gb >= 100) return 'Laptop drives or older desktop drives';
-                                        return 'Legacy or specialized small-capacity drives';
-                                    }
-                                },
-                                ssd: {
-                                    name: 'Solid State Drive (SSD)',
-                                    getInfo: (gb) => {
-                                        if (gb >= 4000) return 'High-end enterprise SSDs - data center storage';
-                                        if (gb >= 1000) return 'Professional/gaming SSDs - high performance';
-                                        if (gb >= 500) return 'Standard laptop/desktop SSDs - mainstream';
-                                        if (gb >= 128) return 'Entry-level SSDs - basic upgrade';
-                                        return 'Small cache drives or embedded storage';
-                                    }
-                                },
-                                usb: {
-                                    name: 'USB Flash Drive',
-                                    getInfo: (gb) => {
-                                        if (gb >= 512) return 'High-capacity USB drives - large file transfers';
-                                        if (gb >= 128) return 'Professional USB drives - regular backups';
-                                        if (gb >= 32) return 'Standard USB drives - document storage';
-                                        if (gb >= 8) return 'Basic USB drives - small file transfers';
-                                        return 'Legacy or promotional USB drives';
-                                    }
-                                },
-                                sdcard: {
-                                    name: 'SD/MicroSD Card',
-                                    getInfo: (gb) => {
-                                        if (gb >= 512) return 'Professional cards - 4K video, high-res photography';
-                                        if (gb >= 128) return 'High-capacity cards - extensive media storage';
-                                        if (gb >= 32) return 'Standard cards - camera, phone, tablet storage';
-                                        if (gb >= 8) return 'Basic cards - simple device storage';
-                                        return 'Legacy cards or specialized applications';
-                                    }
-                                },
-                                ram: {
-                                    name: 'System Memory (RAM)',
-                                    getInfo: (gb) => {
-                                        if (gb >= 128) return 'Server/workstation RAM - intensive computing';
-                                        if (gb >= 32) return 'High-end gaming/professional RAM';
-                                        if (gb >= 16) return 'Standard gaming/productivity RAM';
-                                        if (gb >= 8) return 'Basic modern system RAM';
-                                        return 'Legacy system RAM or embedded devices';
-                                    }
-                                },
-                                cloud: {
-                                    name: 'Cloud Storage',
-                                    getInfo: (gb) => {
-                                        if (gb >= 1000) return 'Business cloud storage - team collaboration';
-                                        if (gb >= 100) return 'Personal premium storage - extensive backup';
-                                        if (gb >= 50) return 'Standard personal storage - photos, documents';
-                                        if (gb >= 15) return 'Free tier storage - basic backup';
-                                        return 'Minimal cloud storage - trial accounts';
-                                    }
-                                },
-                                optical: {
-                                    name: 'Optical Media',
-                                    getInfo: (gb) => {
-                                        if (gb >= 100) return 'Blu-ray discs - HD movies, large archives';
-                                        if (gb >= 25) return 'Single-layer Blu-ray - HD content';
-                                        if (gb >= 8.5) return 'Dual-layer DVD - extended content';
-                                        if (gb >= 4.7) return 'Standard DVD - movies, software';
-                                        return 'CD or mini-disc format';
-                                    }
+                            function getStandard() {
+                                const checked = document.querySelector('input[name="standard"]:checked');
+                                return checked ? checked.value : 'binary';
+                            }
+
+                            function formatNumber(num) {
+                                if (!Number.isFinite(num)) {
+                                    return '--';
                                 }
-                            };
 
-                            if (deviceTypeValue && contexts[deviceTypeValue]) {
-                                const context = contexts[deviceTypeValue];
-                                return `${context.name}: ${context.getInfo(sizeInGB)}`;
-                            } else {
-                                if (sizeInGB >= 1000) {
-                                    return 'Large storage capacity - suitable for extensive media libraries, backups, or enterprise use';
-                                } else if (sizeInGB >= 100) {
-                                    return 'Medium-high storage capacity - ideal for personal computers, gaming, and multimedia';
-                                } else if (sizeInGB >= 10) {
-                                    return 'Medium storage capacity - suitable for documents, photos, and basic applications';
-                                } else if (sizeInGB >= 1) {
-                                    return 'Small storage capacity - basic file storage and simple applications';
+                                const abs = Math.abs(num);
+
+                                if (abs === 0) {
+                                    return '0';
+                                }
+
+                                if (abs >= 1e15 || abs < 1e-6) {
+                                    return num.toExponential(6).replace(/\.?0+e/, 'e');
+                                }
+
+                                if (abs >= 1) {
+                                    return num.toLocaleString('en-US', { maximumFractionDigits: 6 });
+                                }
+
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
+                            }
+
+                            function updateInterface() {
+                                if (getMode() === 'mb-to-gb') {
+                                    inputLabel.textContent = 'Enter Megabytes (MB)';
+                                    inputUnit.textContent = 'MB';
+                                    inputHelp.textContent = 'Enter megabytes to convert to gigabytes';
+                                    resultTitle.textContent = 'Gigabytes (GB)';
+                                    inputValue.placeholder = 'Enter MB (e.g., 1024)';
                                 } else {
-                                    return 'Very small storage capacity - limited to small files and basic data';
+                                    inputLabel.textContent = 'Enter Gigabytes (GB)';
+                                    inputUnit.textContent = 'GB';
+                                    inputHelp.textContent = 'Enter gigabytes to convert to megabytes';
+                                    resultTitle.textContent = 'Megabytes (MB)';
+                                    inputValue.placeholder = 'Enter GB (e.g., 5)';
                                 }
                             }
-                        }
 
-                        function getDeviceCompatibility(sizeInGB, deviceTypeValue) {
-                            if (!deviceTypeValue) {
-                                return 'Select a device type for specific compatibility information';
-                            }
+                            function convert() {
+                                const inputVal = parseFloat(inputValue.value);
+                                const mode = getMode();
+                                const divisor = getStandard() === 'binary' ? 1024 : 1000;
 
-                            const compatibility = {
-                                hdd: `Modern systems support drives up to 18TB+. ${sizeInGB >= 2000 ? 'May require GPT partitioning.' : 'Compatible with MBR/GPT.'}`,
-                                ssd: `SATA SSDs up to 8TB, NVMe up to 15TB+. ${sizeInGB >= 1000 ? 'Check motherboard M.2 support.' : 'Standard compatibility.'}`,
-                                usb: `USB 3.0+ recommended for large capacities. ${sizeInGB >= 32 ? 'May need exFAT formatting.' : 'FAT32 compatible.'}`,
-                                sdcard: `Check device maximum capacity support. ${sizeInGB >= 64 ? 'SDXC format required.' : 'SDHC compatible.'}`,
-                                ram: `Check motherboard/CPU maximum support. ${sizeInGB >= 32 ? 'May require specific slots/configuration.' : 'Standard configuration.'}`,
-                                cloud: `Internet bandwidth affects sync speed. ${sizeInGB >= 100 ? 'Consider unlimited plans.' : 'Basic plans sufficient.'}`,
-                                optical: sizeInGB >= 25 ? 'Requires Blu-ray compatible drive' : sizeInGB >= 4.7 ? 'DVD drive required' : 'CD drive sufficient'
-                            };
-
-                            return compatibility[deviceTypeValue] || 'Compatibility information not available';
-                        }
-
-                        function calculateStorageExamples(totalMB) {
-                            // Average file sizes in MB
-                            const fileSizes = {
-                                photo: 3,      // High-quality JPEG
-                                song: 4,       // MP3 at good quality
-                                movie: 1400,   // Standard definition movie
-                                document: 0.1  // Text document
-                            };
-
-                            return {
-                                photos: Math.floor(totalMB / fileSizes.photo),
-                                songs: Math.floor(totalMB / fileSizes.song),
-                                movies: Math.floor(totalMB / fileSizes.movie),
-                                documents: Math.floor(totalMB / fileSizes.document)
-                            };
-                        }
-
-                        function updateInterface() {
-                            const mode = getMode();
-                            
-                            if (mode === 'mb-to-gb') {
-                                inputLabel.textContent = 'Enter Megabytes (MB)';
-                                inputUnit.textContent = 'MB';
-                                inputHelp.textContent = 'Enter megabytes to convert to gigabytes';
-                                resultTitle.textContent = 'Gigabytes (GB)';
-                                resultDescription.textContent = 'Converted to gigabytes';
-                                inputValue.placeholder = 'Enter MB (e.g., 1024)';
-                            } else {
-                                inputLabel.textContent = 'Enter Gigabytes (GB)';
-                                inputUnit.textContent = 'GB';
-                                inputHelp.textContent = 'Enter gigabytes to convert to megabytes';
-                                resultTitle.textContent = 'Megabytes (MB)';
-                                resultDescription.textContent = 'Converted to megabytes';
-                                inputValue.placeholder = 'Enter GB (e.g., 5)';
-                            }
-                        }
-
-                        function convert() {
-                            const inputVal = parseFloat(inputValue.value);
-                            const mode = getMode();
-                            const standard = getStandard();
-                            const deviceTypeValue = deviceType.value;
-
-                            if (!isNaN(inputVal) && inputVal >= 0) {
-                                let mb, gb;
-                                const divisor = standard === 'binary' ? 1024 : 1000;
-
-                                if (mode === 'mb-to-gb') {
-                                    mb = inputVal;
-                                    gb = mb / divisor;
-                                } else {
-                                    gb = inputVal;
-                                    mb = gb * divisor;
+                                if (Number.isNaN(inputVal) || inputVal < 0) {
+                                    clearOutputs();
+                                    return;
                                 }
 
-                                // Update primary output
-                                output.textContent = formatNumber(mode === 'mb-to-gb' ? gb : mb);
-                                resultDescription.textContent = mode === 'mb-to-gb' ? 
-                                    `${inputVal} MB = ${formatNumber(gb)} GB` : 
-                                    `${inputVal} GB = ${formatNumber(mb)} MB`;
+                                const mb = mode === 'mb-to-gb' ? inputVal : inputVal * divisor;
+                                const gb = mode === 'mb-to-gb' ? inputVal / divisor : inputVal;
 
-                                // Update displays
+                                output.textContent = mode === 'mb-to-gb' ? `${formatNumber(gb)} GB` : `${formatNumber(mb)} MB`;
+                                resultDescription.textContent = mode === 'mb-to-gb'
+                                    ? `${formatNumber(inputVal)} MB = ${formatNumber(gb)} GB`
+                                    : `${formatNumber(inputVal)} GB = ${formatNumber(mb)} MB`;
+
                                 mbDisplay.textContent = formatNumber(mb);
                                 gbDisplay.textContent = formatNumber(gb);
-
-                                // Binary vs Decimal comparison
-                                const binaryGB = mb / 1024;
-                                const decimalGB = mb / 1000;
-                                binaryResult.textContent = mode === 'mb-to-gb' ? 
-                                    `${formatNumber(binaryGB)} GB` : `${formatNumber(mb)} MB`;
-                                decimalResult.textContent = mode === 'mb-to-gb' ? 
-                                    `${formatNumber(decimalGB)} GB` : `${formatNumber(gb * 1000)} MB`;
-
-                                // Calculation details
-                                standardUsed.textContent = standard === 'binary' ? 'Binary (1024)' : 'Decimal (1000)';
-                                if (mode === 'mb-to-gb') {
-                                    conversionFactor.textContent = `÷ ${divisor}`;
-                                } else {
-                                    conversionFactor.textContent = `× ${divisor}`;
-                                }
-                                precisionDisplay.textContent = `${getPrecision()} digits`;
-
-                                // Storage context
-                                contextInfo.textContent = getStorageContext(gb, deviceTypeValue);
-
-                                // Additional conversions
-                                const kb = mb * (standard === 'binary' ? 1024 : 1000);
-                                const tb = gb / (standard === 'binary' ? 1024 : 1000);
-                                const bytes = mb * (standard === 'binary' ? 1048576 : 1000000);
-                                const bits = bytes * 8;
-                                
-                                kbDisplay.textContent = formatNumber(kb);
-                                tbDisplay.textContent = formatNumber(tb);
-                                bytesDisplay.textContent = formatNumber(bytes);
-                                bitsDisplay.textContent = formatNumber(bits);
-
-                                // Device compatibility
-                                compatibilityInfo.textContent = getDeviceCompatibility(gb, deviceTypeValue);
-
-                                // Storage examples
-                                const examples = calculateStorageExamples(mb);
-                                photoCount.textContent = formatNumber(examples.photos, 0);
-                                songCount.textContent = formatNumber(examples.songs, 0);
-                                movieCount.textContent = formatNumber(examples.movies, 0);
-                                docCount.textContent = formatNumber(examples.documents, 0);
-
-                            } else {
-                                clearOutputs();
                             }
-                        }
 
-                        function clearOutputs() {
-                            output.textContent = '--';
-                            resultDescription.textContent = 'Converted result';
-                            mbDisplay.textContent = '--';
-                            gbDisplay.textContent = '--';
-                            binaryResult.textContent = '--';
-                            decimalResult.textContent = '--';
-                            standardUsed.textContent = 'Binary (1024)';
-                            conversionFactor.textContent = '÷ 1024';
-                            precisionDisplay.textContent = '6 digits';
-                            contextInfo.textContent = 'Enter a value to see storage context';
-                            kbDisplay.textContent = '--';
-                            tbDisplay.textContent = '--';
-                            bytesDisplay.textContent = '--';
-                            bitsDisplay.textContent = '--';
-                            compatibilityInfo.textContent = 'Select a device type for compatibility information';
-                            photoCount.textContent = '--';
-                            songCount.textContent = '--';
-                            movieCount.textContent = '--';
-                            docCount.textContent = '--';
-                        }
+                            function clearOutputs() {
+                                output.textContent = '--';
+                                resultDescription.textContent = getMode() === 'mb-to-gb' ? 'Converted to gigabytes' : 'Converted to megabytes';
+                                mbDisplay.textContent = '--';
+                                gbDisplay.textContent = '--';
+                            }
 
-                        function clearAll() {
-                            inputValue.value = '';
-                            document.querySelector('input[value="mb-to-gb"]').checked = true;
-                            document.querySelector('input[value="binary"]').checked = true;
-                            deviceType.value = '';
-                            precision.value = 6;
-                            precisionValue.textContent = '6 digits';
+                            function clearAll() {
+                                inputValue.value = '';
+                                document.querySelector('input[name="mode"][value="mb-to-gb"]').checked = true;
+                                document.querySelector('input[name="standard"][value="binary"]').checked = true;
+                                updateInterface();
+                                clearOutputs();
+                                inputValue.focus();
+                            }
+
+                            // Event listeners
+                            inputValue.addEventListener('input', convert);
+
+                            modeRadios.forEach(radio => {
+                                radio.addEventListener('change', () => {
+                                    updateInterface();
+                                    convert();
+                                });
+                            });
+
+                            standardRadios.forEach(radio => {
+                                radio.addEventListener('change', convert);
+                            });
+
+                            clearButton.addEventListener('click', clearAll);
+
+                            // Copy functionality
+                            copyResult.addEventListener('click', function() {
+                                const text = output.textContent;
+                                if (text !== '--') {
+                                    navigator.clipboard.writeText(text).then(() => {
+                                        this.textContent = 'Copied!';
+                                        setTimeout(() => {
+                                            this.textContent = 'Copy Result';
+                                        }, 2000);
+                                    });
+                                }
+                            });
+
+                            // Initialize
                             updateInterface();
                             clearOutputs();
                             inputValue.focus();
-                        }
 
-                        // Event listeners
-                        inputValue.addEventListener('input', convert);
-                        deviceType.addEventListener('change', convert);
-                        
-                        modeRadios.forEach(radio => {
-                            radio.addEventListener('change', () => {
-                                updateInterface();
-                                convert();
-                            });
-                        });
-
-                        standardRadios.forEach(radio => {
-                            radio.addEventListener('change', convert);
-                        });
-
-                        precision.addEventListener('input', function() {
-                            precisionValue.textContent = this.value + ' digits';
-                            convert();
-                        });
-
-                        clearButton.addEventListener('click', clearAll);
-
-                        // Copy functionality
-                        copyResult.addEventListener('click', function() {
-                            const text = output.textContent;
-                            if (text !== '--') {
-                                navigator.clipboard.writeText(text).then(() => {
-                                    this.textContent = 'Copied!';
-                                    setTimeout(() => {
-                                        this.textContent = 'Copy Result';
-                                    }, 2000);
-                                });
-                            }
-                        });
-
-                        // Example buttons
-                        const storageExamples = document.querySelectorAll('.storage-example');
-                        storageExamples.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const value = this.getAttribute('data-value');
-                                const mode = this.getAttribute('data-mode');
-                                
-                                inputValue.value = value;
-                                document.querySelector(`input[value="${mode}"]`).checked = true;
-                                updateInterface();
-                                convert();
-                                
-                                // Update button styles
-                                storageExamples.forEach(btn => btn.classList.remove('bg-indigo-100', 'text-indigo-700'));
-                                storageExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
-                                this.classList.remove('bg-gray-100', 'text-gray-700');
-                                this.classList.add('bg-indigo-100', 'text-indigo-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const mode = this.getAttribute('data-mode');
-                                
-                                inputValue.value = value;
-                                if (mode) {
-                                    document.querySelector(`input[value="${mode}"]`).checked = true;
+                            // Keyboard shortcuts
+                            document.addEventListener('keydown', function(e) {
+                                if (e.key === 'Escape') {
+                                    clearAll();
+                                } else if (e.ctrlKey && (e.key || '').toLowerCase() === 'm') {
+                                    e.preventDefault();
+                                    const newMode = getMode() === 'mb-to-gb' ? 'gb-to-mb' : 'mb-to-gb';
+                                    document.querySelector(`input[name="mode"][value="${newMode}"]`).checked = true;
                                     updateInterface();
+                                    convert();
                                 }
-                                convert();
-                                inputValue.focus();
                             });
                         });
-
-                        // Initialize
-                        updateInterface();
-                        precisionValue.textContent = precision.value + ' digits';
-                        inputValue.focus();
-
-                        // Keyboard shortcuts
-                        document.addEventListener('keydown', function(e) {
-                            if (e.key === 'Escape') {
-                                clearAll();
-                            } else if (e.ctrlKey && (e.key || '').toLowerCase() === 'm') {
-                                e.preventDefault();
-                                const currentMode = getMode();
-                                const newMode = currentMode === 'mb-to-gb' ? 'gb-to-mb' : 'mb-to-gb';
-                                document.querySelector(`input[value="${newMode}"]`).checked = true;
-                                updateInterface();
-                                convert();
-                            }
-                        });
-                    });
                 </script>
     </x-slot>
 </x-tool-page-layout>

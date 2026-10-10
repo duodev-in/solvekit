@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Unix Timestamp & Date Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Unix Time Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -325,64 +325,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Unix Time</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">What is Unix Time?</h4>
-                                    <p>Unix time (also known as POSIX time or epoch time) is a system for describing time as the number of seconds that have elapsed since January 1, 1970, 00:00:00 UTC. It's widely used in operating systems, file formats, and programming languages.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Programming Applications</h4>
-                                    <p>Unix timestamps are essential in programming for logging, database storage, API responses, file timestamps, and system administration. They provide a universal, timezone-independent way to represent time across different systems and platforms.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                                <p class="text-sm text-orange-800">
-                                    <strong>Developer Tip:</strong> Always store timestamps in UTC and convert to local time for display. Use 64-bit integers to avoid the Year 2038 problem!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Programming Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Programming Language Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Get Current Timestamp</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">JavaScript</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">Math.floor(Date.now() / 1000)</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">Python</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">import time; int(time.time())</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">PHP</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">time()</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Convert to Date</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">JavaScript</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">new Date(timestamp * 1000)</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">Python</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">datetime.fromtimestamp</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600">PHP</div>
-                                        <div class="text-xs text-gray-600 mt-1 font-mono">date('Y-m-d H:i:s', timestamp)</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>

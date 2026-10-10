@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Nautical Speed Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Knots to kph Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -109,23 +110,6 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Navigation Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Navigation Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="navigationContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="marine">Marine Navigation</option>
-                                                                                    <option value="aviation">Aviation Navigation</option>
-                                                                                    <option value="weather">Weather Reporting</option>
-                                                                                    <option value="racing">Sailing/Racing</option>
-                                                                                    <option value="commercial">Commercial Shipping</option>
-                                                                                    <option value="military">Military Operations</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -307,64 +291,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Nautical Speed Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Nautical Miles & Knots</h4>
-                                    <p>A knot is one nautical mile per hour. The nautical mile is based on Earth's circumference and equals exactly 1,852 meters. This makes it perfect for navigation since one minute of latitude equals one nautical mile, simplifying chart work and position calculations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Maritime Applications</h4>
-                                    <p>Knots are used universally in marine and aviation navigation. Ship speeds, wind speeds, and aircraft speeds are typically measured in knots. Understanding these conversions is essential for navigation, weather interpretation, and maritime safety.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Navigation Tip:</strong> The conversion factor 1.852 comes from the definition: 1 nautical mile = 1/60 of a degree of latitude = 1,852 meters exactly!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Vessel Speed Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Typical Vessel Speeds</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Marine Vessels</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="8" data-from="knots" data-to="kph">Sailing Yacht: 8 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical cruising speed</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="22" data-from="knots" data-to="kph">Cruise Ship: 22 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Passenger vessel speed</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Aircraft Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="150" data-from="knots" data-to="kph">Light Aircraft: 150 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Cessna 172 cruise speed</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="500" data-from="knots" data-to="kph">Airliner: 500 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Commercial jet cruise</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const navigationContext = document.getElementById('navigationContext');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
@@ -381,16 +313,6 @@
                         const mphDisplay = document.getElementById('mphDisplay');
                         const mpsDisplay = document.getElementById('mpsDisplay');
                         const machDisplay = document.getElementById('machDisplay');
-                        const speedCategory = document.getElementById('speedCategory');
-                        const vesselType = document.getElementById('vesselType');
-                        const seaConditions = document.getElementById('seaConditions');
-                        const distance1h = document.getElementById('distance1h');
-                        const distance6h = document.getElementById('distance6h');
-                        const distance12h = document.getElementById('distance12h');
-                        const distance24h = document.getElementById('distance24h');
-                        const windDescription = document.getElementById('windDescription');
-                        const seaState = document.getElementById('seaState');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Speed conversion multipliers (to knots as base)
@@ -409,7 +331,7 @@
                             ground_speed: 1, // Same as true airspeed
                             beaufort: 1, // Special calculation
                             ship_bells: 1, // Maritime tradition
-                            cable_length_min: 10 // 1 cable length = 0.1 nautical mile
+                            cable_length_min: 6 // 1 cable length = 0.1 nautical mile, so 1 cable/min = 6 knots
                         };
 
                         const unitLabels = {
@@ -430,17 +352,47 @@
                             cable_length_min: 'cables/min'
                         };
 
+                        const unitNames = {
+                            knots: 'Knots (kn)',
+                            nautical_mph: 'Nautical Miles per Hour (nmi/h)',
+                            nautical_mps: 'Nautical Miles per Second (nmi/s)',
+                            nautical_mpd: 'Nautical Miles per Day (nmi/day)',
+                            kph: 'Kilometers per Hour (km/h)',
+                            mph: 'Miles per Hour (mph)',
+                            mps: 'Meters per Second (m/s)',
+                            fps: 'Feet per Second (ft/s)',
+                            mach: 'Mach Number',
+                            true_airspeed: 'True Airspeed (TAS)',
+                            indicated_airspeed: 'Indicated Airspeed (IAS)',
+                            ground_speed: 'Ground Speed (GS)',
+                            beaufort: 'Beaufort Scale',
+                            ship_bells: "Ship's Bells Speed",
+                            cable_length_min: 'Cable Lengths per Minute'
+                        };
+
                         function getPrecision() {
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
+                            if (num === 0) {
+                                return '0';
+                            }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
+                        }
+
+                        function withUnit(value, unit) {
+                            return unit === 'mach' ? `Mach ${value}` : `${value} ${unitLabels[unit]}`;
                         }
 
                         function beaufortFromKnots(knots) {
@@ -457,89 +409,6 @@
                             if (knots < 56) return 10;
                             if (knots < 64) return 11;
                             return 12;
-                        }
-
-                        function getSpeedCategory(knots) {
-                            if (knots < 5) return 'Very Slow';
-                            if (knots < 15) return 'Slow';
-                            if (knots < 25) return 'Moderate';
-                            if (knots < 40) return 'Fast';
-                            if (knots < 100) return 'Very Fast';
-                            if (knots < 300) return 'High Speed';
-                            return 'Extreme Speed';
-                        }
-
-                        function getVesselType(knots) {
-                            if (knots < 5) return 'Sailing/Drifting';
-                            if (knots < 10) return 'Small Sailboat';
-                            if (knots < 20) return 'Motor Yacht';
-                            if (knots < 30) return 'Fast Ferry';
-                            if (knots < 50) return 'Naval Vessel';
-                            if (knots < 150) return 'Patrol Boat';
-                            if (knots < 300) return 'Light Aircraft';
-                            return 'Jet Aircraft';
-                        }
-
-                        function getSeaConditions(knots) {
-                            const beaufort = beaufortFromKnots(knots);
-                            if (beaufort <= 3) return 'Calm to Light';
-                            if (beaufort <= 6) return 'Moderate';
-                            if (beaufort <= 9) return 'Strong';
-                            return 'Storm Force';
-                        }
-
-                        function getWindDescription(knots) {
-                            const beaufort = beaufortFromKnots(knots);
-                            const descriptions = [
-                                'Calm', 'Light Air', 'Light Breeze', 'Gentle Breeze',
-                                'Moderate Breeze', 'Fresh Breeze', 'Strong Breeze',
-                                'Near Gale', 'Gale', 'Strong Gale', 'Storm',
-                                'Violent Storm', 'Hurricane'
-                            ];
-                            return descriptions[beaufort] || 'Hurricane';
-                        }
-
-                        function getSeaState(knots) {
-                            const beaufort = beaufortFromKnots(knots);
-                            if (beaufort <= 2) return 'Smooth (0-0.5m)';
-                            if (beaufort <= 4) return 'Slight (0.5-1.25m)';
-                            if (beaufort <= 6) return 'Moderate (1.25-2.5m)';
-                            if (beaufort <= 8) return 'Rough (2.5-4m)';
-                            if (beaufort <= 10) return 'Very Rough (4-6m)';
-                            return 'Phenomenal (9m+)';
-                        }
-
-                        function getConversionFormula(from, to) {
-                            if (from === 'knots' && to === 'kph') {
-                                return 'knots × 1.852 = km/h';
-                            } else if (from === 'kph' && to === 'knots') {
-                                return 'km/h ÷ 1.852 = knots';
-                            } else if (from === 'knots' && to === 'mph') {
-                                return 'knots × 1.151 = mph';
-                            } else if (from === 'mph' && to === 'knots') {
-                                return 'mph ÷ 1.151 = knots';
-                            } else {
-                                const fromFactor = speedMultipliers[from];
-                                const toFactor = speedMultipliers[to];
-                                const conversionFactor = fromFactor / toFactor;
-                                
-                                if (Math.abs(conversionFactor - 1) < 0.0001) {
-                                    return `${unitLabels[from]} = ${unitLabels[to]}`;
-                                } else if (conversionFactor > 1) {
-                                    return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                                } else {
-                                    return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
-                                }
-                            }
-                        }
-
-                        function calculateDistances(knots) {
-                            return {
-                                hour1: formatNumber(knots) + ' nmi',
-                                hour6: formatNumber(knots * 6) + ' nmi',
-                                hour12: formatNumber(knots * 12) + ' nmi',
-                                hour24: formatNumber(knots * 24) + ' nmi'
-                            };
                         }
 
                         function convert() {
@@ -567,9 +436,9 @@
                                 }
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), to);
+                                resultTitle.textContent = unitNames[to];
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), from)} = ${withUnit(formatNumber(result), to)}`;
 
                                 // Convert to all common units and display
                                 const knots = inputInKnots;
@@ -581,25 +450,6 @@
                                 mphDisplay.textContent = formatNumber(knots * 1.15078);
                                 mpsDisplay.textContent = formatNumber(knots * 0.514444);
                                 machDisplay.textContent = formatNumber(knots / 661.5);
-
-                                // Navigation analysis
-                                speedCategory.textContent = getSpeedCategory(knots);
-                                vesselType.textContent = getVesselType(knots);
-                                seaConditions.textContent = getSeaConditions(knots);
-
-                                // Distance calculations
-                                const distances = calculateDistances(knots);
-                                distance1h.textContent = distances.hour1;
-                                distance6h.textContent = distances.hour6;
-                                distance12h.textContent = distances.hour12;
-                                distance24h.textContent = distances.hour24;
-
-                                // Wind & weather
-                                windDescription.textContent = getWindDescription(knots);
-                                seaState.textContent = getSeaState(knots);
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -618,23 +468,12 @@
                             mphDisplay.textContent = '--';
                             mpsDisplay.textContent = '--';
                             machDisplay.textContent = '--';
-                            speedCategory.textContent = '--';
-                            vesselType.textContent = '--';
-                            seaConditions.textContent = '--';
-                            distance1h.textContent = '--';
-                            distance6h.textContent = '--';
-                            distance12h.textContent = '--';
-                            distance24h.textContent = '--';
-                            windDescription.textContent = '--';
-                            seaState.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'knots';
                             toUnit.value = 'kph';
-                            navigationContext.value = '';
                             precision.value = 2;
                             precisionValue.textContent = '2 digits';
                             clearOutputs();
@@ -645,7 +484,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        navigationContext.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -685,22 +523,6 @@
                                 nauticalExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-green-100', 'text-green-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

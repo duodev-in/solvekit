@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Velocity Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">m/s to km/h Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -98,6 +99,8 @@
                                                                                         <option value="yard_s">yd/s (yards per second)</option>
                                                                                     </optgroup>
                                                                                 </select>
+                                                                            </div>
+
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -279,57 +282,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Velocity Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Velocity Units</h4>
-                                    <p>Velocity units express speed - the rate of change of position over time. Different units are used in various contexts: m/s in physics and engineering, km/h for everyday speeds, mph in imperial countries, and knots for marine and aviation navigation.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Velocity conversions are essential in transportation, sports, physics calculations, weather reporting, and engineering. Understanding these conversions helps in international communication, scientific work, and everyday situations involving speed measurements.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>Speed Tip:</strong> The conversion factor 3.6 between m/s and km/h comes from: 1 m/s = (1 m ÷ 1000 km) × (3600 s ÷ 1 h) = 3.6 km/h!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Common Velocities -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Velocities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Human & Animal Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="1.4" data-from="ms" data-to="kmh">Walking: 1.4 m/s</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average human walking speed</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="12.4" data-from="ms" data-to="kmh">Usain Bolt: 12.4 m/s</div>
-                                        <div class="text-xs text-gray-600 mt-1">World record sprint speed</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Transportation Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="83" data-from="ms" data-to="kmh">Highway Speed: 83 m/s</div>
-                                        <div class="text-xs text-gray-600 mt-1">300 km/h high-speed train</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="250" data-from="ms" data-to="kmh">Airliner: 250 m/s</div>
-                                        <div class="text-xs text-gray-600 mt-1">Commercial jet cruise speed</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -352,14 +304,6 @@
                         const fpsDisplay = document.getElementById('fpsDisplay');
                         const knotsDisplay = document.getElementById('knotsDisplay');
                         const machDisplay = document.getElementById('machDisplay');
-                        const speedCategory = document.getElementById('speedCategory');
-                        const commonExample = document.getElementById('commonExample');
-                        const physicalContext = document.getElementById('physicalContext');
-                        const distance1s = document.getElementById('distance1s');
-                        const distance1m = document.getElementById('distance1m');
-                        const distance1h = document.getElementById('distance1h');
-                        const distance1d = document.getElementById('distance1d');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Velocity conversion multipliers (to m/s as base)
@@ -395,87 +339,45 @@
                             yard_s: 'yd/s'
                         };
 
+                        const unitNames = {
+                            ms: 'Meters per Second (m/s)',
+                            kmh: 'Kilometers per Hour (km/h)',
+                            kms: 'Kilometers per Second (km/s)',
+                            cms: 'Centimeters per Second (cm/s)',
+                            mms: 'Millimeters per Second (mm/s)',
+                            mph: 'Miles per Hour (mph)',
+                            fps: 'Feet per Second (ft/s)',
+                            ips: 'Inches per Second (in/s)',
+                            mps: 'Miles per Second (mi/s)',
+                            knots: 'Knots (kn)',
+                            mach: 'Mach Number',
+                            c: 'Speed of Light (c)',
+                            yard_s: 'Yards per Second (yd/s)'
+                        };
+
                         function getPrecision() {
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getSpeedCategory(ms) {
-                            if (ms < 0.1) return 'Very Slow';
-                            if (ms < 2) return 'Walking Speed';
-                            if (ms < 10) return 'Running Speed';
-                            if (ms < 50) return 'Vehicle Speed';
-                            if (ms < 200) return 'High Speed';
-                            if (ms < 343) return 'Subsonic';
-                            if (ms < 1000) return 'Supersonic';
-                            if (ms < 100000) return 'Hypersonic';
-                            return 'Extreme Speed';
-                        }
-
-                        function getCommonExample(ms) {
-                            if (ms < 0.1) return 'Snail pace';
-                            if (ms < 1) return 'Slow walk';
-                            if (ms < 2) return 'Normal walk';
-                            if (ms < 5) return 'Jogging';
-                            if (ms < 15) return 'Sprint';
-                            if (ms < 30) return 'Car in city';
-                            if (ms < 50) return 'Highway speed';
-                            if (ms < 100) return 'Racing car';
-                            if (ms < 250) return 'Airliner';
-                            if (ms < 343) return 'Sound speed';
-                            if (ms < 1000) return 'Jet fighter';
-                            return 'Spacecraft';
-                        }
-
-                        function getPhysicalContext(ms) {
-                            if (ms < 1) return 'Everyday motion';
-                            if (ms < 10) return 'Human activity';
-                            if (ms < 100) return 'Transportation';
-                            if (ms < 343) return 'Mechanical';
-                            if (ms < 10000) return 'Aerodynamic';
-                            if (ms < 100000) return 'Ballistic';
-                            return 'Relativistic';
-                        }
-
-                        function getConversionFormula(from, to) {
-                            const fromFactor = velocityMultipliers[from];
-                            const toFactor = velocityMultipliers[to];
-                            const conversionFactor = fromFactor / toFactor;
-                            
-                            if (from === 'ms' && to === 'kmh') {
-                                return `${unitLabels[from]} × 3.6 = ${unitLabels[to]}`;
-                            } else if (from === 'kmh' && to === 'ms') {
-                                return `${unitLabels[from]} ÷ 3.6 = ${unitLabels[to]}`;
-                            } else if (conversionFactor === 1) {
-                                return `${unitLabels[from]} = ${unitLabels[to]}`;
-                            } else if (conversionFactor > 1) {
-                                return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                            } else {
-                                return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
+                            if (num === 0) {
+                                return '0';
                             }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
                         }
 
-                        function calculateDistances(ms) {
-                            return {
-                                second: ms + ' m',
-                                minute: formatNumber(ms * 60) + ' m',
-                                hour: formatNumber(ms * 3600 / 1000) + ' km',
-                                day: formatNumber(ms * 86400 / 1000) + ' km'
-                            };
+                        function withUnit(value, unit) {
+                            return unit === 'mach' ? `Mach ${value}` : `${value} ${unitLabels[unit]}`;
                         }
 
                         function convert() {
@@ -491,9 +393,9 @@
                                 const result = inputInMS / velocityMultipliers[to];
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), to);
+                                resultTitle.textContent = unitNames[to];
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), from)} = ${withUnit(formatNumber(result), to)}`;
 
                                 // Convert to all common units and display
                                 const ms = inputInMS;
@@ -505,21 +407,6 @@
                                 fpsDisplay.textContent = formatNumber(ms / velocityMultipliers.fps);
                                 knotsDisplay.textContent = formatNumber(ms / velocityMultipliers.knots);
                                 machDisplay.textContent = formatNumber(ms / velocityMultipliers.mach);
-
-                                // Velocity context
-                                speedCategory.textContent = getSpeedCategory(ms);
-                                commonExample.textContent = getCommonExample(ms);
-                                physicalContext.textContent = getPhysicalContext(ms);
-
-                                // Distance calculations
-                                const distances = calculateDistances(ms);
-                                distance1s.textContent = distances.second;
-                                distance1m.textContent = distances.minute;
-                                distance1h.textContent = distances.hour;
-                                distance1d.textContent = distances.day;
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -538,14 +425,6 @@
                             fpsDisplay.textContent = '--';
                             knotsDisplay.textContent = '--';
                             machDisplay.textContent = '--';
-                            speedCategory.textContent = '--';
-                            commonExample.textContent = '--';
-                            physicalContext.textContent = '--';
-                            distance1s.textContent = '--';
-                            distance1m.textContent = '--';
-                            distance1h.textContent = '--';
-                            distance1d.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
@@ -601,22 +480,6 @@
                                 velocityExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-blue-100', 'text-blue-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

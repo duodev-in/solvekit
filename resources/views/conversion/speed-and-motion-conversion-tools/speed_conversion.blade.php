@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Speed & Velocity Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Speed Conversion</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -115,23 +116,6 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Speed Category -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Speed Category
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="speedCategory" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">All speeds</option>
-                                                                                    <option value="pedestrian">Pedestrian Speeds</option>
-                                                                                    <option value="bicycle">Bicycle Speeds</option>
-                                                                                    <option value="vehicle">Vehicle Speeds</option>
-                                                                                    <option value="aircraft">Aircraft Speeds</option>
-                                                                                    <option value="spacecraft">Spacecraft Speeds</option>
-                                                                                    <option value="natural">Natural Phenomena</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -350,64 +334,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Speed Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Universal Speed Units</h4>
-                                    <p>Speed conversion involves multiple unit systems from different fields: metric (km/h, m/s), imperial (mph, ft/s), nautical (knots), and scientific (Mach, c). Each system serves specific applications from everyday transportation to aerospace engineering and physics research.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Speed conversions are essential in transportation, aviation, marine navigation, sports, physics, and engineering. Understanding relationships between different speed units enables international communication, safety calculations, and performance analysis across various domains.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-                                <p class="text-sm text-indigo-800">
-                                    <strong>Speed Tip:</strong> Remember that kinetic energy scales with the square of velocity (KE = ½mv²), so doubling speed quadruples energy!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Speed Benchmarks -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Speed Benchmarks</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Everyday Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="5" data-from="kmh" data-to="mph">Walking: 5 km/h</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average human walking pace</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="25" data-from="kmh" data-to="mph">Cycling: 25 km/h</div>
-                                        <div class="text-xs text-gray-600 mt-1">Recreational cycling speed</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Extreme Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="2" data-from="mach" data-to="kmh">Supersonic Jet: Mach 2</div>
-                                        <div class="text-xs text-gray-600 mt-1">Military aircraft speed</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="11200" data-from="ms" data-to="kmh">Escape Velocity: 11.2 km/s</div>
-                                        <div class="text-xs text-gray-600 mt-1">Earth escape speed</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const speedCategory = document.getElementById('speedCategory');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
@@ -428,18 +360,6 @@
                         const lightSpeedDisplay = document.getElementById('lightSpeedDisplay');
                         const escapeVelDisplay = document.getElementById('escapeVelDisplay');
                         const furlongsDisplay = document.getElementById('furlongsDisplay');
-                        const speedClassification = document.getElementById('speedClassification');
-                        const typicalUse = document.getElementById('typicalUse');
-                        const speedComparison = document.getElementById('speedComparison');
-                        const energyLevel = document.getElementById('energyLevel');
-                        const distance1s = document.getElementById('distance1s');
-                        const distance1m = document.getElementById('distance1m');
-                        const distance1h = document.getElementById('distance1h');
-                        const distance1d = document.getElementById('distance1d');
-                        const kineticEnergyFactor = document.getElementById('kineticEnergyFactor');
-                        const relativisticFactor = document.getElementById('relativisticFactor');
-                        const flowRegime = document.getElementById('flowRegime');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Speed conversion multipliers (to m/s as base)
@@ -478,129 +398,57 @@
                             mach: 'Mach',
                             c: 'c',
                             kmh_light: 'km/h (light)',
-                            escape_velocity: 'escape vel',
+                            escape_velocity: '× Earth escape velocity',
                             furlongs_fortnight: 'furlongs/fortnight',
                             leagues_hour: 'leagues/h',
                             miles_minute: 'mi/min',
                             km_minute: 'km/min'
                         };
 
+                        const unitNames = {
+                            kmh: 'Kilometers per Hour (km/h)',
+                            mph: 'Miles per Hour (mph)',
+                            ms: 'Meters per Second (m/s)',
+                            fps: 'Feet per Second (ft/s)',
+                            knots: 'Knots (kn)',
+                            cms: 'Centimeters per Second (cm/s)',
+                            mms: 'Millimeters per Second (mm/s)',
+                            kms: 'Kilometers per Second (km/s)',
+                            ips: 'Inches per Second (in/s)',
+                            yard_s: 'Yards per Second (yd/s)',
+                            mach: 'Mach Number',
+                            c: 'Speed of Light (c)',
+                            kmh_light: 'Light Speed (km/h based)',
+                            escape_velocity: 'Earth Escape Velocity',
+                            furlongs_fortnight: 'Furlongs per Fortnight',
+                            leagues_hour: 'Leagues per Hour',
+                            miles_minute: 'Miles per Minute (mi/min)',
+                            km_minute: 'Kilometers per Minute (km/min)'
+                        };
+
                         function getPrecision() {
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-15 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getSpeedClassification(ms) {
-                            if (ms < 0.5) return 'Very Slow';
-                            if (ms < 2) return 'Slow';
-                            if (ms < 10) return 'Moderate';
-                            if (ms < 50) return 'Fast';
-                            if (ms < 343) return 'Very Fast';
-                            if (ms < 1000) return 'Supersonic';
-                            if (ms < 100000) return 'Hypersonic';
-                            if (ms < 1000000) return 'Ultra-high Speed';
-                            return 'Relativistic';
-                        }
-
-                        function getTypicalUse(ms) {
-                            if (ms < 0.5) return 'Crawling/Creeping';
-                            if (ms < 2) return 'Walking';
-                            if (ms < 10) return 'Running/Cycling';
-                            if (ms < 50) return 'Vehicle Traffic';
-                            if (ms < 100) return 'High-speed Rail';
-                            if (ms < 343) return 'Racing/Aviation';
-                            if (ms < 1000) return 'Military Aircraft';
-                            if (ms < 11200) return 'Spacecraft';
-                            return 'Escape/Orbital';
-                        }
-
-                        function getSpeedComparison(ms) {
-                            if (ms < 1.4) return 'Slower than walking';
-                            if (ms < 10) return 'Human-scale speeds';
-                            if (ms < 100) return 'Vehicle speeds';
-                            if (ms < 343) return 'Subsonic flight';
-                            if (ms < 1715) return 'Supersonic (Mach 1-5)';
-                            if (ms < 11200) return 'Hypersonic speeds';
-                            return 'Escape velocities';
-                        }
-
-                        function getEnergyLevel(ms) {
-                            if (ms < 10) return 'Low Energy';
-                            if (ms < 100) return 'Moderate Energy';
-                            if (ms < 1000) return 'High Energy';
-                            if (ms < 10000) return 'Very High Energy';
-                            return 'Extreme Energy';
-                        }
-
-                        function getFlowRegime(ms) {
-                            const mach = ms / 343;
-                            if (mach < 0.3) return 'Incompressible';
-                            if (mach < 0.8) return 'Subsonic';
-                            if (mach < 1.2) return 'Transonic';
-                            if (mach < 5) return 'Supersonic';
-                            return 'Hypersonic';
-                        }
-
-                        function calculateDistances(ms) {
-                            return {
-                                second: formatNumber(ms) + ' m',
-                                minute: formatNumber(ms * 60) + ' m',
-                                hour: formatNumber(ms * 3.6) + ' km',
-                                day: formatNumber(ms * 86.4) + ' km'
-                            };
-                        }
-
-                        function getKineticEnergyFactor(ms) {
-                            // Relative to 1 m/s
-                            return formatNumber(Math.pow(ms, 2), 2) + 'x';
-                        }
-
-                        function getRelativisticFactor(ms) {
-                            const c = 299792458;
-                            const beta = ms / c;
-                            if (beta < 0.01) return 'Negligible';
-                            const gamma = 1 / Math.sqrt(1 - beta * beta);
-                            return formatNumber(gamma, 6) + 'γ';
-                        }
-
-                        function getConversionFormula(from, to) {
-                            if (from === 'kmh' && to === 'mph') {
-                                return 'km/h ÷ 1.609 = mph';
-                            } else if (from === 'mph' && to === 'kmh') {
-                                return 'mph × 1.609 = km/h';
-                            } else if (from === 'ms' && to === 'kmh') {
-                                return 'm/s × 3.6 = km/h';
-                            } else if (from === 'kmh' && to === 'ms') {
-                                return 'km/h ÷ 3.6 = m/s';
-                            } else {
-                                const fromFactor = speedMultipliers[from];
-                                const toFactor = speedMultipliers[to];
-                                const conversionFactor = fromFactor / toFactor;
-                                
-                                if (Math.abs(conversionFactor - 1) < 0.0001) {
-                                    return `${unitLabels[from]} = ${unitLabels[to]}`;
-                                } else if (conversionFactor > 1) {
-                                    return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                                } else {
-                                    return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
-                                }
+                            if (num === 0) {
+                                return '0';
                             }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
+                        }
+
+                        function withUnit(value, unit) {
+                            return unit === 'mach' ? `Mach ${value}` : `${value} ${unitLabels[unit]}`;
                         }
 
                         function convert() {
@@ -616,9 +464,9 @@
                                 const result = inputInMS / speedMultipliers[to];
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), to);
+                                resultTitle.textContent = unitNames[to];
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), from)} = ${withUnit(formatNumber(result), to)}`;
 
                                 // Convert to all common units and display
                                 const ms = inputInMS;
@@ -634,27 +482,6 @@
                                 lightSpeedDisplay.textContent = formatNumber(ms / speedMultipliers.c);
                                 escapeVelDisplay.textContent = formatNumber(ms / speedMultipliers.escape_velocity);
                                 furlongsDisplay.textContent = formatNumber(ms / speedMultipliers.furlongs_fortnight);
-
-                                // Speed analysis
-                                speedClassification.textContent = getSpeedClassification(ms);
-                                typicalUse.textContent = getTypicalUse(ms);
-                                speedComparison.textContent = getSpeedComparison(ms);
-                                energyLevel.textContent = getEnergyLevel(ms);
-
-                                // Distance calculations
-                                const distances = calculateDistances(ms);
-                                distance1s.textContent = distances.second;
-                                distance1m.textContent = distances.minute;
-                                distance1h.textContent = distances.hour;
-                                distance1d.textContent = distances.day;
-
-                                // Physics context
-                                kineticEnergyFactor.textContent = getKineticEnergyFactor(ms);
-                                relativisticFactor.textContent = getRelativisticFactor(ms);
-                                flowRegime.textContent = getFlowRegime(ms);
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -677,25 +504,12 @@
                             lightSpeedDisplay.textContent = '--';
                             escapeVelDisplay.textContent = '--';
                             furlongsDisplay.textContent = '--';
-                            speedClassification.textContent = '--';
-                            typicalUse.textContent = '--';
-                            speedComparison.textContent = '--';
-                            energyLevel.textContent = '--';
-                            distance1s.textContent = '--';
-                            distance1m.textContent = '--';
-                            distance1h.textContent = '--';
-                            distance1d.textContent = '--';
-                            kineticEnergyFactor.textContent = '--';
-                            relativisticFactor.textContent = '--';
-                            flowRegime.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'kmh';
                             toUnit.value = 'mph';
-                            speedCategory.value = '';
                             precision.value = 3;
                             precisionValue.textContent = '3 digits';
                             clearOutputs();
@@ -706,7 +520,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        speedCategory.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -746,22 +559,6 @@
                                 speedExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-indigo-100', 'text-indigo-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

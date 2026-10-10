@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Imperial Weight System Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Pounds &amp; Ounces</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -324,16 +324,16 @@
                         };
 
                         function formatNumber(num, unit = 'g') {
-                            if (unit === 'mcg' || unit === 'mg') {
+                            if ((unit === 'mcg' || unit === 'mg') && num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 0 });
-                            } else if (unit === 't') {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
                             } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 

@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Engineering Torque Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Nm to in-lbs</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -318,14 +318,14 @@
                         };
 
                         const unitNames = {
-                            nm: 'Newton-meter',
+                            nm: 'Newton-meters',
                             inchlbs: 'Inch-pounds',
                             ftlbs: 'Foot-pounds',
-                            kgm: 'Kilogram-meter',
-                            ozin: 'Ounce-inch',
-                            dynecm: 'Dyne-centimeter',
-                            gcm: 'Gram-centimeter',
-                            lbft: 'Pound-foot'
+                            kgm: 'Kilogram-meters',
+                            ozin: 'Ounce-inches',
+                            dynecm: 'Dyne-centimeters',
+                            gcm: 'Gram-centimeters',
+                            lbft: 'Pound-feet'
                         };
 
                         const unitSymbols = {
@@ -347,15 +347,20 @@
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'auto') {
                                 if (num >= 1000000) {
-                                    return num.toExponential(4);
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

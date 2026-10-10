@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Centimeter-Gram-Second Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">CGS System of Units Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -54,10 +55,10 @@
                                                                                     </optgroup>
                                                                                     <optgroup label="CGS Derived Units - Mechanical">
                                                                                         <option value="dyne">Dyne (dyn) - Force</option>
-                                                                                        <option value="cm_per_s">cm/s - Velocity</option>
-                                                                                        <option value="cm_per_s2">cm/s² - Acceleration</option>
+                                                                                        <option value="cm_per_s">Centimeter per Second (cm/s) - Velocity</option>
+                                                                                        <option value="cm_per_s2">Centimeter per Second² (cm/s²) - Acceleration</option>
                                                                                         <option value="erg">Erg (erg) - Energy</option>
-                                                                                        <option value="erg_per_s">erg/s - Power</option>
+                                                                                        <option value="erg_per_s">Erg per Second (erg/s) - Power</option>
                                                                                         <option value="barye">Barye (Ba) - Pressure</option>
                                                                                         <option value="poise">Poise (P) - Dynamic Viscosity</option>
                                                                                         <option value="stokes">Stokes (St) - Kinematic Viscosity</option>
@@ -99,15 +100,15 @@
                                                                                 >
                                                                                     <optgroup label="CGS Base Units">
                                                                                         <option value="cm">Centimeter (cm) - Length</option>
-                                                                                        <option value="gram" selected>Gram (g) - Mass</option>
+                                                                                        <option value="gram">Gram (g) - Mass</option>
                                                                                         <option value="second">Second (s) - Time</option>
                                                                                     </optgroup>
                                                                                     <optgroup label="CGS Derived Units - Mechanical">
                                                                                         <option value="dyne">Dyne (dyn) - Force</option>
-                                                                                        <option value="cm_per_s">cm/s - Velocity</option>
-                                                                                        <option value="cm_per_s2">cm/s² - Acceleration</option>
+                                                                                        <option value="cm_per_s">Centimeter per Second (cm/s) - Velocity</option>
+                                                                                        <option value="cm_per_s2">Centimeter per Second² (cm/s²) - Acceleration</option>
                                                                                         <option value="erg">Erg (erg) - Energy</option>
-                                                                                        <option value="erg_per_s">erg/s - Power</option>
+                                                                                        <option value="erg_per_s">Erg per Second (erg/s) - Power</option>
                                                                                         <option value="barye">Barye (Ba) - Pressure</option>
                                                                                         <option value="poise">Poise (P) - Dynamic Viscosity</option>
                                                                                         <option value="stokes">Stokes (St) - Kinematic Viscosity</option>
@@ -121,7 +122,7 @@
                                                                                         <option value="maxwell">Maxwell (Mx) - Magnetic Flux</option>
                                                                                     </optgroup>
                                                                                     <optgroup label="SI Units">
-                                                                                        <option value="meter">Meter (m) - Length</option>
+                                                                                        <option value="meter" selected>Meter (m) - Length</option>
                                                                                         <option value="kilogram">Kilogram (kg) - Mass</option>
                                                                                         <option value="newton">Newton (N) - Force</option>
                                                                                         <option value="joule">Joule (J) - Energy</option>
@@ -138,26 +139,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Scientific Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Scientific Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="scientificContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="mechanics">Classical Mechanics</option>
-                                                                                    <option value="electromagnetism">Electromagnetism</option>
-                                                                                    <option value="thermodynamics">Thermodynamics</option>
-                                                                                    <option value="fluid_dynamics">Fluid Dynamics</option>
-                                                                                    <option value="atomic_physics">Atomic Physics</option>
-                                                                                    <option value="chemistry">Chemistry</option>
-                                                                                </select>
                                                                             </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -354,64 +336,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About CGS System</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">CGS System History</h4>
-                                    <p>The Centimeter-Gram-Second (CGS) system was the first coherent metric system, developed in the 1860s. It uses centimeter for length, gram for mass, and second for time. While largely superseded by SI units, CGS units remain common in theoretical physics, astronomy, and some engineering fields.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Scientific Applications</h4>
-                                    <p>CGS units are still preferred in certain scientific contexts due to simpler numerical values and historical precedent. They're common in electromagnetism (Gaussian units), astrophysics, particle physics, and solid-state physics where the smaller scales make calculations more convenient.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-rose-50 rounded-lg border border-rose-200">
-                                <p class="text-sm text-rose-800">
-                                    <strong>CGS Tip:</strong> Remember that CGS electromagnetic units differ significantly from SI - always verify which electromagnetic system (esu/Gaussian or emu) is being used!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Scientific Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Scientific Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Physics Applications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="980" data-from="cm_per_s2" data-to="meter">Gravity: 980 cm/s²</div>
-                                        <div class="text-xs text-gray-600 mt-1">Earth's gravitational acceleration</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="1" data-from="erg" data-to="joule">Small Energy: 1 erg</div>
-                                        <div class="text-xs text-gray-600 mt-1">Molecular-scale energy</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Electromagnetic Units</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="5000" data-from="gauss" data-to="tesla">Strong Magnet: 5000 G</div>
-                                        <div class="text-xs text-gray-600 mt-1">Permanent magnet field</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-rose-600 cursor-pointer hover:text-rose-800" data-example="1" data-from="statcoulomb" data-to="newton">Unit Charge: 1 statC</div>
-                                        <div class="text-xs text-gray-600 mt-1">Electrostatic unit of charge</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const scientificContext = document.getElementById('scientificContext');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -430,11 +360,6 @@
                         const imperialMassDisplay = document.getElementById('imperialMassDisplay');
                         const imperialForceDisplay = document.getElementById('imperialForceDisplay');
                         const imperialEnergyDisplay = document.getElementById('imperialEnergyDisplay');
-                        const conversionFactor = document.getElementById('conversionFactor');
-                        const unitType = document.getElementById('unitType');
-                        const scientificNotation = document.getElementById('scientificNotation');
-                        const relativeScale = document.getElementById('relativeScale');
-                        const ordersMagnitude = document.getElementById('ordersMagnitude');
                         const copyResult = document.getElementById('copyResult');
 
                         // CGS conversion factors (to SI base units)
@@ -488,80 +413,61 @@
                             pound_mass: 'lb', pound_force: 'lbf'
                         };
 
-                        function formatNumber(num, decimals = 4) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
+                            if (num === 0) {
+                                return '0';
+                            }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                        }
+
+                        function unitDisplayName(select) {
+                            return select.options[select.selectedIndex].text.split(' - ')[0];
                         }
 
                         function canConvert(fromUnit, toUnit) {
                             const fromInfo = cgsConversions[fromUnit];
                             const toInfo = cgsConversions[toUnit];
-                            
-                            if (!fromInfo || !toInfo) return false;
-                            
-                            // Allow conversion between same types or related types
-                            return fromInfo.type === toInfo.type || 
-                                   (fromInfo.type === 'length' && toInfo.type === 'length') ||
-                                   (fromInfo.type === 'mass' && toInfo.type === 'mass') ||
-                                   (fromInfo.type === 'force' && toInfo.type === 'force') ||
-                                   (fromInfo.type === 'energy' && toInfo.type === 'energy');
+
+                            return Boolean(fromInfo && toInfo && fromInfo.type === toInfo.type);
                         }
 
-                        function getContextInfo(context, value, unit) {
-                            const contexts = {
-                                mechanics: {
-                                    name: 'Classical Mechanics',
-                                    getInfo: (val, un) => `Mechanical quantity in classical physics - useful for small-scale calculations`
-                                },
-                                electromagnetism: {
-                                    name: 'Electromagnetism',
-                                    getInfo: (val, un) => `Electromagnetic quantity - CGS units common in theoretical electrodynamics`
-                                },
-                                thermodynamics: {
-                                    name: 'Thermodynamics',
-                                    getInfo: (val, un) => `Thermodynamic quantity - CGS units for molecular-scale phenomena`
-                                },
-                                fluid_dynamics: {
-                                    name: 'Fluid Dynamics',
-                                    getInfo: (val, un) => `Fluid mechanics quantity - CGS viscosity units still widely used`
-                                },
-                                atomic_physics: {
-                                    name: 'Atomic Physics',
-                                    getInfo: (val, un) => `Atomic-scale quantity - CGS units natural for atomic dimensions`
-                                },
-                                chemistry: {
-                                    name: 'Chemistry',
-                                    getInfo: (val, un) => `Chemical quantity - CGS units common in physical chemistry`
-                                }
-                            };
+                        function syncTargetUnits() {
+                            const fromType = cgsConversions[fromUnit.value]?.type;
+                            let firstCompatible = null;
 
-                            if (context && contexts[context]) {
-                                const ctx = contexts[context];
-                                return `${ctx.name}: ${ctx.getInfo(value, unit)}`;
+                            Array.from(toUnit.options).forEach(option => {
+                                const isCompatible = cgsConversions[option.value]?.type === fromType;
+                                option.disabled = !isCompatible;
+                                option.hidden = !isCompatible;
+                                if (isCompatible && option.value !== fromUnit.value && !firstCompatible) {
+                                    firstCompatible = option.value;
+                                }
+                            });
+
+                            if (!canConvert(fromUnit.value, toUnit.value)) {
+                                toUnit.value = firstCompatible || fromUnit.value;
                             }
-                            return 'General unit conversion';
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const context = scientificContext.value;
 
                             if (!isNaN(inputVal)) {
                                 if (!canConvert(from, to)) {
                                     output.textContent = 'Incompatible unit types';
+                                    resultTitle.textContent = 'Converted Value';
                                     resultDescription.textContent = 'Cannot convert between different physical quantities';
                                     return;
                                 }
@@ -575,23 +481,11 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]} (${toInfo.name})`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                resultTitle.textContent = unitDisplayName(toUnit);
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Update unit system displays (showing equivalent values)
                                 updateUnitSystemDisplays(inputVal, from);
-
-                                // Conversion analysis
-                                const factor = fromInfo.si / toInfo.si;
-                                conversionFactor.textContent = Math.abs(factor) >= 1 ? `×${formatNumber(Math.abs(factor), 6)}` : `÷${formatNumber(1/Math.abs(factor), 6)}`;
-                                unitType.textContent = fromInfo.type.replace('_', ' ');
-                                scientificNotation.textContent = result.toExponential(3);
-
-                                // CGS vs SI comparison
-                                const siEquivalent = inputVal * fromInfo.si;
-                                const ordersDiff = Math.log10(Math.abs(fromInfo.si));
-                                relativeScale.textContent = fromInfo.si < 1 ? 'Smaller than SI' : fromInfo.si > 1 ? 'Larger than SI' : 'Same as SI';
-                                ordersMagnitude.textContent = Math.abs(ordersDiff).toFixed(1) + ' orders';
 
                             } else {
                                 clearOutputs();
@@ -637,27 +531,24 @@
                             imperialMassDisplay.textContent = '--';
                             imperialForceDisplay.textContent = '--';
                             imperialEnergyDisplay.textContent = '--';
-                            conversionFactor.textContent = '--';
-                            unitType.textContent = '--';
-                            scientificNotation.textContent = '--';
-                            relativeScale.textContent = '--';
-                            ordersMagnitude.textContent = '--';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'cm';
-                            toUnit.value = 'gram';
-                            scientificContext.value = '';
+                            syncTargetUnits();
+                            toUnit.value = 'meter';
                             clearOutputs();
                             inputValue.focus();
                         }
 
                         // Event listeners
                         inputValue.addEventListener('input', convert);
-                        fromUnit.addEventListener('change', convert);
+                        fromUnit.addEventListener('change', function() {
+                            syncTargetUnits();
+                            convert();
+                        });
                         toUnit.addEventListener('change', convert);
-                        scientificContext.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -684,6 +575,7 @@
                                 
                                 inputValue.value = value;
                                 fromUnit.value = from;
+                                syncTargetUnits();
                                 toUnit.value = to;
                                 convert();
                                 
@@ -695,23 +587,8 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
-                            });
-                        });
-
                         // Initialize
+                        syncTargetUnits();
                         inputValue.focus();
 
                         // Keyboard shortcuts

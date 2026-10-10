@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Power Calculation from Torque</h2>
+                                <h1 class="text-lg font-semibold text-white">Torque to HP</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -285,13 +285,15 @@
 
                         function formatNumber(num) {
                             if (num >= 1000000) {
-                                return num.toExponential(3);
+                                return Number(num.toPrecision(4)).toExponential();
                             } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 

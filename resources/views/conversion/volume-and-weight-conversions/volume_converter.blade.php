@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Volume & Capacity Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Volume Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,7 +18,8 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-3" id="calculatorForm">
 
-                                                                            <!-- Input Value -->
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-slate-700">
                                                                                     Enter Volume Value
@@ -32,9 +33,6 @@
                                                                                     min="0"
                                                                                 >
                                                                             </div>
-
-                                                                            <!-- From and To Units -->
-                                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                                                 <div class="space-y-2">
                                                                                     <label for="fromUnit" class="block text-sm font-semibold text-slate-700">
                                                                                         From Unit
@@ -102,8 +100,8 @@
                                                                             <div class="rounded-md border border-slate-200 bg-slate-50 p-2.5">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-xs font-semibold text-slate-900">Converted Value</h4>
-                                                                                        <p class="text-[11px] text-slate-500">Real-time conversion result</p>
+                                                                                        <h4 class="text-xs font-semibold text-slate-900" id="result-title">Converted Volume</h4>
+                                                                                        <p class="text-[11px] text-slate-500" id="result-description">Enter a value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="font-serif text-3xl font-bold leading-none text-indigo-700" id="output">--</div>
@@ -188,31 +186,35 @@
                         const clearButton = document.getElementById('clearButton');
                         const output = document.getElementById('output');
                         const unitDisplay = document.getElementById('unit-display');
+                        const resultTitle = document.getElementById('result-title');
+                        const resultDescription = document.getElementById('result-description');
 
                         const toLiter = {
-                            ml: { rate: 0.001, symbol: 'mL' },
-                            l: { rate: 1, symbol: 'L' },
-                            m3: { rate: 1000, symbol: 'm³' },
-                            cm3: { rate: 0.001, symbol: 'cm³' },
-                            in3: { rate: 0.0163871, symbol: 'in³' },
-                            ft3: { rate: 28.3168, symbol: 'ft³' },
-                            yd3: { rate: 764.555, symbol: 'yd³' },
-                            gal: { rate: 3.78541, symbol: 'gal' },
-                            qt: { rate: 0.946353, symbol: 'qt' },
-                            pt: { rate: 0.473176, symbol: 'pt' },
-                            oz: { rate: 0.0295735, symbol: 'fl oz' },
-                            cup: { rate: 0.24, symbol: 'cups' }
+                            ml: { rate: 0.001, symbol: 'mL', name: 'Milliliters' },
+                            l: { rate: 1, symbol: 'L', name: 'Liters' },
+                            m3: { rate: 1000, symbol: 'm³', name: 'Cubic Meters' },
+                            cm3: { rate: 0.001, symbol: 'cm³', name: 'Cubic Centimeters' },
+                            in3: { rate: 0.0163871, symbol: 'in³', name: 'Cubic Inches' },
+                            ft3: { rate: 28.3168, symbol: 'ft³', name: 'Cubic Feet' },
+                            yd3: { rate: 764.555, symbol: 'yd³', name: 'Cubic Yards' },
+                            gal: { rate: 3.78541, symbol: 'gal', name: 'US Gallons' },
+                            qt: { rate: 0.946353, symbol: 'qt', name: 'US Quarts' },
+                            pt: { rate: 0.473176, symbol: 'pt', name: 'US Pints' },
+                            oz: { rate: 0.0295735, symbol: 'fl oz', name: 'US Fluid Ounces' },
+                            cup: { rate: 0.24, symbol: 'cups', name: 'Cups' }
                         };
 
                         function formatNumber(num) {
                             if (num >= 1000000) {
-                                return num.toExponential(4);
+                                return Number(num.toPrecision(5)).toExponential();
                             } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 
@@ -227,9 +229,13 @@
                                 
                                 output.textContent = formatNumber(converted);
                                 unitDisplay.textContent = toLiter[to].symbol;
+                                resultTitle.textContent = 'Volume in ' + toLiter[to].name;
+                                resultDescription.textContent = `${value} ${toLiter[from].symbol} = ${formatNumber(converted)} ${toLiter[to].symbol}`;
                             } else {
                                 output.textContent = "--";
                                 unitDisplay.textContent = "Select units";
+                                resultTitle.textContent = 'Converted Volume';
+                                resultDescription.textContent = 'Enter a value to convert';
                             }
                         }
 

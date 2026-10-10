@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Gas Volume & Energy Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Natural Gas Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -121,26 +122,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Gas Properties -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Gas Properties
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="gasProperties" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">Standard conditions</option>
-                                                                                    <option value="high_heating">High heating value gas</option>
-                                                                                    <option value="low_heating">Low heating value gas</option>
-                                                                                    <option value="pipeline">Pipeline quality gas</option>
-                                                                                    <option value="wellhead">Wellhead gas</option>
-                                                                                    <option value="lng">Liquefied Natural Gas (LNG)</option>
-                                                                                    <option value="compressed">Compressed Natural Gas (CNG)</option>
-                                                                                </select>
                                                                             </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -300,64 +282,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Natural Gas Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Gas Measurement</h4>
-                                    <p>Natural gas is measured by volume (cubic feet, cubic meters) or energy content (BTU, therms). Volume measurements depend on temperature and pressure conditions, while energy measurements reflect the actual heating value and are more consistent for pricing and usage calculations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Industry Applications</h4>
-                                    <p>Gas conversions are essential for utility billing, energy trading, pipeline operations, and industrial processes. Different regions and industries use various units, making accurate conversion critical for contracts, regulations, and efficiency calculations.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-                                <p class="text-sm text-indigo-800">
-                                    <strong>Gas Tip:</strong> Heating values can vary by gas composition and source - pipeline gas typically has higher BTU content than wellhead gas!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Usage Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Gas Usage Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Residential Usage</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="100" data-from="ccf" data-to="therms">Monthly Bill: 100 CCF</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average household monthly usage</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="40000" data-from="btu" data-to="cubic_feet">Water Heater: 40,000 BTU</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical water heater input</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Commercial/Industrial</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="10" data-from="mmbtu" data-to="mcf">Industrial Boiler: 10 MMBTU</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large commercial boiler capacity</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-example="1" data-from="bcf" data-to="therms">Power Plant: 1 BCF</div>
-                                        <div class="text-xs text-gray-600 mt-1">Natural gas power plant fuel</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const gasProperties = document.getElementById('gasProperties');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -372,14 +302,6 @@
                         const btuDisplay = document.getElementById('btuDisplay');
                         const kwhDisplay = document.getElementById('kwhDisplay');
                         const mmbtuDisplay = document.getElementById('mmbtuDisplay');
-                        const heatingValue = document.getElementById('heatingValue');
-                        const specificGravity = document.getElementById('specificGravity');
-                        const energyDensity = document.getElementById('energyDensity');
-                        const residentialCost = document.getElementById('residentialCost');
-                        const commercialCost = document.getElementById('commercialCost');
-                        const industrialCost = document.getElementById('industrialCost');
-                        const co2Emissions = document.getElementById('co2Emissions');
-                        const carbonFootprint = document.getElementById('carbonFootprint');
                         const copyResult = document.getElementById('copyResult');
 
                         // Gas conversion multipliers (to cubic feet as base)
@@ -397,19 +319,19 @@
                             normal_cubic_meters: 35.314667,
                             
                             // Energy units (assuming 1030 BTU/ft³)
-                            therms: 97.087, // 100,000 BTU / 1030 BTU/ft³
-                            dekatherms: 970.87,
-                            btu: 0.000970874, // 1 BTU / 1030 BTU/ft³
-                            mmbtu: 970.874,
-                            joules: 0.000000926, // 1 J ≈ 0.000948 BTU
-                            kwh: 3.312, // 3412 BTU / 1030 BTU/ft³
-                            mwh: 3312,
-                            calories: 0.000003968,
+                            therms: 100000 / 1030, // 100,000 BTU / 1030 BTU/ft³
+                            dekatherms: 1000000 / 1030,
+                            btu: 1 / 1030, // 1 BTU / 1030 BTU/ft³
+                            mmbtu: 1000000 / 1030,
+                            joules: 0.00000092021, // 1 J ≈ 0.000947817 BTU / 1030 BTU/ft³
+                            kwh: 3412.142 / 1030, // 3412.142 BTU / 1030 BTU/ft³
+                            mwh: 3412142 / 1030,
+                            calories: 0.0000038527, // 1 cal ≈ 0.0039683 BTU / 1030 BTU/ft³
                             
-                            // Mass units (assuming 0.6 specific gravity)
-                            pounds: 0.0752, // Approx for natural gas
-                            kilograms: 0.0341,
-                            tonnes: 34.1
+                            // Mass units (assuming 0.6 specific gravity, ≈0.0459 lb/ft³)
+                            pounds: 21.786,
+                            kilograms: 48.03,
+                            tonnes: 48030
                         };
 
                         const unitLabels = {
@@ -436,82 +358,35 @@
                             tonnes: 't'
                         };
 
-                        function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15) {
-                                return num.toExponential(2);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
+                        const heatingValueBtuPerCubicFoot = 1030;
+
+                        function unitLabel(unit, amount) {
+                            return unit === 'therms' && amount === 1 ? 'therm' : unitLabels[unit];
+                        }
+
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getGasProperties(properties) {
-                            const defaults = {
-                                heatingValue: 1030, // BTU/ft³
-                                specificGravity: 0.60,
-                                co2Factor: 117 // lbs CO2/MMBTU
-                            };
-
-                            switch(properties) {
-                                case 'high_heating':
-                                    return { heatingValue: 1100, specificGravity: 0.65, co2Factor: 117 };
-                                case 'low_heating':
-                                    return { heatingValue: 950, specificGravity: 0.55, co2Factor: 117 };
-                                case 'pipeline':
-                                    return { heatingValue: 1030, specificGravity: 0.60, co2Factor: 117 };
-                                case 'wellhead':
-                                    return { heatingValue: 1000, specificGravity: 0.58, co2Factor: 117 };
-                                case 'lng':
-                                    return { heatingValue: 1030, specificGravity: 0.42, co2Factor: 117 };
-                                case 'compressed':
-                                    return { heatingValue: 1030, specificGravity: 0.60, co2Factor: 117 };
-                                default:
-                                    return defaults;
+                            if (num === 0) {
+                                return '0';
                             }
-                        }
-
-                        function calculateCosts(cubicFeet) {
-                            // Average US rates per therm (approximate)
-                            const residentialRate = 1.20; // $/therm
-                            const commercialRate = 0.95;  // $/therm
-                            const industrialRate = 0.65;  // $/therm
-                            
-                            const therms = cubicFeet / 97.087; // Convert ft³ to therms
-                            
-                            return {
-                                residential: therms * residentialRate,
-                                commercial: therms * commercialRate,
-                                industrial: therms * industrialRate
-                            };
-                        }
-
-                        function calculateEmissions(cubicFeet, gasProps) {
-                            const btu = cubicFeet * gasProps.heatingValue;
-                            const mmbtu = btu / 1000000;
-                            const co2Pounds = mmbtu * gasProps.co2Factor;
-                            const co2Kg = co2Pounds * 0.453592;
-                            
-                            return {
-                                co2Pounds: co2Pounds,
-                                co2Kg: co2Kg
-                            };
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const properties = gasProperties.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
-                                const gasProps = getGasProperties(properties);
                                 
                                 // Convert input to cubic feet first
                                 const inputInCubicFeet = inputVal * gasMultipliers[from];
@@ -520,9 +395,9 @@
                                 const result = inputInCubicFeet / gasMultipliers[to];
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = formatNumber(result) + ' ' + unitLabel(to, result);
+                                resultTitle.textContent = toUnit.options[toUnit.selectedIndex].text;
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabel(from, inputVal)} = ${formatNumber(result)} ${unitLabel(to, result)}`;
 
                                 // Convert to all common units and display
                                 const cubicFeet = inputInCubicFeet;
@@ -531,25 +406,9 @@
                                 cubicMetersDisplay.textContent = formatNumber(cubicFeet / gasMultipliers.cubic_meters);
                                 mcfDisplay.textContent = formatNumber(cubicFeet / gasMultipliers.mcf);
                                 thermsDisplay.textContent = formatNumber(cubicFeet / gasMultipliers.therms);
-                                btuDisplay.textContent = formatNumber(cubicFeet * gasProps.heatingValue);
+                                btuDisplay.textContent = formatNumber(cubicFeet * heatingValueBtuPerCubicFoot);
                                 kwhDisplay.textContent = formatNumber(cubicFeet / gasMultipliers.kwh);
-                                mmbtuDisplay.textContent = formatNumber((cubicFeet * gasProps.heatingValue) / 1000000);
-
-                                // Gas properties
-                                heatingValue.textContent = gasProps.heatingValue + ' BTU/ft³';
-                                specificGravity.textContent = gasProps.specificGravity.toFixed(2);
-                                energyDensity.textContent = formatNumber(gasProps.heatingValue * gasProps.specificGravity) + ' BTU/ft³';
-
-                                // Cost estimation
-                                const costs = calculateCosts(cubicFeet);
-                                residentialCost.textContent = '$' + costs.residential.toFixed(2);
-                                commercialCost.textContent = '$' + costs.commercial.toFixed(2);
-                                industrialCost.textContent = '$' + costs.industrial.toFixed(2);
-
-                                // Environmental impact
-                                const emissions = calculateEmissions(cubicFeet, gasProps);
-                                co2Emissions.textContent = formatNumber(emissions.co2Pounds, 1) + ' lbs';
-                                carbonFootprint.textContent = formatNumber(emissions.co2Kg, 1) + ' kg CO₂';
+                                mmbtuDisplay.textContent = formatNumber((cubicFeet * heatingValueBtuPerCubicFoot) / 1000000);
 
                             } else {
                                 clearOutputs();
@@ -568,21 +427,12 @@
                             btuDisplay.textContent = '--';
                             kwhDisplay.textContent = '--';
                             mmbtuDisplay.textContent = '--';
-                            heatingValue.textContent = '1030 BTU/ft³';
-                            specificGravity.textContent = '0.60';
-                            energyDensity.textContent = '--';
-                            residentialCost.textContent = '--';
-                            commercialCost.textContent = '--';
-                            industrialCost.textContent = '--';
-                            co2Emissions.textContent = '--';
-                            carbonFootprint.textContent = '--';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'cubic_feet';
                             toUnit.value = 'ccf';
-                            gasProperties.value = '';
                             clearOutputs();
                             inputValue.focus();
                         }
@@ -591,7 +441,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        gasProperties.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -626,22 +475,6 @@
                                 gasExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-indigo-100', 'text-indigo-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

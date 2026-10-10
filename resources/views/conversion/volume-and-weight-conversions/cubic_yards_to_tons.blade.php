@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Material Volume to Weight Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Cubic Yards to Tons</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -309,7 +309,13 @@
                         }
 
                         function formatNumber(num) {
-                            return num.toFixed(3).replace(/\.?0+$/, '');
+                            if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
+                            } else if (Math.abs(num) < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
                         }
 
                         function convert() {
@@ -336,11 +342,18 @@
                             }
                         }
 
+                        function selectDefaultMaterial() {
+                            document.querySelector('input[name="type"][value="Non-metals"]').checked = true;
+                            populateSubstances('Non-metals');
+                            substanceSelect.value = 'Concrete';
+                            densityInput.value = densities['Non-metals']['Concrete'];
+                            customDensityField.style.display = 'none';
+                        }
+
                         function clearAll() {
                             volumeInput.value = '';
-                            densityInput.value = '';
                             customDensity.value = '';
-                            substanceSelect.selectedIndex = 0;
+                            selectDefaultMaterial();
                             convert();
                             volumeInput.focus();
                         }
@@ -406,8 +419,8 @@
                             });
                         });
 
-                        // Initialize
-                        populateSubstances("Non-metals");
+                        // Initialize with concrete so results appear as soon as a volume is entered
+                        selectDefaultMaterial();
                         volumeInput.focus();
 
                         // Keyboard shortcuts

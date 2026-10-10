@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">RF Power Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">dBm to Watts Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                                                             <!-- Power Input -->
                                                                             <div class="space-y-2">
                                                                                 <label for="powerValue" class="block text-sm font-semibold text-gray-700">
@@ -40,7 +41,7 @@
 
                                                                             <!-- Power Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="powerUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     Power Unit
                                                                                 </label>
                                                                                 <select 
@@ -65,6 +66,7 @@
                                                                                         <option value="erp">ERP (Effective Radiated Power)</option>
                                                                                     </optgroup>
                                                                                 </select>
+                                                                            </div>
                                                                             </div>
 
                                                                             <!-- Reference Impedance -->
@@ -281,56 +283,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About dBm to Watts Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Decibel Power Units</h4>
-                                    <p>dBm is a logarithmic unit expressing power relative to 1 milliwatt. The logarithmic scale makes it easier to work with the wide range of power levels in RF systems. Each 3 dB increase represents a doubling of power, while 10 dB represents a 10× increase.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">RF Engineering Applications</h4>
-                                    <p>This conversion is fundamental in RF design, antenna calculations, link budgets, and power measurements. Understanding dBm helps in system design, regulatory compliance, interference analysis, and optimizing wireless communication systems.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>RF Tip:</strong> 0 dBm = 1 mW is the reference point. Every 10 dB change represents a 10× power change, and every 3 dB change represents a 2× power change.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Practical RF Power Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Communication Systems</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-power="20" data-unit="dbm">WiFi Router: 20 dBm</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical WiFi transmit power</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-power="-70" data-unit="dbm">WiFi Sensitivity: -70 dBm</div>
-                                        <div class="text-xs text-gray-600 mt-1">Minimum receivable signal</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Broadcasting & Radar</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-power="50" data-unit="dbm">FM Transmitter: 50 dBm</div>
-                                        <div class="text-xs text-gray-600 mt-1">Commercial FM radio station</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-power="60" data-unit="dbm">Radar System: 60 dBm</div>
-                                        <div class="text-xs text-gray-600 mt-1">High-power radar transmitter</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -354,27 +306,34 @@
                         const voltageDisplay = document.getElementById('voltageDisplay');
                         const currentDisplay = document.getElementById('currentDisplay');
                         const powerClassDisplay = document.getElementById('powerClassDisplay');
-                        const rangeCategoryDisplay = document.getElementById('rangeCategoryDisplay');
-                        const typicalUseDisplay = document.getElementById('typicalUseDisplay');
-                        const linkBudgetDisplay = document.getElementById('linkBudgetDisplay');
-                        const antennaGainDisplay = document.getElementById('antennaGainDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-15 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'G';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
                         }
+
+                        const unitSymbols = {
+                            dbm: 'dBm',
+                            dbw: 'dBW',
+                            dbu: 'dBu',
+                            dbv: 'dBV',
+                            watt: 'W',
+                            milliwatt: 'mW',
+                            microwatt: 'μW',
+                            nanowatt: 'nW',
+                            picowatt: 'pW',
+                            eirp: 'W EIRP',
+                            erp: 'W ERP'
+                        };
 
                         function dbmToWatts(dbm) {
                             return Math.pow(10, (dbm - 30) / 10);
@@ -392,33 +351,6 @@
                             if (dbm < 30) return 'High power';
                             if (dbm < 50) return 'Very high power';
                             return 'Extreme power';
-                        }
-
-                        function getRangeCategory(dbm) {
-                            if (dbm < -90) return 'Receiver sensitivity';
-                            if (dbm < -60) return 'Weak signal';
-                            if (dbm < -30) return 'Good signal';
-                            if (dbm < 0) return 'Strong signal';
-                            if (dbm < 30) return 'Transmitter power';
-                            return 'High-power transmitter';
-                        }
-
-                        function getTypicalUse(dbm) {
-                            if (dbm < -100) return 'GPS/Satellite RX';
-                            if (dbm < -70) return 'WiFi/Cellular RX';
-                            if (dbm < -30) return 'Bluetooth/ZigBee';
-                            if (dbm < 10) return 'WiFi/Cellular TX';
-                            if (dbm < 30) return 'Amateur radio';
-                            if (dbm < 50) return 'Broadcasting';
-                            return 'Radar/Industrial';
-                        }
-
-                        function getLinkBudget(dbm) {
-                            if (dbm > 20) return 'TX power';
-                            if (dbm > -30) return 'Signal level';
-                            if (dbm > -70) return 'Usable signal';
-                            if (dbm > -100) return 'Weak signal';
-                            return 'Noise floor';
                         }
 
                         function convertToWatts(value, unit) {
@@ -458,20 +390,22 @@
                             const unit = powerUnit.value;
                             const z = parseFloat(impedance.value) || 50;
 
-                            if (!isNaN(power)) {
-                                // Convert to watts
-                                const watts = convertToWatts(power, unit);
+                            const watts = isNaN(power) ? NaN : convertToWatts(power, unit);
+
+                            if (!isNaN(power) && watts > 0 && Number.isFinite(watts)) {
                                 const dbm = wattsToDbm(watts);
                                 
                                 // Update primary output
+                                let primaryResult;
                                 if (unit === 'dbm' || unit === 'dbw' || unit === 'dbu' || unit === 'dbv') {
-                                    output.textContent = formatNumber(watts) + ' W';
-                                    resultTitle.textContent = 'Converted to Watts';
+                                    primaryResult = formatNumber(watts) + ' W';
+                                    resultTitle.textContent = 'Power in Watts (W)';
                                 } else {
-                                    output.textContent = formatNumber(dbm) + ' dBm';
-                                    resultTitle.textContent = 'Converted to dBm';
+                                    primaryResult = formatNumber(dbm) + ' dBm';
+                                    resultTitle.textContent = 'Power in Decibel-Milliwatts (dBm)';
                                 }
-                                resultDescription.textContent = `${power} ${unit} conversion result`;
+                                output.textContent = primaryResult;
+                                resultDescription.textContent = `${power} ${unitSymbols[unit]} = ${primaryResult}`;
 
                                 // Display in all units
                                 dbmDisplay.textContent = formatNumber(dbm) + ' dBm';
@@ -492,11 +426,6 @@
                                 currentDisplay.textContent = formatNumber(current) + ' A';
                                 powerClassDisplay.textContent = getPowerClass(dbm);
 
-                                // RF applications
-                                rangeCategoryDisplay.textContent = getRangeCategory(dbm);
-                                typicalUseDisplay.textContent = getTypicalUse(dbm);
-                                linkBudgetDisplay.textContent = getLinkBudget(dbm);
-                                antennaGainDisplay.textContent = 'Context dependent';
 
                             } else {
                                 clearOutputs();
@@ -516,10 +445,6 @@
                             voltageDisplay.textContent = '--';
                             currentDisplay.textContent = '--';
                             powerClassDisplay.textContent = '--';
-                            rangeCategoryDisplay.textContent = '--';
-                            typicalUseDisplay.textContent = '--';
-                            linkBudgetDisplay.textContent = '--';
-                            antennaGainDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -568,22 +493,6 @@
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-blue-100', 'text-blue-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-power]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const power = this.getAttribute('data-power');
-                                const unit = this.getAttribute('data-unit');
-                                
-                                if (power && unit) {
-                                    powerValue.value = power;
-                                    powerUnit.value = unit;
-                                    calculate();
-                                    powerValue.focus();
-                                }
                             });
                         });
 

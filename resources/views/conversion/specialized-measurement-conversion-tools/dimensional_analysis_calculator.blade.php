@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Complex Unit Analysis & Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Dimensional Analysis Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -317,57 +317,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Dimensional Analysis</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Dimensional Analysis</h4>
-                                    <p>Dimensional analysis is a mathematical technique using physical dimensions to check relationships between physical quantities. It helps verify equations, derive formulas, and convert between unit systems by analyzing the fundamental dimensions of mass, length, time, and other base quantities.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Applications</h4>
-                                    <p>Essential in engineering, physics, and chemistry for equation verification, unit conversion, scaling laws, and error checking. It ensures physical equations are dimensionally consistent and helps identify missing factors or incorrect formulations in scientific calculations.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-teal-50 rounded-lg border border-teal-200">
-                                <p class="text-sm text-teal-800">
-                                    <strong>Analysis Tip:</strong> All terms in a physical equation must have the same dimensions - this is the principle of dimensional homogeneity!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Common Physics Quantities -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Physics Quantities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Mechanical Quantities</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-expression="100 N">Force: 100 N</div>
-                                        <div class="text-xs text-gray-600 mt-1">[M L T⁻²] - Newton's second law</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-expression="500 J">Energy: 500 J</div>
-                                        <div class="text-xs text-gray-600 mt-1">[M L² T⁻²] - Work and energy</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Electrical Quantities</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-expression="12 V">Voltage: 12 V</div>
-                                        <div class="text-xs text-gray-600 mt-1">[M L² T⁻³ I⁻¹] - Electric potential</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-expression="100 W">Power: 100 W</div>
-                                        <div class="text-xs text-gray-600 mt-1">[M L² T⁻³] - Rate of energy transfer</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -445,7 +394,7 @@
 
                         function parseExpression(expression) {
                             // Simple parser for basic expressions like "50 m/s²", "100 N⋅m"
-                            const match = expression.match(/^([\d.]+)\s*(.+)$/);
+                            const match = expression.match(/^(-?\d*\.?\d+)\s*([^\d\s.].*)$/);
                             if (!match) return null;
                             
                             const value = parseFloat(match[1]);
@@ -459,10 +408,10 @@
                             const dimensions = [0, 0, 0, 0, 0, 0, 0]; // [M, L, T, Θ, I, N, J]
                             
                             // Handle common patterns
-                            if (unitString.includes('m/s²') || unitString === 'm/s²') {
-                                dimensions[1] = 1; dimensions[2] = -2; // [L T⁻²]
-                            } else if (unitString.includes('kg⋅m/s²') || unitString === 'N') {
+                            if (unitString.includes('kg⋅m/s²') || unitString === 'N') {
                                 dimensions[0] = 1; dimensions[1] = 1; dimensions[2] = -2; // [M L T⁻²]
+                            } else if (unitString.includes('m/s²')) {
+                                dimensions[1] = 1; dimensions[2] = -2; // [L T⁻²]
                             } else if (unitString.includes('N⋅m') || unitString === 'J') {
                                 dimensions[0] = 1; dimensions[1] = 2; dimensions[2] = -2; // [M L² T⁻²]
                             } else if (unitString.includes('m/s')) {
@@ -495,7 +444,8 @@
                                     if (formula) formula += ' ';
                                     formula += symbols[i];
                                     if (dimensions[i] !== 1) {
-                                        formula += dimensions[i] > 0 ? `⁺${dimensions[i]}` : `⁻${Math.abs(dimensions[i])}`;
+                                        const superscripts = { '-': '⁻', '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹' };
+                                        formula += String(dimensions[i]).split('').map(character => superscripts[character] || character).join('');
                                     }
                                 }
                             }
@@ -528,6 +478,7 @@
                             const parsed = parseExpression(expression);
                             if (!parsed) {
                                 output.textContent = 'Invalid expression format';
+                                resultTitle.textContent = 'Analysis Result';
                                 resultDescription.textContent = 'Use format: "value units" (e.g., "50 m/s²")';
                                 return;
                             }
@@ -644,18 +595,6 @@
                                 unitExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-teal-100', 'text-teal-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-expression]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const expression = this.getAttribute('data-expression');
-                                
-                                inputExpression.value = expression;
-                                analyze();
-                                inputExpression.focus();
                             });
                         });
 

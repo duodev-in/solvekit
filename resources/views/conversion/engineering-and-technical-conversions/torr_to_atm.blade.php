@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Vacuum & Atmospheric Pressure Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Torr to atm</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -346,17 +346,17 @@
 
                         const unitNames = {
                             torr: 'Torr',
-                            atm: 'Atmosphere',
+                            atm: 'Atmospheres',
                             mmhg: 'mmHg',
                             inhg: 'inHg',
-                            mbar: 'Millibar',
-                            pascal: 'Pascal',
-                            kpa: 'Kilopascal',
-                            mpa: 'Megapascal',
+                            mbar: 'Millibars',
+                            pascal: 'Pascals',
+                            kpa: 'Kilopascals',
+                            mpa: 'Megapascals',
                             psi: 'PSI',
-                            bar: 'Bar',
+                            bar: 'Bars',
                             mtorr: 'Millitorr',
-                            micron: 'Micron'
+                            micron: 'Microns of Mercury'
                         };
 
                         const unitSymbols = {
@@ -381,17 +381,22 @@
 
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'scientific') {
-                                return num.toExponential(4);
+                                return Number(num.toPrecision(5)).toExponential();
                             } else if (precision === 'auto') {
-                                if (num >= 1000000 || num <= 0.0001) {
-                                    return num.toExponential(4);
+                                if (num >= 1000000 || (num !== 0 && Math.abs(num) < 0.0001)) {
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
+                                } else if (Math.abs(num) < 1) {
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 } else {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
                                 }
                             } else {
                                 const decimals = parseInt(precision);
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -decimals)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
                             }
                         }
@@ -412,7 +417,7 @@
                             if (fromUnit.value === toUnit.value) {
                                 conversionFormula.textContent = `1 ${fromSymbol} = 1 ${toSymbol}`;
                             } else {
-                                const conversionFactor = toFactor / fromFactor;
+                                const conversionFactor = fromFactor / toFactor;
                                 conversionFormula.textContent = `1 ${fromSymbol} = ${formatNumber(conversionFactor, '6')} ${toSymbol}`;
                             }
                         }

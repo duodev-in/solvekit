@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Precision Weight Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">mcg to mg</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -252,9 +252,18 @@
                         function formatNumber(num, precision = null) {
                             const decimals = precision || getPrecision();
                             if (num >= 1000000) {
-                                return num.toExponential(decimals);
+                                return Number(num.toPrecision(decimals + 1)).toExponential();
                             }
-                            return parseFloat(num.toFixed(decimals));
+
+                            const rounded = parseFloat(num.toFixed(decimals));
+
+                            if (num !== 0 && rounded === 0) {
+                                return Math.abs(num) < 0.000001
+                                    ? Number(num.toPrecision(4)).toExponential()
+                                    : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return rounded.toLocaleString(undefined, { maximumFractionDigits: decimals });
                         }
 
                         function convert() {

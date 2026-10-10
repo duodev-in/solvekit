@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Professional Torque Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Torque (Nm)</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -361,22 +361,22 @@
                         };
 
                         const unitNames = {
-                            uNm: 'Micronewton meter',
-                            mNm: 'Millinewton meter',
-                            Nm: 'Newton meter',
-                            kNm: 'Kilonewton meter',
-                            MNm: 'Meganewton meter',
-                            kgfm: 'Kilogram-force meter',
-                            kgfcm: 'Kilogram-force centimeter',
-                            gfcm: 'Gram-force centimeter',
-                            tfm_metric: 'Metric ton-force meter',
-                            lbfft: 'Pound-force foot',
-                            lbfin: 'Pound-force inch',
-                            ozfin: 'Ounce-force inch',
-                            tfm_us: 'US ton-force meter',
-                            tfm_uk: 'UK ton-force meter',
-                            pdlft: 'Poundal foot',
-                            dyncm: 'Dyne centimeter'
+                            uNm: 'Micronewton-meters',
+                            mNm: 'Millinewton-meters',
+                            Nm: 'Newton-meters',
+                            kNm: 'Kilonewton-meters',
+                            MNm: 'Meganewton-meters',
+                            kgfm: 'Kilogram-force meters',
+                            kgfcm: 'Kilogram-force centimeters',
+                            gfcm: 'Gram-force centimeters',
+                            tfm_metric: 'Metric ton-force meters',
+                            lbfft: 'Pound-force feet',
+                            lbfin: 'Pound-force inches',
+                            ozfin: 'Ounce-force inches',
+                            tfm_us: 'US ton-force meters',
+                            tfm_uk: 'UK ton-force meters',
+                            pdlft: 'Poundal feet',
+                            dyncm: 'Dyne-centimeters'
                         };
 
                         const unitSymbols = {
@@ -405,17 +405,22 @@
 
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'scientific') {
-                                return num.toExponential(4);
+                                return Number(num.toPrecision(5)).toExponential();
                             } else if (precision === 'auto') {
-                                if (num >= 1000000 || num <= 0.0001) {
-                                    return num.toExponential(4);
+                                if (num >= 1000000 || (num !== 0 && Math.abs(num) < 0.0001)) {
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
+                                } else if (Math.abs(num) < 1) {
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 } else {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
                                 }
                             } else {
                                 const decimals = parseInt(precision);
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -decimals)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
                             }
                         }

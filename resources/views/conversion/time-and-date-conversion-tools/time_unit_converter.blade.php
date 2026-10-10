@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Time Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Time Unit Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -33,71 +33,65 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
-                                                                            <!-- Input Value -->
-                                                                            <div class="space-y-2">
-                                                                                <label for="inputValue" class="block text-sm font-semibold text-gray-700">
-                                                                                    Enter Time Value
-                                                                                </label>
-                                                                                <div class="relative">
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="inputValue" class="block text-sm font-semibold text-gray-700">
+                                                                                        Time Value
+                                                                                    </label>
                                                                                     <input 
                                                                                         type="number" 
                                                                                         id="inputValue" 
                                                                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono" 
-                                                                                        placeholder="Enter value (e.g., 3600)"
+                                                                                        placeholder="e.g., 3600"
                                                                                         step="any"
                                                                                         min="0"
                                                                                     >
-                                                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                                                        <span class="text-gray-500 text-sm font-medium">Value</span>
-                                                                                    </div>
                                                                                 </div>
-                                                                                <p class="text-xs text-gray-500">Enter any positive number</p>
-                                                                            </div>
 
-                                                                            <!-- From Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    From Unit (Source)
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="fromUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="milliseconds">Milliseconds (ms)</option>
-                                                                                    <option value="seconds" selected>Seconds (s)</option>
-                                                                                    <option value="minutes">Minutes (min)</option>
-                                                                                    <option value="hours">Hours (hr)</option>
-                                                                                    <option value="days">Days</option>
-                                                                                    <option value="weeks">Weeks</option>
-                                                                                    <option value="months">Months (30 days)</option>
-                                                                                    <option value="years">Years (365 days)</option>
-                                                                                    <option value="decades">Decades</option>
-                                                                                    <option value="centuries">Centuries</option>
-                                                                                    <option value="millennia">Millennia</option>
-                                                                                </select>
-                                                                            </div>
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="fromUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        From Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="fromUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="milliseconds">Milliseconds (ms)</option>
+                                                                                        <option value="seconds" selected>Seconds (s)</option>
+                                                                                        <option value="minutes">Minutes (min)</option>
+                                                                                        <option value="hours">Hours (h)</option>
+                                                                                        <option value="days">Days (d)</option>
+                                                                                        <option value="weeks">Weeks (wk)</option>
+                                                                                        <option value="months">Months (30 days)</option>
+                                                                                        <option value="years">Years (365 days)</option>
+                                                                                        <option value="decades">Decades</option>
+                                                                                        <option value="centuries">Centuries</option>
+                                                                                        <option value="millennia">Millennia</option>
+                                                                                    </select>
+                                                                                </div>
 
-                                                                            <!-- To Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    To Unit (Target)
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="toUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="milliseconds">Milliseconds (ms)</option>
-                                                                                    <option value="seconds">Seconds (s)</option>
-                                                                                    <option value="minutes" selected>Minutes (min)</option>
-                                                                                    <option value="hours">Hours (hr)</option>
-                                                                                    <option value="days">Days</option>
-                                                                                    <option value="weeks">Weeks</option>
-                                                                                    <option value="months">Months (30 days)</option>
-                                                                                    <option value="years">Years (365 days)</option>
-                                                                                    <option value="decades">Decades</option>
-                                                                                    <option value="centuries">Centuries</option>
-                                                                                    <option value="millennia">Millennia</option>
-                                                                                </select>
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="toUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        To Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="toUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="milliseconds">Milliseconds (ms)</option>
+                                                                                        <option value="seconds">Seconds (s)</option>
+                                                                                        <option value="minutes" selected>Minutes (min)</option>
+                                                                                        <option value="hours">Hours (h)</option>
+                                                                                        <option value="days">Days (d)</option>
+                                                                                        <option value="weeks">Weeks (wk)</option>
+                                                                                        <option value="months">Months (30 days)</option>
+                                                                                        <option value="years">Years (365 days)</option>
+                                                                                        <option value="decades">Decades</option>
+                                                                                        <option value="centuries">Centuries</option>
+                                                                                        <option value="millennia">Millennia</option>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -118,26 +112,6 @@
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Adjust decimal places for calculations</p>
                                                                             </div>
-
-                                                                            <!-- Time Context -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Time Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="timeContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="precise">Scientific/Precise</option>
-                                                                                    <option value="human">Human lifespan</option>
-                                                                                    <option value="historical">Historical periods</option>
-                                                                                    <option value="astronomical">Astronomical time</option>
-                                                                                    <option value="computing">Computing/Programming</option>
-                                                                                </select>
-                                                                            </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -289,64 +263,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Time Unit Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Universal Time System</h4>
-                                    <p>Time units form a hierarchical system from milliseconds to millennia. This converter uses standard conversions: 60 seconds per minute, 60 minutes per hour, 24 hours per day, 7 days per week, approximately 30 days per month, and 365 days per year for calculations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Time unit conversion is essential in programming, project planning, scientific calculations, historical research, astronomy, and everyday life. Understanding these relationships helps in scheduling, data analysis, and comprehending time scales from microseconds to geological periods.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-violet-50 rounded-lg border border-violet-200">
-                                <p class="text-sm text-violet-800">
-                                    <strong>Time Tip:</strong> Remember that months and years are approximations (30 days, 365 days) - use calendar functions for exact date calculations!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Time Scale Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Time Scale Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Micro to Macro</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="1" data-from="milliseconds" data-to="seconds">Blink: ~1 millisecond</div>
-                                        <div class="text-xs text-gray-600 mt-1">Camera shutter speed</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="1" data-from="seconds" data-to="minutes">Heartbeat: ~1 second</div>
-                                        <div class="text-xs text-gray-600 mt-1">Resting heart rate</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="1" data-from="hours" data-to="minutes">Class Period: 1 hour</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard lecture duration</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Life & History</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="80" data-from="years" data-to="days">Human Lifespan: ~80 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average human life expectancy</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="5" data-from="centuries" data-to="years">Historical Era: 5 centuries</div>
-                                        <div class="text-xs text-gray-600 mt-1">Renaissance to modern era</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-violet-600 cursor-pointer hover:text-violet-800" data-example="1" data-from="millennia" data-to="years">Millennium: 1000 years</div>
-                                        <div class="text-xs text-gray-600 mt-1">Major historical period</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -356,31 +272,21 @@
                         const toUnit = document.getElementById('toUnit');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
-                        const timeContext = document.getElementById('timeContext');
                         const clearButton = document.getElementById('clearButton');
-                        
-                        // Output elements
                         const output = document.getElementById('output');
                         const resultTitle = document.getElementById('result-title');
                         const resultDescription = document.getElementById('result-description');
-                        const millisecondsDisplay = document.getElementById('millisecondsDisplay');
-                        const secondsDisplay = document.getElementById('secondsDisplay');
-                        const minutesDisplay = document.getElementById('minutesDisplay');
-                        const hoursDisplay = document.getElementById('hoursDisplay');
-                        const daysDisplay = document.getElementById('daysDisplay');
-                        const weeksDisplay = document.getElementById('weeksDisplay');
-                        const monthsDisplay = document.getElementById('monthsDisplay');
-                        const yearsDisplay = document.getElementById('yearsDisplay');
-                        const timeScaleContext = document.getElementById('timeScaleContext');
-                        const conversionFactor = document.getElementById('conversionFactor');
-                        const scientificNotation = document.getElementById('scientificNotation');
-                        const precisionUsed = document.getElementById('precisionUsed');
-                        const contextInfo = document.getElementById('contextInfo');
-                        const heartbeats = document.getElementById('heartbeats');
-                        const breaths = document.getElementById('breaths');
-                        const blinks = document.getElementById('blinks');
-                        const steps = document.getElementById('steps');
                         const copyResult = document.getElementById('copyResult');
+                        const unitDisplays = {
+                            milliseconds: document.getElementById('millisecondsDisplay'),
+                            seconds: document.getElementById('secondsDisplay'),
+                            minutes: document.getElementById('minutesDisplay'),
+                            hours: document.getElementById('hoursDisplay'),
+                            days: document.getElementById('daysDisplay'),
+                            weeks: document.getElementById('weeksDisplay'),
+                            months: document.getElementById('monthsDisplay'),
+                            years: document.getElementById('yearsDisplay')
+                        };
 
                         // Time unit multipliers (in seconds)
                         const timeMultipliers = {
@@ -397,244 +303,97 @@
                             millennia: 31536000000
                         };
 
-                        const unitLabels = {
-                            milliseconds: 'ms',
-                            seconds: 's',
-                            minutes: 'min',
-                            hours: 'hr',
-                            days: 'days',
-                            weeks: 'weeks',
-                            months: 'months',
-                            years: 'years',
-                            decades: 'decades',
-                            centuries: 'centuries',
-                            millennia: 'millennia'
+                        const unitNames = {
+                            milliseconds: ['millisecond', 'milliseconds'],
+                            seconds: ['second', 'seconds'],
+                            minutes: ['minute', 'minutes'],
+                            hours: ['hour', 'hours'],
+                            days: ['day', 'days'],
+                            weeks: ['week', 'weeks'],
+                            months: ['month', 'months'],
+                            years: ['year', 'years'],
+                            decades: ['decade', 'decades'],
+                            centuries: ['century', 'centuries'],
+                            millennia: ['millennium', 'millennia']
                         };
 
+                        function unitName(unit, value) {
+                            return unitNames[unit][value === 1 ? 0 : 1];
+                        }
+
+                        function capitalize(text) {
+                            return text.charAt(0).toUpperCase() + text.slice(1);
+                        }
+
                         function getPrecision() {
-                            return parseInt(precision.value);
+                            return parseInt(precision.value, 10);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-6 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                        function formatNumber(num) {
+                            if (num === 0) {
+                                return '0';
                             }
-                        }
 
-                        function getTimeScaleContext(seconds) {
-                            if (seconds < 1) {
-                                return 'Microsecond scale - computer processing, light travel short distances, high-speed photography';
-                            } else if (seconds < 60) {
-                                return 'Second scale - human reactions, heartbeats, conversation pauses, quick tasks';
-                            } else if (seconds < 3600) {
-                                return 'Minute scale - short activities, meetings, travel times, cooking durations';
-                            } else if (seconds < 86400) {
-                                return 'Hour scale - work periods, sleep cycles, major activities, events';
-                            } else if (seconds < 2592000) {
-                                return 'Day/Week scale - projects, habits, weather patterns, biological cycles';
-                            } else if (seconds < 31536000) {
-                                return 'Month scale - seasons, academic terms, business quarters, personal goals';
-                            } else if (seconds < 3153600000) {
-                                return 'Year/Decade scale - careers, education, technology generations, economic cycles';
-                            } else if (seconds < 31536000000) {
-                                return 'Century scale - historical periods, civilizations, major cultural changes';
-                            } else {
-                                return 'Millennium scale - geological changes, species evolution, astronomical cycles';
+                            const absolute = Math.abs(num);
+
+                            if (absolute >= 1e15 || absolute < 1e-6) {
+                                return num.toExponential(4);
                             }
+
+                            if (absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: Math.max(getPrecision(), 1) });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
                         }
 
-                        function getContextualInfo(seconds, context) {
-                            const contexts = {
-                                precise: {
-                                    name: 'Scientific/Precise',
-                                    getInfo: (s) => {
-                                        if (s < 1e-9) return 'Nanosecond precision - quantum mechanics, atomic clocks';
-                                        if (s < 1e-6) return 'Microsecond precision - computer operations, electronic circuits';
-                                        if (s < 1e-3) return 'Millisecond precision - network latency, reaction times';
-                                        if (s < 1) return 'Sub-second precision - high-speed measurements';
-                                        return 'Standard scientific measurement precision';
-                                    }
-                                },
-                                human: {
-                                    name: 'Human Lifespan',
-                                    getInfo: (s) => {
-                                        const years = s / 31536000;
-                                        if (years < 1) return 'Less than a year - developmental milestones, seasonal changes';
-                                        if (years < 18) return 'Childhood/adolescence - education, growth, development';
-                                        if (years < 65) return 'Adult working years - career, family, major life decisions';
-                                        if (years < 100) return 'Senior years - retirement, legacy, wisdom sharing';
-                                        return 'Multiple human generations - family lineage, cultural memory';
-                                    }
-                                },
-                                historical: {
-                                    name: 'Historical Periods',
-                                    getInfo: (s) => {
-                                        const years = s / 31536000;
-                                        if (years < 10) return 'Recent history - current events, political terms';
-                                        if (years < 100) return 'Living memory - technological revolution, social changes';
-                                        if (years < 1000) return 'Recorded history - empires, civilizations, major discoveries';
-                                        if (years < 10000) return 'Human civilization - agriculture, writing, cities';
-                                        return 'Prehistoric times - human evolution, geological changes';
-                                    }
-                                },
-                                astronomical: {
-                                    name: 'Astronomical Time',
-                                    getInfo: (s) => {
-                                        const years = s / 31536000;
-                                        if (years < 1) return 'Planetary rotation and orbital mechanics';
-                                        if (years < 1000) return 'Human astronomical observations, satellite missions';
-                                        if (years < 1000000) return 'Stellar evolution timeframes, galactic rotation';
-                                        if (years < 1000000000) return 'Geological timescales, solar system formation';
-                                        return 'Cosmological timescales - universe age, stellar lifespans';
-                                    }
-                                },
-                                computing: {
-                                    name: 'Computing/Programming',
-                                    getInfo: (s) => {
-                                        if (s < 1e-9) return 'CPU cycle time, quantum computing operations';
-                                        if (s < 1e-6) return 'Memory access time, cache operations';
-                                        if (s < 1e-3) return 'Database queries, network requests';
-                                        if (s < 1) return 'User interface responsiveness, real-time processing';
-                                        if (s < 60) return 'Batch processing, compilation times';
-                                        return 'Long-running processes, system maintenance windows';
-                                    }
+                        function setDisplays(seconds) {
+                            Object.keys(unitDisplays).forEach(function(unit) {
+                                if (unitDisplays[unit]) {
+                                    unitDisplays[unit].textContent = seconds === null ? '--' : formatNumber(seconds / timeMultipliers[unit]);
                                 }
-                            };
-
-                            if (context && contexts[context]) {
-                                const ctx = contexts[context];
-                                return `${ctx.name}: ${ctx.getInfo(seconds)}`;
-                            }
-                            return 'Select a time context for specific information';
-                        }
-
-                        function calculateBiologicalMeasurements(seconds) {
-                            // Average rates per minute
-                            const heartRate = 70; // beats per minute
-                            const breathRate = 16; // breaths per minute
-                            const blinkRate = 20; // blinks per minute
-                            const stepRate = 120; // steps per minute (walking)
-
-                            const minutes = seconds / 60;
-
-                            return {
-                                heartbeats: Math.round(minutes * heartRate),
-                                breaths: Math.round(minutes * breathRate),
-                                blinks: Math.round(minutes * blinkRate),
-                                steps: Math.round(minutes * stepRate)
-                            };
+                            });
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const context = timeContext.value;
 
-                            if (!isNaN(inputVal) && inputVal >= 0) {
-                                // Convert input to seconds first
-                                const inputInSeconds = inputVal * timeMultipliers[from];
-                                
-                                // Convert seconds to target unit
-                                const result = inputInSeconds / timeMultipliers[to];
-                                
-                                // Update primary output
-                                output.textContent = formatNumber(result);
-                                resultTitle.textContent = `${unitLabels[to]} (${to})`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
-
-                                // Convert to all units and display
-                                const seconds = inputInSeconds;
-                                millisecondsDisplay.textContent = formatNumber(seconds / timeMultipliers.milliseconds);
-                                secondsDisplay.textContent = formatNumber(seconds / timeMultipliers.seconds);
-                                minutesDisplay.textContent = formatNumber(seconds / timeMultipliers.minutes);
-                                hoursDisplay.textContent = formatNumber(seconds / timeMultipliers.hours);
-                                daysDisplay.textContent = formatNumber(seconds / timeMultipliers.days);
-                                weeksDisplay.textContent = formatNumber(seconds / timeMultipliers.weeks);
-                                monthsDisplay.textContent = formatNumber(seconds / timeMultipliers.months);
-                                yearsDisplay.textContent = formatNumber(seconds / timeMultipliers.years);
-
-                                // Time scale context
-                                timeScaleContext.textContent = getTimeScaleContext(seconds);
-
-                                // Conversion analysis
-                                const factor = timeMultipliers[to] / timeMultipliers[from];
-                                conversionFactor.textContent = factor >= 1 ? `÷${formatNumber(factor, 3)}` : `×${formatNumber(1/factor, 3)}`;
-                                scientificNotation.textContent = result.toExponential(3);
-                                precisionUsed.textContent = `${getPrecision()} digits`;
-
-                                // Contextual information
-                                contextInfo.textContent = getContextualInfo(seconds, context);
-
-                                // Biological measurements
-                                if (seconds <= 31536000000) { // Up to 1000 years
-                                    const bio = calculateBiologicalMeasurements(seconds);
-                                    heartbeats.textContent = formatNumber(bio.heartbeats, 0);
-                                    breaths.textContent = formatNumber(bio.breaths, 0);
-                                    blinks.textContent = formatNumber(bio.blinks, 0);
-                                    steps.textContent = formatNumber(bio.steps, 0);
-                                } else {
-                                    heartbeats.textContent = 'N/A';
-                                    breaths.textContent = 'N/A';
-                                    blinks.textContent = 'N/A';
-                                    steps.textContent = 'N/A';
-                                }
-
-                            } else {
+                            if (isNaN(inputVal) || inputVal < 0) {
                                 clearOutputs();
+                                return;
                             }
+
+                            const inputInSeconds = inputVal * timeMultipliers[from];
+                            const result = inputInSeconds / timeMultipliers[to];
+
+                            output.textContent = formatNumber(result);
+                            resultTitle.textContent = `${capitalize(unitNames[to][1])}`;
+                            resultDescription.textContent = `${formatNumber(inputVal)} ${unitName(from, inputVal)} = ${formatNumber(result)} ${unitName(to, result)}`;
+                            setDisplays(inputInSeconds);
                         }
 
                         function clearOutputs() {
                             output.textContent = '--';
                             resultTitle.textContent = 'Converted Time';
-                            resultDescription.textContent = 'Converted result';
-                            millisecondsDisplay.textContent = '--';
-                            secondsDisplay.textContent = '--';
-                            minutesDisplay.textContent = '--';
-                            hoursDisplay.textContent = '--';
-                            daysDisplay.textContent = '--';
-                            weeksDisplay.textContent = '--';
-                            monthsDisplay.textContent = '--';
-                            yearsDisplay.textContent = '--';
-                            timeScaleContext.textContent = 'Enter a time value to see scale context';
-                            conversionFactor.textContent = '--';
-                            scientificNotation.textContent = '--';
-                            precisionUsed.textContent = '6 digits';
-                            contextInfo.textContent = 'Select a time context for specific information';
-                            heartbeats.textContent = '--';
-                            breaths.textContent = '--';
-                            blinks.textContent = '--';
-                            steps.textContent = '--';
+                            resultDescription.textContent = 'Enter a time value to convert';
+                            setDisplays(null);
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'seconds';
                             toUnit.value = 'minutes';
-                            timeContext.value = '';
                             precision.value = 6;
                             precisionValue.textContent = '6 digits';
                             clearOutputs();
                             inputValue.focus();
                         }
 
-                        // Event listeners
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        timeContext.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -643,7 +402,6 @@
 
                         clearButton.addEventListener('click', clearAll);
 
-                        // Copy functionality
                         copyResult.addEventListener('click', function() {
                             const text = output.textContent;
                             if (text !== '--') {
@@ -656,20 +414,14 @@
                             }
                         });
 
-                        // Example buttons
                         const timeExamples = document.querySelectorAll('.time-example');
                         timeExamples.forEach(button => {
                             button.addEventListener('click', function() {
-                                const value = this.getAttribute('data-value');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                fromUnit.value = from;
-                                toUnit.value = to;
+                                inputValue.value = this.getAttribute('data-value');
+                                fromUnit.value = this.getAttribute('data-from');
+                                toUnit.value = this.getAttribute('data-to');
                                 convert();
-                                
-                                // Update button styles
+
                                 timeExamples.forEach(btn => btn.classList.remove('bg-violet-100', 'text-violet-700'));
                                 timeExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
@@ -677,27 +429,10 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
-                            });
-                        });
-
-                        // Initialize
                         precisionValue.textContent = precision.value + ' digits';
+                        clearOutputs();
                         inputValue.focus();
 
-                        // Keyboard shortcuts
                         document.addEventListener('keydown', function(e) {
                             if (e.key === 'Escape') {
                                 clearAll();

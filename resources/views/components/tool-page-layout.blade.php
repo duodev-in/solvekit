@@ -223,7 +223,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) > :first-child > :first-child h2 {
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -244,7 +244,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id="calculatorForm"] {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .font-serif[id],
@@ -302,7 +302,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.phase-five-tool > :first-child > :first-child h2 {
+        #toolUiRoot.phase-five-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -323,7 +323,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.phase-five-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.phase-five-tool #calculatorForm label {
@@ -383,7 +383,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.phase-six-tool > :first-child > :first-child h2,
+        #toolUiRoot.phase-six-tool > :first-child > :first-child :is(h1, h2),
         #toolUiRoot.phase-six-tool > :first-child > :first-child p {
             color: #ffffff;
         }
@@ -401,7 +401,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.phase-six-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.phase-six-tool #calculatorForm label {
@@ -461,7 +461,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.phase-seven-tool > :first-child > :first-child h2 {
+        #toolUiRoot.phase-seven-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -482,7 +482,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.phase-seven-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.phase-seven-tool #calculatorForm label {
@@ -542,7 +542,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.phase-eight-tool > :first-child > :first-child h2 {
+        #toolUiRoot.phase-eight-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -563,7 +563,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.phase-eight-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.phase-eight-tool #calculatorForm label {
@@ -623,7 +623,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.phase-nine-tool > :first-child > :first-child h2 {
+        #toolUiRoot.phase-nine-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -644,7 +644,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.phase-nine-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.phase-nine-tool #calculatorForm label {
@@ -704,7 +704,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.energy-power-tool > :first-child > :first-child h2 {
+        #toolUiRoot.energy-power-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -725,7 +725,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.energy-power-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.energy-power-tool #calculatorForm label {
@@ -785,7 +785,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.currency-financial-tool > :first-child > :first-child h2 {
+        #toolUiRoot.currency-financial-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -806,7 +806,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.currency-financial-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.currency-financial-tool #calculatorForm label {
@@ -866,7 +866,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.digital-technical-tool > :first-child > :first-child h2 {
+        #toolUiRoot.digital-technical-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -887,7 +887,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.digital-technical-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.digital-technical-tool #calculatorForm label {
@@ -947,7 +947,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.utility-general-tool > :first-child > :first-child h2 {
+        #toolUiRoot.utility-general-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -968,7 +968,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.utility-general-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.utility-general-tool #calculatorForm label {
@@ -1028,7 +1028,7 @@ if (is_array($howToSchema)) {
             color: #ffffff;
         }
 
-        #toolUiRoot.time-date-tool > :first-child > :first-child h2 {
+        #toolUiRoot.time-date-tool > :first-child > :first-child :is(h1, h2) {
             color: #ffffff;
         }
 
@@ -1049,7 +1049,7 @@ if (is_array($howToSchema)) {
         }
 
         #toolUiRoot.time-date-tool #calculatorForm {
-            max-width: 42rem;
+            max-width: none;
         }
 
         #toolUiRoot.time-date-tool #calculatorForm label {
@@ -1188,15 +1188,26 @@ if (is_array($howToSchema)) {
                 overflow: visible;
             }
         }
+        #quickReferenceTarget [class*="grid-cols-"] {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+
+        #quickReferenceTarget :where(p, span, div, li, dt, dd) {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
     </style>
+
 
     <section class="tool-layout-viewport bg-slate-50 py-2 sm:py-3 lg:py-1">
         <div class="mx-auto h-full max-w-7xl px-3 sm:px-4 lg:px-6">
             <div class="tool-layout-grid grid h-full gap-4 lg:min-h-0 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)] lg:items-stretch">
-                <div class="space-y-3 lg:col-span-8 lg:h-auto lg:min-h-0 lg:sticky lg:top-4 lg:self-start">
+                <div class="space-y-3 lg:col-span-8 lg:h-auto lg:min-h-0 lg:sticky lg:top-[calc(var(--cp-nav-height,4rem)+1rem)] lg:self-start">
                         <section id="toolUiRoot" aria-label="Tool Interface" class="tool-ui-shell tool-ui-compact {{ $isPhaseOne ? 'phase-one-tool' : '' }} {{ $isPhaseTwo ? 'phase-two-tool' : '' }} {{ $isPhaseThree ? 'phase-three-tool' : '' }} {{ $isPhaseFour ? 'phase-four-tool' : '' }} {{ $isPhaseFive ? 'phase-five-tool' : '' }} {{ $isPhaseSix ? 'phase-six-tool' : '' }} {{ $isPhaseSeven ? 'phase-seven-tool' : '' }} {{ $isPhaseEight ? 'phase-eight-tool' : '' }} {{ $isPhaseNine ? 'phase-nine-tool' : '' }} {{ $isEnergyPowerPhase ? 'energy-power-tool' : '' }} {{ $isCurrencyFinancialPhase ? 'currency-financial-tool' : '' }} {{ $isDigitalTechnicalPhase ? 'digital-technical-tool' : '' }} {{ $isUtilityGeneralPhase ? 'utility-general-tool' : '' }} {{ $isTimeDatePhase ? 'time-date-tool' : '' }} rounded-sm bg-white p-2.5 shadow-sm sm:p-3">
                         {{ $toolUiContent }}
                     </section>
+
+                    <x-ads type="in-article" placement="tool-after-result" class="lg:hidden" />
                 </div>
 
                 <div class="tool-right-scroll space-y-4 lg:col-span-4 lg:h-full lg:min-h-0 lg:self-stretch lg:overflow-y-auto lg:pr-1">
@@ -1222,11 +1233,13 @@ if (is_array($howToSchema)) {
                         </section>
                     @endif
 
-                    <x-ads placement="tool-sidebar" :href="url()->current()" />
+                    <x-ads type="display" placement="tool-sidebar" class="hidden lg:block" />
                 </div>
             </div>
         </div>
     </section>
+
+    <x-ads type="multiplex" placement="tool-bottom" class="mx-auto max-w-7xl px-3 pb-6 sm:px-4 lg:px-6" />
 
     <x-footer />
 
@@ -2026,7 +2039,7 @@ if (is_array($howToSchema)) {
                         if (headerSection) {
                             headerSection.className = 'rounded-md bg-white p-2.5 shadow-sm';
 
-                            const title = headerSection.querySelector('h2');
+                            const title = headerSection.querySelector('h1, h2');
                             if (title) {
                                 title.className = 'text-sm font-semibold text-slate-900';
                             }
@@ -2251,8 +2264,19 @@ if (is_array($howToSchema)) {
                     return;
                 }
 
+                const isEmptyWrapper = (element) => (element.textContent || '').trim() === ''
+                    && !element.querySelector('input, select, textarea, button, canvas, img, svg, table');
+
                 uniqueReferenceCards.forEach((card) => {
+                    let formerParent = card.parentElement;
+
                     quickReferenceTarget.appendChild(card);
+
+                    while (formerParent && formerParent !== toolUiRoot && toolUiRoot.contains(formerParent) && isEmptyWrapper(formerParent)) {
+                        const nextParent = formerParent.parentElement;
+                        formerParent.remove();
+                        formerParent = nextParent;
+                    }
                 });
 
                 quickReferenceColumn.classList.remove('hidden');

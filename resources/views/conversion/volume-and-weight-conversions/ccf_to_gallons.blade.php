@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Water Volume Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">CCF to Gallons</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -174,9 +174,11 @@
 
                         function formatNumber(num, decimals = 3) {
                             if (num >= 1000000) {
-                                return num.toExponential(4);
-                            } else if (num >= 1000) {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
+                                return Number(num.toPrecision(5)).toExponential();
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
+                            } else if (Math.abs(num) < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
                             }
