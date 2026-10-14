@@ -252,6 +252,11 @@ export function createCalculator(root, config) {
                     radio.checked = true;
                 } else if (ctx.field(name)) {
                     ctx.field(name).value = value;
+
+                    // Let modules that react to a select (e.g. a substance filling its density) see the change.
+                    if (ctx.field(name).tagName === 'SELECT') {
+                        ctx.field(name).dispatchEvent(new Event('change', { bubbles: true }));
+                    }
                 }
             });
 

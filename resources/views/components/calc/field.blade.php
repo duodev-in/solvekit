@@ -10,10 +10,11 @@
     'suffixRef' => null,
     'placeholder' => null,
     'help' => null,
+    'labelRef' => null,
 ])
 
 <div class="flex min-w-0 flex-col gap-1.5">
-    <label for="calc-{{ $name }}" class="text-[13px] font-semibold text-slate-700">{{ $label }}</label>
+    <label for="calc-{{ $name }}" class="text-[13px] font-semibold text-slate-700" @if($labelRef) data-ref="{{ $labelRef }}" @endif>{{ $label }}</label>
     <div class="calc-control flex h-12 items-center overflow-hidden rounded-lg border border-slate-300 bg-white focus-within:border-primary-600 focus-within:ring-2 focus-within:ring-primary-500/30">
         <input
             id="calc-{{ $name }}"
