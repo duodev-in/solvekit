@@ -278,8 +278,9 @@ if (is_array($howToSchema)) {
                 const isGeographicMappingPage = window.location.pathname.includes('/geographic-and-mapping-tools/');
                 const isNumberConversionToolsPage = window.location.pathname.includes('/number-conversion-tools/');
                 const isDataTechnicalPage = window.location.pathname.includes('/data-and-technical-conversion-tools/');
+                const isTimeDatePage = window.location.pathname.includes('/time-and-date-conversion-tools/');
                 const isGeographicScaleCalculatorPage = window.location.pathname.includes('/geographic-and-mapping-tools/scale-calculator');
-                const hasEnhancedConvertedValues = isVolumeWeightPage || isEngineeringTechnicalPage || isGeographicMappingPage || isNumberConversionToolsPage || isDataTechnicalPage;
+                const hasEnhancedConvertedValues = isVolumeWeightPage || isEngineeringTechnicalPage || isGeographicMappingPage || isNumberConversionToolsPage || isDataTechnicalPage || isTimeDatePage;
 
                 const isCtrlMShortcut = function (e) {
                     const key = typeof e.key === 'string' ? e.key.toLowerCase() : '';
@@ -974,7 +975,7 @@ if (is_array($howToSchema)) {
                     };
 
                     const normalizeEngineeringToolShell = function () {
-                        if (!isEngineeringTechnicalPage && !isGeographicMappingPage && !isNumberConversionToolsPage && !isDataTechnicalPage) {
+                        if (!isEngineeringTechnicalPage && !isGeographicMappingPage && !isNumberConversionToolsPage && !isDataTechnicalPage && !isTimeDatePage) {
                             return;
                         }
 
