@@ -10,6 +10,8 @@
  *              of such lists keyed by direction value when each direction needs its own scale
  *   min:       lowest accepted input (defaults to no limit)
  *   kitchenFraction: add a cooking fraction hint such as "about 1 ½ cups" to the result
+ *   unitSets / unitSetControl: alternative tables with the same keys (e.g. short and long scale),
+ *              chosen by the named control; replaces `units`
  *
  * A direction value is "from:to". A key written as "@name" is read from another control, so one
  * toggle can pair a fixed unit with a unit picked elsewhere (e.g. "ml:@cup").
@@ -97,7 +99,8 @@ function readPair(ctx) {
 }
 
 export default function unitsEngine(ctx, config) {
-    const { units, list = [], quickRef = [], min, kitchenFraction: withFraction = false } = config;
+    const { list = [], quickRef = [], min, kitchenFraction: withFraction = false, unitSets, unitSetControl } = config;
+    const activeUnits = () => (unitSets ? unitSets[ctx.choice(unitSetControl)] : config.units);
 
     ctx.root.querySelector('[data-calc-swap]')?.addEventListener('click', () => {
         const from = ctx.field('from');
@@ -107,6 +110,7 @@ export default function unitsEngine(ctx, config) {
     });
 
     ctx.onUpdate(() => {
+        const units = activeUnits();
         const { from, to } = readPair(ctx);
         const value = ctx.number('value');
         const fromUnit = units[from];
@@ -159,7 +163,7 @@ export default function unitsEngine(ctx, config) {
             label: `${toUnit.name}`,
         });
 
-        list.forEach((key) => ctx.setRow(key, ctx.format(convertUnit(value, fromUnit, units[key]))));
+        list.forEach((key) => ctx.setRow(key, ctx.format(convertUnit(value, fromUnit, units[key])), unitSets ? units[key] : undefined));
 
         ctx.renderSteps('steps', linear
             ? [

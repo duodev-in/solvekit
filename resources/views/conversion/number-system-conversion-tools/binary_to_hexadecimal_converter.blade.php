@@ -1,295 +1,47 @@
-<x-tool-page-layout
+<x-calc.page
     title="Binary to Hexadecimal Converter - SolveKit"
     description="Professional binary and hexadecimal converter for programming and digital systems. Convert both ways with base-wide outputs and clear step breakdown."
+    lede="Convert binary to hexadecimal, or hexadecimal to binary."
+    about="One hexadecimal digit stands for exactly four binary digits, so binary is split into groups of four from the right and each group becomes one hex digit (0000 = 0 … 1111 = F)."
+    :calc="['engine' => 'radix']"
+    :how-to="[
+        ['name' => 'Choose a direction', 'text' => 'Binary to hexadecimal, or the reverse.'],
+        ['name' => 'Type the number', 'text' => 'Whole numbers of any length. Spaces and underscores are ignored.'],
+        ['name' => 'Read the working', 'text' => 'Every base is listed, with the steps of the conversion below.'],
+    ]"
+    :faqs="[
+        ['question' => 'How do I convert binary to hex?', 'answer' => 'Group the bits in fours from the right and replace each group: 1010 1111 = AF.'],
+        ['question' => 'Why is hex used with binary?', 'answer' => 'It is a compact way to write binary: two hex digits make one byte.'],
+        ['question' => 'How do I convert hex to binary?', 'answer' => 'Replace each hex digit with its four bits: 3C = 0011 1100.'],
+    ]"
 >
-    <x-slot name="toolUi">
-        <div class="space-y-2">
-            <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h1 class="text-sm font-semibold text-slate-900">Binary to Hexadecimal</h1>
-                <p class="mt-0.5 text-[11px] text-slate-600">Readable binary and hexadecimal conversion with strict validation and consistent output rows.</p>
-            </section>
+    <x-calc.segmented name="direction" legend="Direction" :options="['2:16' => 'Binary → Hexadecimal', '16:2' => 'Hexadecimal → Binary']" selected="2:16" />
 
-            <section class="rounded-lg bg-white p-3 shadow-sm">
-                <div class="grid gap-3 lg:grid-cols-5">
-                    <form id="calculatorForm" class="space-y-3 lg:col-span-3">
-                        <div class="space-y-1">
-                            <span class="block text-xs font-semibold text-slate-700">Conversion Mode</span>
-                            <div class="grid grid-cols-2 gap-2">
-                                <label class="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                                    <input type="radio" name="mode" value="binary-to-hex" class="text-indigo-600" checked>
-                                    <span class="text-xs font-medium">Binary to Hex</span>
-                                </label>
-                                <label class="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                                    <input type="radio" name="mode" value="hex-to-binary" class="text-indigo-600">
-                                    <span class="text-xs font-medium">Hex to Binary</span>
-                                </label>
-                            </div>
-                        </div>
+    <x-calc.field name="value" type="text" label="Binary number" label-ref="value-label" value="11011110101011011011111011101111" placeholder="Enter a number" spellcheck="false" autocapitalize="off" />
 
-                        <div class="space-y-1">
-                            <label for="inputValue" id="inputLabel" class="block text-xs font-semibold text-slate-700">Enter Binary Number</label>
-                            <input
-                                type="text"
-                                id="inputValue"
-                                class="w-full rounded-md border border-slate-300 bg-white font-mono"
-                                placeholder="e.g. 10101111"
-                                autocomplete="off"
-                            >
-                            <p id="inputHelp" class="text-[11px] text-slate-500">Use only 0 and 1.</p>
-                        </div>
+    <x-calc.result label="Hexadecimal" />
 
-                        <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5 text-[11px] text-slate-600">
-                            Constraint: non-negative values only, max safe decimal value is 9007199254740991.
-                        </div>
+    <x-calc.options :decimals="false" :examples="[
+        'Byte 10101111' => ['value' => '10101111', 'direction' => '2:16'],
+        'Colour FF8800' => ['value' => 'FF8800', 'direction' => '16:2'],
+    ]" />
 
-                        <div class="flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                            <p class="text-[11px] text-slate-500">Shortcut: Ctrl + M to switch mode</p>
-                            <button
-                                type="button"
-                                id="clearButton"
-                                class="rounded-md bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700"
-                            >
-                                Clear
-                            </button>
-                        </div>
-                    </form>
+    <x-slot:panel>
+        <x-calc.rows heading="In every base" :rows="[
+            'bin' => ['label' => 'Binary (base 2)'],
+            'oct' => ['label' => 'Octal (base 8)'],
+            'dec' => ['label' => 'Decimal (base 10)'],
+            'hex' => ['label' => 'Hexadecimal (base 16)'],
+            'bits' => ['label' => 'Bit length'],
+            'bytes' => ['label' => 'Bytes needed'],
+        ]" />
+        <x-calc.steps />
+    </x-slot:panel>
 
-                    <section class="space-y-2 rounded-md border border-slate-200 bg-slate-50 p-2.5 lg:col-span-2">
-                        <div class="flex items-start justify-between gap-3">
-                            <div>
-                                <p id="result-title" class="text-xs font-semibold text-slate-900">Hexadecimal Value</p>
-                                <p id="result-description" class="text-[11px] text-slate-500">Converted output</p>
-                            </div>
-                            <div class="text-right">
-                                <div id="output" class="font-serif text-3xl font-bold leading-none text-indigo-700">--</div>
-                                <button type="button" id="copyResult" class="mt-1 text-xs font-medium text-indigo-600">Copy</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-1.5 rounded-md border border-slate-200 bg-white p-2 text-sm text-slate-700">
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Binary</span>
-                                <span id="binaryDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Decimal</span>
-                                <span id="decimalDisplay" class="text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Hexadecimal</span>
-                                <span id="hexDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Octal</span>
-                                <span id="octalDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Bit Length</span>
-                                <span id="bitLengthDisplay" class="text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </section>
-        </div>
-    </x-slot>
-
-
-    <x-slot name="scripts">
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const MAX_SAFE = Number.MAX_SAFE_INTEGER;
-
-                const inputValue = document.getElementById('inputValue');
-                const modeRadios = document.getElementsByName('mode');
-                const clearButton = document.getElementById('clearButton');
-                const copyResult = document.getElementById('copyResult');
-
-                if (!inputValue || !modeRadios.length || !clearButton || !copyResult) {
-                    return;
-                }
-
-                const inputLabel = document.getElementById('inputLabel');
-                const inputHelp = document.getElementById('inputHelp');
-                const output = document.getElementById('output');
-                const resultTitle = document.getElementById('result-title');
-                const resultDescription = document.getElementById('result-description');
-                const binaryDisplay = document.getElementById('binaryDisplay');
-                const decimalDisplay = document.getElementById('decimalDisplay');
-                const hexDisplay = document.getElementById('hexDisplay');
-                const octalDisplay = document.getElementById('octalDisplay');
-                const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-
-                const strictBinaryPattern = /^[01]+$/;
-                const strictHexPattern = /^[0-9A-F]+$/i;
-
-                function sanitize(value) {
-                    return value.trim().replace(/[\s_]+/g, '').toUpperCase();
-                }
-
-                function groupBinary(value) {
-                    return value.replace(/(.{4})/g, '$1 ').trim();
-                }
-
-                function getMode() {
-                    return document.querySelector('input[name="mode"]:checked')?.value || 'binary-to-hex';
-                }
-
-                function parseBaseToSafeInteger(value, base) {
-                    const parsed = parseInt(value, base);
-                    if (!Number.isFinite(parsed) || !Number.isSafeInteger(parsed) || parsed < 0 || parsed > MAX_SAFE) {
-                        return null;
-                    }
-                    return parsed;
-                }
-
-                function updateInterface() {
-                    const mode = getMode();
-
-                    if (mode === 'binary-to-hex') {
-                        inputLabel.textContent = 'Enter Binary Number';
-                        inputHelp.textContent = 'Use only 0 and 1.';
-                        inputValue.placeholder = 'e.g. 10101111';
-                        resultTitle.textContent = 'Hexadecimal Value';
-                        resultDescription.textContent = 'Binary converted to hexadecimal';
-                        return;
-                    }
-
-                    inputLabel.textContent = 'Enter Hexadecimal Number';
-                    inputHelp.textContent = 'Use 0-9 and A-F.';
-                    inputValue.placeholder = 'e.g. AF3';
-                    resultTitle.textContent = 'Binary Value';
-                    resultDescription.textContent = 'Hexadecimal converted to binary';
-                }
-
-                function clearOutputs() {
-                    output.textContent = '--';
-                    binaryDisplay.textContent = '--';
-                    decimalDisplay.textContent = '--';
-                    hexDisplay.textContent = '--';
-                    octalDisplay.textContent = '--';
-                    bitLengthDisplay.textContent = '--';
-                }
-
-                function renderInvalid() {
-                    clearOutputs();
-                    inputValue.classList.add('border-red-500');
-                    setTimeout(() => inputValue.classList.remove('border-red-500'), 1200);
-                }
-
-                function convert() {
-                    const input = sanitize(inputValue.value);
-                    if (!input) {
-                        clearOutputs();
-                        return;
-                    }
-
-                    const mode = getMode();
-                    let decimal;
-                    let binary;
-                    let hex;
-                    let outputValue;
-
-                    if (mode === 'binary-to-hex') {
-                        if (!strictBinaryPattern.test(input)) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        binary = input.replace(/^0+(?=\d)/, '');
-                        const parsed = parseBaseToSafeInteger(binary, 2);
-                        if (parsed === null) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        decimal = parsed;
-                        hex = decimal.toString(16).toUpperCase();
-                        outputValue = hex;
-                    } else {
-                        if (!strictHexPattern.test(input)) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        hex = input;
-                        const parsed = parseBaseToSafeInteger(hex, 16);
-                        if (parsed === null) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        decimal = parsed;
-                        binary = decimal.toString(2);
-                        outputValue = groupBinary(binary);
-                    }
-
-                    binary = binary || decimal.toString(2);
-                    hex = hex || decimal.toString(16).toUpperCase();
-                    const octal = decimal.toString(8);
-
-                    output.textContent = outputValue;
-                    binaryDisplay.textContent = groupBinary(binary);
-                    decimalDisplay.textContent = String(decimal);
-                    hexDisplay.textContent = hex;
-                    octalDisplay.textContent = octal;
-                    bitLengthDisplay.textContent = `${binary.length} bits`;
-                }
-
-                function clearAll() {
-                    inputValue.value = '';
-                    clearOutputs();
-                    inputValue.focus();
-                }
-
-                inputValue.addEventListener('input', convert);
-
-                modeRadios.forEach((radio) => {
-                    radio.addEventListener('change', () => {
-                        updateInterface();
-                        clearAll();
-                    });
-                });
-
-                clearButton.addEventListener('click', clearAll);
-
-                copyResult.addEventListener('click', function () {
-                    const text = output.textContent;
-                    if (!text || text === '--') {
-                        return;
-                    }
-
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            copyResult.textContent = 'Copied';
-                            setTimeout(() => {
-                                copyResult.textContent = 'Copy';
-                            }, 1200);
-                        });
-                    }
-                });
-
-                document.addEventListener('keydown', function (event) {
-                    if (event.key === 'Escape') {
-                        clearAll();
-                        return;
-                    }
-
-                    if (event.ctrlKey && event.key.toLowerCase() === 'm') {
-                        event.preventDefault();
-                        const nextMode = getMode() === 'binary-to-hex' ? 'hex-to-binary' : 'binary-to-hex';
-                        const nextInput = document.querySelector(`input[name="mode"][value="${nextMode}"]`);
-                        if (nextInput) {
-                            nextInput.checked = true;
-                            updateInterface();
-                            clearAll();
-                        }
-                    }
-                });
-
-                updateInterface();
-                clearOutputs();
-            });
-        </script>
-    </x-slot>
-</x-tool-page-layout>
+    <x-slot:formula>
+        <ul class="space-y-1 font-mono text-[13px]">
+            <li>1 hex digit = 4 bits</li>
+            <li>0000 = 0 … 1001 = 9, 1010 = A … 1111 = F</li>
+        </ul>
+    </x-slot:formula>
+</x-calc.page>

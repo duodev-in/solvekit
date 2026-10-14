@@ -245,4 +245,66 @@ return [
         'point' => ['name' => 'Compass points', 'symbol' => 'pt', 'factor' => 2 * M_PI / 32],
     ],
 
+    // Base: one. Short scale (US, modern UK) and long scale (traditional European) differ from a billion up.
+    'numbers' => [
+        'one' => ['name' => 'Ones', 'symbol' => '', 'factor' => 1],
+        'thousand' => ['name' => 'Thousands', 'symbol' => 'thousand', 'factor' => 1e3],
+        'lakh' => ['name' => 'Lakhs', 'symbol' => 'lakh', 'factor' => 1e5],
+        'million' => ['name' => 'Millions', 'symbol' => 'million', 'factor' => 1e6],
+        'crore' => ['name' => 'Crores', 'symbol' => 'crore', 'factor' => 1e7],
+        'billion' => ['name' => 'Billions', 'symbol' => 'billion', 'factor' => 1e9],
+        'trillion' => ['name' => 'Trillions', 'symbol' => 'trillion', 'factor' => 1e12],
+        'quadrillion' => ['name' => 'Quadrillions', 'symbol' => 'quadrillion', 'factor' => 1e15],
+    ],
+
+    'numbers_long_scale' => [
+        'one' => ['name' => 'Ones', 'symbol' => '', 'factor' => 1],
+        'thousand' => ['name' => 'Thousands', 'symbol' => 'thousand', 'factor' => 1e3],
+        'lakh' => ['name' => 'Lakhs', 'symbol' => 'lakh', 'factor' => 1e5],
+        'million' => ['name' => 'Millions', 'symbol' => 'million', 'factor' => 1e6],
+        'crore' => ['name' => 'Crores', 'symbol' => 'crore', 'factor' => 1e7],
+        'billion' => ['name' => 'Billions', 'symbol' => 'billion', 'factor' => 1e12],
+        'trillion' => ['name' => 'Trillions', 'symbol' => 'trillion', 'factor' => 1e18],
+        'quadrillion' => ['name' => 'Quadrillions', 'symbol' => 'quadrillion', 'factor' => 1e24],
+    ],
+
+    // Base: byte. Decimal (SI) prefixes are powers of 1000; binary (IEC) prefixes are powers of 1024.
+    'data' => [
+        'bit' => ['name' => 'Bits', 'symbol' => 'bit', 'factor' => 0.125],
+        'b' => ['name' => 'Bytes', 'symbol' => 'B', 'factor' => 1],
+        'kb' => ['name' => 'Kilobytes', 'symbol' => 'kB', 'factor' => 1e3],
+        'mb' => ['name' => 'Megabytes', 'symbol' => 'MB', 'factor' => 1e6],
+        'gb' => ['name' => 'Gigabytes', 'symbol' => 'GB', 'factor' => 1e9],
+        'tb' => ['name' => 'Terabytes', 'symbol' => 'TB', 'factor' => 1e12],
+        'pb' => ['name' => 'Petabytes', 'symbol' => 'PB', 'factor' => 1e15],
+        'kib' => ['name' => 'Kibibytes', 'symbol' => 'KiB', 'factor' => 1024],
+        'mib' => ['name' => 'Mebibytes', 'symbol' => 'MiB', 'factor' => 1024 ** 2],
+        'gib' => ['name' => 'Gibibytes', 'symbol' => 'GiB', 'factor' => 1024 ** 3],
+        'tib' => ['name' => 'Tebibytes', 'symbol' => 'TiB', 'factor' => 1024 ** 4],
+        'pib' => ['name' => 'Pebibytes', 'symbol' => 'PiB', 'factor' => 1024 ** 5],
+    ],
+
+    // Base: bit per second. Network speeds always use decimal prefixes.
+    'data_rate' => [
+        'bps' => ['name' => 'Bits per second', 'symbol' => 'bit/s', 'factor' => 1],
+        'kbps' => ['name' => 'Kilobits per second', 'symbol' => 'kbit/s', 'factor' => 1e3],
+        'mbps' => ['name' => 'Megabits per second', 'symbol' => 'Mbit/s', 'factor' => 1e6],
+        'gbps' => ['name' => 'Gigabits per second', 'symbol' => 'Gbit/s', 'factor' => 1e9],
+        'tbps' => ['name' => 'Terabits per second', 'symbol' => 'Tbit/s', 'factor' => 1e12],
+        'kBps' => ['name' => 'Kilobytes per second', 'symbol' => 'kB/s', 'factor' => 8e3],
+        'MBps' => ['name' => 'Megabytes per second', 'symbol' => 'MB/s', 'factor' => 8e6],
+        'GBps' => ['name' => 'Gigabytes per second', 'symbol' => 'GB/s', 'factor' => 8e9],
+    ],
+
+    // Base: farad.
+    'capacitance' => [
+        'f' => ['name' => 'Farads', 'symbol' => 'F', 'factor' => 1],
+        'mf' => ['name' => 'Millifarads', 'symbol' => 'mF', 'factor' => 1e-3],
+        'uf' => ['name' => 'Microfarads', 'symbol' => 'µF', 'factor' => 1e-6],
+        'nf' => ['name' => 'Nanofarads', 'symbol' => 'nF', 'factor' => 1e-9],
+        'pf' => ['name' => 'Picofarads', 'symbol' => 'pF', 'factor' => 1e-12],
+        'ff' => ['name' => 'Femtofarads', 'symbol' => 'fF', 'factor' => 1e-15],
+        'af' => ['name' => 'Attofarads', 'symbol' => 'aF', 'factor' => 1e-18],
+    ],
+
 ];

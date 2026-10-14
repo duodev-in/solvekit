@@ -20,7 +20,8 @@
             id="calc-{{ $name }}"
             name="{{ $name }}"
             type="{{ $type }}"
-            @if($type === 'number') inputmode="decimal" step="{{ $step }}" @endif
+            @if($type === 'number') inputmode="decimal" @endif
+            @if(in_array($type, ['number', 'time'], true)) step="{{ $step }}" @endif
             @if(! is_null($min)) min="{{ $min }}" @endif
             @if(! is_null($max)) max="{{ $max }}" @endif
             @if(! is_null($value)) value="{{ $value }}" @endif

@@ -15,7 +15,7 @@
     <div @class(['calc-list min-h-0', 'calc-list-columns-2' => $columns === 2]) data-collapsible>
         @foreach($keys as $key)
             <button type="button" class="calc-row" data-calc-row="{{ $key }}" data-row-unit="{{ $units[$key]['symbol'] }}">
-                <span class="calc-row-label">{{ $units[$key]['name'] }} <span class="text-slate-400">({{ $units[$key]['symbol'] }})</span></span>
+                <span class="calc-row-label" data-row-label>{{ $units[$key]['name'] }} @if($units[$key]['symbol'] !== '')<span class="text-slate-400">({{ $units[$key]['symbol'] }})</span>@endif</span>
                 <span class="calc-row-value" data-row-value>—</span>
             </button>
         @endforeach

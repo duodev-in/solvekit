@@ -1,300 +1,47 @@
-<x-tool-page-layout
+<x-calc.page
     title="Decimal to Hexadecimal Converter - SolveKit"
     description="Professional decimal and hexadecimal converter for programming and digital systems. Convert in both directions with complete base outputs and readable steps."
+    lede="Convert decimal to hexadecimal, or hexadecimal to decimal."
+    about="To write a decimal number in hex, divide by 16 repeatedly; each remainder (0 to 15, written 0–9 and A–F) is a hex digit, read from last to first. To read hex, multiply each digit by its power of 16 and add."
+    :calc="['engine' => 'radix']"
+    :how-to="[
+        ['name' => 'Choose a direction', 'text' => 'Decimal to hexadecimal, or the reverse.'],
+        ['name' => 'Type the number', 'text' => 'Whole numbers of any length. Spaces and underscores are ignored.'],
+        ['name' => 'Read the working', 'text' => 'Every base is listed, with the steps of the conversion below.'],
+    ]"
+    :faqs="[
+        ['question' => 'How do I convert decimal to hex?', 'answer' => 'Divide by 16 and keep the remainders: 255 ÷ 16 = 15 r 15, so 255 = FF.'],
+        ['question' => 'How do I convert hex to decimal?', 'answer' => 'Multiply each digit by its power of 16: 1A = 1×16 + 10 = 26.'],
+        ['question' => 'What do 0x and # mean before hex numbers?', 'answer' => 'They are just prefixes that mark a number as hexadecimal; the value is the same.'],
+    ]"
 >
-    <x-slot name="toolUi">
-        <div class="space-y-2">
-            <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h1 class="text-sm font-semibold text-slate-900">Decimal to Hexadecimal</h1>
-                <p class="mt-0.5 text-[11px] text-slate-600">Readable decimal and hex conversion with consistent structure, visibility, and constraints.</p>
-            </section>
+    <x-calc.segmented name="direction" legend="Direction" :options="['10:16' => 'Decimal → Hexadecimal', '16:10' => 'Hexadecimal → Decimal']" selected="10:16" />
 
-            <section class="rounded-lg bg-white p-3 shadow-sm">
-                <div class="grid gap-3 lg:grid-cols-5">
-                    <form id="calculatorForm" class="space-y-3 lg:col-span-3">
-                        <div class="space-y-1">
-                            <span class="block text-xs font-semibold text-slate-700">Conversion Mode</span>
-                            <div class="grid grid-cols-2 gap-2">
-                                <label class="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                                    <input type="radio" name="mode" value="decimal-to-hex" class="text-indigo-600" checked>
-                                    <span class="text-xs font-medium">Decimal to Hex</span>
-                                </label>
-                                <label class="flex items-center gap-2 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                                    <input type="radio" name="mode" value="hex-to-decimal" class="text-indigo-600">
-                                    <span class="text-xs font-medium">Hex to Decimal</span>
-                                </label>
-                            </div>
-                        </div>
+    <x-calc.field name="value" type="text" label="Decimal number" label-ref="value-label" value="48879" placeholder="Enter a number" spellcheck="false" autocapitalize="off" />
 
-                        <div class="space-y-1">
-                            <label for="inputValue" id="inputLabel" class="block text-xs font-semibold text-slate-700">Enter Decimal Number</label>
-                            <input
-                                type="text"
-                                id="inputValue"
-                                class="w-full rounded-md border border-slate-300 bg-white font-mono"
-                                placeholder="e.g. 255"
-                                autocomplete="off"
-                            >
-                            <p id="inputHelp" class="text-[11px] text-slate-500">Use whole numbers from 0 to 9007199254740991.</p>
-                        </div>
+    <x-calc.result label="Hexadecimal" />
 
-                        <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5 text-[11px] text-slate-600">
-                            Constraint: non-negative values only, max safe decimal value is 9007199254740991.
-                        </div>
+    <x-calc.options :decimals="false" :examples="[
+        '255' => ['value' => '255', 'direction' => '10:16'],
+        'Colour 1E90FF' => ['value' => '1E90FF', 'direction' => '16:10'],
+    ]" />
 
-                        <div class="flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 px-2 py-1.5">
-                            <p class="text-[11px] text-slate-500">Shortcut: Ctrl + M to switch mode</p>
-                            <button
-                                type="button"
-                                id="clearButton"
-                                class="rounded-md bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700"
-                            >
-                                Clear
-                            </button>
-                        </div>
-                    </form>
+    <x-slot:panel>
+        <x-calc.rows heading="In every base" :rows="[
+            'bin' => ['label' => 'Binary (base 2)'],
+            'oct' => ['label' => 'Octal (base 8)'],
+            'dec' => ['label' => 'Decimal (base 10)'],
+            'hex' => ['label' => 'Hexadecimal (base 16)'],
+            'bits' => ['label' => 'Bit length'],
+            'bytes' => ['label' => 'Bytes needed'],
+        ]" />
+        <x-calc.steps />
+    </x-slot:panel>
 
-                    <section class="space-y-2 rounded-md border border-slate-200 bg-slate-50 p-2.5 lg:col-span-2">
-                        <div class="flex items-start justify-between gap-3">
-                            <div>
-                                <p id="result-title" class="text-xs font-semibold text-slate-900">Hexadecimal Value</p>
-                                <p id="result-description" class="text-[11px] text-slate-500">Converted output</p>
-                            </div>
-                            <div class="text-right">
-                                <div id="output" class="font-serif text-3xl font-bold leading-none text-indigo-700">--</div>
-                                <button type="button" id="copyResult" class="mt-1 text-xs font-medium text-indigo-600">Copy</button>
-                            </div>
-                        </div>
-
-                        <div class="space-y-1.5 rounded-md border border-slate-200 bg-white p-2 text-sm text-slate-700">
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Decimal</span>
-                                <span id="decimalDisplay" class="text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Hexadecimal</span>
-                                <span id="hexDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Binary</span>
-                                <span id="binaryDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Octal</span>
-                                <span id="octalDisplay" class="font-mono text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                            <div class="flex items-center justify-between rounded-md bg-slate-50 px-2 py-1.5">
-                                <span class="text-xs font-medium text-slate-600">Bit Length</span>
-                                <span id="bitLengthDisplay" class="text-sm font-semibold text-slate-900">--</span>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </section>
-        </div>
-    </x-slot>
-
-
-    <x-slot name="scripts">
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const MAX_SAFE = Number.MAX_SAFE_INTEGER;
-
-                const inputValue = document.getElementById('inputValue');
-                const modeRadios = document.getElementsByName('mode');
-                const clearButton = document.getElementById('clearButton');
-                const copyResult = document.getElementById('copyResult');
-
-                if (!inputValue || !modeRadios.length || !clearButton || !copyResult) {
-                    return;
-                }
-
-                const inputLabel = document.getElementById('inputLabel');
-                const inputHelp = document.getElementById('inputHelp');
-                const output = document.getElementById('output');
-                const resultTitle = document.getElementById('result-title');
-                const resultDescription = document.getElementById('result-description');
-                const binaryDisplay = document.getElementById('binaryDisplay');
-                const decimalDisplay = document.getElementById('decimalDisplay');
-                const hexDisplay = document.getElementById('hexDisplay');
-                const octalDisplay = document.getElementById('octalDisplay');
-                const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-
-                const strictDecimalPattern = /^\d+$/;
-                const strictHexPattern = /^[0-9A-F]+$/i;
-
-                function sanitize(value) {
-                    return value.trim().replace(/[\s_]+/g, '').toUpperCase();
-                }
-
-                function groupBinary(value) {
-                    return value.replace(/(.{4})/g, '$1 ').trim();
-                }
-
-                function getMode() {
-                    return document.querySelector('input[name="mode"]:checked')?.value || 'decimal-to-hex';
-                }
-
-                function parseDecimal(value) {
-                    if (!strictDecimalPattern.test(value)) {
-                        return null;
-                    }
-
-                    const parsed = Number(value);
-                    if (!Number.isFinite(parsed) || !Number.isSafeInteger(parsed) || parsed < 0 || parsed > MAX_SAFE) {
-                        return null;
-                    }
-
-                    return parsed;
-                }
-
-                function parseHexToSafeInteger(value) {
-                    const parsed = parseInt(value, 16);
-                    if (!Number.isFinite(parsed) || !Number.isSafeInteger(parsed) || parsed < 0 || parsed > MAX_SAFE) {
-                        return null;
-                    }
-                    return parsed;
-                }
-
-                function updateInterface() {
-                    const mode = getMode();
-
-                    if (mode === 'decimal-to-hex') {
-                        inputLabel.textContent = 'Enter Decimal Number';
-                        inputHelp.textContent = 'Use whole numbers from 0 to 9007199254740991.';
-                        inputValue.placeholder = 'e.g. 255';
-                        resultTitle.textContent = 'Hexadecimal Value';
-                        resultDescription.textContent = 'Decimal converted to hexadecimal';
-                        return;
-                    }
-
-                    inputLabel.textContent = 'Enter Hexadecimal Number';
-                    inputHelp.textContent = 'Use 0-9 and A-F.';
-                    inputValue.placeholder = 'e.g. FF';
-                    resultTitle.textContent = 'Decimal Value';
-                    resultDescription.textContent = 'Hexadecimal converted to decimal';
-                }
-
-                function clearOutputs() {
-                    output.textContent = '--';
-                    binaryDisplay.textContent = '--';
-                    decimalDisplay.textContent = '--';
-                    hexDisplay.textContent = '--';
-                    octalDisplay.textContent = '--';
-                    bitLengthDisplay.textContent = '--';
-                }
-
-                function renderInvalid() {
-                    clearOutputs();
-                    inputValue.classList.add('border-red-500');
-                    setTimeout(() => inputValue.classList.remove('border-red-500'), 1200);
-                }
-
-                function convert() {
-                    const input = sanitize(inputValue.value);
-                    if (!input) {
-                        clearOutputs();
-                        return;
-                    }
-
-                    const mode = getMode();
-                    let decimal;
-                    let hex;
-                    let outputValue;
-
-                    if (mode === 'decimal-to-hex') {
-                        const parsed = parseDecimal(input);
-                        if (parsed === null) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        decimal = parsed;
-                        hex = decimal.toString(16).toUpperCase();
-                        outputValue = hex;
-                    } else {
-                        if (!strictHexPattern.test(input)) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        hex = input;
-                        const parsed = parseHexToSafeInteger(hex);
-                        if (parsed === null) {
-                            renderInvalid();
-                            return;
-                        }
-
-                        decimal = parsed;
-                        outputValue = String(decimal);
-                    }
-
-                    const binary = decimal.toString(2);
-                    const octal = decimal.toString(8);
-                    hex = hex || decimal.toString(16).toUpperCase();
-
-                    output.textContent = outputValue;
-                    binaryDisplay.textContent = groupBinary(binary);
-                    decimalDisplay.textContent = String(decimal);
-                    hexDisplay.textContent = hex;
-                    octalDisplay.textContent = octal;
-                    bitLengthDisplay.textContent = `${binary.length} bits`;
-                }
-
-                function clearAll() {
-                    inputValue.value = '';
-                    clearOutputs();
-                    inputValue.focus();
-                }
-
-                inputValue.addEventListener('input', convert);
-
-                modeRadios.forEach((radio) => {
-                    radio.addEventListener('change', () => {
-                        updateInterface();
-                        clearAll();
-                    });
-                });
-
-                clearButton.addEventListener('click', clearAll);
-
-                copyResult.addEventListener('click', function () {
-                    const text = output.textContent;
-                    if (!text || text === '--') {
-                        return;
-                    }
-
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(text).then(() => {
-                            copyResult.textContent = 'Copied';
-                            setTimeout(() => {
-                                copyResult.textContent = 'Copy';
-                            }, 1200);
-                        });
-                    }
-                });
-
-                document.addEventListener('keydown', function (event) {
-                    if (event.key === 'Escape') {
-                        clearAll();
-                        return;
-                    }
-
-                    if (event.ctrlKey && event.key.toLowerCase() === 'm') {
-                        event.preventDefault();
-                        const nextMode = getMode() === 'decimal-to-hex' ? 'hex-to-decimal' : 'decimal-to-hex';
-                        const nextInput = document.querySelector(`input[name="mode"][value="${nextMode}"]`);
-                        if (nextInput) {
-                            nextInput.checked = true;
-                            updateInterface();
-                            clearAll();
-                        }
-                    }
-                });
-
-                updateInterface();
-                clearOutputs();
-            });
-        </script>
-    </x-slot>
-</x-tool-page-layout>
+    <x-slot:formula>
+        <ul class="space-y-1 font-mono text-[13px]">
+            <li>hex: divide by 16, keep remainders</li>
+            <li>decimal = Σ digit × 16^position</li>
+        </ul>
+    </x-slot:formula>
+</x-calc.page>

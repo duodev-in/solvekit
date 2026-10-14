@@ -1,304 +1,49 @@
-<x-tool-page-layout
+@php
+    $data = config('units.data');
+    $sets = [
+        'decimal' => ['bit' => $data['bit'], 'b' => $data['b'], 'kb' => $data['kb'], 'mb' => $data['mb'], 'gb' => $data['gb'], 'tb' => $data['tb']],
+        'binary' => ['bit' => $data['bit'], 'b' => $data['b'], 'kb' => $data['kib'], 'mb' => $data['mib'], 'gb' => $data['gib'], 'tb' => $data['tib']],
+    ];
+@endphp
+
+<x-calc.page
     title="kB to MB Converter - SolveKit"
     description="Professional kilobyte to megabyte converter for digital storage calculations. Convert between KB and MB with binary and decimal standards, file size context, and detailed explanations."
+    lede="Convert kilobytes to megabytes, or megabytes to kilobytes, in decimal or binary units."
+    about="In decimal (SI) units, 1 MB = 1,000 kB. In binary (IEC) units, 1 MiB = 1,024 KiB. Pick the standard that matches where the number came from: storage makers and networks use decimal, while Windows and many apps show binary sizes."
+    :calc="['engine' => 'units', 'unitSets' => $sets, 'unitSetControl' => 'standard', 'list' => ['b', 'bit', 'gb'], 'quickRef' => ['kb:mb' => [1, 10, 100, 512, 1000, 1024], 'mb:kb' => [0.5, 1, 2, 5, 10, 100]], 'min' => 0]"
+    :how-to="[
+        ['name' => 'Choose a direction and standard', 'text' => 'Decimal uses 1,000 and binary uses 1,024. Operating systems usually show binary sizes.'],
+        ['name' => 'Enter the size', 'text' => 'The result, bytes and bits update as you type.'],
+    ]"
+    :faqs="[
+        ['question' => 'How many kB are in 1 MB?', 'answer' => '1,000 in decimal units. In binary units, 1 MiB is 1,024 KiB.'],
+        ['question' => 'Why does Windows show a different size?', 'answer' => 'Windows divides by 1,024 but labels the result KB and MB. Switch the standard to Binary to match it.'],
+        ['question' => 'What is the difference between kB and KiB?', 'answer' => 'kB (kilobyte) is 1,000 bytes; KiB (kibibyte) is 1,024 bytes.'],
+    ]"
 >
-    <x-slot name="toolUi">
-        <!-- Calculator Card -->
-                        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm overflow-visible">
-                            
-                            <!-- Calculator Header -->
-                            <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h1 class="text-lg font-semibold text-white">kB to MB Converter</h1>
-                            </div>
+    <x-calc.segmented name="direction" legend="Direction" :options="['kb:mb' => 'kB → MB', 'mb:kb' => 'MB → kB']" selected="kb:mb" />
 
-                            <!-- Calculator Body -->
-                            <div class="p-5 sm:p-6">
-                                
-                                <div class="grid gap-6 lg:grid-cols-12">
-                                    <div class="lg:col-span-5">
-                                        <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
+    <x-calc.segmented name="standard" legend="Standard" :options="['decimal' => 'Decimal (1,000)', 'binary' => 'Binary (1,024)']" selected="decimal" />
 
-                                                                            <!-- Conversion Mode -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Conversion Direction
-                                                                                </label>
-                                                                                <div class="grid grid-cols-2 gap-2">
-                                                                                    <label class="flex items-center space-x-2 p-3 border border-gray-200 rounded-lg hover:border-cyan-300 transition-colors cursor-pointer bg-cyan-50 border-cyan-300">
-                                                                                        <input type="radio" name="mode" value="kb-to-mb" class="text-cyan-600 focus:ring-slate-200" checked>
-                                                                                        <span class="text-sm font-medium">kB → MB</span>
-                                                                                    </label>
-                                                                                    <label class="flex items-center space-x-2 p-3 border border-gray-200 rounded-lg hover:border-cyan-300 transition-colors cursor-pointer">
-                                                                                        <input type="radio" name="mode" value="mb-to-kb" class="text-cyan-600 focus:ring-slate-200">
-                                                                                        <span class="text-sm font-medium">MB → kB</span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
+    <x-calc.field name="value" label="Size" value="2048" min="0" suffix="kB" suffix-ref="value-suffix" placeholder="Enter a size" />
 
-                                                                            <!-- Input Value -->
-                                                                            <div class="space-y-2">
-                                                                                <label for="inputValue" class="block text-sm font-semibold text-gray-700" id="inputLabel">
-                                                                                    Enter Kilobytes (kB)
-                                                                                </label>
-                                                                                <div class="relative">
-                                                                                    <input 
-                                                                                        type="number" 
-                                                                                        id="inputValue" 
-                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono" 
-                                                                                        placeholder="Enter value (e.g., 1024)"
-                                                                                        step="any"
-                                                                                    >
-                                                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                                                        <span class="text-gray-500 text-sm font-medium" id="inputUnit">kB</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <p class="text-xs text-gray-500" id="inputHelp">Enter any positive number</p>
-                                                                            </div>
+    <x-calc.result label="Megabytes" />
 
-                                                                            <!-- Calculation Standard -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Calculation Standard
-                                                                                </label>
-                                                                                <div class="grid grid-cols-2 gap-2">
-                                                                                    <label class="flex items-center space-x-2 p-3 border border-gray-200 rounded-lg hover:border-cyan-300 transition-colors cursor-pointer bg-cyan-50 border-cyan-300">
-                                                                                        <input type="radio" name="standard" value="binary" class="text-cyan-600 focus:ring-slate-200" checked>
-                                                                                        <div class="text-left">
-                                                                                            <div class="text-sm font-medium">Binary (1024)</div>
-                                                                                            <div class="text-xs text-gray-500">Computer/OS standard</div>
-                                                                                        </div>
-                                                                                    </label>
-                                                                                    <label class="flex items-center space-x-2 p-3 border border-gray-200 rounded-lg hover:border-cyan-300 transition-colors cursor-pointer">
-                                                                                        <input type="radio" name="standard" value="decimal" class="text-cyan-600 focus:ring-slate-200">
-                                                                                        <div class="text-left">
-                                                                                            <div class="text-sm font-medium">Decimal (1000)</div>
-                                                                                            <div class="text-xs text-gray-500">Storage manufacturer</div>
-                                                                                        </div>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
+    <x-calc.options :examples="[
+        'Document 750 kB' => ['value' => 750, 'direction' => 'kb:mb'],
+        'Email limit 25 MB' => ['value' => 25, 'direction' => 'mb:kb'],
+    ]" />
 
+    <x-slot:panel>
+        <x-calc.unit-list :grow="false" :units="$sets['decimal']" :keys="['b', 'bit', 'gb']" heading="2048 kB in other units" />
+        <x-calc.quick-ref />
+    </x-slot:panel>
 
-
-
-                                                                            <!-- Clear Button -->
-                                                                            <div class="flex justify-center">
-                                                                                <button 
-                                                                                    type="button" 
-                                                                                    id="clearButton"
-                                                                                    class="inline-flex items-center px-4 py-2 bg-cyan-100 hover:bg-cyan-200 text-cyan-700 font-medium rounded-lg transition-colors duration-200"
-                                                                                >
-                                                                                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                                                    </svg>
-                                                                                    Clear
-                                                                                </button>
-                                                                            </div>
-
-                                                                        </form>
-                                    </div>
-                                    <div class="space-y-4 lg:col-span-7">
-                                        <!-- Results Display -->
-                                                                        <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
-
-                                                                            <!-- Primary Result -->
-                                                                            <div class="p-6 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border-l-4 border-cyan-500">
-                                                                                <div class="flex items-center justify-between">
-                                                                                    <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Megabytes (MB)</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted to megabytes</p>
-                                                                                    </div>
-                                                                                    <div class="text-right">
-                                                                                        <div class="text-2xl font-bold text-cyan-600 font-mono" id="output">--</div>
-                                                                                        <button class="text-xs text-cyan-600 hover:text-cyan-800 mt-1" id="copyResult">Copy Result</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <!-- Both Units Display -->
-                                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                                                <!-- Kilobytes -->
-                                                                                <div class="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-l-4 border-blue-500">
-                                                                                    <div class="text-center">
-                                                                                        <h4 class="text-sm font-semibold text-gray-700 mb-1">Kilobytes (kB)</h4>
-                                                                                        <div class="text-lg font-bold text-blue-600 font-mono" id="kbDisplay">--</div>
-                                                                                        <div class="text-xs text-gray-500 mt-1">1024 bytes</div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <!-- Megabytes -->
-                                                                                <div class="p-4 bg-gradient-to-r from-cyan-50 to-teal-50 rounded-lg border-l-4 border-cyan-500">
-                                                                                    <div class="text-center">
-                                                                                        <h4 class="text-sm font-semibold text-gray-700 mb-1">Megabytes (MB)</h4>
-                                                                                        <div class="text-lg font-bold text-cyan-600 font-mono" id="mbDisplay">--</div>
-                                                                                        <div class="text-xs text-gray-500 mt-1">1024 kB (binary)</div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
-
-                                                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-    
-</x-slot>
-
-
-    <x-slot name="scripts">
-        <script>
-                        document.addEventListener('DOMContentLoaded', function() {
-                            const inputValue = document.getElementById('inputValue');
-                            const modeRadios = document.getElementsByName('mode');
-                            const standardRadios = document.getElementsByName('standard');
-                            const clearButton = document.getElementById('clearButton');
-                            const inputLabel = document.getElementById('inputLabel');
-                            const inputUnit = document.getElementById('inputUnit');
-                            const inputHelp = document.getElementById('inputHelp');
-
-                            // Output elements
-                            const output = document.getElementById('output');
-                            const resultTitle = document.getElementById('result-title');
-                            const resultDescription = document.getElementById('result-description');
-                            const kbDisplay = document.getElementById('kbDisplay');
-                            const mbDisplay = document.getElementById('mbDisplay');
-                            const copyResult = document.getElementById('copyResult');
-
-                            function getMode() {
-                                const checked = document.querySelector('input[name="mode"]:checked');
-                                return checked ? checked.value : 'kb-to-mb';
-                            }
-
-                            function getStandard() {
-                                const checked = document.querySelector('input[name="standard"]:checked');
-                                return checked ? checked.value : 'binary';
-                            }
-
-                            function formatNumber(num) {
-                                if (!Number.isFinite(num)) {
-                                    return '--';
-                                }
-
-                                const abs = Math.abs(num);
-
-                                if (abs === 0) {
-                                    return '0';
-                                }
-
-                                if (abs >= 1e15 || abs < 1e-6) {
-                                    return num.toExponential(6).replace(/\.?0+e/, 'e');
-                                }
-
-                                if (abs >= 1) {
-                                    return num.toLocaleString('en-US', { maximumFractionDigits: 6 });
-                                }
-
-                                return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
-                            }
-
-                            function updateInterface() {
-                                if (getMode() === 'kb-to-mb') {
-                                    inputLabel.textContent = 'Enter Kilobytes (kB)';
-                                    inputUnit.textContent = 'kB';
-                                    inputHelp.textContent = 'Enter kilobytes to convert to megabytes';
-                                    resultTitle.textContent = 'Megabytes (MB)';
-                                    inputValue.placeholder = 'Enter kB (e.g., 1024)';
-                                } else {
-                                    inputLabel.textContent = 'Enter Megabytes (MB)';
-                                    inputUnit.textContent = 'MB';
-                                    inputHelp.textContent = 'Enter megabytes to convert to kilobytes';
-                                    resultTitle.textContent = 'Kilobytes (kB)';
-                                    inputValue.placeholder = 'Enter MB (e.g., 5)';
-                                }
-                            }
-
-                            function convert() {
-                                const inputVal = parseFloat(inputValue.value);
-                                const mode = getMode();
-                                const divisor = getStandard() === 'binary' ? 1024 : 1000;
-
-                                if (Number.isNaN(inputVal) || inputVal < 0) {
-                                    clearOutputs();
-                                    return;
-                                }
-
-                                const kb = mode === 'kb-to-mb' ? inputVal : inputVal * divisor;
-                                const mb = mode === 'kb-to-mb' ? inputVal / divisor : inputVal;
-
-                                output.textContent = mode === 'kb-to-mb' ? `${formatNumber(mb)} MB` : `${formatNumber(kb)} kB`;
-                                resultDescription.textContent = mode === 'kb-to-mb'
-                                    ? `${formatNumber(inputVal)} kB = ${formatNumber(mb)} MB`
-                                    : `${formatNumber(inputVal)} MB = ${formatNumber(kb)} kB`;
-
-                                kbDisplay.textContent = formatNumber(kb);
-                                mbDisplay.textContent = formatNumber(mb);
-                            }
-
-                            function clearOutputs() {
-                                output.textContent = '--';
-                                resultDescription.textContent = getMode() === 'kb-to-mb' ? 'Converted to megabytes' : 'Converted to kilobytes';
-                                kbDisplay.textContent = '--';
-                                mbDisplay.textContent = '--';
-                            }
-
-                            function clearAll() {
-                                inputValue.value = '';
-                                document.querySelector('input[name="mode"][value="kb-to-mb"]').checked = true;
-                                document.querySelector('input[name="standard"][value="binary"]').checked = true;
-                                updateInterface();
-                                clearOutputs();
-                                inputValue.focus();
-                            }
-
-                            // Event listeners
-                            inputValue.addEventListener('input', convert);
-
-                            modeRadios.forEach(radio => {
-                                radio.addEventListener('change', () => {
-                                    updateInterface();
-                                    convert();
-                                });
-                            });
-
-                            standardRadios.forEach(radio => {
-                                radio.addEventListener('change', convert);
-                            });
-
-                            clearButton.addEventListener('click', clearAll);
-
-                            // Copy functionality
-                            copyResult.addEventListener('click', function() {
-                                const text = output.textContent;
-                                if (text !== '--') {
-                                    navigator.clipboard.writeText(text).then(() => {
-                                        this.textContent = 'Copied!';
-                                        setTimeout(() => {
-                                            this.textContent = 'Copy Result';
-                                        }, 2000);
-                                    });
-                                }
-                            });
-
-                            // Initialize
-                            updateInterface();
-                            clearOutputs();
-                            inputValue.focus();
-
-                            // Keyboard shortcuts
-                            document.addEventListener('keydown', function(e) {
-                                if (e.key === 'Escape') {
-                                    clearAll();
-                                } else if (e.ctrlKey && (e.key || '').toLowerCase() === 'm') {
-                                    e.preventDefault();
-                                    const newMode = getMode() === 'kb-to-mb' ? 'mb-to-kb' : 'kb-to-mb';
-                                    document.querySelector(`input[name="mode"][value="${newMode}"]`).checked = true;
-                                    updateInterface();
-                                    convert();
-                                }
-                            });
-                        });
-                </script>
-    </x-slot>
-</x-tool-page-layout>
+    <x-slot:formula>
+        <ul class="space-y-1 font-mono text-[13px]">
+            <li>decimal: MB = kB ÷ 1,000</li>
+            <li>binary: MiB = KiB ÷ 1,024</li>
+        </ul>
+    </x-slot:formula>
+</x-calc.page>

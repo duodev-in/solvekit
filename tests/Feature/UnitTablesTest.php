@@ -95,7 +95,7 @@ class UnitTablesTest extends TestCase
 
             foreach ($units as $key => $unit) {
                 $this->assertNotEmpty($unit['name'] ?? null, "[{$tableName}.{$key}] needs a name.");
-                $this->assertNotEmpty($unit['symbol'] ?? null, "[{$tableName}.{$key}] needs a symbol.");
+                $this->assertIsString($unit['symbol'] ?? null, "[{$tableName}.{$key}] needs a symbol (empty only for plain counts).");
                 $this->assertGreaterThan(0, $unit['factor'], "[{$tableName}.{$key}] needs a positive factor.");
             }
         }

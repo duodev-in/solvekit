@@ -163,9 +163,15 @@ export function createCalculator(root, config) {
         /**
          * Writes a value into a server-rendered row: <… data-calc-row="key"><… data-row-value></…>.
          */
-        setRow(key, value) {
-            root.querySelectorAll(`[data-calc-row="${key}"] [data-row-value]`).forEach((cell) => {
-                cell.textContent = value;
+        setRow(key, value, unit) {
+            root.querySelectorAll(`[data-calc-row="${key}"]`).forEach((row) => {
+                row.querySelector('[data-row-value]').textContent = value;
+
+                // Tools whose units change with a setting (e.g. kB ↔ KiB) relabel the row as well.
+                if (unit) {
+                    row.dataset.rowUnit = unit.symbol;
+                    row.querySelector('[data-row-label]')?.replaceChildren(`${unit.name} `, Object.assign(document.createElement('span'), { className: 'text-slate-400', textContent: unit.symbol ? `(${unit.symbol})` : '' }));
+                }
             });
         },
 
