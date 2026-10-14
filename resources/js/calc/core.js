@@ -25,40 +25,17 @@ async function copyText(text) {
     }
 }
 
-/**
- * Keeps --calc-nav-h in sync with the sticky navbar so the desktop frame fills exactly one screen.
- */
-function syncNavHeight() {
-    const nav = document.querySelector('body > header');
-
-    if (!nav) {
-        return;
-    }
-
-    const apply = () => document.documentElement.style.setProperty('--calc-nav-h', `${nav.offsetHeight}px`);
-    apply();
-
-    if ('ResizeObserver' in window) {
-        new ResizeObserver(apply).observe(nav);
-    }
-}
-
 function initTabs(root) {
     root.querySelectorAll('[data-calc-tabs]').forEach((group) => {
         const tabs = Array.from(group.querySelectorAll('[role="tab"]'));
 
         const select = (tab, { focus = false } = {}) => {
-            const reselected = tab.getAttribute('aria-selected') === 'true';
-
             tabs.forEach((item) => {
                 const active = item === tab;
                 item.setAttribute('aria-selected', String(active));
                 item.tabIndex = active ? 0 : -1;
                 document.getElementById(item.getAttribute('aria-controls')).hidden = !active;
             });
-
-            // On short screens the tab panels open as a sheet; clicking the open tab closes it.
-            group.dataset.open = reselected && group.dataset.open === 'true' ? 'false' : 'true';
 
             if (focus) {
                 tab.focus();
@@ -75,12 +52,6 @@ function initTabs(root) {
                     select(tabs[(index + step + tabs.length) % tabs.length], { focus: true });
                 }
             });
-        });
-
-        group.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape') {
-                group.dataset.open = 'false';
-            }
         });
     });
 }
@@ -326,8 +297,6 @@ export function createCalculator(root, config) {
 }
 
 export function bootCalculatorPage(loadModule) {
-    syncNavHeight();
-
     const root = document.querySelector('[data-calc-root]');
 
     if (!root) {

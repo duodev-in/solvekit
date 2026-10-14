@@ -44,9 +44,8 @@
 
 /*
  * Calculator frame (Design A).
- * Desktop: the frame fills exactly the screen under the navbar; only a panel may scroll inside itself.
- * Short desktop screens (≤ 820px tall): the info strip collapses to a tab bar that opens as a sheet.
- * Below 1024px wide everything stacks and the page scrolls normally.
+ * Desktop: calculator and results side by side, then the How it works / Formula / FAQ card and
+ * Related tools below, all at full height. Below 1024px wide everything stacks.
  */
 @layer components {
     .calc-frame {
@@ -169,90 +168,10 @@
         }
     }
 
-    @media (min-width: 1024px) and (min-height: 600px) {
-        .calc-frame {
-            height: calc(100dvh - var(--calc-nav-h, 4rem));
-            padding-block: 1rem;
-        }
-
+    @media (min-width: 1024px) {
         .calc-main {
-            flex: 1 1 auto;
-            min-height: 0;
-        }
-
-        .calc-main > .calc-panel {
-            min-height: 0;
-            overflow-y: auto;
-        }
-
-        .calc-info {
-            flex: 0 0 10.5rem;
-            min-height: 0;
-        }
-
-        .calc-info > * {
-            min-height: 0;
-            overflow: hidden;
-        }
-
-        .calc-tab-panels {
-            overflow-y: auto;
+            min-height: 32rem;
         }
     }
 
-    @media (min-width: 1024px) and (min-height: 600px) and (max-height: 820px) {
-        .calc-frame {
-            gap: 0.75rem;
-            padding-block: 0.75rem;
-        }
-
-        .calc-lede {
-            display: none;
-        }
-
-        .calc-info {
-            flex-basis: 2.75rem;
-        }
-
-        .calc-info > * {
-            overflow: visible;
-        }
-
-        .calc-tabs {
-            position: relative;
-            border-radius: 0.75rem;
-        }
-
-        .calc-tab-panels {
-            position: absolute;
-            inset-inline: -1px;
-            bottom: calc(100% + 0.5rem);
-            z-index: 20;
-            max-height: 45dvh;
-            border: 1px solid var(--color-slate-200);
-            border-radius: 0.75rem;
-            background: var(--color-white);
-            box-shadow: 0 12px 32px -12px rgb(15 23 42 / 0.25);
-        }
-
-        .calc-tabs[data-open='false'] .calc-tab-panels {
-            display: none;
-        }
-
-        .calc-related-heading,
-        .calc-related-ad {
-            display: none;
-        }
-
-        .calc-related {
-            flex-direction: row;
-            align-items: center;
-            padding-block: 0.25rem;
-        }
-
-        .calc-related-links {
-            flex-wrap: nowrap;
-            overflow: hidden;
-        }
-    }
 }

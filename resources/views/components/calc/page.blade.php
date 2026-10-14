@@ -102,7 +102,7 @@
                     <h1 class="text-2xl font-bold tracking-tight text-slate-900">{{ $toolTitle }}</h1>
                 </div>
                 @if(filled($lede))
-                    <p class="calc-lede max-w-xl text-sm text-slate-600 lg:text-right">{{ $lede }}</p>
+                    <p class="max-w-xl text-sm text-slate-600 lg:text-right">{{ $lede }}</p>
                 @endif
             </header>
 
@@ -119,7 +119,7 @@
             </div>
 
             <div class="calc-info">
-                <section aria-label="About this tool" class="calc-panel calc-tabs flex flex-col" data-calc-tabs data-open="false">
+                <section aria-label="About this tool" class="calc-panel calc-tabs flex flex-col" data-calc-tabs>
                     <div role="tablist" aria-label="About this tool" class="flex shrink-0 gap-1 border-b border-slate-200 px-3">
                         <button type="button" role="tab" id="calc-tab-about" aria-controls="calc-panel-about" aria-selected="true" class="calc-tab">How it works</button>
                         @if($hasFormula)
@@ -129,7 +129,7 @@
                             <button type="button" role="tab" id="calc-tab-faq" aria-controls="calc-panel-faq" aria-selected="false" tabindex="-1" class="calc-tab">FAQ</button>
                         @endif
                     </div>
-                    <div class="calc-tab-panels min-h-0 flex-1 px-5 py-3 text-sm leading-6 text-slate-600">
+                    <div class="calc-tab-panels px-5 py-4 text-sm leading-6 text-slate-600">
                         <div role="tabpanel" id="calc-panel-about" aria-labelledby="calc-tab-about" class="space-y-2">
                             @if(isset($aboutContent) && trim((string) $aboutContent) !== '')
                                 {{ $aboutContent }}
@@ -163,8 +163,8 @@
                 </section>
 
                 <section aria-label="Related tools" class="calc-panel calc-related flex flex-col gap-3">
-                    <h2 class="calc-related-heading text-sm font-semibold text-slate-900">Related tools</h2>
-                    <nav aria-label="Related tools" class="calc-related-links flex flex-wrap gap-2">
+                    <h2 class="text-sm font-semibold text-slate-900">Related tools</h2>
+                    <nav aria-label="Related tools" class="flex flex-wrap gap-2">
                         @foreach($relatedTools as $tool)
                             <a href="{{ route($tool['route_name']) }}" class="shrink-0 rounded-lg border border-slate-200 px-3 py-2 text-[13px] font-medium text-slate-700 hover:border-primary-500 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-primary-600">{{ $tool['title'] }}</a>
                         @endforeach
