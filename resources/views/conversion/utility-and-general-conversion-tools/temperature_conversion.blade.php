@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Temperature Conversion - ConvertPro"
+    title="Temperature Conversion - SolveKit"
     description="Professional temperature conversion calculator for Celsius, Fahrenheit, Kelvin, and Rankine. Convert temperatures with weather applications, cooking conversions, and scientific calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Temperature Scale Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Temperature Conversion</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,80 +18,59 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
-                                                                            <!-- Temperature Input -->
-                                                                            <div class="space-y-2">
-                                                                                <label for="temperatureValue" class="block text-sm font-semibold text-gray-700">
-                                                                                    Temperature Value
-                                                                                </label>
-                                                                                <div class="relative">
+                                                                            <!-- Temperature Value and Scales -->
+                                                                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="temperatureValue" class="block text-sm font-semibold text-gray-700">
+                                                                                        Temperature
+                                                                                    </label>
                                                                                     <input 
                                                                                         type="number" 
                                                                                         id="temperatureValue" 
                                                                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono" 
-                                                                                        placeholder="Enter temperature (e.g., 25)"
+                                                                                        placeholder="e.g., 25"
                                                                                         step="any"
                                                                                     >
                                                                                 </div>
-                                                                                <p class="text-xs text-gray-500">Enter the temperature value to convert</p>
+
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="inputScale" class="block text-sm font-semibold text-gray-700">
+                                                                                        From Scale
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="inputScale" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="celsius" selected>Celsius (°C)</option>
+                                                                                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                                                                                        <option value="kelvin">Kelvin (K)</option>
+                                                                                        <option value="rankine">Rankine (°R)</option>
+                                                                                        <option value="delisle">Delisle (°De)</option>
+                                                                                        <option value="newton">Newton (°N)</option>
+                                                                                        <option value="reaumur">Réaumur (°Ré)</option>
+                                                                                        <option value="romer">Rømer (°Rø)</option>
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="outputScale" class="block text-sm font-semibold text-gray-700">
+                                                                                        To Scale
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="outputScale" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="celsius">Celsius (°C)</option>
+                                                                                        <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                                                                                        <option value="kelvin">Kelvin (K)</option>
+                                                                                        <option value="rankine">Rankine (°R)</option>
+                                                                                        <option value="delisle">Delisle (°De)</option>
+                                                                                        <option value="newton">Newton (°N)</option>
+                                                                                        <option value="reaumur">Réaumur (°Ré)</option>
+                                                                                        <option value="romer">Rømer (°Rø)</option>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
-
-                                                                            <!-- Input Scale -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Input Temperature Scale
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="inputScale" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="celsius" selected>Celsius (°C)</option>
-                                                                                    <option value="fahrenheit">Fahrenheit (°F)</option>
-                                                                                    <option value="kelvin">Kelvin (K)</option>
-                                                                                    <option value="rankine">Rankine (°R)</option>
-                                                                                    <option value="delisle">Delisle (°De)</option>
-                                                                                    <option value="newton">Newton (°N)</option>
-                                                                                    <option value="reaumur">Réaumur (°Ré)</option>
-                                                                                    <option value="romer">Rømer (°Rø)</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <!-- Temperature Context -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Temperature Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="temperatureContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="weather">Weather & Climate</option>
-                                                                                    <option value="cooking">Cooking & Baking</option>
-                                                                                    <option value="scientific">Scientific & Laboratory</option>
-                                                                                    <option value="industrial">Industrial Process</option>
-                                                                                    <option value="medical">Medical & Health</option>
-                                                                                    <option value="hvac">HVAC & Building</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <!-- Precision -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Decimal Precision
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="precision" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="0">Whole numbers (0 decimal places)</option>
-                                                                                    <option value="1" selected>1 decimal place</option>
-                                                                                    <option value="2">2 decimal places</option>
-                                                                                    <option value="3">3 decimal places</option>
-                                                                                    <option value="4">4 decimal places (scientific)</option>
-                                                                                </select>
-                                                                            </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -119,7 +98,7 @@
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
                                                                                         <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Temperature Conversion</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">All temperature scales</p>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Selected temperature conversion</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-red-600 font-mono" id="output">--</div>
@@ -127,85 +106,6 @@
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
-
-                                                                            <!-- Temperature Scales Display -->
-                                                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                                                <!-- Common Scales -->
-                                                                                <div class="space-y-3">
-                                                                                    <h4 class="font-semibold text-gray-700 text-center">Common Scales</h4>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border-l-4 border-blue-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Celsius</h5>
-                                                                                            <div class="text-lg font-bold text-blue-600 font-mono" id="celsiusDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°C (Metric standard)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-lg border-l-4 border-indigo-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Fahrenheit</h5>
-                                                                                            <div class="text-lg font-bold text-indigo-600 font-mono" id="fahrenheitDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°F (US standard)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-purple-50 to-violet-50 rounded-lg border-l-4 border-purple-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Kelvin</h5>
-                                                                                            <div class="text-lg font-bold text-purple-600 font-mono" id="kelvinDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">K (Scientific absolute)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-violet-50 to-pink-50 rounded-lg border-l-4 border-violet-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Rankine</h5>
-                                                                                            <div class="text-lg font-bold text-violet-600 font-mono" id="rankineDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°R (Engineering absolute)</div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-
-                                                                                <!-- Historical Scales -->
-                                                                                <div class="space-y-3">
-                                                                                    <h4 class="font-semibold text-gray-700 text-center">Historical Scales</h4>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border-l-4 border-green-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Delisle</h5>
-                                                                                            <div class="text-lg font-bold text-green-600 font-mono" id="delisleDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°De (Historical French)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-lg border-l-4 border-emerald-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Newton</h5>
-                                                                                            <div class="text-lg font-bold text-emerald-600 font-mono" id="newtonDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°N (Newton's scale)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-lg border-l-4 border-teal-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Réaumur</h5>
-                                                                                            <div class="text-lg font-bold text-teal-600 font-mono" id="reaumurDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°Ré (Historical European)</div>
-                                                                                        </div>
-                                                                                    </div>
-
-                                                                                    <div class="p-3 bg-gradient-to-r from-cyan-50 to-sky-50 rounded-lg border-l-4 border-cyan-500">
-                                                                                        <div class="text-center">
-                                                                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">Rømer</h5>
-                                                                                            <div class="text-lg font-bold text-cyan-600 font-mono" id="romerDisplay">--</div>
-                                                                                            <div class="text-xs text-gray-500 mt-1">°Rø (Danish scale)</div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
 
                                                                     </div>
                                     </div>
@@ -223,7 +123,7 @@
                                                         <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-red-100 text-gray-700 hover:text-red-700 rounded-lg transition-colors" data-temp="0" data-scale="celsius">0°C (Freezing)</button>
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-red-100 text-gray-700 hover:text-red-700 rounded-lg transition-colors" data-temp="100" data-scale="celsius">100°C (Boiling)</button>
-                                                            <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-red-100 text-gray-700 hover:text-red-700 rounded-colors" data-temp="98.6" data-scale="fahrenheit">98.6°F (Body)</button>
+                                                            <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-red-100 text-gray-700 hover:text-red-700 rounded-lg transition-colors" data-temp="98.6" data-scale="fahrenheit">98.6°F (Body)</button>
                                                             <button type="button" class="example-btn px-3 py-2 text-sm bg-gray-100 hover:bg-red-100 text-gray-700 hover:text-red-700 rounded-lg transition-colors" data-temp="273.15" data-scale="kelvin">273.15K (Freezing)</button>
                                                         </div>
                                                     </div>
@@ -251,255 +151,134 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Temperature Conversions</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Temperature Scales & Applications</h4>
-                                    <p>Temperature conversion is essential across many fields. Celsius is used globally for weather and daily life, Fahrenheit remains common in the US, Kelvin is the scientific standard for absolute measurements, and Rankine is used in engineering. Understanding these relationships helps in international communication, scientific work, and practical applications.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Uses</h4>
-                                    <p>Temperature conversions are needed for weather forecasting, cooking recipes, scientific experiments, medical applications, HVAC systems, and international travel. Each scale has specific advantages: Celsius for intuitive water-based reference points, Fahrenheit for human comfort precision, and Kelvin for thermodynamic calculations.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
-                                <p class="text-sm text-red-800">
-                                    <strong>Important Note:</strong> Kelvin and Rankine are absolute temperature scales starting from absolute zero, while Celsius and Fahrenheit are relative scales based on water's phase transitions.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Temperature Applications</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Weather & Climate</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-temp="25" data-scale="celsius">Summer Day: 25°C</div>
-                                        <div class="text-xs text-gray-600 mt-1">Comfortable warm weather</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-temp="-10" data-scale="celsius">Winter Day: -10°C</div>
-                                        <div class="text-xs text-gray-600 mt-1">Cold winter temperature</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Cooking & Health</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-temp="350" data-scale="fahrenheit">Oven: 350°F</div>
-                                        <div class="text-xs text-gray-600 mt-1">Common baking temperature</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-temp="101" data-scale="fahrenheit">Fever: 101°F</div>
-                                        <div class="text-xs text-gray-600 mt-1">Low-grade fever temperature</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const temperatureValue = document.getElementById('temperatureValue');
                         const inputScale = document.getElementById('inputScale');
-                        const temperatureContext = document.getElementById('temperatureContext');
-                        const precision = document.getElementById('precision');
+                        const outputScale = document.getElementById('outputScale');
                         const clearButton = document.getElementById('clearButton');
-                        
+
                         // Output elements
                         const output = document.getElementById('output');
                         const resultTitle = document.getElementById('result-title');
                         const resultDescription = document.getElementById('result-description');
-                        const celsiusDisplay = document.getElementById('celsiusDisplay');
-                        const fahrenheitDisplay = document.getElementById('fahrenheitDisplay');
-                        const kelvinDisplay = document.getElementById('kelvinDisplay');
-                        const rankineDisplay = document.getElementById('rankineDisplay');
-                        const delisleDisplay = document.getElementById('delisleDisplay');
-                        const newtonDisplay = document.getElementById('newtonDisplay');
-                        const reaumurDisplay = document.getElementById('reaumurDisplay');
-                        const romerDisplay = document.getElementById('romerDisplay');
-                        const temperatureRangeDisplay = document.getElementById('temperatureRangeDisplay');
-                        const temperatureCategoryDisplay = document.getElementById('temperatureCategoryDisplay');
-                        const waterStateDisplay = document.getElementById('waterStateDisplay');
-                        const comfortLevelDisplay = document.getElementById('comfortLevelDisplay');
                         const copyResult = document.getElementById('copyResult');
 
-                        function formatNumber(num, decimals = 1) {
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: decimals 
-                            });
+                        const scales = {
+                            celsius: { name: 'Celsius', symbol: '°C' },
+                            fahrenheit: { name: 'Fahrenheit', symbol: '°F' },
+                            kelvin: { name: 'Kelvin', symbol: 'K' },
+                            rankine: { name: 'Rankine', symbol: '°R' },
+                            delisle: { name: 'Delisle', symbol: '°De' },
+                            newton: { name: 'Newton', symbol: '°N' },
+                            reaumur: { name: 'Réaumur', symbol: '°Ré' },
+                            romer: { name: 'Rømer', symbol: '°Rø' }
+                        };
+
+                        function formatNumber(num) {
+                            if (num === 0 || Object.is(num, -0)) {
+                                return '0';
+                            }
+
+                            const absolute = Math.abs(num);
+
+                            if (absolute >= 1e15 || absolute < 1e-6) {
+                                return num.toExponential(3);
+                            }
+
+                            if (absolute < 0.01) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 3 });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                         }
 
-                        function convertTemperature(value, fromScale, toScale) {
-                            // First convert to Celsius as the base
-                            let celsius;
-                            
-                            switch(fromScale) {
-                                case 'celsius':
-                                    celsius = value;
-                                    break;
+                        function formatTemperature(value, scale) {
+                            const symbol = scales[scale].symbol;
+
+                            return symbol === 'K' ? `${formatNumber(value)} K` : `${formatNumber(value)}${symbol}`;
+                        }
+
+                        function toCelsius(value, scale) {
+                            switch (scale) {
                                 case 'fahrenheit':
-                                    celsius = (value - 32) * 5/9;
-                                    break;
+                                    return (value - 32) * 5 / 9;
                                 case 'kelvin':
-                                    celsius = value - 273.15;
-                                    break;
+                                    return value - 273.15;
                                 case 'rankine':
-                                    celsius = (value - 491.67) * 5/9;
-                                    break;
+                                    return (value - 491.67) * 5 / 9;
                                 case 'delisle':
-                                    celsius = 100 - value * 2/3;
-                                    break;
+                                    return 100 - value * 2 / 3;
                                 case 'newton':
-                                    celsius = value * 100/33;
-                                    break;
+                                    return value * 100 / 33;
                                 case 'reaumur':
-                                    celsius = value * 5/4;
-                                    break;
+                                    return value * 5 / 4;
                                 case 'romer':
-                                    celsius = (value - 7.5) * 40/21;
-                                    break;
+                                    return (value - 7.5) * 40 / 21;
                                 default:
-                                    celsius = value;
+                                    return value;
                             }
-                            
-                            // Then convert from Celsius to target scale
-                            switch(toScale) {
-                                case 'celsius':
-                                    return celsius;
+                        }
+
+                        function fromCelsius(celsius, scale) {
+                            switch (scale) {
                                 case 'fahrenheit':
-                                    return celsius * 9/5 + 32;
+                                    return celsius * 9 / 5 + 32;
                                 case 'kelvin':
                                     return celsius + 273.15;
                                 case 'rankine':
-                                    return (celsius + 273.15) * 9/5;
+                                    return (celsius + 273.15) * 9 / 5;
                                 case 'delisle':
-                                    return (100 - celsius) * 3/2;
+                                    return (100 - celsius) * 3 / 2;
                                 case 'newton':
-                                    return celsius * 33/100;
+                                    return celsius * 33 / 100;
                                 case 'reaumur':
-                                    return celsius * 4/5;
+                                    return celsius * 4 / 5;
                                 case 'romer':
-                                    return celsius * 21/40 + 7.5;
+                                    return celsius * 21 / 40 + 7.5;
                                 default:
                                     return celsius;
                             }
-                        }
-
-                        function getTemperatureRange(celsius) {
-                            if (celsius < -273) return 'Below absolute zero (impossible)';
-                            if (celsius < -200) return 'Cryogenic';
-                            if (celsius < -100) return 'Extremely cold';
-                            if (celsius < -40) return 'Arctic';
-                            if (celsius < 0) return 'Freezing';
-                            if (celsius < 10) return 'Cold';
-                            if (celsius < 20) return 'Cool';
-                            if (celsius < 30) return 'Warm';
-                            if (celsius < 40) return 'Hot';
-                            if (celsius < 60) return 'Very hot';
-                            if (celsius < 100) return 'Extremely hot';
-                            if (celsius < 200) return 'Cooking temperature';
-                            if (celsius < 500) return 'Industrial temperature';
-                            if (celsius < 1000) return 'High temperature';
-                            return 'Extreme high temperature';
-                        }
-
-                        function getTemperatureCategory(celsius) {
-                            if (celsius < -40) return 'Extreme cold';
-                            if (celsius < 0) return 'Below freezing';
-                            if (celsius < 15) return 'Cold';
-                            if (celsius < 25) return 'Comfortable';
-                            if (celsius < 35) return 'Warm';
-                            if (celsius < 45) return 'Hot';
-                            return 'Extreme heat';
-                        }
-
-                        function getWaterState(celsius) {
-                            if (celsius < 0) return 'Ice (solid)';
-                            if (celsius < 100) return 'Liquid water';
-                            return 'Steam (gas)';
-                        }
-
-                        function getComfortLevel(celsius) {
-                            if (celsius < 10) return 'Too cold';
-                            if (celsius < 18) return 'Cool';
-                            if (celsius < 26) return 'Comfortable';
-                            if (celsius < 30) return 'Warm';
-                            if (celsius < 35) return 'Hot';
-                            return 'Too hot';
                         }
 
                         function calculate() {
                             const value = parseFloat(temperatureValue.value);
-                            const scale = inputScale.value;
-                            const decimals = parseInt(precision.value);
-                            
-                            if (!isNaN(value)) {
-                                // Convert to all scales
-                                const celsius = convertTemperature(value, scale, 'celsius');
-                                const fahrenheit = convertTemperature(value, scale, 'fahrenheit');
-                                const kelvin = convertTemperature(value, scale, 'kelvin');
-                                const rankine = convertTemperature(value, scale, 'rankine');
-                                const delisle = convertTemperature(value, scale, 'delisle');
-                                const newton = convertTemperature(value, scale, 'newton');
-                                const reaumur = convertTemperature(value, scale, 'reaumur');
-                                const romer = convertTemperature(value, scale, 'romer');
-                                
-                                // Update primary output (show all common scales)
-                                output.textContent = `${formatNumber(celsius, decimals)}°C`;
-                                resultTitle.textContent = 'All Temperature Scales';
-                                resultDescription.textContent = `${value}° ${scale} converted to all scales`;
+                            const from = inputScale.value;
+                            const to = outputScale.value;
 
-                                // Display all temperature scales
-                                celsiusDisplay.textContent = formatNumber(celsius, decimals) + '°C';
-                                fahrenheitDisplay.textContent = formatNumber(fahrenheit, decimals) + '°F';
-                                kelvinDisplay.textContent = formatNumber(kelvin, decimals) + 'K';
-                                rankineDisplay.textContent = formatNumber(rankine, decimals) + '°R';
-                                delisleDisplay.textContent = formatNumber(delisle, decimals) + '°De';
-                                newtonDisplay.textContent = formatNumber(newton, decimals) + '°N';
-                                reaumurDisplay.textContent = formatNumber(reaumur, decimals) + '°Ré';
-                                romerDisplay.textContent = formatNumber(romer, decimals) + '°Rø';
-
-                                // Context information
-                                temperatureRangeDisplay.textContent = getTemperatureRange(celsius);
-                                temperatureCategoryDisplay.textContent = getTemperatureCategory(celsius);
-                                waterStateDisplay.textContent = getWaterState(celsius);
-                                comfortLevelDisplay.textContent = getComfortLevel(celsius);
-
-                            } else {
+                            if (isNaN(value)) {
                                 clearOutputs();
+                                return;
                             }
+
+                            const celsius = toCelsius(value, from);
+                            resultTitle.textContent = scales[to].name;
+
+                            // Guard against floating point noise just below absolute zero.
+                            if (celsius < -273.15 - 1e-9) {
+                                output.textContent = '--';
+                                resultDescription.textContent = `${formatTemperature(value, from)} is below absolute zero`;
+                                return;
+                            }
+
+                            const result = fromCelsius(celsius, to);
+
+                            output.textContent = formatTemperature(result, to);
+                            resultDescription.textContent = `${formatTemperature(value, from)} = ${formatTemperature(result, to)}`;
                         }
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Temperature Conversion';
-                            resultDescription.textContent = 'All temperature scales';
-                            celsiusDisplay.textContent = '--';
-                            fahrenheitDisplay.textContent = '--';
-                            kelvinDisplay.textContent = '--';
-                            rankineDisplay.textContent = '--';
-                            delisleDisplay.textContent = '--';
-                            newtonDisplay.textContent = '--';
-                            reaumurDisplay.textContent = '--';
-                            romerDisplay.textContent = '--';
-                            temperatureRangeDisplay.textContent = '--';
-                            temperatureCategoryDisplay.textContent = '--';
-                            waterStateDisplay.textContent = '--';
-                            comfortLevelDisplay.textContent = '--';
+                            resultTitle.textContent = scales[outputScale.value].name;
+                            resultDescription.textContent = 'Enter a temperature to convert';
                         }
 
                         function clearAll() {
                             temperatureValue.value = '';
                             inputScale.value = 'celsius';
-                            temperatureContext.value = '';
-                            precision.value = '1';
+                            outputScale.value = 'fahrenheit';
                             clearOutputs();
                             temperatureValue.focus();
                         }
@@ -507,11 +286,9 @@
                         // Event listeners
                         temperatureValue.addEventListener('input', calculate);
                         inputScale.addEventListener('change', calculate);
-                        temperatureContext.addEventListener('change', calculate);
-                        precision.addEventListener('change', calculate);
+                        outputScale.addEventListener('change', calculate);
                         clearButton.addEventListener('click', clearAll);
 
-                        // Copy functionality
                         copyResult.addEventListener('click', function() {
                             const text = output.textContent;
                             if (text !== '--') {
@@ -524,18 +301,18 @@
                             }
                         });
 
-                        // Example buttons
                         const exampleBtns = document.querySelectorAll('.example-btn');
                         exampleBtns.forEach(button => {
                             button.addEventListener('click', function() {
-                                const temp = this.getAttribute('data-temp');
-                                const scale = this.getAttribute('data-scale');
-                                
-                                temperatureValue.value = temp;
-                                inputScale.value = scale;
+                                temperatureValue.value = this.getAttribute('data-temp');
+                                inputScale.value = this.getAttribute('data-scale');
+
+                                if (inputScale.value === outputScale.value) {
+                                    outputScale.value = inputScale.value === 'celsius' ? 'fahrenheit' : 'celsius';
+                                }
+
                                 calculate();
-                                
-                                // Update button styles
+
                                 exampleBtns.forEach(btn => btn.classList.remove('bg-red-100', 'text-red-700'));
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
@@ -543,26 +320,10 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-temp][data-scale]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const temp = this.getAttribute('data-temp');
-                                const scale = this.getAttribute('data-scale');
-                                
-                                if (temp && scale) {
-                                    temperatureValue.value = temp;
-                                    inputScale.value = scale;
-                                    calculate();
-                                    temperatureValue.focus();
-                                }
-                            });
-                        });
-
                         // Initialize
+                        clearOutputs();
                         temperatureValue.focus();
 
-                        // Keyboard shortcuts
                         document.addEventListener('keydown', function(e) {
                             if (e.key === 'Escape') {
                                 clearAll();

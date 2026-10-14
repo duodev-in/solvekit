@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pressure Converter - ConvertPro"
+    title="Pressure Converter - SolveKit"
     description="Professional pressure converter for engineering applications. Convert between Pascal, Bar, PSI, ATM, Torr, and other pressure units with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Engineering Pressure Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Pressure Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -145,7 +145,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-red-50 to-gray-50 rounded-xl border-l-4 border-red-500">
@@ -337,17 +337,17 @@
                         };
 
                         const unitNames = {
-                            pascal: 'Pascal',
-                            bar: 'Bar',
+                            pascal: 'Pascals',
+                            bar: 'Bars',
                             psi: 'PSI',
-                            atm: 'Atmosphere',
+                            atm: 'Atmospheres',
                             torr: 'Torr',
                             mmhg: 'mmHg',
                             inhg: 'inHg',
-                            kpa: 'Kilopascal',
-                            mpa: 'Megapascal',
+                            kpa: 'Kilopascals',
+                            mpa: 'Megapascals',
                             psf: 'PSF',
-                            mbar: 'Millibar',
+                            mbar: 'Millibars',
                             mmh2o: 'mmH2O',
                             inh2o: 'inH2O'
                         };
@@ -376,15 +376,20 @@
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'auto') {
                                 if (num >= 1000000) {
-                                    return num.toExponential(4);
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

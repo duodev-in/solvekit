@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="PSI to GPM Calculator - ConvertPro"
+    title="PSI to GPM Calculator - SolveKit"
     description="Professional PSI to GPM flow rate calculator for engineering applications. Calculate flow rates from pressure and pipe dimensions with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Hydraulic Flow Rate Calculation</h2>
+                                <h1 class="text-lg font-semibold text-white">PSI to GPM</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -128,7 +128,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl border-l-4 border-teal-500">
@@ -336,12 +336,12 @@
                         };
 
                         const unitNames = {
-                            gpm: 'Gallons per minute',
-                            lpm: 'Liters per minute',
-                            cfs: 'Cubic feet per second',
-                            cms: 'Cubic meters per second',
-                            gph: 'Gallons per hour',
-                            lps: 'Liters per second'
+                            gpm: 'Gallons per Minute',
+                            lpm: 'Liters per Minute',
+                            cfs: 'Cubic Feet per Second',
+                            cms: 'Cubic Meters per Second',
+                            gph: 'Gallons per Hour',
+                            lps: 'Liters per Second'
                         };
 
                         const unitSymbols = {
@@ -360,8 +360,10 @@
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 5 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 

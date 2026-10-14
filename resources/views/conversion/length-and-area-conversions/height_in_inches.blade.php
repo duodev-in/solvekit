@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Height in Inches Calculator - ConvertPro"
+    title="Height in Inches Calculator - SolveKit"
     description="Professional height calculator to convert inches to feet and inches, centimeters, and meters. Perfect for height conversions and human measurements."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Human Height Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Height in Inches</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -176,6 +176,16 @@
                         const centimeters = document.getElementById('centimeters');
                         const meters = document.getElementById('meters');
 
+                        function formatMeasurement(value, fractionDigits) {
+                            if (value !== 0 && Math.abs(value) < 0.000001) {
+                                return Number(value.toPrecision(4)).toExponential();
+                            } else if (Math.abs(value) < 1) {
+                                return value.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return value.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
+                        }
+
                         function convert() {
                             const inches = parseFloat(inchesInput.value);
                             
@@ -189,17 +199,17 @@
                                 // Format feet and inches
                                 let feetInchesText;
                                 if (feet > 0 && remainingInches > 0) {
-                                    feetInchesText = `${feet}' ${remainingInches.toFixed(1)}"`;
+                                    feetInchesText = `${feet}' ${formatMeasurement(remainingInches, 1)}"`;
                                 } else if (feet > 0) {
                                     feetInchesText = `${feet}' 0"`;
                                 } else {
-                                    feetInchesText = `0' ${remainingInches.toFixed(1)}"`;
+                                    feetInchesText = `0' ${formatMeasurement(remainingInches, 1)}"`;
                                 }
 
                                 // Display results
                                 feetInches.textContent = feetInchesText;
-                                centimeters.textContent = cm.toLocaleString(undefined, { maximumFractionDigits: 1 });
-                                meters.textContent = m.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                                centimeters.textContent = formatMeasurement(cm, 1);
+                                meters.textContent = formatMeasurement(m, 3);
                             } else {
                                 // Clear results
                                 feetInches.textContent = "--";

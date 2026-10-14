@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Density Conversion Calculator - ConvertPro"
+    title="Density Conversion Calculator - SolveKit"
     description="Professional density conversion calculator for mass per unit volume. Convert between kg/m³, g/cm³, lb/ft³, and other density units for materials and substances."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Mass Per Unit Volume Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Density Conversion</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -111,24 +112,6 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Material Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Material Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="materialContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="water">Water and aqueous solutions</option>
-                                                                                    <option value="metals">Metals and alloys</option>
-                                                                                    <option value="petroleum">Petroleum products and oils</option>
-                                                                                    <option value="construction">Construction materials</option>
-                                                                                    <option value="gases">Gases (at STP)</option>
-                                                                                    <option value="food">Food and beverages</option>
-                                                                                    <option value="chemicals">Chemical substances</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -310,64 +293,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Density Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Density</h4>
-                                    <p>Density is mass per unit volume (ρ = m/V), a fundamental physical property that determines how much matter is packed into a given space. It's crucial for material identification, quality control, engineering calculations, and understanding buoyancy and floating behavior.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Density conversions are essential in materials science, chemical engineering, petroleum industry, construction, quality control, and scientific research. Different industries use different units based on tradition, convenience, and measurement scale.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Density Tip:</strong> Water's density of 1 g/cm³ (1000 kg/m³) at 4°C is used as the reference for specific gravity calculations!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Material Database -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Material Density Database</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Metals & Alloys</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="19300" data-from="kg_m3" data-to="g_cm3">Gold: 19,300 kg/m³</div>
-                                        <div class="text-xs text-gray-600 mt-1">Precious metal, highest density</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="8960" data-from="kg_m3" data-to="g_cm3">Copper: 8,960 kg/m³</div>
-                                        <div class="text-xs text-gray-600 mt-1">Electrical conductor</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Liquids & Solutions</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="13534" data-from="kg_m3" data-to="g_cm3">Mercury: 13,534 kg/m³</div>
-                                        <div class="text-xs text-gray-600 mt-1">Liquid metal at room temperature</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="789" data-from="kg_m3" data-to="g_cm3">Ethanol: 789 kg/m³</div>
-                                        <div class="text-xs text-gray-600 mt-1">Alcohol, lighter than water</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const materialContext = document.getElementById('materialContext');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
@@ -384,14 +315,6 @@
                         const lbin3Display = document.getElementById('lbin3Display');
                         const lbgalusDisplay = document.getElementById('lbgalusDisplay');
                         const sgDisplay = document.getElementById('sgDisplay');
-                        const materialInfo = document.getElementById('materialInfo');
-                        const waterRatio = document.getElementById('waterRatio');
-                        const airRatio = document.getElementById('airRatio');
-                        const steelRatio = document.getElementById('steelRatio');
-                        const buoyancy = document.getElementById('buoyancy');
-                        const conversionFactor = document.getElementById('conversionFactor');
-                        const scientificNotation = document.getElementById('scientificNotation');
-                        const precisionUsed = document.getElementById('precisionUsed');
                         const copyResult = document.getElementById('copyResult');
 
                         // Density multipliers (to kg/m³)
@@ -441,19 +364,25 @@
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: Math.min(precision, 2) });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
+                            if (num === 0) {
+                                return '0';
+                            }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: Math.max(getPrecision(), 1) });
+                        }
+
+                        function unitDisplayName(select) {
+                            return select.options[select.selectedIndex].text;
                         }
 
                         function convertSpecialUnits(value, fromUnit, toKgM3 = true) {
@@ -484,92 +413,10 @@
                             return kgm3Value / densityMultipliers[toUnit];
                         }
 
-                        function getMaterialInfo(kgm3Value, context) {
-                            const contexts = {
-                                water: {
-                                    name: 'Water and Aqueous Solutions',
-                                    getInfo: (density) => {
-                                        if (density < 900) return 'Less dense than ice - will float on water';
-                                        if (density < 1000) return 'Less dense than water - buoyant in pure water';
-                                        if (density === 1000) return 'Same density as pure water at 4°C';
-                                        if (density < 1100) return 'Slightly denser than water - concentrated solution';
-                                        return 'Much denser than water - heavy aqueous solution or suspension';
-                                    }
-                                },
-                                metals: {
-                                    name: 'Metals and Alloys',
-                                    getInfo: (density) => {
-                                        if (density < 1000) return 'Very light material - possibly foam or composite';
-                                        if (density < 3000) return 'Light metal - aluminum, magnesium alloys';
-                                        if (density < 8000) return 'Medium density metal - steel, iron, copper alloys';
-                                        if (density < 15000) return 'Heavy metal - lead, mercury compounds';
-                                        return 'Very heavy metal - gold, platinum, tungsten';
-                                    }
-                                },
-                                petroleum: {
-                                    name: 'Petroleum Products',
-                                    getInfo: (density) => {
-                                        if (density < 700) return 'Very light petroleum product - natural gas liquids';
-                                        if (density < 800) return 'Light petroleum - gasoline, naphtha';
-                                        if (density < 900) return 'Medium petroleum - kerosene, diesel';
-                                        if (density < 1000) return 'Heavy petroleum - fuel oil, lubricants';
-                                        return 'Very heavy petroleum - bitumen, heavy crude';
-                                    }
-                                },
-                                construction: {
-                                    name: 'Construction Materials',
-                                    getInfo: (density) => {
-                                        if (density < 500) return 'Very light material - insulation, foam';
-                                        if (density < 1000) return 'Light material - wood, cork, light concrete';
-                                        if (density < 2000) return 'Medium material - gypsum, standard concrete';
-                                        if (density < 3000) return 'Heavy material - dense concrete, ceramics';
-                                        return 'Very heavy material - stone, metal reinforcement';
-                                    }
-                                },
-                                gases: {
-                                    name: 'Gases at STP',
-                                    getInfo: (density) => {
-                                        if (density < 0.5) return 'Very light gas - hydrogen, helium';
-                                        if (density < 1.5) return 'Light gas - air, nitrogen, oxygen';
-                                        if (density < 3) return 'Medium gas - carbon dioxide, argon';
-                                        if (density < 10) return 'Heavy gas - propane, butane';
-                                        return 'Very heavy gas or vapor - mercury vapor, heavy hydrocarbons';
-                                    }
-                                },
-                                food: {
-                                    name: 'Food and Beverages',
-                                    getInfo: (density) => {
-                                        if (density < 800) return 'Very light food - oils, fats, alcohol';
-                                        if (density < 1000) return 'Light food - most liquids, dairy products';
-                                        if (density < 1200) return 'Medium density food - syrups, concentrated juices';
-                                        if (density < 1500) return 'Dense food - honey, molasses, sugar solutions';
-                                        return 'Very dense food - highly concentrated products';
-                                    }
-                                },
-                                chemicals: {
-                                    name: 'Chemical Substances',
-                                    getInfo: (density) => {
-                                        if (density < 500) return 'Very light chemical - volatile organics, gases';
-                                        if (density < 1000) return 'Light chemical - organic solvents, alcohols';
-                                        if (density < 2000) return 'Medium chemical - aqueous solutions, salts';
-                                        if (density < 5000) return 'Heavy chemical - concentrated acids, metal salts';
-                                        return 'Very heavy chemical - mercury compounds, heavy metal solutions';
-                                    }
-                                }
-                            };
-
-                            if (context && contexts[context]) {
-                                const ctx = contexts[context];
-                                return `${ctx.name}: ${ctx.getInfo(kgm3Value)}`;
-                            }
-                            return 'Select a material context for specific information';
-                        }
-
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const context = materialContext.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
                                 // Convert input to kg/m³ first
@@ -590,8 +437,8 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]} (${to})`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                resultTitle.textContent = unitDisplayName(toUnit);
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Convert to all common units and display
                                 const kgm3 = inputInKgM3;
@@ -603,28 +450,6 @@
                                 lbin3Display.textContent = formatNumber(kgm3 / densityMultipliers.lb_in3);
                                 lbgalusDisplay.textContent = formatNumber(kgm3 / densityMultipliers.lb_gal_us);
                                 sgDisplay.textContent = formatNumber(kgm3 / 1000); // Specific gravity relative to water
-
-                                // Material context information
-                                materialInfo.textContent = getMaterialInfo(kgm3, context);
-
-                                // Density comparisons
-                                waterRatio.textContent = formatNumber(kgm3 / 1000, 3) + 'x';
-                                airRatio.textContent = formatNumber(kgm3 / 1.225, 0) + 'x';
-                                steelRatio.textContent = formatNumber(kgm3 / 7850, 3) + 'x';
-                                buoyancy.textContent = kgm3 < 1000 ? 'Floats' : 'Sinks';
-
-                                // Conversion analysis
-                                let factor;
-                                if (['api_gravity', 'baume_heavy', 'baume_light'].includes(from) || 
-                                    ['api_gravity', 'baume_heavy', 'baume_light'].includes(to)) {
-                                    factor = inputInKgM3 / (result * (densityMultipliers[to] || 1));
-                                } else {
-                                    factor = densityMultipliers[from] / densityMultipliers[to];
-                                }
-                                
-                                conversionFactor.textContent = Math.abs(factor) >= 1 ? `×${formatNumber(Math.abs(factor), 6)}` : `÷${formatNumber(1/Math.abs(factor), 6)}`;
-                                scientificNotation.textContent = result.toExponential(3);
-                                precisionUsed.textContent = `${getPrecision()} digits`;
 
                             } else {
                                 clearOutputs();
@@ -643,21 +468,12 @@
                             lbin3Display.textContent = '--';
                             lbgalusDisplay.textContent = '--';
                             sgDisplay.textContent = '--';
-                            materialInfo.textContent = 'Select a material context for specific information';
-                            waterRatio.textContent = '--';
-                            airRatio.textContent = '--';
-                            steelRatio.textContent = '--';
-                            buoyancy.textContent = '--';
-                            conversionFactor.textContent = '--';
-                            scientificNotation.textContent = '--';
-                            precisionUsed.textContent = '4 digits';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'kg_m3';
                             toUnit.value = 'g_cm3';
-                            materialContext.value = '';
                             precision.value = 4;
                             precisionValue.textContent = '4 digits';
                             clearOutputs();
@@ -668,7 +484,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        materialContext.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -708,22 +523,6 @@
                                 densityExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-green-100', 'text-green-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Degrees Minutes Seconds Calculator - ConvertPro"
+    title="Degrees Minutes Seconds Calculator - SolveKit"
     description="Professional DMS calculator for navigation, surveying and astronomy. Convert between decimal degrees and degrees minutes seconds format with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Angular Measurement Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">DMS Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -463,10 +463,17 @@
                             if (precision === 'auto') {
                                 if (Math.abs(num) >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
+                                } else if (Math.abs(num) < 1) {
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 } else {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }
@@ -569,16 +576,17 @@
                                     ddValue = dd;
                                     const dms = convertToDMS(dd);
                                     let direction = '';
+                                    let sign = '';
                                     
                                     if (context === 'latitude') {
-                                        direction = dd >= 0 ? 'N' : 'S';
+                                        direction = dd >= 0 ? ' N' : ' S';
                                     } else if (context === 'longitude') {
-                                        direction = dd >= 0 ? 'E' : 'W';
+                                        direction = dd >= 0 ? ' E' : ' W';
                                     } else {
-                                        direction = dd >= 0 ? '+' : '-';
+                                        sign = dd < 0 ? '-' : '';
                                     }
                                     
-                                    dmsValue = `${dms.degrees}° ${dms.minutes}' ${formatNumber(dms.seconds, precision)}" ${direction}`;
+                                    dmsValue = `${sign}${dms.degrees}° ${dms.minutes}' ${formatNumber(dms.seconds, precision)}"${direction}`;
                                     output.textContent = dmsValue;
                                 } else {
                                     ddValue = null;
@@ -618,16 +626,17 @@
                                 ddDisplay.textContent = formatNumber(ddValue, precision) + '°';
                                 const dms = convertToDMS(ddValue);
                                 let dir = '';
+                                let sign = '';
                                 
                                 if (context === 'latitude') {
-                                    dir = ddValue >= 0 ? 'N' : 'S';
+                                    dir = ddValue >= 0 ? ' N' : ' S';
                                 } else if (context === 'longitude') {
-                                    dir = ddValue >= 0 ? 'E' : 'W';
+                                    dir = ddValue >= 0 ? ' E' : ' W';
                                 } else {
-                                    dir = ddValue >= 0 ? '+' : '-';
+                                    sign = ddValue < 0 ? '-' : '';
                                 }
                                 
-                                dmsDisplay.textContent = `${dms.degrees}° ${dms.minutes}' ${formatNumber(dms.seconds, precision)}" ${dir}`;
+                                dmsDisplay.textContent = `${sign}${dms.degrees}° ${dms.minutes}' ${formatNumber(dms.seconds, precision)}"${dir}`;
                                 
                                 // Additional formats
                                 radiansDisplay.textContent = formatNumber(ddValue * Math.PI / 180, precision) + ' rad';

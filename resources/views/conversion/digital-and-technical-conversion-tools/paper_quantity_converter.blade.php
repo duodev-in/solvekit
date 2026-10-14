@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Paper Quantity Converter - ConvertPro"
+    title="Paper Quantity Converter - SolveKit"
     description="Professional paper quantity converter for ream, sheet, and paper conversions. Calculate printing costs, office supply quantities, and paper weight conversions for business needs."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Paper Quantity & Cost Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Paper Quantity Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -178,8 +178,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border-l-4 border-orange-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Paper Quantity</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Conversion result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Number of Sheets</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a quantity to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-orange-600 font-mono" id="output">--</div>
@@ -324,56 +324,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Paper Quantity Conversions</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Paper Standards & Measurements</h4>
-                                    <p>Paper quantities are standardized globally with reams (500 sheets) being the common unit. Weight is measured in GSM (grams per square meter), affecting thickness and quality. Understanding these standards helps in accurate ordering, cost calculation, and storage planning for offices and print operations.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Business Applications</h4>
-                                    <p>Accurate paper quantity calculations are essential for office management, printing operations, cost control, and environmental planning. This includes estimating storage space, calculating bulk purchase savings, planning print jobs, and assessing environmental impact for sustainability reports.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                                <p class="text-sm text-orange-800">
-                                    <strong>Sustainability Tip:</strong> Consider double-sided printing, digital alternatives, and recycled paper to reduce environmental impact. One tree produces approximately 8,333 sheets of paper.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Paper Quantities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Office & Business</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-quantity="2500" data-type="quantity">Office Case: 2500 sheets</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard case (5 reams) for office use</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-quantity="10000" data-type="printing">Print Job: 10,000 pages</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large commercial printing project</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Personal & Small Business</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-quantity="500" data-type="cost">Home Office: 500 sheets</div>
-                                        <div class="text-xs text-gray-600 mt-1">Single ream for home printing</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-quantity="1000" data-type="dimension">Presentation: 1000 sheets</div>
-                                        <div class="text-xs text-gray-600 mt-1">Medium-volume presentation materials</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -405,14 +355,6 @@
                         const totalCostDisplay = document.getElementById('totalCostDisplay');
                         const costPerSheetDisplay = document.getElementById('costPerSheetDisplay');
                         const bulkSavingsDisplay = document.getElementById('bulkSavingsDisplay');
-                        const sizeDisplay = document.getElementById('sizeDisplay');
-                        const dimensionsDisplay = document.getElementById('dimensionsDisplay');
-                        const gsmDisplay = document.getElementById('gsmDisplay');
-                        const thicknessDisplay = document.getElementById('thicknessDisplay');
-                        const treesDisplay = document.getElementById('treesDisplay');
-                        const waterDisplay = document.getElementById('waterDisplay');
-                        const co2Display = document.getElementById('co2Display');
-                        const recyclingDisplay = document.getElementById('recyclingDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Paper size dimensions (mm for ISO, inches for US)
@@ -444,15 +386,35 @@
                         };
 
                         function formatNumber(num, decimals = 2) {
-                            if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'k';
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: 0 
+
+                            const abs = Math.abs(num);
+
+                            if (abs !== 0 && abs < Math.pow(10, -decimals)) {
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: 3 });
+                            }
+
+                            return num.toLocaleString('en-US', {
+                                maximumFractionDigits: decimals,
+                                minimumFractionDigits: 0
                             });
+                        }
+
+                        function describeInput(type, quantity, size, weight, cost, sheets) {
+                            switch (type) {
+                                case 'weight':
+                                    return `${formatNumber(quantity, 3)} kg of ${size} paper at ${formatNumber(weight, 0)} GSM`;
+                                case 'cost':
+                                    return `${formatNumber(quantity, 0)} sheets at $${formatNumber(cost, 2)} per ream`;
+                                case 'dimension':
+                                    return `${formatNumber(quantity, 0)} sheets of ${size} paper`;
+                                case 'printing':
+                                    return `${formatNumber(quantity, 0)} pages on ${size} paper`;
+                                default:
+                                    return `${formatNumber(quantity, 0)} sheets = ${formatNumber(sheets / 500, 3)} reams`;
+                            }
                         }
 
                         function updateInputLabels() {
@@ -519,12 +481,12 @@
                                 if (type === 'cost') {
                                     const totalCost = (sheets / 500) * cost;
                                     output.textContent = '$' + formatNumber(totalCost, 2);
-                                    resultTitle.textContent = 'Total Cost';
+                                    resultTitle.textContent = 'Total Cost (USD)';
                                 } else {
                                     output.textContent = formatNumber(sheets, 0) + ' sheets';
-                                    resultTitle.textContent = 'Paper Quantity';
+                                    resultTitle.textContent = 'Number of Sheets';
                                 }
-                                resultDescription.textContent = `${formatNumber(quantity, 0)} ${quantityUnit.textContent} converted`;
+                                resultDescription.textContent = describeInput(type, quantity, size, weight, cost, sheets);
 
                                 // Display quantity units
                                 sheetsDisplay.textContent = formatNumber(sheets, 0);
@@ -557,23 +519,6 @@
                                 totalCostDisplay.textContent = '$' + formatNumber(totalCost, 2);
                                 costPerSheetDisplay.textContent = '$' + formatNumber(costPerSheet, 4);
                                 bulkSavingsDisplay.textContent = bulkDiscount;
-
-                                // Paper specifications
-                                sizeDisplay.textContent = size;
-                                dimensionsDisplay.textContent = `${sizeData.width}×${sizeData.height}${sizeData.unit}`;
-                                gsmDisplay.textContent = weight + ' g/m²';
-                                thicknessDisplay.textContent = formatNumber(sheetThickness, 2) + ' mm';
-
-                                // Environmental impact
-                                const treesUsed = sheets / 8333; // Approximate sheets per tree
-                                const waterUsed = sheets * 0.01; // Liters per sheet (approximate)
-                                const co2Footprint = sheets * 0.005; // kg CO2 per sheet (approximate)
-                                
-                                treesDisplay.textContent = formatNumber(treesUsed, 3);
-                                waterDisplay.textContent = formatNumber(waterUsed, 0) + ' L';
-                                co2Display.textContent = formatNumber(co2Footprint, 1) + ' kg';
-                                recyclingDisplay.textContent = '1 sheet = 1 recycled';
-
                             } else {
                                 clearOutputs();
                             }
@@ -581,8 +526,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Paper Quantity';
-                            resultDescription.textContent = 'Conversion result';
+                            resultTitle.textContent = 'Number of Sheets';
+                            resultDescription.textContent = 'Enter a quantity to convert';
                             sheetsDisplay.textContent = '--';
                             reamsDisplay.textContent = '--';
                             casesDisplay.textContent = '--';
@@ -592,14 +537,6 @@
                             totalCostDisplay.textContent = '--';
                             costPerSheetDisplay.textContent = '--';
                             bulkSavingsDisplay.textContent = '--';
-                            sizeDisplay.textContent = '--';
-                            dimensionsDisplay.textContent = '--';
-                            gsmDisplay.textContent = '--';
-                            thicknessDisplay.textContent = '--';
-                            treesDisplay.textContent = '--';
-                            waterDisplay.textContent = '--';
-                            co2Display.textContent = '--';
-                            recyclingDisplay.textContent = '--';
                         }
 
                         function clearAll() {

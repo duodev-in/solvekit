@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Decagram to Gram Converter - ConvertPro"
+    title="Decagram to Gram Converter - SolveKit"
     description="Professional decagram to gram converter for metric weight conversions. Convert decagrams (dag) to grams (g) with precise calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Metric Weight Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Decagram to Gram</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -197,9 +197,13 @@
 
                         function formatNumber(num) {
                             if (num >= 1000000) {
-                                return num.toExponential(4);
+                                return Number(num.toPrecision(5)).toExponential();
                             } else if (num >= 1000) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
+                            } else if (Math.abs(num) < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
                             }

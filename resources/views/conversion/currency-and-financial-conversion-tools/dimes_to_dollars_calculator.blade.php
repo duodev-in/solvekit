@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Dimes to Dollars Calculator - ConvertPro"
+    title="Dimes to Dollars Calculator - SolveKit"
     description="Professional dimes to dollars calculator for coin conversion. Convert dime quantities to dollar amounts with detailed breakdown for counting and financial calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Dime to Dollar Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Dimes to Dollars Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -121,8 +121,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border-l-4 border-blue-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value in Dollars</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a number of dimes to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-blue-600 font-mono" id="output">--</div>
@@ -267,56 +267,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Dimes to Dollars Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Dime History & Value</h4>
-                                    <p>The US dime, worth 10 cents, has been a staple of American currency since 1796. Modern dimes feature Franklin D. Roosevelt and are made of copper-nickel clad. Pre-1965 dimes contained 90% silver, making them valuable to collectors and investors beyond their face value.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Converting dimes to dollars is useful for coin counting, bank deposits, vending machine calculations, and numismatic collections. Understanding both face value and potential collector/melt value helps in making informed decisions about coin collections.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>Coin Tip:</strong> Pre-1965 dimes contain 90% silver and may be worth more than face value depending on silver prices and condition.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Dime Quantities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Standard Rolls & Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-dimes="50">Bank Roll: 50 dimes</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard dime roll = $5.00</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-dimes="200">Coin Box: 200 dimes</div>
-                                        <div class="text-xs text-gray-600 mt-1">Four rolls = $20.00</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Collection Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-dimes="37">Parking Meter: 37 dimes</div>
-                                        <div class="text-xs text-gray-600 mt-1">$3.70 for parking</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-dimes="147">Jar Count: 147 dimes</div>
-                                        <div class="text-xs text-gray-600 mt-1">$14.70 coin jar</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -341,10 +291,6 @@
                         const penniesDisplay = document.getElementById('penniesDisplay');
                         const nickelsDisplay = document.getElementById('nickelsDisplay');
                         const quartersDisplay = document.getElementById('quartersDisplay');
-                        const diameterDisplay = document.getElementById('diameterDisplay');
-                        const thicknessDisplay = document.getElementById('thicknessDisplay');
-                        const compositionDisplay = document.getElementById('compositionDisplay');
-                        const mintedDisplay = document.getElementById('mintedDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Dime specifications
@@ -406,7 +352,7 @@
                         };
 
                         function formatNumber(num, decimals = 2) {
-                            return num.toLocaleString(undefined, { 
+                            return num.toLocaleString('en-US', { 
                                 maximumFractionDigits: decimals, 
                                 minimumFractionDigits: decimals 
                             });
@@ -418,12 +364,12 @@
                         }
 
                         function calculate() {
-                            const dimes = parseInt(dimesValue.value) || 0;
+                            const dimes = parseInt(dimesValue.value, 10);
                             const type = coinType.value;
                             const method = calculationMethod.value;
                             const currentSilverPrice = parseFloat(silverPrice.value) || 24.50;
                             
-                            if (dimes >= 0) {
+                            if (!Number.isNaN(dimes) && dimes >= 0) {
                                 const specs = dimeSpecs[type];
                                 const faceValue = dimes * 0.10; // 10 cents per dime
                                 let totalValue = faceValue;
@@ -450,9 +396,9 @@
 
                                 // Update primary output
                                 output.textContent = '$' + formatNumber(totalValue);
-                                resultTitle.textContent = method === 'face_value' ? 'Face Value' : 
-                                                        method === 'melt_value' ? 'Melt Value' : 'Collector Value';
-                                resultDescription.textContent = `${dimes} dimes = $${formatNumber(totalValue)}`;
+                                resultTitle.textContent = method === 'face_value' ? 'Face Value in Dollars' : 
+                                                        method === 'melt_value' ? 'Melt Value in Dollars' : 'Collector Value in Dollars';
+                                resultDescription.textContent = `${dimes.toLocaleString('en-US')} ${dimes === 1 ? 'dime' : 'dimes'} = $${formatNumber(totalValue)}`;
 
                                 // Display breakdowns
                                 dollarsDisplay.textContent = '$' + formatNumber(totalValue);
@@ -477,12 +423,6 @@
                                 nickelsDisplay.textContent = dimes * 2; // 2 nickels per dime
                                 quartersDisplay.textContent = formatNumber(dimes / 2.5, 1); // 2.5 dimes per quarter
 
-                                // Coin information
-                                diameterDisplay.textContent = specs.diameter;
-                                thicknessDisplay.textContent = specs.thickness;
-                                compositionDisplay.textContent = specs.composition;
-                                mintedDisplay.textContent = specs.minted;
-
                             } else {
                                 clearOutputs();
                             }
@@ -490,8 +430,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Total Value';
-                            resultDescription.textContent = 'Converted result';
+                            resultTitle.textContent = 'Total Value in Dollars';
+                            resultDescription.textContent = 'Enter a number of dimes to convert';
                             dollarsDisplay.textContent = '--';
                             centsDisplay.textContent = '--';
                             perDimeDisplay.textContent = '--';
@@ -501,10 +441,6 @@
                             penniesDisplay.textContent = '--';
                             nickelsDisplay.textContent = '--';
                             quartersDisplay.textContent = '--';
-                            diameterDisplay.textContent = '--';
-                            thicknessDisplay.textContent = '--';
-                            compositionDisplay.textContent = '--';
-                            mintedDisplay.textContent = '--';
                         }
 
                         function clearAll() {

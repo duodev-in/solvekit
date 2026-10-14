@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Conversion Calculator - ConvertPro"
+    title="Conversion Calculator - SolveKit"
     description="Professional general purpose conversion calculator. Convert between multiple unit categories including length, weight, volume, temperature, and more with comprehensive unit support."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Unit Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Conversion Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -20,7 +20,7 @@
 
                                                                             <!-- Category Selection -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="conversionCategory" class="block text-sm font-semibold text-gray-700">
                                                                                     Conversion Category
                                                                                 </label>
                                                                                 <select 
@@ -40,47 +40,44 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Input Value -->
-                                                                            <div class="space-y-2">
-                                                                                <label for="inputValue" class="block text-sm font-semibold text-gray-700">
-                                                                                    Value to Convert
-                                                                                </label>
-                                                                                <div class="relative">
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="inputValue" class="block text-sm font-semibold text-gray-700">
+                                                                                        Value
+                                                                                    </label>
                                                                                     <input 
                                                                                         type="number" 
                                                                                         id="inputValue" 
                                                                                         class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono" 
-                                                                                        placeholder="Enter value (e.g., 100)"
+                                                                                        placeholder="e.g., 100"
                                                                                         step="any"
                                                                                     >
                                                                                 </div>
-                                                                                <p class="text-xs text-gray-500">Enter the value you want to convert</p>
-                                                                            </div>
 
-                                                                            <!-- From Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    From Unit
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="fromUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <!-- Options populated dynamically -->
-                                                                                </select>
-                                                                            </div>
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="fromUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        From Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="fromUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <!-- Options populated dynamically -->
+                                                                                    </select>
+                                                                                </div>
 
-                                                                            <!-- To Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    To Unit
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="toUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <!-- Options populated dynamically -->
-                                                                                </select>
+                                                                                <div class="min-w-0 space-y-2">
+                                                                                    <label for="toUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        To Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="toUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <!-- Options populated dynamically -->
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
 
                                                                             <!-- Swap Button -->
@@ -179,27 +176,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Unit Conversions</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Universal Conversion Tool</h4>
-                                    <p>This general-purpose converter handles multiple unit categories with precise calculations. It supports common conversions for length, weight, volume, temperature, and more. The tool maintains accuracy across different measurement systems including metric, imperial, and specialized units.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Use this converter for cooking measurements, construction projects, scientific calculations, international commerce, and everyday unit conversions. The tool remembers recent conversions and provides formulas to help understand the mathematical relationships between units.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>Accuracy Note:</strong> All conversions use internationally accepted conversion factors and maintain precision appropriate for practical applications.
-                                </p>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -217,7 +193,6 @@
                         const resultDescription = document.getElementById('result-description');
                         const formulaDisplay = document.getElementById('formulaDisplay');
                         const multipleConversions = document.getElementById('multipleConversions');
-                        const conversionHistory = document.getElementById('conversionHistory');
                         const unitReference = document.getElementById('unitReference');
                         const quickExamples = document.getElementById('quickExamples');
                         const copyResult = document.getElementById('copyResult');
@@ -413,24 +388,46 @@
                             }
                         };
 
-                        let conversionHistoryData = [];
 
                         function formatNumber(num, decimals = 6) {
-                            if (Math.abs(num) >= 1e12) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
-                            } else if (Math.abs(num) < 0.000001 && num !== 0) {
-                                return num.toExponential(3);
+                            if (num === 0) {
+                                return '0';
                             }
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: 0 
-                            });
+
+                            const absolute = Math.abs(num);
+
+                            if (absolute >= 1e15 || absolute < 1e-6) {
+                                return num.toExponential(4);
+                            }
+
+                            if (absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: decimals });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: decimals });
+                        }
+
+                        const unitSymbols = {
+                            mm: 'mm', cm: 'cm', m: 'm', km: 'km', in: 'in', ft: 'ft', yd: 'yd', mi: 'mi', nmi: 'nmi',
+                            mg: 'mg', g: 'g', kg: 'kg', t: 't', oz: 'oz', lb: 'lb', stone: 'st', ton: 'long tons',
+                            ml: 'mL', l: 'L', m3: 'm³', tsp: 'tsp', tbsp: 'tbsp', fl_oz: 'fl oz', cup: 'cups', pt: 'pt', qt: 'qt', gal: 'gal',
+                            c: '°C', f: '°F', k: 'K', r: '°R',
+                            mm2: 'mm²', cm2: 'cm²', m2: 'm²', km2: 'km²', in2: 'in²', ft2: 'ft²', yd2: 'yd²', acre: 'acres', hectare: 'ha',
+                            mps: 'm/s', kph: 'km/h', mph: 'mph', fps: 'ft/s', knot: 'knots', mach: 'Mach',
+                            j: 'J', kj: 'kJ', cal: 'cal', kcal: 'kcal', btu: 'BTU', kwh: 'kWh', w: 'W', kw: 'kW', hp: 'hp',
+                            pa: 'Pa', kpa: 'kPa', bar: 'bar', atm: 'atm', psi: 'psi', mmhg: 'mmHg', inhg: 'inHg',
+                            ms: 'ms', s: 's', min: 'min', hr: 'h', day: 'days', week: 'weeks', month: 'months', year: 'years',
+                            bit: 'bits', byte: 'bytes', kb: 'KB', mb: 'MB', gb: 'GB', tb: 'TB', pb: 'PB'
+                        };
+
+                        const baseUnits = {
+                            length: 'm', weight: 'kg', volume: 'L', area: 'm²', speed: 'm/s', energy: 'J (or W)', pressure: 'Pa', time: 's', data: 'bits'
+                        };
+
+                        function formatWithUnit(value, unitKey) {
+                            const symbol = unitSymbols[unitKey] || unitKey;
+
+                            return symbol.startsWith('°') ? `${formatNumber(value)}${symbol}` : `${formatNumber(value)} ${symbol}`;
                         }
 
                         function updateUnits() {
@@ -507,14 +504,14 @@
                             
                             unitReference.innerHTML = '';
                             
-                            Object.keys(data.units).slice(0, 8).forEach(unitKey => {
+                            Object.keys(data.units).filter(unitKey => data.units[unitKey].factor !== 1).slice(0, 8).forEach(unitKey => {
                                 const unit = data.units[unitKey];
                                 const div = document.createElement('div');
                                 
                                 if (category === 'temperature') {
                                     div.innerHTML = `<strong>${unit.name}</strong>`;
                                 } else if (unit.factor) {
-                                    div.innerHTML = `<strong>1 ${unit.name}</strong> = ${formatNumber(unit.factor, 6)} base units`;
+                                    div.innerHTML = `<strong>1 ${unitSymbols[unitKey] || unit.name}</strong> = ${formatNumber(unit.factor, 6)} ${baseUnits[category]}`;
                                 } else {
                                     div.innerHTML = `<strong>${unit.name}</strong>`;
                                 }
@@ -551,7 +548,7 @@
                                     'c_k': `${value}°C + 273.15 = ${formatNumber(convertTemperature(value, 'c', 'k'), 2)}K`,
                                     'k_c': `${value}K - 273.15 = ${formatNumber(convertTemperature(value, 'k', 'c'), 2)}°C`
                                 };
-                                return formulas[`${from}_${to}`] || `${value} ${from.toUpperCase()} = ${formatNumber(convertTemperature(value, from, to), 2)} ${to.toUpperCase()}`;
+                                return formulas[`${from}_${to}`] || `${formatWithUnit(value, from)} = ${formatWithUnit(convertTemperature(value, from, to), to)}`;
                             } else {
                                 const data = conversionData[category];
                                 const fromFactor = data.units[from].factor;
@@ -583,9 +580,9 @@
                                 const fromUnitName = conversionData[category].units[from].name;
                                 const toUnitName = conversionData[category].units[to].name;
                                 
-                                output.textContent = formatNumber(result);
+                                output.textContent = formatWithUnit(result, to);
                                 resultTitle.textContent = `${fromUnitName} to ${toUnitName}`;
-                                resultDescription.textContent = `${value} ${fromUnitName} = ${formatNumber(result)} ${toUnitName}`;
+                                resultDescription.textContent = `${formatWithUnit(value, from)} = ${formatWithUnit(result, to)}`;
                                 
                                 // Update formula
                                 formulaDisplay.textContent = getConversionFormula(category, from, to, value);
@@ -593,8 +590,6 @@
                                 // Update multiple conversions
                                 updateMultipleConversions(category, value, from);
                                 
-                                // Add to history
-                                addToHistory(value, fromUnitName, result, toUnitName);
                                 
                             } else {
                                 clearOutputs();
@@ -633,36 +628,10 @@
                             });
                         }
 
-                        function addToHistory(fromValue, fromUnit, toValue, toUnit) {
-                            const conversion = `${fromValue} ${fromUnit} = ${formatNumber(toValue)} ${toUnit}`;
-                            conversionHistoryData.unshift(conversion);
-                            
-                            if (conversionHistoryData.length > 5) {
-                                conversionHistoryData = conversionHistoryData.slice(0, 5);
-                            }
-                            
-                            updateHistoryDisplay();
-                        }
-
-                        function updateHistoryDisplay() {
-                            conversionHistory.innerHTML = '';
-                            
-                            if (conversionHistoryData.length === 0) {
-                                conversionHistory.innerHTML = '<div class="text-sm text-green-700 text-center">No conversions yet</div>';
-                            } else {
-                                conversionHistoryData.forEach(conversion => {
-                                    const div = document.createElement('div');
-                                    div.className = 'text-sm text-green-700 text-center font-mono';
-                                    div.textContent = conversion;
-                                    conversionHistory.appendChild(div);
-                                });
-                            }
-                        }
-
                         function clearOutputs() {
                             output.textContent = '--';
                             resultTitle.textContent = 'Converted Value';
-                            resultDescription.textContent = 'Conversion result';
+                            resultDescription.textContent = 'Enter a value to convert';
                             formulaDisplay.textContent = 'Enter values to see conversion formula';
                             multipleConversions.innerHTML = '';
                         }

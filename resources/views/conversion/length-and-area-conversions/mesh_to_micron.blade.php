@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Mesh to Micron Converter - ConvertPro"
+    title="Mesh to Micron Converter - SolveKit"
     description="Professional mesh to micron converter for particle size analysis. Convert US standard mesh sizes to microns for industrial screening and filtration applications."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Industrial Particle Size Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Mesh to Micron</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -220,8 +220,8 @@
                                         output.textContent = standardValue.toLocaleString();
                                         resultDescription.textContent = 'ASTM E11 standard value';
                                     } else {
-                                        output.textContent = 'N/A';
-                                        resultDescription.textContent = 'Not in standard table';
+                                        output.textContent = parseFloat(formulaValue).toLocaleString(undefined, { maximumFractionDigits: 1 });
+                                        resultDescription.textContent = 'Not in standard table, formula approximation';
                                     }
                                     secondaryResult.style.display = 'none';
                                 } else if (mode === 'formula') {

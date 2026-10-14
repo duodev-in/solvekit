@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Crore to Million Converter - ConvertPro"
+    title="Crore to Million Converter - SolveKit"
     description="Professional crore to million converter for international business. Convert between Indian crores and Western millions with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Cross-System Number Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Crore to Million</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -87,7 +87,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border-l-4 border-green-500">
@@ -159,56 +159,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Crore to Million Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">International Business</h4>
-                                    <p>Essential for global business transactions, international investments, cross-border trade, and financial reporting. Indian companies often need to present figures in both Crore (domestic) and Million (international) formats.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Financial Applications</h4>
-                                    <p>Critical for IPOs, foreign investment proposals, international partnerships, and global financial analysis. Investors and analysts need to understand both numbering systems for accurate valuation.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-green-50 rounded-lg border border-green-200">
-                                <p class="text-sm text-green-800">
-                                    <strong>Business Tip:</strong> When presenting to international investors, always provide both Crore and Million values. 1 Crore = 10 Million is the key conversion ratio!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Real-World Business Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Real-World Business Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Indian Companies (Crores)</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="50">₹50 Crores</div>
-                                        <div class="text-xs text-gray-600 mt-1">Small-cap company revenue = $6M USD</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600 cursor-pointer hover:text-green-800" data-example="1000">₹1,000 Crores</div>
-                                        <div class="text-xs text-gray-600 mt-1">Mid-cap company valuation = $120M USD</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">International Equivalents</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600">1 Crore = 10 Million</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard conversion ratio</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-green-600">100 Cr = 1 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Unicorn startup threshold</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -232,20 +182,7 @@
                         const lakhDisplay = document.getElementById('lakhDisplay');
                         const thousandDisplay = document.getElementById('thousandDisplay');
                         const billionDisplay = document.getElementById('billionDisplay');
-                        const currencyDisplay = document.getElementById('currencyDisplay');
                         const copyResult = document.getElementById('copyResult');
-
-                        // Currency symbols
-                        const currencySymbols = {
-                            'none': '',
-                            'INR': '₹',
-                            'USD': '$',
-                            'EUR': '€',
-                            'GBP': '£',
-                            'JPY': '¥',
-                            'AUD': 'A$',
-                            'CAD': 'C$'
-                        };
 
                         function getPrecision() {
                             const selected = document.querySelector('input[name="precision"]:checked').value;
@@ -256,59 +193,27 @@
                             return document.querySelector('input[name="mode"]:checked').value;
                         }
 
-                        function getDisplay() {
-                            return document.querySelector('input[name="display"]:checked').value;
-                        }
-
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (num >= 1e12) {
-                                    return num.toExponential(3);
-                                } else if (num >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (num >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function formatIndianNumber(num) {
-                            const numStr = Math.floor(num).toString();
-                            if (numStr.length <= 3) return numStr;
-                            
-                            let result = numStr.slice(-3);
-                            let remaining = numStr.slice(0, -3);
-                            
-                            while (remaining.length > 0) {
-                                if (remaining.length <= 2) {
-                                    result = remaining + ',' + result;
-                                    break;
-                                } else {
-                                    result = remaining.slice(-2) + ',' + result;
-                                    remaining = remaining.slice(0, -2);
-                                }
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
                             }
-                            
-                            return result;
-                        }
 
-                        function formatCurrency(num, currencyCode, precision) {
-                            const symbol = currencySymbols[currencyCode] || '';
-                            const formattedNum = formatNumber(num, precision);
-                            return symbol ? `${symbol}${formattedNum}` : formattedNum;
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            }
+
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function updateInterface() {
                             const mode = getMode();
-                            const selectedCurrency = currency.value;
-                            
-                            // Show/hide currency display
-                            currencyDisplay.style.display = selectedCurrency !== 'none' ? 'block' : 'none';
-                            
+
                             if (mode === 'crore-to-million') {
                                 inputLabel.textContent = 'Enter Crores';
                                 inputUnit.textContent = 'Crore';
@@ -328,7 +233,6 @@
                             const inputVal = parseFloat(inputValue.value);
                             const mode = getMode();
                             const precision = getPrecision();
-                            const selectedCurrency = currency.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
                                 let crores, millions, lakhs, thousands, billions;
@@ -357,9 +261,6 @@
                                 lakhDisplay.textContent = formatNumber(lakhs, precision);
                                 thousandDisplay.textContent = formatNumber(thousands, precision);
                                 billionDisplay.textContent = formatNumber(billions, precision);
-                                
-                                // Number information
-                                const totalValue = crores * 1e7;
                             } else {
                                 clearOutputs();
                             }
@@ -424,8 +325,6 @@
                         businessExamples.forEach(button => {
                             button.addEventListener('click', function() {
                                 const value = this.getAttribute('data-value');
-                                const context = this.getAttribute('data-context');
-                                
                                 inputValue.value = value;
                                 convert();
                                 
@@ -434,20 +333,6 @@
                                 businessExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-green-100', 'text-green-700');
-                                
-                                // Show context tooltip (optional)
-                                console.log('Business context:', context);
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                inputValue.value = value;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

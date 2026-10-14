@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="in-lbs ↔ ft-lbs Converter - ConvertPro"
+    title="in-lbs ↔ ft-lbs Converter - SolveKit"
     description="Professional inch-pounds to foot-pounds converter for engineering applications. Convert between in-lbs and ft-lbs torque units with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Imperial Torque Unit Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">in-lbs ↔ ft-lbs</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -119,7 +119,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-orange-50 to-red-50 rounded-xl border-l-4 border-orange-500">
@@ -341,10 +341,15 @@
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

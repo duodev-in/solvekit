@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pennies to Dollars Calculator - ConvertPro"
+    title="Pennies to Dollars Calculator - SolveKit"
     description="Professional pennies to dollars calculator for coin conversion. Convert penny quantities to dollar amounts with detailed breakdown for counting and financial calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Penny to Dollar Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Pennies to Dollars Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -139,8 +139,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl border-l-4 border-yellow-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Converted result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Total Value in Dollars</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a number of pennies to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-yellow-600 font-mono" id="output">--</div>
@@ -285,56 +285,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Pennies to Dollars Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Penny History & Evolution</h4>
-                                    <p>The US penny has undergone numerous changes since 1793. The modern Lincoln cent features Abraham Lincoln and has been minted since 1909. Key dates include the 1943 steel penny, wheat pennies (1909-1958), and the composition change in 1982 from mostly copper to zinc-plated copper.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Converting pennies to dollars is essential for coin counting, bank deposits, cash register operations, and collecting. Understanding penny types helps identify potentially valuable coins, as some dates and mint marks are worth significantly more than face value.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                                <p class="text-sm text-yellow-800">
-                                    <strong>Collector Tip:</strong> Pre-1982 pennies are 95% copper and worth more than face value in metal content. The 1943 steel penny and 1909-S VDB are especially valuable.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Penny Quantities</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Standard Rolls & Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-pennies="50">Bank Roll: 50 pennies</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard penny roll = $0.50</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-pennies="2500">Coin Box: 2500 pennies</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard box = $25.00</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Collection Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-pennies="347">Jar Count: 347 pennies</div>
-                                        <div class="text-xs text-gray-600 mt-1">$3.47 penny jar</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-pennies="1250">Large Jar: 1250 pennies</div>
-                                        <div class="text-xs text-gray-600 mt-1">$12.50 collection</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -360,14 +310,6 @@
                         const nickelsDisplay = document.getElementById('nickelsDisplay');
                         const dimesDisplay = document.getElementById('dimesDisplay');
                         const quartersDisplay = document.getElementById('quartersDisplay');
-                        const diameterDisplay = document.getElementById('diameterDisplay');
-                        const thicknessDisplay = document.getElementById('thicknessDisplay');
-                        const edgeDisplay = document.getElementById('edgeDisplay');
-                        const designerDisplay = document.getElementById('designerDisplay');
-                        const rollsDisplay = document.getElementById('rollsDisplay');
-                        const rollValueDisplay = document.getElementById('rollValueDisplay');
-                        const remainingDisplay = document.getElementById('remainingDisplay');
-                        const boxCountDisplay = document.getElementById('boxCountDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Penny specifications
@@ -459,7 +401,7 @@
                         };
 
                         function formatNumber(num, decimals = 2) {
-                            return num.toLocaleString(undefined, { 
+                            return num.toLocaleString('en-US', { 
                                 maximumFractionDigits: decimals, 
                                 minimumFractionDigits: decimals 
                             });
@@ -471,13 +413,13 @@
                         }
 
                         function calculate() {
-                            const pennies = parseInt(penniesValue.value) || 0;
+                            const pennies = parseInt(penniesValue.value, 10);
                             const type = pennyType.value;
                             const assessment = valueAssessment.value;
                             const currentCopperPrice = parseFloat(copperPrice.value) || 4.20;
                             const currentZincPrice = parseFloat(zincPrice.value) || 1.25;
                             
-                            if (pennies >= 0) {
+                            if (!Number.isNaN(pennies) && pennies >= 0) {
                                 const specs = pennySpecs[type];
                                 const faceValue = pennies * 0.01; // 1 cent per penny
                                 let totalValue = faceValue;
@@ -506,10 +448,10 @@
 
                                 // Update primary output
                                 output.textContent = '$' + formatNumber(totalValue);
-                                resultTitle.textContent = assessment === 'face_value' ? 'Face Value' : 
-                                                        assessment === 'collector_value' ? 'Collector Value' : 
-                                                        assessment === 'metal_value' ? 'Metal Value' : 'Average Value';
-                                resultDescription.textContent = `${pennies} pennies = $${formatNumber(totalValue)}`;
+                                resultTitle.textContent = assessment === 'face_value' ? 'Face Value in Dollars' : 
+                                                        assessment === 'collector_value' ? 'Collector Value in Dollars' : 
+                                                        assessment === 'metal_value' ? 'Metal Value in Dollars' : 'Average Value in Dollars';
+                                resultDescription.textContent = `${pennies.toLocaleString('en-US')} ${pennies === 1 ? 'penny' : 'pennies'} = $${formatNumber(totalValue)}`;
 
                                 // Display breakdowns
                                 dollarsDisplay.textContent = '$' + formatNumber(totalValue);
@@ -527,23 +469,6 @@
                                 nickelsDisplay.textContent = formatNumber(pennies / 5, 1); // 5 pennies per nickel
                                 dimesDisplay.textContent = formatNumber(pennies / 10, 1); // 10 pennies per dime
                                 quartersDisplay.textContent = formatNumber(pennies / 25, 1); // 25 pennies per quarter
-
-                                // Coin specifications
-                                diameterDisplay.textContent = specs.diameter;
-                                thicknessDisplay.textContent = specs.thickness;
-                                edgeDisplay.textContent = specs.edge;
-                                designerDisplay.textContent = specs.designer;
-
-                                // Roll information
-                                const fullRolls = Math.floor(pennies / 50);
-                                const remaining = pennies % 50;
-                                const boxes = Math.floor(pennies / 2500);
-                                
-                                rollsDisplay.textContent = fullRolls + ' rolls';
-                                rollValueDisplay.textContent = '$' + formatNumber(fullRolls * 0.50);
-                                remainingDisplay.textContent = remaining + ' pennies';
-                                boxCountDisplay.textContent = formatNumber(pennies / 2500, 2) + ' boxes';
-
                             } else {
                                 clearOutputs();
                             }
@@ -551,8 +476,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Total Value';
-                            resultDescription.textContent = 'Converted result';
+                            resultTitle.textContent = 'Total Value in Dollars';
+                            resultDescription.textContent = 'Enter a number of pennies to convert';
                             dollarsDisplay.textContent = '--';
                             totalCentsDisplay.textContent = '--';
                             perPennyDisplay.textContent = '--';
@@ -562,14 +487,6 @@
                             nickelsDisplay.textContent = '--';
                             dimesDisplay.textContent = '--';
                             quartersDisplay.textContent = '--';
-                            diameterDisplay.textContent = '--';
-                            thicknessDisplay.textContent = '--';
-                            edgeDisplay.textContent = '--';
-                            designerDisplay.textContent = '--';
-                            rollsDisplay.textContent = '--';
-                            rollValueDisplay.textContent = '--';
-                            remainingDisplay.textContent = '--';
-                            boxCountDisplay.textContent = '--';
                         }
 
                         function clearAll() {

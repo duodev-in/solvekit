@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Power Converter - ConvertPro"
+    title="Power Converter - SolveKit"
     description="Professional power unit converter between watts, horsepower, BTU/h, and other power measurements. Convert mechanical, electrical, and thermal power units with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Power Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Power Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -32,16 +33,13 @@
                                                                                         step="any"
                                                                                         min="0"
                                                                                     >
-                                                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                                                        <span class="text-gray-500 text-sm font-medium">Power</span>
-                                                                                    </div>
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Enter power value for conversion</p>
                                                                             </div>
 
                                                                             <!-- From Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="fromUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     From Unit (Source)
                                                                                 </label>
                                                                                 <select 
@@ -79,7 +77,7 @@
 
                                                                             <!-- To Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="toUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     To Unit (Target)
                                                                                 </label>
                                                                                 <select 
@@ -113,6 +111,7 @@
                                                                                         <option value="ton_refrigeration">Ton of Refrigeration</option>
                                                                                     </optgroup>
                                                                                 </select>
+                                                                            </div>
                                                                             </div>
 
                                                                             <!-- Power Type -->
@@ -307,56 +306,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Power Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Power Units</h4>
-                                    <p>Power is the rate of energy transfer or work done per unit time. Different industries use various power units: watts for electrical systems, horsepower for engines, BTU/h for heating systems, and refrigeration tons for cooling. Each unit serves specific applications and regional preferences.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Power Applications</h4>
-                                    <p>Power conversions are essential in engineering, HVAC, automotive, and electrical systems. Understanding these relationships helps in motor sizing, energy efficiency calculations, heating/cooling load analysis, and comparing different power sources across industries.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-orange-50 rounded-lg border border-orange-200">
-                                <p class="text-sm text-orange-800">
-                                    <strong>Power Tip:</strong> Power = Energy ÷ Time. One watt equals one joule per second, making it the fundamental unit for energy rate calculations!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Power Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Power Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Household Power</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="1500" data-from="watt" data-to="kilowatt">Space Heater: 1500 W</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical electric space heater</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="24000" data-from="btu_hour" data-to="watt">AC Unit: 24,000 BTU/h</div>
-                                        <div class="text-xs text-gray-600 mt-1">2-ton air conditioning unit</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Industrial Power</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="200" data-from="horsepower_mechanical" data-to="kilowatt">Industrial Motor: 200 hp</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large industrial motor</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-orange-600 cursor-pointer hover:text-orange-800" data-example="5" data-from="megawatt" data-to="horsepower_mechanical">Wind Turbine: 5 MW</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large wind turbine generator</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -380,15 +329,6 @@
                         const btuHourDisplay = document.getElementById('btuHourDisplay');
                         const calorieSecDisplay = document.getElementById('calorieSecDisplay');
                         const tonRefrigDisplay = document.getElementById('tonRefrigDisplay');
-                        const lightBulbs = document.getElementById('lightBulbs');
-                        const microwaves = document.getElementById('microwaves');
-                        const hairDryers = document.getElementById('hairDryers');
-                        const electricCars = document.getElementById('electricCars');
-                        const energyHour = document.getElementById('energyHour');
-                        const energyDay = document.getElementById('energyDay');
-                        const energyMonth = document.getElementById('energyMonth');
-                        const energyYear = document.getElementById('energyYear');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Power conversion multipliers (to watts as base)
@@ -434,60 +374,38 @@
                             ton_refrigeration: 'ton refrig'
                         };
 
+                        const unitNames = {
+                            watt: 'Watts',
+                            kilowatt: 'Kilowatts',
+                            megawatt: 'Megawatts',
+                            gigawatt: 'Gigawatts',
+                            milliwatt: 'Milliwatts',
+                            horsepower_mechanical: 'Mechanical Horsepower',
+                            horsepower_metric: 'Metric Horsepower',
+                            horsepower_electric: 'Electric Horsepower',
+                            horsepower_boiler: 'Boiler Horsepower',
+                            btu_hour: 'BTU per Hour',
+                            btu_minute: 'BTU per Minute',
+                            btu_second: 'BTU per Second',
+                            calorie_second: 'Calories per Second',
+                            kcal_hour: 'Kilocalories per Hour',
+                            foot_pound_second: 'Foot-Pounds per Second',
+                            erg_second: 'Ergs per Second',
+                            joule_second: 'Joules per Second',
+                            ton_refrigeration: 'Tons of Refrigeration'
+                        };
+
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
-                        }
-
-                        function getConversionFormula(from, to) {
-                            const fromFactor = powerMultipliers[from];
-                            const toFactor = powerMultipliers[to];
-                            const conversionFactor = fromFactor / toFactor;
-                            
-                            if (from === 'horsepower_mechanical' && to === 'watt') {
-                                return 'hp × 745.7 = W';
-                            } else if (from === 'watt' && to === 'horsepower_mechanical') {
-                                return 'W ÷ 745.7 = hp';
-                            } else if (from === 'kilowatt' && to === 'btu_hour') {
-                                return 'kW × 3412 = BTU/h';
-                            } else if (from === 'btu_hour' && to === 'watt') {
-                                return 'BTU/h × 0.293 = W';
-                            } else if (Math.abs(conversionFactor - 1) < 0.0001) {
-                                return `${unitLabels[from]} = ${unitLabels[to]}`;
-                            } else if (conversionFactor > 1) {
-                                return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                            } else {
-                                return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
-                            }
-                        }
-
-                        function calculateApplications(watts) {
-                            return {
-                                lightBulbs: formatNumber(watts / 60, 1),
-                                microwaves: formatNumber(watts / 800, 2),
-                                hairDryers: formatNumber(watts / 1500, 2),
-                                electricCars: formatNumber(watts / 100000, 3)
-                            };
-                        }
-
-                        function calculateEnergyOverTime(watts) {
-                            return {
-                                hour: formatNumber(watts / 1000, 3) + ' kWh',
-                                day: formatNumber(watts * 24 / 1000, 2) + ' kWh',
-                                month: formatNumber(watts * 24 * 30 / 1000, 1) + ' kWh',
-                                year: formatNumber(watts * 24 * 365 / 1000, 0) + ' kWh'
-                            };
                         }
 
                         function convert() {
@@ -504,7 +422,7 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
+                                resultTitle.textContent = `${unitNames[to]} (${unitLabels[to]})`;
                                 resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Convert to all common units and display
@@ -518,23 +436,6 @@
                                 btuHourDisplay.textContent = formatNumber(watts / powerMultipliers.btu_hour);
                                 calorieSecDisplay.textContent = formatNumber(watts / powerMultipliers.calorie_second);
                                 tonRefrigDisplay.textContent = formatNumber(watts / powerMultipliers.ton_refrigeration);
-
-                                // Power applications
-                                const applications = calculateApplications(watts);
-                                lightBulbs.textContent = applications.lightBulbs;
-                                microwaves.textContent = applications.microwaves;
-                                hairDryers.textContent = applications.hairDryers;
-                                electricCars.textContent = applications.electricCars;
-
-                                // Energy over time
-                                const energyTime = calculateEnergyOverTime(watts);
-                                energyHour.textContent = energyTime.hour;
-                                energyDay.textContent = energyTime.day;
-                                energyMonth.textContent = energyTime.month;
-                                energyYear.textContent = energyTime.year;
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -554,15 +455,6 @@
                             btuHourDisplay.textContent = '--';
                             calorieSecDisplay.textContent = '--';
                             tonRefrigDisplay.textContent = '--';
-                            lightBulbs.textContent = '--';
-                            microwaves.textContent = '--';
-                            hairDryers.textContent = '--';
-                            electricCars.textContent = '--';
-                            energyHour.textContent = '--';
-                            energyDay.textContent = '--';
-                            energyMonth.textContent = '--';
-                            energyYear.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
@@ -613,22 +505,6 @@
                                 powerExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-orange-100', 'text-orange-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

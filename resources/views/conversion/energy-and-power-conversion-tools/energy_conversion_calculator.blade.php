@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Energy Conversion Calculator - ConvertPro"
+    title="Energy Conversion Calculator - SolveKit"
     description="Professional energy unit converter between joules, calories, BTU, kWh, and other energy measurements. Convert thermal, electrical, and mechanical energy units with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Energy Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Energy Conversion Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -32,16 +33,13 @@
                                                                                         step="any"
                                                                                         min="0"
                                                                                     >
-                                                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                                                        <span class="text-gray-500 text-sm font-medium">Energy</span>
-                                                                                    </div>
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Enter energy value for conversion</p>
                                                                             </div>
 
                                                                             <!-- From Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="fromUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     From Unit (Source)
                                                                                 </label>
                                                                                 <select 
@@ -81,7 +79,7 @@
 
                                                                             <!-- To Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="toUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     To Unit (Target)
                                                                                 </label>
                                                                                 <select 
@@ -117,6 +115,7 @@
                                                                                         <option value="food_calorie">Food Calorie (Cal)</option>
                                                                                     </optgroup>
                                                                                 </select>
+                                                                            </div>
                                                                             </div>
 
                                                                             <!-- Energy Type -->
@@ -311,56 +310,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Energy Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding Energy Units</h4>
-                                    <p>Energy can be expressed in many units depending on the context: joules for scientific work, calories for nutrition, kWh for electricity billing, and BTU for heating systems. Each unit serves specific industries and applications, making conversion essential for interdisciplinary work.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Energy Applications</h4>
-                                    <p>Energy conversions are crucial in engineering, physics, nutrition science, and energy management. Understanding these relationships helps in power system design, dietary planning, fuel efficiency calculations, and comparing different energy sources.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
-                                <p class="text-sm text-red-800">
-                                    <strong>Energy Tip:</strong> Energy is conserved but can change forms - kinetic, potential, thermal, electrical, chemical, and nuclear energy are all interconvertible!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Energy Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Energy Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Everyday Energy</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-example="15" data-from="kilowatt_hour" data-to="joule">Household Daily: 15 kWh</div>
-                                        <div class="text-xs text-gray-600 mt-1">Average home daily consumption</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-example="2000" data-from="food_calorie" data-to="joule">Daily Food: 2000 Cal</div>
-                                        <div class="text-xs text-gray-600 mt-1">Adult daily caloric intake</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Industrial Energy</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-example="1000" data-from="therm" data-to="joule">Heating: 1000 therms</div>
-                                        <div class="text-xs text-gray-600 mt-1">Annual home heating</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-red-600 cursor-pointer hover:text-red-800" data-example="1" data-from="tnt_equivalent" data-to="joule">Explosive: 1 kg TNT</div>
-                                        <div class="text-xs text-gray-600 mt-1">Chemical explosive energy</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -384,11 +333,6 @@
                         const caloriesDisplay = document.getElementById('caloriesDisplay');
                         const btuDisplay = document.getElementById('btuDisplay');
                         const foodCalDisplay = document.getElementById('foodCalDisplay');
-                        const tntEquivalent = document.getElementById('tntEquivalent');
-                        const gasolineEquivalent = document.getElementById('gasolineEquivalent');
-                        const lightBulbTime = document.getElementById('lightBulbTime');
-                        const phoneCharges = document.getElementById('phoneCharges');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Energy conversion multipliers (to joules as base)
@@ -434,51 +378,38 @@
                             food_calorie: 'Cal'
                         };
 
+                        const unitNames = {
+                            joule: 'Joules',
+                            kilojoule: 'Kilojoules',
+                            megajoule: 'Megajoules',
+                            gigajoule: 'Gigajoules',
+                            kilowatt_hour: 'Kilowatt Hours',
+                            watt_hour: 'Watt Hours',
+                            megawatt_hour: 'Megawatt Hours',
+                            electron_volt: 'Electron Volts',
+                            calorie: 'Calories',
+                            kilocalorie: 'Kilocalories',
+                            btu: 'British Thermal Units',
+                            therm: 'Therms',
+                            foot_pound: 'Foot-Pounds',
+                            newton_meter: 'Newton-Meters',
+                            erg: 'Ergs',
+                            tnt_equivalent: 'TNT Equivalent',
+                            gasoline_equivalent: 'Gasoline Equivalent',
+                            food_calorie: 'Food Calories'
+                        };
+
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
-                        }
-
-                        function getConversionFormula(from, to) {
-                            const fromFactor = energyMultipliers[from];
-                            const toFactor = energyMultipliers[to];
-                            const conversionFactor = fromFactor / toFactor;
-                            
-                            if (from === 'joule' && to === 'calorie') {
-                                return 'J ÷ 4.184 = cal';
-                            } else if (from === 'calorie' && to === 'joule') {
-                                return 'cal × 4.184 = J';
-                            } else if (from === 'kilowatt_hour' && to === 'joule') {
-                                return 'kWh × 3,600,000 = J';
-                            } else if (from === 'joule' && to === 'kilowatt_hour') {
-                                return 'J ÷ 3,600,000 = kWh';
-                            } else if (Math.abs(conversionFactor - 1) < 0.0001) {
-                                return `${unitLabels[from]} = ${unitLabels[to]}`;
-                            } else if (conversionFactor > 1) {
-                                return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                            } else {
-                                return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
-                            }
-                        }
-
-                        function calculateEquivalents(joules) {
-                            return {
-                                tnt: formatNumber(joules / energyMultipliers.tnt_equivalent, 6) + ' kg',
-                                gasoline: formatNumber(joules / energyMultipliers.gasoline_equivalent, 3) + ' L',
-                                lightBulb: formatNumber(joules / (60 * 3600), 1) + ' hours', // 60W bulb
-                                phoneCharges: formatNumber(joules / (15 * 3600), 0) + ' charges' // 15Wh battery
-                            };
                         }
 
                         function convert() {
@@ -495,7 +426,7 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
+                                resultTitle.textContent = `${unitNames[to]} (${unitLabels[to]})`;
                                 resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Convert to all common units and display
@@ -509,16 +440,6 @@
                                 caloriesDisplay.textContent = formatNumber(joules / energyMultipliers.calorie);
                                 btuDisplay.textContent = formatNumber(joules / energyMultipliers.btu);
                                 foodCalDisplay.textContent = formatNumber(joules / energyMultipliers.food_calorie);
-
-                                // Energy equivalents
-                                const equivalents = calculateEquivalents(joules);
-                                tntEquivalent.textContent = equivalents.tnt;
-                                gasolineEquivalent.textContent = equivalents.gasoline;
-                                lightBulbTime.textContent = equivalents.lightBulb;
-                                phoneCharges.textContent = equivalents.phoneCharges;
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -538,11 +459,6 @@
                             caloriesDisplay.textContent = '--';
                             btuDisplay.textContent = '--';
                             foodCalDisplay.textContent = '--';
-                            tntEquivalent.textContent = '--';
-                            gasolineEquivalent.textContent = '--';
-                            lightBulbTime.textContent = '--';
-                            phoneCharges.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
@@ -593,22 +509,6 @@
                                 energyExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-red-100', 'text-red-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

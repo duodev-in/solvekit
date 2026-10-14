@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Joules to Volts Calculator - ConvertPro"
+    title="Joules to Volts Calculator - SolveKit"
     description="Professional joules to volts calculator for energy to electrical potential conversion. Calculate voltage from energy and charge for electrical engineering applications."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Energy to Electrical Potential Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Joules to Volts Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                                                             <!-- Energy Input -->
                                                                             <div class="space-y-2">
                                                                                 <label for="energyValue" class="block text-sm font-semibold text-gray-700">
@@ -41,7 +42,7 @@
 
                                                                             <!-- Energy Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="energyUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     Energy Unit
                                                                                 </label>
                                                                                 <select 
@@ -58,7 +59,9 @@
                                                                                     <option value="electron_volt">Electron Volt (eV)</option>
                                                                                 </select>
                                                                             </div>
+                                                                            </div>
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
                                                                             <!-- Charge Input -->
                                                                             <div class="space-y-2">
                                                                                 <label for="chargeValue" class="block text-sm font-semibold text-gray-700">
@@ -82,7 +85,7 @@
 
                                                                             <!-- Charge Unit -->
                                                                             <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
+                                                                                <label for="chargeUnit" class="block text-sm font-semibold text-gray-700">
                                                                                     Charge Unit
                                                                                 </label>
                                                                                 <select 
@@ -97,6 +100,7 @@
                                                                                     <option value="milliampere_hour">Milliampere Hour (mAh)</option>
                                                                                     <option value="elementary_charge">Elementary Charge (e)</option>
                                                                                 </select>
+                                                                            </div>
                                                                             </div>
 
                                                                             <!-- Application Context -->
@@ -291,56 +295,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Energy to Voltage Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Electrical Potential</h4>
-                                    <p>Voltage represents the electrical potential difference between two points. It's defined as the energy per unit charge: V = E/Q. This relationship is fundamental in electrical engineering, describing how much energy is available to move each unit of charge through an electrical circuit.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>This conversion is essential in battery design, capacitor energy calculations, electric field work, and electronics design. Understanding the energy-voltage relationship helps in power system analysis, component selection, and electrical safety assessments.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                                <p class="text-sm text-yellow-800">
-                                    <strong>Note:</strong> Voltage is potential difference, not absolute potential. The reference point (ground) determines the actual voltage measurement in practical circuits.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Practical Electrical Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Common Electronics</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-energy="5" data-energy-unit="joule" data-charge="1" data-charge-unit="coulomb">USB Power: 5V</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard USB voltage level</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-energy="3.3" data-energy-unit="joule" data-charge="1" data-charge-unit="coulomb">Microcontroller: 3.3V</div>
-                                        <div class="text-xs text-gray-600 mt-1">Modern MCU operating voltage</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Power Systems</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-energy="240" data-energy-unit="joule" data-charge="1" data-charge-unit="coulomb">Household: 240V</div>
-                                        <div class="text-xs text-gray-600 mt-1">European household voltage</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-energy="12000" data-energy-unit="joule" data-charge="1" data-charge-unit="coulomb">Distribution: 12kV</div>
-                                        <div class="text-xs text-gray-600 mt-1">Medium voltage distribution</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -365,10 +319,6 @@
                         const batteryTypeDisplay = document.getElementById('batteryTypeDisplay');
                         const logicLevelDisplay = document.getElementById('logicLevelDisplay');
                         const safetyClassDisplay = document.getElementById('safetyClassDisplay');
-                        const electricFieldDisplay = document.getElementById('electricFieldDisplay');
-                        const capacitanceDisplay = document.getElementById('capacitanceDisplay');
-                        const energyElectronDisplay = document.getElementById('energyElectronDisplay');
-                        const mobilityDisplay = document.getElementById('mobilityDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Conversion factors to base units
@@ -393,17 +343,35 @@
                             elementary_charge: 1.602176634e-19
                         };
 
+                        const energySymbols = {
+                            joule: 'J',
+                            kilojoule: 'kJ',
+                            watt_hour: 'Wh',
+                            kilowatt_hour: 'kWh',
+                            calorie: 'cal',
+                            btu: 'BTU',
+                            erg: 'erg',
+                            electron_volt: 'eV'
+                        };
+
+                        const chargeSymbols = {
+                            coulomb: 'C',
+                            millicoulomb: 'mC',
+                            microcoulomb: 'μC',
+                            nanocoulomb: 'nC',
+                            ampere_hour: 'Ah',
+                            milliampere_hour: 'mAh',
+                            elementary_charge: 'e'
+                        };
+
                         function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-15 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'G';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e15 || (absolute < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            } else if (absolute >= 1e6) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            } else if (absolute < 1 && num !== 0) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
                             } else {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
                             }
@@ -453,8 +421,8 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(voltage) + ' V';
-                                resultTitle.textContent = 'Calculated Voltage';
-                                resultDescription.textContent = `${energy} ${eUnit} ÷ ${charge} ${cUnit} = ${formatNumber(voltage)} V`;
+                                resultTitle.textContent = 'Voltage (V)';
+                                resultDescription.textContent = `${energy} ${energySymbols[eUnit]} ÷ ${charge} ${chargeSymbols[cUnit]} = ${formatNumber(voltage)} V`;
 
                                 // Display in different voltage units
                                 voltsDisplay.textContent = formatNumber(voltage) + ' V';
@@ -470,12 +438,6 @@
                                 batteryTypeDisplay.textContent = getBatteryType(voltage);
                                 logicLevelDisplay.textContent = getLogicLevel(voltage);
                                 safetyClassDisplay.textContent = getSafetyClass(voltage);
-
-                                // Related calculations
-                                electricFieldDisplay.textContent = formatNumber(voltage) + ' V/m (per meter)';
-                                capacitanceDisplay.textContent = formatNumber(chargeCoulombs / voltage) + ' F';
-                                energyElectronDisplay.textContent = formatNumber(voltage * 1.602176634e-19) + ' J';
-                                mobilityDisplay.textContent = 'Context dependent';
 
                             } else {
                                 clearOutputs();
@@ -495,10 +457,6 @@
                             batteryTypeDisplay.textContent = '--';
                             logicLevelDisplay.textContent = '--';
                             safetyClassDisplay.textContent = '--';
-                            electricFieldDisplay.textContent = '--';
-                            capacitanceDisplay.textContent = '--';
-                            energyElectronDisplay.textContent = '--';
-                            mobilityDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -553,26 +511,6 @@
                                 exampleBtns.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-yellow-100', 'text-yellow-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-energy]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const energy = this.getAttribute('data-energy');
-                                const eUnit = this.getAttribute('data-energy-unit');
-                                const charge = this.getAttribute('data-charge');
-                                const cUnit = this.getAttribute('data-charge-unit');
-                                
-                                if (energy && charge) {
-                                    energyValue.value = energy;
-                                    energyUnit.value = eUnit;
-                                    chargeValue.value = charge;
-                                    chargeUnit.value = cUnit;
-                                    calculate();
-                                    energyValue.focus();
-                                }
                             });
                         });
 

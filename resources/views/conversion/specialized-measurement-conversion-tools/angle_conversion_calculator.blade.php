@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Angle Conversion Calculator - ConvertPro"
+    title="Angle Conversion Calculator - SolveKit"
     description="Professional angle conversion calculator for degrees, radians, gradians, and other angular measurements. Perfect for engineering, mathematics, and scientific calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Angular Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Angle Conversion Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -78,6 +79,8 @@
                                                                                 </select>
                                                                             </div>
 
+                                                                            </div>
+
                                                                             <!-- Precision Control -->
                                                                             <div class="space-y-2 hidden">
                                                                                 <label class="block text-sm font-semibold text-gray-700">
@@ -96,26 +99,6 @@
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Adjust decimal places for calculations</p>
                                                                             </div>
-
-                                                                            <!-- Angle Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Angle Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="angleContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="geometry">Geometric angles</option>
-                                                                                    <option value="navigation">Navigation/compass</option>
-                                                                                    <option value="trigonometry">Trigonometry</option>
-                                                                                    <option value="engineering">Engineering</option>
-                                                                                    <option value="astronomy">Astronomy</option>
-                                                                                </select>
-                                                                            </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -275,65 +258,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Angle Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Angular Measurements</h4>
-                                    <p>Angular measurements are fundamental in mathematics, engineering, navigation, and astronomy. Different fields use different units: degrees for general use, radians for calculus and physics, gradians for surveying, and specialized units for precise measurements.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Angle conversions are essential in trigonometry, mechanical engineering, computer graphics, navigation systems, astronomy, and surveying. Understanding these relationships helps in problem-solving across various technical disciplines.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>Math Tip:</strong> Radians are the natural unit for calculus and advanced mathematics because they make many formulas simpler and more elegant!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Common Angle Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Angle Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Geometric Angles</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="30" data-from="degrees" data-to="radians">30° Angle</div>
-                                        <div class="text-xs text-gray-600 mt-1">π/6 radians, common in triangles</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="45" data-from="degrees" data-to="radians">45° Angle</div>
-                                        <div class="text-xs text-gray-600 mt-1">π/4 radians, isosceles right triangle</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="60" data-from="degrees" data-to="radians">60° Angle</div>
-                                        <div class="text-xs text-gray-600 mt-1">π/3 radians, equilateral triangle</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Special Angles</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="90" data-from="degrees" data-to="radians">90° Right Angle</div>
-                                        <div class="text-xs text-gray-600 mt-1">π/2 radians, perpendicular lines</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="180" data-from="degrees" data-to="radians">180° Straight Angle</div>
-                                        <div class="text-xs text-gray-600 mt-1">π radians, straight line</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="360" data-from="degrees" data-to="radians">360° Full Circle</div>
-                                        <div class="text-xs text-gray-600 mt-1">2π radians, complete rotation</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -342,7 +266,6 @@
                         const toUnit = document.getElementById('toUnit');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
-                        const angleContext = document.getElementById('angleContext');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -357,15 +280,6 @@
                         const secondsDisplay = document.getElementById('secondsDisplay');
                         const milliradiansDisplay = document.getElementById('milliradiansDisplay');
                         const pointsDisplay = document.getElementById('pointsDisplay');
-                        const conversionFactor = document.getElementById('conversionFactor');
-                        const quadrant = document.getElementById('quadrant');
-                        const referenceAngle = document.getElementById('referenceAngle');
-                        const sinValue = document.getElementById('sinValue');
-                        const cosValue = document.getElementById('cosValue');
-                        const tanValue = document.getElementById('tanValue');
-                        const contextInfo = document.getElementById('contextInfo');
-                        const angleIndicator = document.getElementById('angleIndicator');
-                        const angleDescription = document.getElementById('angleDescription');
                         const copyResult = document.getElementById('copyResult');
 
                         // Conversion multipliers (to degrees)
@@ -378,6 +292,17 @@
                             seconds: 1/3600,
                             milliradians: 180 / (Math.PI * 1000),
                             points: 11.25
+                        };
+
+                        const unitNames = {
+                            degrees: 'Degrees',
+                            radians: 'Radians',
+                            gradians: 'Gradians',
+                            turns: 'Turns',
+                            minutes: 'Arc Minutes',
+                            seconds: 'Arc Seconds',
+                            milliradians: 'Milliradians',
+                            points: 'Compass Points'
                         };
 
                         const unitLabels = {
@@ -395,123 +320,31 @@
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: Math.min(precision, 2) });
+                        function formatNumber(num) {
+                            if (!isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getQuadrant(degrees) {
-                            const normalizedDegrees = ((degrees % 360) + 360) % 360;
-                            if (normalizedDegrees >= 0 && normalizedDegrees < 90) return 'I';
-                            if (normalizedDegrees >= 90 && normalizedDegrees < 180) return 'II';
-                            if (normalizedDegrees >= 180 && normalizedDegrees < 270) return 'III';
-                            if (normalizedDegrees >= 270 && normalizedDegrees < 360) return 'IV';
-                            return 'I';
-                        }
-
-                        function getReferenceAngle(degrees) {
-                            const normalizedDegrees = ((degrees % 360) + 360) % 360;
-                            if (normalizedDegrees >= 0 && normalizedDegrees <= 90) return normalizedDegrees;
-                            if (normalizedDegrees > 90 && normalizedDegrees <= 180) return 180 - normalizedDegrees;
-                            if (normalizedDegrees > 180 && normalizedDegrees <= 270) return normalizedDegrees - 180;
-                            if (normalizedDegrees > 270 && normalizedDegrees < 360) return 360 - normalizedDegrees;
-                            return 0;
-                        }
-
-                        function getContextInfo(degrees, context) {
-                            const contexts = {
-                                geometry: {
-                                    name: 'Geometric Angles',
-                                    getInfo: (deg) => {
-                                        if (Math.abs(deg % 360) < 0.001) return 'Complete rotation - full circle';
-                                        if (Math.abs(deg % 180) < 0.001) return 'Straight angle - forms a straight line';
-                                        if (Math.abs(deg % 90) < 0.001) return 'Right angle - perpendicular lines';
-                                        if (deg > 0 && deg < 90) return 'Acute angle - less than 90°';
-                                        if (deg > 90 && deg < 180) return 'Obtuse angle - greater than 90°';
-                                        if (deg > 180 && deg < 360) return 'Reflex angle - greater than 180°';
-                                        return 'Angle measurement in geometric context';
-                                    }
-                                },
-                                navigation: {
-                                    name: 'Navigation/Compass',
-                                    getInfo: (deg) => {
-                                        const bearing = ((deg % 360) + 360) % 360;
-                                        if (bearing >= 337.5 || bearing < 22.5) return 'North (N) - 0°/360°';
-                                        if (bearing >= 22.5 && bearing < 67.5) return 'Northeast (NE) - 45°';
-                                        if (bearing >= 67.5 && bearing < 112.5) return 'East (E) - 90°';
-                                        if (bearing >= 112.5 && bearing < 157.5) return 'Southeast (SE) - 135°';
-                                        if (bearing >= 157.5 && bearing < 202.5) return 'South (S) - 180°';
-                                        if (bearing >= 202.5 && bearing < 247.5) return 'Southwest (SW) - 225°';
-                                        if (bearing >= 247.5 && bearing < 292.5) return 'West (W) - 270°';
-                                        if (bearing >= 292.5 && bearing < 337.5) return 'Northwest (NW) - 315°';
-                                        return 'Compass bearing direction';
-                                    }
-                                },
-                                trigonometry: {
-                                    name: 'Trigonometry',
-                                    getInfo: (deg) => {
-                                        const rad = deg * Math.PI / 180;
-                                        const sin = Math.sin(rad);
-                                        const cos = Math.cos(rad);
-                                        if (Math.abs(sin) < 0.001) return 'Sine = 0 - angle on x-axis';
-                                        if (Math.abs(cos) < 0.001) return 'Cosine = 0 - angle on y-axis';
-                                        if (Math.abs(Math.tan(rad)) > 1000) return 'Tangent undefined - vertical asymptote';
-                                        return `Trigonometric angle: sin≈${sin.toFixed(3)}, cos≈${cos.toFixed(3)}`;
-                                    }
-                                },
-                                engineering: {
-                                    name: 'Engineering',
-                                    getInfo: (deg) => {
-                                        if (deg >= -5 && deg <= 5) return 'Near zero - minimal angular deviation';
-                                        if (Math.abs(deg % 90) < 1) return 'Orthogonal angle - perpendicular alignment';
-                                        if (Math.abs(deg % 45) < 1) return 'Diagonal angle - 45° reference';
-                                        if (deg > 360) return 'Multiple rotations - continuous motion';
-                                        return 'Engineering angular measurement for mechanical systems';
-                                    }
-                                },
-                                astronomy: {
-                                    name: 'Astronomy',
-                                    getInfo: (deg) => {
-                                        if (deg >= -90 && deg <= 90) return 'Elevation angle - altitude above horizon';
-                                        if (deg >= 0 && deg < 360) return 'Azimuth angle - compass direction';
-                                        if (Math.abs(deg) < 1) return 'Near celestial equator - minimal declination';
-                                        if (Math.abs(deg - 90) < 1) return 'Near celestial pole - high declination';
-                                        return 'Astronomical coordinate system measurement';
-                                    }
-                                }
-                            };
-
-                            if (context && contexts[context]) {
-                                const ctx = contexts[context];
-                                return `${ctx.name}: ${ctx.getInfo(degrees)}`;
+                            if (num === 0) {
+                                return '0';
                             }
-                            return 'Select an angle context for specific information';
+                            const abs = Math.abs(num);
+                            if (abs >= 1e15 || abs < 1e-6) {
+                                return num.toExponential(4);
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: Math.max(getPrecision(), 1) });
                         }
 
-                        function updateAngleVisualization(degrees) {
-                            const normalizedDegrees = ((degrees % 360) + 360) % 360;
-                            const rotation = normalizedDegrees - 90; // Adjust for 0° at top
-                            angleIndicator.style.transform = `translateX(-50%) translateY(-100%) rotate(${rotation}deg)`;
-                            
-                            let description = '';
-                            if (normalizedDegrees === 0) description = 'Pointing North (0°)';
-                            else if (normalizedDegrees === 90) description = 'Pointing East (90°)';
-                            else if (normalizedDegrees === 180) description = 'Pointing South (180°)';
-                            else if (normalizedDegrees === 270) description = 'Pointing West (270°)';
-                            else description = `Angle: ${formatNumber(normalizedDegrees, 1)}°`;
-                            
-                            angleDescription.textContent = description;
+                        function withUnit(value, unit) {
+                            return ['°', "'", '"'].includes(unit) ? `${value}${unit}` : `${value} ${unit}`;
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const context = angleContext.value;
 
                             if (!isNaN(inputVal)) {
                                 // Convert input to degrees first
@@ -521,9 +354,9 @@
                                 const result = inputInDegrees / angleMultipliers[to];
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]} (${to})`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), unitLabels[to]);
+                                resultTitle.textContent = `${unitNames[to]} (${unitLabels[to]})`;
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), unitLabels[from])} = ${withUnit(formatNumber(result), unitLabels[to])}`;
 
                                 // Convert to all units and display
                                 const degrees = inputInDegrees;
@@ -535,26 +368,6 @@
                                 secondsDisplay.textContent = formatNumber(degrees / angleMultipliers.seconds);
                                 milliradiansDisplay.textContent = formatNumber(degrees / angleMultipliers.milliradians);
                                 pointsDisplay.textContent = formatNumber(degrees / angleMultipliers.points);
-
-                                // Conversion analysis
-                                const factor = angleMultipliers[from] / angleMultipliers[to];
-                                conversionFactor.textContent = factor >= 1 ? `÷${formatNumber(factor, 6)}` : `×${formatNumber(1/factor, 6)}`;
-                                quadrant.textContent = `Quadrant ${getQuadrant(degrees)}`;
-                                referenceAngle.textContent = `${formatNumber(getReferenceAngle(degrees), 2)}°`;
-
-                                // Trigonometric values
-                                const radians = degrees * Math.PI / 180;
-                                sinValue.textContent = formatNumber(Math.sin(radians), 6);
-                                cosValue.textContent = formatNumber(Math.cos(radians), 6);
-                                const tanVal = Math.tan(radians);
-                                tanValue.textContent = Math.abs(tanVal) > 1000 ? '∞' : formatNumber(tanVal, 6);
-
-                                // Context information
-                                contextInfo.textContent = getContextInfo(degrees, context);
-
-                                // Update visualization
-                                updateAngleVisualization(degrees);
-
                             } else {
                                 clearOutputs();
                             }
@@ -572,22 +385,12 @@
                             secondsDisplay.textContent = '--';
                             milliradiansDisplay.textContent = '--';
                             pointsDisplay.textContent = '--';
-                            conversionFactor.textContent = '--';
-                            quadrant.textContent = '--';
-                            referenceAngle.textContent = '--';
-                            sinValue.textContent = '--';
-                            cosValue.textContent = '--';
-                            tanValue.textContent = '--';
-                            contextInfo.textContent = 'Select an angle context for specific information';
-                            angleIndicator.style.transform = 'translateX(-50%) translateY(-100%) rotate(-90deg)';
-                            angleDescription.textContent = 'Enter an angle to see visualization';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'degrees';
                             toUnit.value = 'radians';
-                            angleContext.value = '';
                             precision.value = 6;
                             precisionValue.textContent = '6 digits';
                             clearOutputs();
@@ -598,7 +401,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        angleContext.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -638,22 +440,6 @@
                                 angleExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-blue-100', 'text-blue-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

@@ -39,6 +39,22 @@ if (is_string($categorySlug) && $categorySlug !== '') {
     }
 }
 
+$isPhaseOne = $categorySlug === 'length-and-area-conversions';
+$isPhaseTwo = $categorySlug === 'volume-and-weight-conversions';
+$isPhaseThree = $categorySlug === 'engineering-and-technical-conversions';
+$isPhaseFour = $categorySlug === 'geographic-and-mapping-tools';
+$isPhaseFive = $categorySlug === 'number-conversion-tools';
+$isPhaseSix = $categorySlug === 'number-system-conversion-tools';
+$isPhaseSeven = $categorySlug === 'data-and-technical-conversion-tools';
+$isPhaseEight = $categorySlug === 'speed-and-motion-conversion-tools';
+$isPhaseNine = $categorySlug === 'specialized-measurement-conversion-tools';
+$isEnergyPowerPhase = $categorySlug === 'energy-and-power-conversion-tools';
+$isCurrencyFinancialPhase = $categorySlug === 'currency-and-financial-conversion-tools';
+$isDigitalTechnicalPhase = $categorySlug === 'digital-and-technical-conversion-tools';
+$isUtilityGeneralPhase = $categorySlug === 'utility-and-general-conversion-tools';
+$isTimeDatePhase = $categorySlug === 'time-and-date-conversion-tools';
+$isNormalizedPhase = $isPhaseOne || $isPhaseTwo || $isPhaseThree || $isPhaseFour || $isPhaseFive || $isPhaseSix || $isPhaseSeven || $isPhaseEight || $isPhaseNine || $isEnergyPowerPhase || $isCurrencyFinancialPhase || $isDigitalTechnicalPhase || $isUtilityGeneralPhase || $isTimeDatePhase;
+
 $breadcrumbs = [
     ['label' => 'Home', 'url' => url('/')],
     ['label' => 'Conversion Tools', 'url' => route('conversion.index')],
@@ -55,6 +71,18 @@ $breadcrumbs[] = ['label' => $toolTitle];
 
 $toolUiContent = isset($toolUi) ? $toolUi : $slot;
 $aboutContentSlot = isset($aboutContent) ? $aboutContent : null;
+$showLegacyAboutContent = $aboutContentSlot && ! $isNormalizedPhase;
+$relatedTools = collect($calculatorMap)
+    ->filter(function ($tool) use ($currentCalculator, $routeName): bool {
+        return is_array($tool)
+            && ($tool['route_name'] ?? null) !== $routeName
+            && ($tool['category_slug'] ?? null) === ($currentCalculator['category_slug'] ?? null)
+            && is_string($tool['route_name'] ?? null)
+            && \Illuminate\Support\Facades\Route::has($tool['route_name']);
+    })
+    ->take(3)
+    ->values()
+    ->all();
 
 $breadcrumbSchemaItems = [];
 foreach ($breadcrumbs as $index => $item) {
@@ -135,8 +163,6 @@ if (is_array($howToSchema)) {
 @endphp
 
 <x-app-layout :title="$title" :description="$description" :showFooter="false">
-    <x-breadcrumb :items="$breadcrumbs" />
-
     <style>
         #toolUiRoot :where(label) {
             font-size: 0.8125rem;
@@ -165,6 +191,957 @@ if (is_array($howToSchema)) {
 
         #toolUiRoot :where(.focus-within\:ring-2):focus-within {
             box-shadow: none !important;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .rounded-md,
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .rounded-lg,
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool) .text-indigo-700,
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool) .text-indigo-800 {
+            color: var(--color-primary-600);
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool) .bg-indigo-50,
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool) .bg-indigo-100 {
+            background-color: var(--color-primary-50);
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id="calculatorForm"] {
+            max-width: none;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .font-serif[id],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .font-mono[id],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id$="Output"],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id="output"],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id="convertedTorque"],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [id="displayRpm"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="rounded-lg"],
+        #toolUiRoot:is(.phase-one-tool, .phase-two-tool, .phase-three-tool, .phase-four-tool) [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot:is(.phase-three-tool, .phase-four-tool) #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-five-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-five-tool .rounded-md,
+        #toolUiRoot.phase-five-tool .rounded-lg,
+        #toolUiRoot.phase-five-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.phase-five-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.phase-five-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-five-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-five-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.phase-five-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.phase-five-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.phase-five-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-five-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.phase-five-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-five-tool .font-serif[id],
+        #toolUiRoot.phase-five-tool .font-mono[id],
+        #toolUiRoot.phase-five-tool [id$="Output"],
+        #toolUiRoot.phase-five-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.phase-five-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.phase-five-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-five-tool [class*="rounded-lg"],
+        #toolUiRoot.phase-five-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-five-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.phase-six-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-six-tool .rounded-md,
+        #toolUiRoot.phase-six-tool .rounded-lg,
+        #toolUiRoot.phase-six-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.phase-six-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.phase-six-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-six-tool > :first-child > :first-child :is(h1, h2),
+        #toolUiRoot.phase-six-tool > :first-child > :first-child p {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-six-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.phase-six-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.phase-six-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-six-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.phase-six-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-six-tool .font-serif[id],
+        #toolUiRoot.phase-six-tool .font-mono[id],
+        #toolUiRoot.phase-six-tool [id$="Display"],
+        #toolUiRoot.phase-six-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1rem, 3vw, 1.75rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.phase-six-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.phase-six-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-six-tool [class*="rounded-lg"],
+        #toolUiRoot.phase-six-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-six-tool #calculatorForm + section > :nth-child(2) {
+            display: none;
+        }
+
+        #toolUiRoot.phase-seven-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-seven-tool .rounded-md,
+        #toolUiRoot.phase-seven-tool .rounded-lg,
+        #toolUiRoot.phase-seven-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.phase-seven-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.phase-seven-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-seven-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-seven-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.phase-seven-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.phase-seven-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.phase-seven-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-seven-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.phase-seven-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-seven-tool .font-serif[id],
+        #toolUiRoot.phase-seven-tool .font-mono[id],
+        #toolUiRoot.phase-seven-tool [id$="Display"],
+        #toolUiRoot.phase-seven-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.phase-seven-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.phase-seven-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-seven-tool [class*="rounded-lg"],
+        #toolUiRoot.phase-seven-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-seven-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.phase-eight-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-eight-tool .rounded-md,
+        #toolUiRoot.phase-eight-tool .rounded-lg,
+        #toolUiRoot.phase-eight-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.phase-eight-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.phase-eight-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-eight-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-eight-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.phase-eight-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.phase-eight-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.phase-eight-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-eight-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.phase-eight-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-eight-tool .font-serif[id],
+        #toolUiRoot.phase-eight-tool .font-mono[id],
+        #toolUiRoot.phase-eight-tool [id$="Display"],
+        #toolUiRoot.phase-eight-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.phase-eight-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.phase-eight-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-eight-tool [class*="rounded-lg"],
+        #toolUiRoot.phase-eight-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-eight-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.phase-nine-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-nine-tool .rounded-md,
+        #toolUiRoot.phase-nine-tool .rounded-lg,
+        #toolUiRoot.phase-nine-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.phase-nine-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.phase-nine-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-nine-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.phase-nine-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.phase-nine-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.phase-nine-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.phase-nine-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-nine-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.phase-nine-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.phase-nine-tool .font-serif[id],
+        #toolUiRoot.phase-nine-tool .font-mono[id],
+        #toolUiRoot.phase-nine-tool [id$="Display"],
+        #toolUiRoot.phase-nine-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.phase-nine-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.phase-nine-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.phase-nine-tool [class*="rounded-lg"],
+        #toolUiRoot.phase-nine-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.phase-nine-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.energy-power-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.energy-power-tool .rounded-md,
+        #toolUiRoot.energy-power-tool .rounded-lg,
+        #toolUiRoot.energy-power-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.energy-power-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.energy-power-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.energy-power-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.energy-power-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.energy-power-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.energy-power-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.energy-power-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.energy-power-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.energy-power-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.energy-power-tool .font-serif[id],
+        #toolUiRoot.energy-power-tool .font-mono[id],
+        #toolUiRoot.energy-power-tool [id$="Display"],
+        #toolUiRoot.energy-power-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.energy-power-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.energy-power-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.energy-power-tool [class*="rounded-lg"],
+        #toolUiRoot.energy-power-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.energy-power-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.currency-financial-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.currency-financial-tool .rounded-md,
+        #toolUiRoot.currency-financial-tool .rounded-lg,
+        #toolUiRoot.currency-financial-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.currency-financial-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.currency-financial-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.currency-financial-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.currency-financial-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.currency-financial-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.currency-financial-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.currency-financial-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.currency-financial-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.currency-financial-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.currency-financial-tool .font-serif[id],
+        #toolUiRoot.currency-financial-tool .font-mono[id],
+        #toolUiRoot.currency-financial-tool [id$="Display"],
+        #toolUiRoot.currency-financial-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.currency-financial-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.currency-financial-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.currency-financial-tool [class*="rounded-lg"],
+        #toolUiRoot.currency-financial-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.currency-financial-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.digital-technical-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.digital-technical-tool .rounded-md,
+        #toolUiRoot.digital-technical-tool .rounded-lg,
+        #toolUiRoot.digital-technical-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.digital-technical-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.digital-technical-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.digital-technical-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.digital-technical-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.digital-technical-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.digital-technical-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.digital-technical-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.digital-technical-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.digital-technical-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.digital-technical-tool .font-serif[id],
+        #toolUiRoot.digital-technical-tool .font-mono[id],
+        #toolUiRoot.digital-technical-tool [id$="Display"],
+        #toolUiRoot.digital-technical-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.digital-technical-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.digital-technical-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.digital-technical-tool [class*="rounded-lg"],
+        #toolUiRoot.digital-technical-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.digital-technical-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.utility-general-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.utility-general-tool .rounded-md,
+        #toolUiRoot.utility-general-tool .rounded-lg,
+        #toolUiRoot.utility-general-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.utility-general-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.utility-general-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.utility-general-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.utility-general-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.utility-general-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.utility-general-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.utility-general-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.utility-general-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.utility-general-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.utility-general-tool .font-serif[id],
+        #toolUiRoot.utility-general-tool .font-mono[id],
+        #toolUiRoot.utility-general-tool [id$="Display"],
+        #toolUiRoot.utility-general-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.utility-general-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.utility-general-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.utility-general-tool [class*="rounded-lg"],
+        #toolUiRoot.utility-general-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.utility-general-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.time-date-tool .shadow-sm {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.time-date-tool .rounded-md,
+        #toolUiRoot.time-date-tool .rounded-lg,
+        #toolUiRoot.time-date-tool .rounded-xl {
+            border-radius: 0.125rem;
+        }
+
+        #toolUiRoot.time-date-tool .bg-white {
+            background-color: transparent;
+        }
+
+        #toolUiRoot.time-date-tool > :first-child > :first-child {
+            background: #0f172a;
+            border-color: #1e293b;
+            color: #ffffff;
+        }
+
+        #toolUiRoot.time-date-tool > :first-child > :first-child :is(h1, h2) {
+            color: #ffffff;
+        }
+
+        #toolUiRoot.time-date-tool [class*="bg-slate-50"] {
+            background-color: #f8fafc;
+        }
+
+        #toolUiRoot.time-date-tool [class*="lg:grid-cols-"] {
+            display: block;
+        }
+
+        #toolUiRoot.time-date-tool [class*="lg:col-span-"] {
+            width: 100%;
+        }
+
+        #toolUiRoot.time-date-tool [class*="lg:col-span-"] + [class*="lg:col-span-"] {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.time-date-tool #calculatorForm {
+            max-width: none;
+        }
+
+        #toolUiRoot.time-date-tool #calculatorForm label {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #toolUiRoot.time-date-tool .font-serif[id],
+        #toolUiRoot.time-date-tool .font-mono[id],
+        #toolUiRoot.time-date-tool [id$="Display"],
+        #toolUiRoot.time-date-tool [id="output"] {
+            min-width: 0;
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            font-size: clamp(1.25rem, 4vw, 2rem);
+            line-height: 1.1;
+        }
+
+        #toolUiRoot.time-date-tool .text-right {
+            min-width: 0;
+            max-width: 100%;
+        }
+
+        #toolUiRoot.time-date-tool .mt-8 {
+            margin-top: 1rem;
+        }
+
+        #toolUiRoot.time-date-tool [class*="rounded-lg"],
+        #toolUiRoot.time-date-tool [class*="rounded-xl"] {
+            box-shadow: none;
+        }
+
+        #toolUiRoot.time-date-tool [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.phase-four-tool #calculatorForm > * {
+            min-width: 0;
+        }
+
+        #toolUiRoot.phase-four-tool #calculatorForm [class*="grid-cols-"] {
+            min-width: 0;
+        }
+
+        #toolUiRoot.phase-three-tool [class~="lg:col-span-7"] > [class~="mt-8"] {
+            margin-top: 0;
+        }
+
+        #toolUiRoot.phase-three-tool [class~="lg:col-span-7"] > [class~="mt-8"] > [class~="grid"] {
+            display: none;
+        }
+
+        #toolUiRoot.phase-three-tool [class~="lg:col-span-7"] > [class~="mt-8"] > [class*="bg-gradient"] {
+            padding: 0.625rem;
+            border-left-width: 0;
+            border-radius: 0.125rem;
+            background: #f8fafc;
+        }
+
+        @media (min-width: 768px) {
+            #toolUiRoot.phase-three-tool #calculatorForm {
+                display: grid;
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+                align-items: start;
+                column-gap: 1rem;
+                row-gap: 0.75rem;
+            }
+
+            #toolUiRoot.phase-three-tool #calculatorForm > * {
+                grid-column: span 3;
+                min-width: 0;
+            }
+
+            #toolUiRoot.phase-three-tool #calculatorForm > :has(> .grid > div > select) {
+                display: contents;
+            }
+
+            #toolUiRoot.phase-three-tool #calculatorForm > :has(input[type="radio"]),
+            #toolUiRoot.phase-three-tool #calculatorForm > :has(> button) {
+                grid-column: 1 / -1;
+            }
+
+            #toolUiRoot.phase-three-tool #calculatorForm > :has(input[type="radio"]) > .grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+
+            #toolUiRoot.phase-three-tool #calculatorForm > :has(> button) {
+                justify-content: flex-start;
+            }
         }
 
         @media (min-width: 1024px) {
@@ -196,52 +1173,75 @@ if (is_array($howToSchema)) {
 
         @media (min-width: 1024px) {
             body.tool-layout-lock {
-                overflow: hidden;
+                overflow-x: hidden;
             }
 
             .tool-layout-viewport {
-                height: calc(100dvh - var(--cp-nav-height, 0px) - var(--cp-breadcrumb-height, 0px));
-                overflow: hidden;
+                min-height: calc(100dvh - var(--cp-nav-height, 0px) - var(--cp-breadcrumb-height, 0px));
+                height: auto;
+                overflow: visible;
             }
 
             .tool-layout-grid {
-                height: 100%;
-                overflow: hidden;
+                min-height: calc(100dvh - var(--cp-nav-height, 0px) - var(--cp-breadcrumb-height, 0px));
+                height: auto;
+                overflow: visible;
             }
         }
+        #quickReferenceTarget [class*="grid-cols-"] {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        }
+
+        #quickReferenceTarget :where(p, span, div, li, dt, dd) {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
     </style>
+
 
     <section class="tool-layout-viewport bg-slate-50 py-2 sm:py-3 lg:py-1">
         <div class="mx-auto h-full max-w-7xl px-3 sm:px-4 lg:px-6">
             <div class="tool-layout-grid grid h-full gap-4 lg:min-h-0 lg:grid-cols-12 lg:grid-rows-[minmax(0,1fr)] lg:items-stretch">
-                <div class="space-y-3 lg:col-span-7 lg:h-full lg:min-h-0 lg:overflow-hidden">
-                    <section id="toolUiRoot" aria-label="Tool Interface" class="tool-ui-shell tool-ui-compact rounded-xl bg-white p-2.5 shadow-sm sm:p-3">
+                <div class="space-y-3 lg:col-span-8 lg:h-auto lg:min-h-0 lg:sticky lg:top-[calc(var(--cp-nav-height,4rem)+1rem)] lg:self-start">
+                        <section id="toolUiRoot" aria-label="Tool Interface" class="tool-ui-shell tool-ui-compact {{ $isPhaseOne ? 'phase-one-tool' : '' }} {{ $isPhaseTwo ? 'phase-two-tool' : '' }} {{ $isPhaseThree ? 'phase-three-tool' : '' }} {{ $isPhaseFour ? 'phase-four-tool' : '' }} {{ $isPhaseFive ? 'phase-five-tool' : '' }} {{ $isPhaseSix ? 'phase-six-tool' : '' }} {{ $isPhaseSeven ? 'phase-seven-tool' : '' }} {{ $isPhaseEight ? 'phase-eight-tool' : '' }} {{ $isPhaseNine ? 'phase-nine-tool' : '' }} {{ $isEnergyPowerPhase ? 'energy-power-tool' : '' }} {{ $isCurrencyFinancialPhase ? 'currency-financial-tool' : '' }} {{ $isDigitalTechnicalPhase ? 'digital-technical-tool' : '' }} {{ $isUtilityGeneralPhase ? 'utility-general-tool' : '' }} {{ $isTimeDatePhase ? 'time-date-tool' : '' }} rounded-sm bg-white p-2.5 shadow-sm sm:p-3">
                         {{ $toolUiContent }}
                     </section>
+
+                    <x-ads type="in-article" placement="tool-after-result" class="lg:hidden" />
                 </div>
 
-                <div class="tool-right-scroll space-y-4 lg:col-span-5 lg:h-full lg:min-h-0 lg:self-stretch lg:overflow-y-auto lg:pr-1">
-                    <section id="quickReferenceColumn" aria-label="Quick Reference" class="hidden rounded-xl bg-white p-3 shadow-sm">
+                <div class="tool-right-scroll space-y-4 lg:col-span-4 lg:h-full lg:min-h-0 lg:self-stretch lg:overflow-y-auto lg:pr-1">
+                    <section id="quickReferenceColumn" aria-label="Quick Reference" class="hidden rounded-sm bg-white p-3 shadow-sm">
                         <h2 class="mb-3 text-base font-semibold text-slate-900">Quick Reference</h2>
                         <div id="quickReferenceTarget" class="space-y-4"></div>
                     </section>
 
-                    <section aria-label="About This Tool" class="rounded-xl border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
-                        @if($aboutContentSlot)
+                    <section aria-label="About This Tool" class="rounded-sm border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
+                        <x-tool-content
+                            :title="$toolTitle"
+                            :description="$toolDescription"
+                            :category-title="$categoryTitle"
+                            :related-tools="$relatedTools"
+                        />
+                    </section>
+
+                    @if($showLegacyAboutContent)
+                        <section aria-label="Tool reference notes" class="rounded-sm border border-slate-200 bg-white p-3 shadow-sm sm:p-4">
                             <div id="aboutContentStack" class="space-y-4">
                                 {{ $aboutContentSlot }}
                             </div>
-                        @else
-                            <h2 class="mb-3 text-lg font-semibold text-slate-900">About {{ $toolTitle }}</h2>
-                            <p class="text-sm leading-7 text-slate-600">
-                                {{ $toolDescription !== '' ? $toolDescription : ('This tool helps you perform accurate and reliable calculations for ' . $toolTitle . '.') }}
-                            </p>
-                        @endif
-                    </section>
+                        </section>
+                    @endif
+
+                    <x-ads type="display" placement="tool-sidebar" class="hidden lg:block" />
                 </div>
             </div>
         </div>
     </section>
+
+    <x-ads type="multiplex" placement="tool-bottom" class="mx-auto max-w-7xl px-3 pb-6 sm:px-4 lg:px-6" />
+
+    <x-footer />
 
     <x-slot name="scripts">
         @if(isset($scripts) && trim((string) $scripts) !== '')
@@ -1040,7 +2040,7 @@ if (is_array($howToSchema)) {
                         if (headerSection) {
                             headerSection.className = 'rounded-md bg-white p-2.5 shadow-sm';
 
-                            const title = headerSection.querySelector('h2');
+                            const title = headerSection.querySelector('h1, h2');
                             if (title) {
                                 title.className = 'text-sm font-semibold text-slate-900';
                             }
@@ -1265,8 +2265,19 @@ if (is_array($howToSchema)) {
                     return;
                 }
 
+                const isEmptyWrapper = (element) => (element.textContent || '').trim() === ''
+                    && !element.querySelector('input, select, textarea, button, canvas, img, svg, table');
+
                 uniqueReferenceCards.forEach((card) => {
+                    let formerParent = card.parentElement;
+
                     quickReferenceTarget.appendChild(card);
+
+                    while (formerParent && formerParent !== toolUiRoot && toolUiRoot.contains(formerParent) && isEmptyWrapper(formerParent)) {
+                        const nextParent = formerParent.parentElement;
+                        formerParent.remove();
+                        formerParent = nextParent;
+                    }
                 });
 
                 quickReferenceColumn.classList.remove('hidden');
@@ -1277,6 +2288,18 @@ if (is_array($howToSchema)) {
             '@context' => 'https://schema.org',
             '@type' => 'BreadcrumbList',
             'itemListElement' => $breadcrumbSchemaItems,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
+
+        <script type="application/ld+json">{!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'ItemList',
+            'name' => 'Related tools for ' . $toolTitle,
+            'itemListElement' => collect($relatedTools)->map(fn (array $tool, int $index): array => [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'name' => $tool['title'],
+                'url' => route($tool['route_name']),
+            ])->all(),
         ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 
         <script type="application/ld+json">{!! json_encode($webApplicationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>

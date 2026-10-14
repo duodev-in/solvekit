@@ -1,11 +1,11 @@
 <x-tool-page-layout
-    title="Decimal to Hexadecimal Converter - ConvertPro"
+    title="Decimal to Hexadecimal Converter - SolveKit"
     description="Professional decimal and hexadecimal converter for programming and digital systems. Convert in both directions with complete base outputs and readable steps."
 >
     <x-slot name="toolUi">
         <div class="space-y-2">
             <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900">Decimal and Hexadecimal Converter</h2>
+                <h1 class="text-sm font-semibold text-slate-900">Decimal to Hexadecimal</h1>
                 <p class="mt-0.5 text-[11px] text-slate-600">Readable decimal and hex conversion with consistent structure, visibility, and constraints.</p>
             </section>
 
@@ -94,59 +94,6 @@
         </div>
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <div class="space-y-3 text-sm text-slate-600">
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <div class="flex items-center justify-between gap-2">
-                    <h3 class="text-sm font-semibold text-slate-900">Live Conversion Insights</h3>
-                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">Auto update</span>
-                </div>
-
-                <div id="breakdownDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Breakdown</p>
-                    <p id="conversionSteps" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="rulesDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Rules Applied</p>
-                    <p id="appliedRules" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="historicalContext" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Context Note</p>
-                    <p id="contextInfo" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h4 class="text-sm font-semibold text-slate-900">Hexadecimal Digit Reference</h4>
-                <div class="mt-2 grid grid-cols-2 gap-1.5 text-[11px] text-slate-700 sm:grid-cols-4">
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">A = 10</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">B = 11</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">C = 12</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">D = 13</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">E = 14</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">F = 15</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">FF = 255</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">7FFF = 32767</div>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h3 class="text-sm font-semibold text-slate-900">Reading Guide</h3>
-                <div class="mt-2 space-y-2 text-xs leading-5 text-slate-700">
-                    <p><span class="font-semibold text-slate-900">Decimal to Hex:</span> uses repeated division by 16 and remainder mapping.</p>
-                    <p><span class="font-semibold text-slate-900">Hex to Decimal:</span> applies place-value powers of 16.</p>
-                    <p><span class="font-semibold text-slate-900">All Bases:</span> decimal, hex, binary, and octal update together.</p>
-                    <p><span class="font-semibold text-slate-900">Constraints:</span> values stay in safe integer range for precision.</p>
-                </div>
-            </section>
-
-            <div class="rounded-md bg-indigo-50 p-3 text-xs text-indigo-800">
-                Hexadecimal is standard for memory values, machine instructions, and color notation.
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -172,12 +119,6 @@
                 const hexDisplay = document.getElementById('hexDisplay');
                 const octalDisplay = document.getElementById('octalDisplay');
                 const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-                const breakdownDisplay = document.getElementById('breakdownDisplay');
-                const conversionSteps = document.getElementById('conversionSteps');
-                const rulesDisplay = document.getElementById('rulesDisplay');
-                const appliedRules = document.getElementById('appliedRules');
-                const historicalContext = document.getElementById('historicalContext');
-                const contextInfo = document.getElementById('contextInfo');
 
                 const strictDecimalPattern = /^\d+$/;
                 const strictHexPattern = /^[0-9A-F]+$/i;
@@ -215,71 +156,6 @@
                     return parsed;
                 }
 
-                function buildFromBaseSteps(value, base) {
-                    const chars = value.split('');
-                    const steps = [];
-                    let total = 0;
-
-                    chars.forEach((char, index) => {
-                        const power = chars.length - index - 1;
-                        const digit = parseInt(char, base);
-                        const amount = digit * (base ** power);
-                        total += amount;
-                        steps.push(`${char} x ${base}^${power} = ${amount}`);
-                    });
-
-                    steps.push(`Total = ${total}`);
-                    return steps;
-                }
-
-                function buildToBaseSteps(decimal, base) {
-                    if (decimal === 0) {
-                        return ['0 in any base remains 0.'];
-                    }
-
-                    const alphabet = '0123456789ABCDEF';
-                    const steps = [];
-                    let current = decimal;
-
-                    while (current > 0) {
-                        const quotient = Math.floor(current / base);
-                        const remainder = current % base;
-                        steps.push(`${current} / ${base} = ${quotient}, remainder ${alphabet[remainder]}`);
-                        current = quotient;
-                    }
-
-                    steps.push('Read remainders from bottom to top for the final result.');
-                    return steps;
-                }
-
-                function getRules(mode) {
-                    if (mode === 'decimal-to-hex') {
-                        return [
-                            'Decimal to hexadecimal uses repeated division by 16.',
-                            'Remainders 10-15 map to A-F.',
-                            'Read remainders from bottom to top.'
-                        ];
-                    }
-
-                    return [
-                        'Hex digits range from 0-9 and A-F.',
-                        'Each position represents a power of 16.',
-                        'Sum all positional values to get decimal.'
-                    ];
-                }
-
-                function getContextNote(decimal) {
-                    if (decimal <= 255) {
-                        return `${decimal} is often represented as a one-byte hex value.`;
-                    }
-
-                    if (decimal <= 65535) {
-                        return `${decimal} fits in four hex digits and 16 bits.`;
-                    }
-
-                    return `${decimal} uses ${decimal.toString(2).length} bits in binary representation.`;
-                }
-
                 function updateInterface() {
                     const mode = getMode();
 
@@ -299,12 +175,6 @@
                     resultDescription.textContent = 'Hexadecimal converted to decimal';
                 }
 
-                function setSectionVisibility() {
-                    breakdownDisplay.style.display = 'block';
-                    rulesDisplay.style.display = 'block';
-                    historicalContext.style.display = 'block';
-                }
-
                 function clearOutputs() {
                     output.textContent = '--';
                     binaryDisplay.textContent = '--';
@@ -312,9 +182,6 @@
                     hexDisplay.textContent = '--';
                     octalDisplay.textContent = '--';
                     bitLengthDisplay.textContent = '--';
-                    conversionSteps.textContent = '--';
-                    appliedRules.textContent = '--';
-                    contextInfo.textContent = '--';
                 }
 
                 function renderInvalid() {
@@ -327,32 +194,27 @@
                     const input = sanitize(inputValue.value);
                     if (!input) {
                         clearOutputs();
-                        setSectionVisibility();
                         return;
                     }
 
                     const mode = getMode();
                     let decimal;
                     let hex;
-                    let steps;
                     let outputValue;
 
                     if (mode === 'decimal-to-hex') {
                         const parsed = parseDecimal(input);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         hex = decimal.toString(16).toUpperCase();
-                        steps = buildToBaseSteps(decimal, 16);
                         outputValue = hex;
                     } else {
                         if (!strictHexPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -360,12 +222,10 @@
                         const parsed = parseHexToSafeInteger(hex);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
-                        steps = buildFromBaseSteps(hex, 16);
                         outputValue = String(decimal);
                     }
 
@@ -379,17 +239,11 @@
                     hexDisplay.textContent = hex;
                     octalDisplay.textContent = octal;
                     bitLengthDisplay.textContent = `${binary.length} bits`;
-                    conversionSteps.innerHTML = steps.join('<br>');
-                    appliedRules.innerHTML = '- ' + getRules(mode).join('<br>- ');
-                    contextInfo.textContent = getContextNote(decimal);
-
-                    setSectionVisibility();
                 }
 
                 function clearAll() {
                     inputValue.value = '';
                     clearOutputs();
-                    setSectionVisibility();
                     inputValue.focus();
                 }
 
@@ -440,7 +294,6 @@
 
                 updateInterface();
                 clearOutputs();
-                setSectionVisibility();
             });
         </script>
     </x-slot>

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Coordinates Converter - ConvertPro"
+    title="Coordinates Converter - SolveKit"
     description="Professional coordinates converter for GPS, mapping and surveying applications. Convert between decimal degrees, DMS, UTM and other coordinate systems."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">GPS & Coordinate System Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Coordinates</h1>
                             </div>
 
                             <!-- Calculator Body -->

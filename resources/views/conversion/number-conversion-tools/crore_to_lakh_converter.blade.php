@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Crore to Lakh Converter - ConvertPro"
+    title="Crore to Lakh Converter - SolveKit"
     description="Professional crore to lakh converter for Indian numbering system. Convert between crores, lakhs, thousands and other Indian number denominations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Indian Number System Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Crore to Lakh</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -107,7 +107,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border-l-4 border-indigo-500">
@@ -156,56 +156,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Indian Number System</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Cultural Context</h4>
-                                    <p>The Indian numbering system is widely used in India, Pakistan, Bangladesh, and other South Asian countries. It follows a unique pattern where numbers are grouped differently than the Western system, with specific terms like Lakh and Crore.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Business Applications</h4>
-                                    <p>Essential for financial transactions, real estate, salary negotiations, and business dealings in South Asia. Understanding both Indian and Western number systems is crucial for international business and investment.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-                                <p class="text-sm text-indigo-800">
-                                    <strong>Cultural Tip:</strong> In India, salaries and property prices are commonly expressed in Lakhs and Crores. 1 Crore = 100 Lakhs = 10 Million!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Real-World Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Real-World Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Common Indian Amounts</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="1">1 Crore</div>
-                                        <div class="text-xs text-gray-600 mt-1">Luxury apartment price</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="50">50 Crores</div>
-                                        <div class="text-xs text-gray-600 mt-1">Small business valuation</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Conversion Examples</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600">1 Crore = 100 Lakhs</div>
-                                        <div class="text-xs text-gray-600 mt-1">Basic conversion ratio</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600">1 Crore = 10 Million</div>
-                                        <div class="text-xs text-gray-600 mt-1">International equivalent</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -225,14 +175,6 @@
                         const resultDescription = document.getElementById('result-description');
                         const croreDisplay = document.getElementById('croreDisplay');
                         const lakhDisplay = document.getElementById('lakhDisplay');
-                        const thousandDisplay = document.getElementById('thousandDisplay');
-                        const millionDisplay = document.getElementById('millionDisplay');
-                        const billionDisplay = document.getElementById('billionDisplay');
-                        const numberFormat = document.getElementById('numberFormat');
-                        const numberWords = document.getElementById('numberWords');
-                        const digitCount = document.getElementById('digitCount');
-                        const indianFormat = document.getElementById('indianFormat');
-                        const internationalFormat = document.getElementById('internationalFormat');
                         const copyResult = document.getElementById('copyResult');
 
                         function getPrecision() {
@@ -244,59 +186,27 @@
                             return document.querySelector('input[name="mode"]:checked').value;
                         }
 
-                        function getFormat() {
-                            return document.querySelector('input[name="format"]:checked').value;
-                        }
-
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (num >= 1e12) {
-                                    return num.toExponential(3);
-                                } else if (num >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (num >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function formatIndianNumber(num) {
-                            const numStr = Math.floor(num).toString();
-                            if (numStr.length <= 3) return numStr;
-                            
-                            let result = numStr.slice(-3);
-                            let remaining = numStr.slice(0, -3);
-                            
-                            while (remaining.length > 0) {
-                                if (remaining.length <= 2) {
-                                    result = remaining + ',' + result;
-                                    break;
-                                } else {
-                                    result = remaining.slice(-2) + ',' + result;
-                                    remaining = remaining.slice(0, -2);
-                                }
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
                             }
-                            
-                            return result;
-                        }
 
-                        function numberToWords(num) {
-                            if (num >= 1e7) return `${(num/1e7).toFixed(1)} Crore`;
-                            if (num >= 1e5) return `${(num/1e5).toFixed(1)} Lakh`;
-                            if (num >= 1e3) return `${(num/1e3).toFixed(1)} Thousand`;
-                            return num.toString();
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            }
+
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function updateInterface() {
                             const mode = getMode();
-                            const format = getFormat();
-                            
-                            numberFormat.textContent = format === 'indian' ? 'Indian' : 'International';
-                            
+
                             if (mode === 'crore-to-lakh') {
                                 inputLabel.textContent = 'Enter Crores';
                                 inputUnit.textContent = 'Crore';
@@ -318,42 +228,23 @@
                             const precision = getPrecision();
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
-                                let crores, lakhs, thousands, millions, billions;
+                                let crores, lakhs;
 
                                 if (mode === 'crore-to-lakh') {
                                     crores = inputVal;
                                     lakhs = crores * 100;
-                                    thousands = lakhs * 100;
-                                    millions = crores * 10;
-                                    billions = crores / 100;
-                                    
+
                                     output.textContent = formatNumber(lakhs, precision);
                                 } else {
                                     lakhs = inputVal;
                                     crores = lakhs / 100;
-                                    thousands = lakhs * 100;
-                                    millions = lakhs / 10;
-                                    billions = lakhs / 1000;
-                                    
+
                                     output.textContent = formatNumber(crores, precision);
                                 }
 
                                 // Update all displays
                                 croreDisplay.textContent = formatNumber(crores, precision);
                                 lakhDisplay.textContent = formatNumber(lakhs, precision);
-                                thousandDisplay.textContent = formatNumber(thousands, precision);
-                                millionDisplay.textContent = formatNumber(millions, precision);
-                                billionDisplay.textContent = formatNumber(billions, precision);
-                                
-                                // Number information
-                                const totalValue = crores * 1e7;
-                                numberWords.textContent = numberToWords(totalValue);
-                                digitCount.textContent = totalValue.toString().replace(/[^0-9]/g, '').length;
-                                
-                                // Formatted displays
-                                indianFormat.textContent = formatIndianNumber(totalValue);
-                                internationalFormat.textContent = totalValue.toLocaleString();
-
                             } else {
                                 clearOutputs();
                             }
@@ -363,13 +254,6 @@
                             output.textContent = '--';
                             croreDisplay.textContent = '--';
                             lakhDisplay.textContent = '--';
-                            thousandDisplay.textContent = '--';
-                            millionDisplay.textContent = '--';
-                            billionDisplay.textContent = '--';
-                            numberWords.textContent = '--';
-                            digitCount.textContent = '--';
-                            indianFormat.textContent = '--';
-                            internationalFormat.textContent = '--';
                         }
 
                         function clearAll() {
@@ -427,17 +311,6 @@
                                 quickValues.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-indigo-100', 'text-indigo-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-value]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-value');
-                                inputValue.value = value;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

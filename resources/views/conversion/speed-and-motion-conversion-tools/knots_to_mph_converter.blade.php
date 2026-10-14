@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Knots to MPH Converter - ConvertPro"
+    title="Knots to MPH Converter - SolveKit"
     description="Professional nautical to imperial speed converter between knots and miles per hour. Convert marine and aviation speeds for international navigation and transportation."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Nautical to Imperial Speed Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Knots to mph Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -105,23 +106,6 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Application Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Application Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="applicationContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="marine_navigation">Marine Navigation</option>
-                                                                                    <option value="aviation">Aviation Operations</option>
-                                                                                    <option value="automotive">Automotive/Racing</option>
-                                                                                    <option value="weather_reporting">Weather Reporting</option>
-                                                                                    <option value="sports_sailing">Sports & Sailing</option>
-                                                                                    <option value="international_shipping">International Shipping</option>
-                                                                                </select>
                                                                             </div>
 
                                                                             <!-- Precision Control -->
@@ -303,64 +287,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Knots to MPH Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Nautical vs Statute Miles</h4>
-                                    <p>Knots measure nautical miles per hour, while MPH uses statute miles. A nautical mile (1,852 meters) is about 15% longer than a statute mile (1,609 meters). This difference makes knots particularly useful for navigation since they relate directly to Earth's coordinate system.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">International Usage</h4>
-                                    <p>Knots are the international standard for marine and aviation speeds worldwide, while MPH is primarily used in the United States for land transportation. Understanding both units is essential for international travel, shipping, and aviation operations.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                                <p class="text-sm text-purple-800">
-                                    <strong>Navigation Tip:</strong> The conversion factor 1.151 comes from the ratio of nautical miles to statute miles: 1,852m ÷ 1,609m = 1.151!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Speed Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Real-World Speed Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Maritime Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="12" data-from="knots" data-to="mph">Sailboat: 12 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">Cruising speed = 13.8 mph</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="35" data-from="knots" data-to="mph">Fast Ferry: 35 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">High-speed passenger service</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Land vs Air Speeds</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="70" data-from="mph" data-to="knots">Highway: 70 mph</div>
-                                        <div class="text-xs text-gray-600 mt-1">Interstate speed = 60.8 knots</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-purple-600 cursor-pointer hover:text-purple-800" data-example="180" data-from="knots" data-to="mph">Small Plane: 180 knots</div>
-                                        <div class="text-xs text-gray-600 mt-1">General aviation cruise</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const applicationContext = document.getElementById('applicationContext');
                         const precision = document.getElementById('precision');
                         const precisionValue = document.getElementById('precisionValue');
                         const clearButton = document.getElementById('clearButton');
@@ -377,28 +309,18 @@
                         const mpsDisplay = document.getElementById('mpsDisplay');
                         const machDisplay = document.getElementById('machDisplay');
                         const airspeedDisplay = document.getElementById('airspeedDisplay');
-                        const speedCategory = document.getElementById('speedCategory');
-                        const typicalUse = document.getElementById('typicalUse');
-                        const transportMode = document.getElementById('transportMode');
-                        const speedRatio = document.getElementById('speedRatio');
-                        const distanceDifference = document.getElementById('distanceDifference');
-                        const timeStatuteMiles = document.getElementById('timeStatuteMiles');
-                        const timeNauticalMiles = document.getElementById('timeNauticalMiles');
-                        const timeDifference = document.getElementById('timeDifference');
-                        const efficiency = document.getElementById('efficiency');
-                        const conversionFormula = document.getElementById('conversionFormula');
                         const copyResult = document.getElementById('copyResult');
 
                         // Speed conversion multipliers (to knots as base)
                         const speedMultipliers = {
                             knots: 1,
                             nautical_mph: 1, // Same as knots
-                            cable_length_hour: 10, // 1 cable length = 0.1 nautical mile
-                            fathom_minute: 0.0329, // 1 fathom = 6 feet, convert to nautical miles
+                            cable_length_hour: 0.1, // 1 cable length = 0.1 nautical mile
+                            fathom_minute: 0.059248, // 1 fathom = 6 feet; 360 ft/h ÷ 6076.12 ft/nmi
                             mph: 1/1.15078,
                             fps: 1/1.68781,
                             yard_second: 1/1.84570,
-                            furlong_minute: 0.0608, // 1 furlong = 1/8 mile
+                            furlong_minute: 6.5174, // 1 furlong = 660 feet; 39,600 ft/h ÷ 6076.12 ft/nmi
                             kph: 1/1.852,
                             mps: 1/0.514444,
                             mach: 1/661.5, // At sea level
@@ -422,86 +344,45 @@
                             ground_speed_mph: 'mph (ground)'
                         };
 
+                        const unitNames = {
+                            knots: 'Knots (kn)',
+                            nautical_mph: 'Nautical Miles per Hour (nmi/h)',
+                            cable_length_hour: 'Cable Lengths per Hour',
+                            fathom_minute: 'Fathoms per Minute',
+                            mph: 'Miles per Hour (mph)',
+                            fps: 'Feet per Second (ft/s)',
+                            yard_second: 'Yards per Second (yd/s)',
+                            furlong_minute: 'Furlongs per Minute',
+                            kph: 'Kilometers per Hour (km/h)',
+                            mps: 'Meters per Second (m/s)',
+                            mach: 'Mach Number',
+                            airspeed_knots: 'Airspeed (knots)',
+                            ground_speed_mph: 'Ground Speed (mph)'
+                        };
+
                         function getPrecision() {
                             return parseInt(precision.value);
                         }
 
-                        function formatNumber(num, decimals = null) {
-                            const precision = decimals !== null ? decimals : getPrecision();
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getSpeedCategory(knots) {
-                            if (knots < 5) return 'Very Slow';
-                            if (knots < 15) return 'Slow';
-                            if (knots < 30) return 'Moderate';
-                            if (knots < 60) return 'Fast';
-                            if (knots < 150) return 'Very Fast';
-                            if (knots < 400) return 'High Speed';
-                            return 'Supersonic';
-                        }
-
-                        function getTypicalUse(knots) {
-                            if (knots < 5) return 'Drifting/Anchored';
-                            if (knots < 15) return 'Recreational Sailing';
-                            if (knots < 30) return 'Commercial Vessel';
-                            if (knots < 60) return 'Fast Ferry/Patrol';
-                            if (knots < 150) return 'Racing Boat';
-                            if (knots < 400) return 'Light Aircraft';
-                            return 'Jet Aircraft';
-                        }
-
-                        function getTransportMode(knots) {
-                            if (knots < 10) return 'Marine';
-                            if (knots < 50) return 'Marine/Land';
-                            if (knots < 100) return 'Marine/Aviation';
-                            if (knots < 300) return 'Aviation';
-                            return 'High-Speed Aviation';
-                        }
-
-                        function getConversionFormula(from, to) {
-                            if (from === 'knots' && to === 'mph') {
-                                return 'knots × 1.151 = mph';
-                            } else if (from === 'mph' && to === 'knots') {
-                                return 'mph × 0.869 = knots';
-                            } else {
-                                const fromFactor = speedMultipliers[from];
-                                const toFactor = speedMultipliers[to];
-                                const conversionFactor = fromFactor / toFactor;
-                                
-                                if (Math.abs(conversionFactor - 1) < 0.0001) {
-                                    return `${unitLabels[from]} = ${unitLabels[to]}`;
-                                } else if (conversionFactor > 1) {
-                                    return `${unitLabels[from]} × ${formatNumber(conversionFactor, 6)} = ${unitLabels[to]}`;
-                                } else {
-                                    return `${unitLabels[from]} ÷ ${formatNumber(1/conversionFactor, 6)} = ${unitLabels[to]}`;
-                                }
+                            if (num === 0) {
+                                return '0';
                             }
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: getPrecision() });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
                         }
 
-                        function calculateTravelTimes(knots) {
-                            const mph = knots * 1.15078;
-                            
-                            // Time for 100 statute miles at current MPH
-                            const timeStatute = mph > 0 ? 100 / mph : 0;
-                            
-                            // Time for 100 nautical miles at current knots
-                            const timeNautical = knots > 0 ? 100 / knots : 0;
-                            
-                            // Time difference
-                            const timeDiff = Math.abs(timeStatute - timeNautical);
-                            
-                            return {
-                                statute: timeStatute > 0 ? formatNumber(timeStatute) + ' hours' : '--',
-                                nautical: timeNautical > 0 ? formatNumber(timeNautical) + ' hours' : '--',
-                                difference: timeDiff > 0 ? formatNumber(timeDiff) + ' hours' : '--',
-                                efficiency: timeStatute > 0 && timeNautical > 0 ? 
-                                          (timeNautical < timeStatute ? 'Nautical faster' : 'Statute faster') : '--'
-                            };
+                        function withUnit(value, unit) {
+                            return unit === 'mach' ? `Mach ${value}` : `${value} ${unitLabels[unit]}`;
                         }
 
                         function convert() {
@@ -517,9 +398,9 @@
                                 const result = inputInKnots / speedMultipliers[to];
                                 
                                 // Update primary output
-                                output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                output.textContent = withUnit(formatNumber(result), to);
+                                resultTitle.textContent = unitNames[to];
+                                resultDescription.textContent = `${withUnit(formatNumber(inputVal), from)} = ${withUnit(formatNumber(result), to)}`;
 
                                 // Convert to all common units and display
                                 const knots = inputInKnots;
@@ -531,26 +412,6 @@
                                 mpsDisplay.textContent = formatNumber(knots * 0.514444);
                                 machDisplay.textContent = formatNumber(knots / 661.5);
                                 airspeedDisplay.textContent = formatNumber(knots) + ' kn';
-
-                                // Speed classification
-                                speedCategory.textContent = getSpeedCategory(knots);
-                                typicalUse.textContent = getTypicalUse(knots);
-                                transportMode.textContent = getTransportMode(knots);
-
-                                // Unit comparison
-                                const mph = knots * 1.15078;
-                                speedRatio.textContent = knots > 0 ? formatNumber(mph / knots, 3) + ':1' : '--';
-                                distanceDifference.textContent = knots > 0 ? '15.1% longer (nmi)' : '--';
-
-                                // Travel time calculations
-                                const travelTimes = calculateTravelTimes(knots);
-                                timeStatuteMiles.textContent = travelTimes.statute;
-                                timeNauticalMiles.textContent = travelTimes.nautical;
-                                timeDifference.textContent = travelTimes.difference;
-                                efficiency.textContent = travelTimes.efficiency;
-
-                                // Conversion formula
-                                conversionFormula.textContent = getConversionFormula(from, to);
 
                             } else {
                                 clearOutputs();
@@ -569,23 +430,12 @@
                             mpsDisplay.textContent = '--';
                             machDisplay.textContent = '--';
                             airspeedDisplay.textContent = '--';
-                            speedCategory.textContent = '--';
-                            typicalUse.textContent = '--';
-                            transportMode.textContent = '--';
-                            speedRatio.textContent = '--';
-                            distanceDifference.textContent = '--';
-                            timeStatuteMiles.textContent = '--';
-                            timeNauticalMiles.textContent = '--';
-                            timeDifference.textContent = '--';
-                            efficiency.textContent = '--';
-                            conversionFormula.textContent = 'Select units to see formula';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'knots';
                             toUnit.value = 'mph';
-                            applicationContext.value = '';
                             precision.value = 2;
                             precisionValue.textContent = '2 digits';
                             clearOutputs();
@@ -596,7 +446,6 @@
                         inputValue.addEventListener('input', convert);
                         fromUnit.addEventListener('change', convert);
                         toUnit.addEventListener('change', convert);
-                        applicationContext.addEventListener('change', convert);
 
                         precision.addEventListener('input', function() {
                             precisionValue.textContent = this.value + ' digits';
@@ -636,22 +485,6 @@
                                 speedExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-purple-100', 'text-purple-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

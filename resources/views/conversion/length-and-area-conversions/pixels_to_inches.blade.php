@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Pixels to Inches Converter - ConvertPro"
+    title="Pixels to Inches Converter - SolveKit"
     description="Professional pixels to inches converter for digital design and printing. Convert pixels to inches using DPI/PPI settings for accurate print sizing."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Digital to Print Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Pixels to Inches</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -209,6 +209,16 @@
                         const cmOutput = document.getElementById('cmOutput');
                         const mmOutput = document.getElementById('mmOutput');
 
+                        function formatMeasurement(value, fractionDigits) {
+                            if (value !== 0 && Math.abs(value) < 0.000001) {
+                                return Number(value.toPrecision(4)).toExponential();
+                            } else if (Math.abs(value) < 1) {
+                                return value.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return value.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
+                        }
+
                         function convert() {
                             const pixels = parseFloat(pixelsInput.value);
                             const dpi = parseFloat(dpiInput.value);
@@ -218,9 +228,9 @@
                                 const cm = inches * 2.54;
                                 const mm = cm * 10;
 
-                                output.textContent = inches.toLocaleString(undefined, { maximumFractionDigits: 4 });
-                                cmOutput.textContent = cm.toLocaleString(undefined, { maximumFractionDigits: 2 }) + ' cm';
-                                mmOutput.textContent = mm.toLocaleString(undefined, { maximumFractionDigits: 1 }) + ' mm';
+                                output.textContent = formatMeasurement(inches, 4);
+                                cmOutput.textContent = formatMeasurement(cm, 2) + ' cm';
+                                mmOutput.textContent = formatMeasurement(mm, 1) + ' mm';
                             } else {
                                 output.textContent = "--";
                                 cmOutput.textContent = "--";

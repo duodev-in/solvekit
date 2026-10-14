@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Number to Billion Converter - ConvertPro"
+    title="Number to Billion Converter - SolveKit"
     description="Professional number to billion converter for large scale analysis. Convert any number to billions and understand its magnitude in different contexts."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Universal Number Scale Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Number to Billion</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -48,9 +48,6 @@
 
                                                                             <div class="hidden" aria-hidden="true">
                                                                                 <input type="checkbox" name="showScientific" checked>
-                                                                                <input type="checkbox" name="showWords" checked>
-                                                                                <input type="checkbox" name="showComparison" checked>
-                                                                                <input type="checkbox" name="showAnalogy" checked>
                                                                             </div>
 
                                                                             <div class="hidden" aria-hidden="true">
@@ -81,7 +78,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result - Billions -->
                                                                             <div class="p-6 bg-gradient-to-r from-amber-50 to-gray-50 rounded-xl border-l-4 border-amber-500">
@@ -188,56 +185,6 @@
 
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Number to Billion Analysis</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Scale Understanding</h4>
-                                    <p>Converting numbers to billions helps understand large-scale data in economics, population studies, technology metrics, and scientific research. Billion-scale thinking is essential for global analysis and big data interpretation.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>Critical for analyzing GDP figures, population data, technology metrics, environmental data, and astronomical measurements. Understanding billion-scale numbers helps in policy making, business strategy, and scientific communication.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
-                                <p class="text-sm text-amber-800">
-                                    <strong>Scale Tip:</strong> Use contextual comparisons to make billion-scale numbers more comprehensible. For example, 1 billion seconds ≈ 32 years!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Contextual Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Billion-Scale Examples by Context</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Economic & Population</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="7800000000">7.8 Billion People</div>
-                                        <div class="text-xs text-gray-600 mt-1">World population (2023)</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="25000000000000">$25 Trillion</div>
-                                        <div class="text-xs text-gray-600 mt-1">US GDP (≈25,000 billion)</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Technology & Science</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="100000000000">100 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Neurons in human brain</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="400000000000">400 Billion</div>
-                                        <div class="text-xs text-gray-600 mt-1">Stars in Milky Way galaxy</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -247,9 +194,6 @@
                         const inputFormatRadios = document.getElementsByName('inputFormat');
                         const precisionRadios = document.getElementsByName('precision');
                         const showScientific = document.getElementsByName('showScientific')[0];
-                        const showWords = document.getElementsByName('showWords')[0];
-                        const showComparison = document.getElementsByName('showComparison')[0];
-                        const showAnalogy = document.getElementsByName('showAnalogy')[0];
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -262,162 +206,36 @@
                         const scientificDisplay = document.getElementById('scientificDisplay');
                         const croreDisplay = document.getElementById('croreDisplay');
                         const lakhDisplay = document.getElementById('lakhDisplay');
-                        const writtenForm = document.getElementById('writtenForm');
-                        const magnitude = document.getElementById('magnitude');
-                        const orderOfMagnitude = document.getElementById('orderOfMagnitude');
-                        const contextDisplay = document.getElementById('contextDisplay');
-                        const comparisonText = document.getElementById('comparisonText');
-                        const analogyText = document.getElementById('analogyText');
-                        const digitCount = document.getElementById('digitCount');
-                        const numberSign = document.getElementById('numberSign');
-                        const numberType = document.getElementById('numberType');
-                        const numberScale = document.getElementById('numberScale');
                         const copyResult = document.getElementById('copyResult');
 
                         // Display containers
-                        const writtenFormDisplay = document.getElementById('writtenFormDisplay');
-                        const comparisonDisplay = document.getElementById('comparisonDisplay');
-                        const analogyDisplay = document.getElementById('analogyDisplay');
-
-                        // Context descriptions
-                        const contextDescriptions = {
-                            'general': 'General Analysis',
-                            'population': 'Population Data',
-                            'economic': 'Economic Figures',
-                            'scientific': 'Scientific Data',
-                            'technology': 'Technology Metrics',
-                            'environmental': 'Environmental Data',
-                            'astronomical': 'Astronomical Numbers',
-                            'financial': 'Financial Analysis'
-                        };
 
                         function getPrecision() {
                             const selected = document.querySelector('input[name="precision"]:checked').value;
                             return selected === 'auto' ? 'auto' : parseInt(selected);
                         }
 
-                        function getInputFormat() {
-                            return document.querySelector('input[name="inputFormat"]:checked').value;
-                        }
-
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (Math.abs(num) >= 1e15) {
-                                    return num.toExponential(3);
-                                } else if (Math.abs(num) >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (Math.abs(num) >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 8 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function numberToWords(num) {
-                            const absNum = Math.abs(num);
-                            if (absNum >= 1e15) return `${(absNum/1e15).toFixed(1)} Quadrillion`;
-                            if (absNum >= 1e12) return `${(absNum/1e12).toFixed(1)} Trillion`;
-                            if (absNum >= 1e9) return `${(absNum/1e9).toFixed(1)} Billion`;
-                            if (absNum >= 1e6) return `${(absNum/1e6).toFixed(1)} Million`;
-                            if (absNum >= 1e3) return `${(absNum/1e3).toFixed(1)} Thousand`;
-                            return absNum.toString();
-                        }
-
-                        function getMagnitude(num) {
-                            const absNum = Math.abs(num);
-                            if (absNum >= 1e15) return 'Quadrillion Scale';
-                            if (absNum >= 1e12) return 'Trillion Scale';
-                            if (absNum >= 1e9) return 'Billion Scale';
-                            if (absNum >= 1e6) return 'Million Scale';
-                            if (absNum >= 1e3) return 'Thousand Scale';
-                            if (absNum >= 1) return 'Unit Scale';
-                            return 'Fractional Scale';
-                        }
-
-                        function getOrderOfMagnitude(num) {
-                            if (num === 0) return '0';
-                            return Math.floor(Math.log10(Math.abs(num))).toString();
-                        }
-
-                        function getNumberType(num) {
-                            if (num === 0) return 'Zero';
-                            if (Number.isInteger(num)) return 'Integer';
-                            return 'Decimal';
-                        }
-
-                        function getScale(num) {
-                            const absNum = Math.abs(num);
-                            if (absNum >= 1e12) return 'Macro Scale';
-                            if (absNum >= 1e6) return 'Large Scale';
-                            if (absNum >= 1e3) return 'Medium Scale';
-                            if (absNum >= 1) return 'Small Scale';
-                            return 'Micro Scale';
-                        }
-
-                        function getComparison(num, selectedContext) {
-                            const billions = num / 1e9;
-                            
-                            switch(selectedContext) {
-                                case 'population':
-                                    if (billions > 7) return `More than current world population (≈7.8B)`;
-                                    if (billions > 1) return `Population of ${billions.toFixed(1)} billion people`;
-                                    return `Population equivalent to ${(num/1e6).toFixed(0)} million people`;
-                                    
-                                case 'economic':
-                                    if (billions > 25000) return `Larger than US GDP (≈$25T)`;
-                                    if (billions > 1000) return `Major economy scale (${(billions/1000).toFixed(1)} trillion)`;
-                                    return `Equivalent to $${billions.toFixed(1)} billion economy`;
-                                    
-                                case 'technology':
-                                    if (billions > 100) return `More than neurons in human brain (≈100B)`;
-                                    if (billions > 1) return `${billions.toFixed(1)} billion data points`;
-                                    return `${(num/1e6).toFixed(0)} million data points`;
-                                    
-                                case 'astronomical':
-                                    if (billions > 400) return `More than stars in Milky Way (≈400B)`;
-                                    if (billions > 1) return `${billions.toFixed(1)} billion astronomical units`;
-                                    return `${(num/1e6).toFixed(0)} million astronomical units`;
-                                    
-                                default:
-                                    if (billions >= 1) return `${billions.toFixed(1)} billion units`;
-                                    return `${(num/1e6).toFixed(0)} million units`;
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
                             }
-                        }
 
-                        function getAnalogy(num, selectedContext) {
-                            const billions = num / 1e9;
-                            
-                            switch(selectedContext) {
-                                case 'population':
-                                    return `If each person represented 1 second, this would be ${(num/31557600).toFixed(1)} years`;
-                                    
-                                case 'economic':
-                                    return `If stacked in $1 bills, would reach ${(num * 0.0001).toFixed(0)} km high`;
-                                    
-                                case 'technology':
-                                    return `Equivalent to ${(num/1e9).toFixed(1)} GB of data storage`;
-                                    
-                                case 'scientific':
-                                    return `About ${(num/6.022e23 * 1e14).toFixed(2)} × 10¹⁴ times smaller than Avogadro's number`;
-                                    
-                                default:
-                                    return `If counted at 1 per second, would take ${(num/31557600).toFixed(1)} years to count`;
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
-                        }
 
-                        function updateDisplayOptions() {
-                            writtenFormDisplay.style.display = showWords.checked ? 'block' : 'none';
-                            comparisonDisplay.style.display = showComparison.checked ? 'block' : 'none';
-                            analogyDisplay.style.display = showAnalogy.checked ? 'block' : 'none';
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputNumber.value);
                             const precision = getPrecision();
-                            const selectedContext = context.value;
 
                             if (!isNaN(inputVal)) {
                                 // Basic conversions
@@ -447,34 +265,9 @@
                                     scientificDisplay.textContent = '--';
                                 }
 
-                                // Written form
-                                if (showWords.checked) {
-                                    writtenForm.textContent = numberToWords(inputVal);
-                                }
-
-                                // Analysis
-                                contextDisplay.textContent = contextDescriptions[selectedContext];
-                                magnitude.textContent = getMagnitude(inputVal);
-                                orderOfMagnitude.textContent = getOrderOfMagnitude(inputVal);
-                                digitCount.textContent = Math.abs(inputVal).toString().replace(/[^0-9]/g, '').length;
-                                numberSign.textContent = inputVal >= 0 ? 'Positive' : 'Negative';
-                                numberType.textContent = getNumberType(inputVal);
-                                numberScale.textContent = getScale(inputVal);
-
-                                // Contextual comparison and analogy
-                                if (showComparison.checked) {
-                                    comparisonText.textContent = getComparison(inputVal, selectedContext);
-                                }
-
-                                if (showAnalogy.checked) {
-                                    analogyText.textContent = getAnalogy(inputVal, selectedContext);
-                                }
-
                             } else {
                                 clearOutputs();
                             }
-
-                            updateDisplayOptions();
                         }
 
                         function clearOutputs() {
@@ -487,15 +280,6 @@
                             scientificDisplay.textContent = '--';
                             croreDisplay.textContent = '--';
                             lakhDisplay.textContent = '--';
-                            writtenForm.textContent = '--';
-                            magnitude.textContent = '--';
-                            orderOfMagnitude.textContent = '--';
-                            digitCount.textContent = '--';
-                            numberSign.textContent = '--';
-                            numberType.textContent = '--';
-                            numberScale.textContent = '--';
-                            comparisonText.textContent = '--';
-                            analogyText.textContent = '--';
                         }
 
                         function clearAll() {
@@ -518,9 +302,6 @@
                         });
 
                         showScientific.addEventListener('change', convert);
-                        showWords.addEventListener('change', convert);
-                        showComparison.addEventListener('change', convert);
-                        showAnalogy.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -552,17 +333,6 @@
                                 quickExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-amber-100', 'text-amber-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                inputNumber.value = value;
-                                convert();
-                                inputNumber.focus();
                             });
                         });
 

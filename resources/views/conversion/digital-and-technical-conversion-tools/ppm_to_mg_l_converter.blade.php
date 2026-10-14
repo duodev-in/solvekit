@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="PPM to mg/L Converter - ConvertPro"
+    title="PPM to mg/L Converter - SolveKit"
     description="Professional PPM to mg/L converter for water quality concentration units. Convert parts per million to milligrams per liter for accurate water analysis and testing."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Water Quality Concentration Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">PPM to mg/L Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -116,24 +116,6 @@
                                                                                 <p class="text-xs text-gray-500">Temperature affects water density (standard: 20°C)</p>
                                                                             </div>
 
-                                                                            <!-- Application Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Application Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="applicationContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General water analysis</option>
-                                                                                    <option value="drinking_water">Drinking Water Quality</option>
-                                                                                    <option value="environmental">Environmental Monitoring</option>
-                                                                                    <option value="wastewater">Wastewater Treatment</option>
-                                                                                    <option value="aquaculture">Aquaculture/Fish Farming</option>
-                                                                                    <option value="pool">Swimming Pool Chemistry</option>
-                                                                                    <option value="laboratory">Laboratory Analysis</option>
-                                                                                </select>
-                                                                            </div>
 
 
 
@@ -162,8 +144,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border-l-4 border-cyan-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Converted Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Conversion result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Milligrams per Liter (mg/L)</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a concentration to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-cyan-600 font-mono" id="output">--</div>
@@ -308,56 +290,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About PPM to mg/L Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding the Relationship</h4>
-                                    <p>For aqueous solutions, PPM and mg/L are often considered equivalent because water has a density close to 1 g/mL. However, this relationship changes with temperature, salinity, and dissolved substances. Accurate conversions require considering solution density and measurement conditions.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>This conversion is essential in water quality testing, environmental monitoring, chemical dosing, and regulatory compliance. Understanding the relationship helps ensure accurate measurements in drinking water analysis, wastewater treatment, and environmental assessments.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-cyan-50 rounded-lg border border-cyan-200">
-                                <p class="text-sm text-cyan-800">
-                                    <strong>Technical Note:</strong> PPM is dimensionless (mass/mass), while mg/L has dimensions (mass/volume). The conversion depends on solution density, making temperature and composition important factors.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Water Quality Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Drinking Water Standards</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-cyan-600 cursor-pointer hover:text-cyan-800" data-value="500" data-direction="ppm_to_mgl">TDS Limit: 500 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">WHO total dissolved solids limit</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-cyan-600 cursor-pointer hover:text-cyan-800" data-value="0.01" data-direction="ppm_to_mgl">Arsenic: 0.01 PPM</div>
-                                        <div class="text-xs text-gray-600 mt-1">WHO maximum allowable limit</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Environmental Monitoring</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-cyan-600 cursor-pointer hover:text-cyan-800" data-value="8" data-direction="mgl_to_ppm">Dissolved O₂: 8 mg/L</div>
-                                        <div class="text-xs text-gray-600 mt-1">Healthy aquatic ecosystem level</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-cyan-600 cursor-pointer hover:text-cyan-800" data-value="0.1" data-direction="mgl_to_ppm">Phosphorus: 0.1 mg/L</div>
-                                        <div class="text-xs text-gray-600 mt-1">Eutrophication threshold</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -367,7 +299,6 @@
                         const solutionType = document.getElementById('solutionType');
                         const customDensity = document.getElementById('customDensity');
                         const temperature = document.getElementById('temperature');
-                        const applicationContext = document.getElementById('applicationContext');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Container elements
@@ -389,10 +320,6 @@
                         const percentageDisplay = document.getElementById('percentageDisplay');
                         const massFractionDisplay = document.getElementById('massFractionDisplay');
                         const massVolumeDisplay = document.getElementById('massVolumeDisplay');
-                        const densityDisplay = document.getElementById('densityDisplay');
-                        const tempDisplay = document.getElementById('tempDisplay');
-                        const conversionFactorDisplay = document.getElementById('conversionFactorDisplay');
-                        const accuracyDisplay = document.getElementById('accuracyDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Solution densities at 20°C (g/mL)
@@ -406,12 +333,23 @@
                         };
 
                         function formatNumber(num, decimals = 4) {
-                            if (Math.abs(num) >= 1e6 || (Math.abs(num) <= 1e-6 && num !== 0)) {
-                                return num.toExponential(3);
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                            return num.toLocaleString(undefined, { 
-                                maximumFractionDigits: decimals, 
-                                minimumFractionDigits: 0 
+
+                            const abs = Math.abs(num);
+
+                            if (abs >= 1e9 || (abs < 1e-6 && num !== 0)) {
+                                return num.toExponential(3).replace(/\.?0+e/, 'e');
+                            }
+
+                            if (abs !== 0 && abs < 1) {
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: Math.max(decimals, 4) });
+                            }
+
+                            return num.toLocaleString('en-US', {
+                                maximumFractionDigits: decimals,
+                                minimumFractionDigits: 0
                             });
                         }
 
@@ -467,7 +405,6 @@
                             const direction = conversionDirection.value;
                             const value = parseFloat(inputValue.value);
                             const density = getDensity();
-                            const temp = parseFloat(temperature.value) || 20;
                             
                             if (!isNaN(value) && value >= 0) {
                                 let ppm, mgL;
@@ -484,16 +421,17 @@
                                 // Update primary output
                                 if (direction === 'ppm_to_mgl') {
                                     output.textContent = formatNumber(mgL, 3) + ' mg/L';
-                                    resultTitle.textContent = 'Converted to mg/L';
-                                    resultDescription.textContent = `${value} PPM = ${formatNumber(mgL, 3)} mg/L`;
+                                    resultTitle.textContent = 'Milligrams per Liter (mg/L)';
+                                    resultDescription.textContent = `${formatNumber(value)} PPM = ${formatNumber(mgL, 3)} mg/L`;
                                 } else if (direction === 'mgl_to_ppm') {
                                     output.textContent = formatNumber(ppm, 3) + ' PPM';
-                                    resultTitle.textContent = 'Converted to PPM';
-                                    resultDescription.textContent = `${value} mg/L = ${formatNumber(ppm, 3)} PPM`;
+                                    resultTitle.textContent = 'Parts per Million (PPM)';
+                                    resultDescription.textContent = `${formatNumber(value)} mg/L = ${formatNumber(ppm, 3)} PPM`;
                                 } else {
+                                    const ppm2 = value / density;
                                     output.textContent = formatNumber(mgL, 3) + ' mg/L';
-                                    resultTitle.textContent = 'Both Conversions';
-                                    resultDescription.textContent = `${value} PPM ⇔ ${formatNumber(mgL, 3)} mg/L`;
+                                    resultTitle.textContent = 'Milligrams per Liter (mg/L)';
+                                    resultDescription.textContent = `${formatNumber(value)} PPM = ${formatNumber(mgL, 3)} mg/L (${formatNumber(value)} mg/L = ${formatNumber(ppm2, 3)} PPM)`;
                                 }
 
                                 // Display all units
@@ -510,19 +448,6 @@
                                 percentageDisplay.textContent = formatNumber(ppm / 10000, 6) + '%';
                                 massFractionDisplay.textContent = formatNumber(ppm / 1000000, 8);
                                 massVolumeDisplay.textContent = formatNumber(mgL / 1000, 6) + ' kg/m³';
-
-                                // Conversion information
-                                densityDisplay.textContent = formatNumber(density, 4) + ' g/mL';
-                                tempDisplay.textContent = temp + '°C';
-                                conversionFactorDisplay.textContent = formatNumber(density, 4);
-                                
-                                // Accuracy estimation
-                                let accuracy = 'High';
-                                if (Math.abs(density - 1.000) > 0.05) accuracy = 'Medium';
-                                if (Math.abs(temp - 20) > 10) accuracy = 'Medium';
-                                if (solutionType.value === 'custom') accuracy = 'User-dependent';
-                                accuracyDisplay.textContent = accuracy;
-
                             } else {
                                 clearOutputs();
                             }
@@ -530,8 +455,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Converted Value';
-                            resultDescription.textContent = 'Conversion result';
+                            resultTitle.textContent = 'Milligrams per Liter (mg/L)';
+                            resultDescription.textContent = 'Enter a concentration to convert';
                             ppmDisplay.textContent = '--';
                             mgLDisplay.textContent = '--';
                             ugMlDisplay.textContent = '--';
@@ -541,10 +466,6 @@
                             percentageDisplay.textContent = '--';
                             massFractionDisplay.textContent = '--';
                             massVolumeDisplay.textContent = '--';
-                            densityDisplay.textContent = '--';
-                            tempDisplay.textContent = '--';
-                            conversionFactorDisplay.textContent = '--';
-                            accuracyDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -553,7 +474,6 @@
                             solutionType.value = 'water';
                             customDensity.value = '1.000';
                             temperature.value = '20';
-                            applicationContext.value = '';
                             updateInputLabels();
                             updateCustomDensityVisibility();
                             clearOutputs();
@@ -573,7 +493,6 @@
                         });
                         customDensity.addEventListener('input', calculate);
                         temperature.addEventListener('input', calculate);
-                        applicationContext.addEventListener('change', calculate);
 
                         clearButton.addEventListener('click', clearAll);
 

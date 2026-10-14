@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Inches to Fraction Calculator - ConvertPro"
+    title="Inches to Fraction Calculator - SolveKit"
     description="Professional inches to fraction calculator to convert decimal inches to fractions, millimeters, and centimeters. Perfect for woodworking and construction measurements."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Decimal to Fraction Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Inches to Fraction</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -242,6 +242,16 @@
                             }
                         }
 
+                        function formatMeasurement(value, fractionDigits) {
+                            if (value !== 0 && Math.abs(value) < 0.000001) {
+                                return Number(value.toPrecision(4)).toExponential();
+                            } else if (Math.abs(value) < 1) {
+                                return value.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return value.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
+                        }
+
                         function convert() {
                             const inches = parseFloat(decimalInput.value);
                             const precision = parseInt(precisionSelect.value);
@@ -253,8 +263,8 @@
 
                                 // Display results
                                 fractionOutput.textContent = nearestFraction(inches, precision);
-                                millimetersOutput.textContent = mm.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                centimetersOutput.textContent = cm.toLocaleString(undefined, { maximumFractionDigits: 3 });
+                                millimetersOutput.textContent = formatMeasurement(mm, 2);
+                                centimetersOutput.textContent = formatMeasurement(cm, 3);
                             } else {
                                 // Clear results
                                 fractionOutput.textContent = "--";

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Lbs ↔ Newtons Converter - ConvertPro"
+    title="Lbs ↔ Newtons Converter - SolveKit"
     description="Professional pound-force to Newtons converter for engineering applications. Convert between lbf and N force units with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Imperial ↔ SI Force Conversion</h2>
+                                <h1 class="text-lg font-semibold text-white">Lbs ↔ Newtons</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -145,7 +145,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl border-l-4 border-pink-500">
@@ -344,19 +344,19 @@
                         };
 
                         const unitNames = {
-                            lbf: 'Pound-force',
-                            ozf: 'Ounce-force',
-                            kip: 'Kip-force',
-                            tonfUS: 'Ton-force (US)',
-                            poundal: 'Poundal',
-                            N: 'Newton',
-                            kN: 'Kilonewton',
-                            MN: 'Meganewton',
-                            mN: 'Millinewton',
-                            µN: 'Micronewton',
-                            kgf: 'Kilogram-force',
-                            gf: 'Gram-force',
-                            dy: 'Dyne'
+                            lbf: 'Pounds-force',
+                            ozf: 'Ounces-force',
+                            kip: 'Kips',
+                            tonfUS: 'Tons-force (US)',
+                            poundal: 'Poundals',
+                            N: 'Newtons',
+                            kN: 'Kilonewtons',
+                            MN: 'Meganewtons',
+                            mN: 'Millinewtons',
+                            µN: 'Micronewtons',
+                            kgf: 'Kilograms-force',
+                            gf: 'Grams-force',
+                            dy: 'Dynes'
                         };
 
                         const unitSymbols = {
@@ -383,15 +383,20 @@
                         function formatNumber(num, precision = 'auto') {
                             if (precision === 'auto') {
                                 if (num >= 1000000) {
-                                    return num.toExponential(4);
+                                    return Number(num.toPrecision(5)).toExponential();
                                 } else if (num >= 1000) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
                                 } else if (num >= 1) {
                                     return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                    return Number(num.toPrecision(4)).toExponential();
                                 } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                    return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                                 }
                             } else {
+                                if (num !== 0 && Math.abs(num) < 0.5 * Math.pow(10, -precision)) {
+                                    return Math.abs(num) < 0.000001 ? Number(num.toPrecision(4)).toExponential() : num.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                                }
                                 return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                             }
                         }

@@ -1,11 +1,11 @@
 <x-tool-page-layout
-    title="Roman Numerals Converter - ConvertPro"
+    title="Roman Numerals Converter - SolveKit"
     description="Professional Roman numerals converter for historical and educational purposes. Convert between Roman numerals and decimal numbers with detailed rules and explanations."
 >
     <x-slot name="toolUi">
         <div class="space-y-2">
             <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900">Roman Numerals Converter</h2>
+                <h1 class="text-sm font-semibold text-slate-900">Roman Numerals</h1>
                 <p class="mt-0.5 text-[11px] text-slate-600">All controls and results are optimized to fit in the desktop viewport.</p>
             </section>
 
@@ -98,63 +98,6 @@
         </div>
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <div class="space-y-3 text-sm text-slate-600">
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <div class="flex items-center justify-between gap-2">
-                    <h3 class="text-sm font-semibold text-slate-900">Live Conversion Insights</h3>
-                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">Auto update</span>
-                </div>
-
-                <div id="breakdownDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Breakdown</p>
-                    <p id="conversionSteps" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="rulesDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Rules Applied</p>
-                    <p id="appliedRules" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="historicalContext" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Context Note</p>
-                    <p id="contextInfo" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h4 class="text-sm font-semibold text-slate-900">Roman Numeral Reference</h4>
-                <div class="mt-2 grid grid-cols-3 gap-1.5 text-[11px] text-slate-700 sm:grid-cols-4">
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">I = 1</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">V = 5</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">X = 10</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">L = 50</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">C = 100</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">D = 500</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">M = 1000</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">IV = 4</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">IX = 9</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">XL = 40</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">XC = 90</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">CM = 900</div>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h3 class="text-sm font-semibold text-slate-900">Reading Guide</h3>
-                <div class="mt-2 space-y-2 text-xs leading-5 text-slate-700">
-                    <p><span class="font-semibold text-slate-900">Decimal and Roman:</span> These show the exact pair converted from your input.</p>
-                    <p><span class="font-semibold text-slate-900">Breakdown:</span> Displays each calculation step so you can verify the conversion process.</p>
-                    <p><span class="font-semibold text-slate-900">Rules Applied:</span> Highlights whether additive or subtractive Roman rules were used.</p>
-                    <p><span class="font-semibold text-slate-900">Context Note:</span> Provides a short usage hint for clocks, chapters, years, or historical labels.</p>
-                </div>
-            </section>
-
-            <div class="rounded-md bg-indigo-50 p-3 text-xs text-indigo-800">
-                Classical Roman numerals do not include a symbol for zero.
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -175,14 +118,8 @@
                 const resultDescription = document.getElementById('result-description');
                 const decimalDisplay = document.getElementById('decimalDisplay');
                 const romanDisplay = document.getElementById('romanDisplay');
-                const breakdownDisplay = document.getElementById('breakdownDisplay');
-                const conversionSteps = document.getElementById('conversionSteps');
-                const rulesDisplay = document.getElementById('rulesDisplay');
-                const appliedRules = document.getElementById('appliedRules');
                 const symbolsUsed = document.getElementById('symbolsUsed');
                 const symbolLength = document.getElementById('symbolLength');
-                const historicalContext = document.getElementById('historicalContext');
-                const contextInfo = document.getElementById('contextInfo');
                 const clockFormat = document.getElementById('clockFormat');
                 const chapterFormat = document.getElementById('chapterFormat');
                 const yearFormat = document.getElementById('yearFormat');
@@ -296,18 +233,6 @@
                     return rules.length ? rules : ['Standard additive notation.'];
                 }
 
-                function getContextNote(decimal) {
-                    if (decimal <= 12) {
-                        return `${decimal} is commonly represented in Roman format on classic clock faces.`;
-                    }
-
-                    if (decimal >= 1000) {
-                        return `Large values like ${decimal} are commonly used for years, monuments, and formal inscriptions.`;
-                    }
-
-                    return `Roman notation for ${decimal} follows classical additive and subtractive rules.`;
-                }
-
                 function updateInterface() {
                     if (getMode() === 'decimal-to-roman') {
                         inputLabel.textContent = 'Enter Decimal Number';
@@ -324,21 +249,12 @@
                     }
                 }
 
-                function setSectionVisibility() {
-                    breakdownDisplay.style.display = 'block';
-                    rulesDisplay.style.display = 'block';
-                    historicalContext.style.display = 'block';
-                }
-
                 function clearOutputs() {
                     output.textContent = '--';
                     decimalDisplay.textContent = '--';
                     romanDisplay.textContent = '--';
-                    conversionSteps.textContent = '--';
-                    appliedRules.textContent = '--';
                     symbolsUsed.textContent = '--';
                     symbolLength.textContent = '--';
-                    contextInfo.textContent = '--';
                     clockFormat.textContent = '--';
                     chapterFormat.textContent = '--';
                     yearFormat.textContent = '--';
@@ -355,59 +271,47 @@
 
                     if (!input) {
                         clearOutputs();
-                        setSectionVisibility();
                         return;
                     }
 
                     const mode = getMode();
                     let decimal;
                     let roman;
-                    let steps;
 
                     if (mode === 'decimal-to-roman') {
                         if (!isValidDecimal(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         const converted = decimalToRoman(input);
                         decimal = Number(input);
                         roman = converted.roman;
-                        steps = converted.steps;
                         output.textContent = roman;
                     } else {
                         if (!isValidRoman(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         const converted = romanToDecimal(input);
                         decimal = converted.decimal;
                         roman = input.toUpperCase();
-                        steps = converted.steps;
                         output.textContent = String(decimal);
                     }
 
                     decimalDisplay.textContent = String(decimal);
                     romanDisplay.textContent = roman;
-                    conversionSteps.innerHTML = steps.join('<br>');
-                    appliedRules.innerHTML = '• ' + getConversionRules(roman).join('<br>• ');
                     symbolsUsed.textContent = getUniqueSymbols(roman);
                     symbolLength.textContent = `${roman.length} chars`;
-                    contextInfo.textContent = getContextNote(decimal);
                     clockFormat.textContent = decimal <= 12 ? roman : 'N/A';
                     chapterFormat.textContent = `Chapter ${roman}`;
                     yearFormat.textContent = decimal >= 1000 ? `Year ${roman}` : 'N/A';
-
-                    setSectionVisibility();
                 }
 
                 function clearAll() {
                     inputValue.value = '';
                     clearOutputs();
-                    setSectionVisibility();
                     inputValue.focus();
                 }
 
@@ -453,7 +357,6 @@
 
                 updateInterface();
                 clearOutputs();
-                setSectionVisibility();
             });
         </script>
     </x-slot>

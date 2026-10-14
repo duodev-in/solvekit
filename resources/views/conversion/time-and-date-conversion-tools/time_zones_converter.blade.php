@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Time Zones Converter - ConvertPro"
+    title="Time Zones Converter - SolveKit"
     description="Professional time zone converter for global time calculations. Convert time between different time zones worldwide with DST support and real-time updates."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Global Time Zone Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Time Zones Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -19,7 +19,7 @@
                                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                                         <div>
                                             <span class="text-gray-600 block">UTC:</span>
-                                            <span class="font-mono text-blue-700 text-lg" id="currentUTC">2025-07-23 14:46:06</span>
+                                            <span class="font-mono text-blue-700 text-lg" id="currentUTC">{{ now('UTC')->format('Y-m-d H:i:s') }}</span>
                                         </div>
                                         <div>
                                             <span class="text-gray-600 block">Local Time:</span>
@@ -32,7 +32,7 @@
                                 
                                 <div class="grid gap-6 lg:grid-cols-12">
                                     <div class="lg:col-span-5">
-                                        <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
+                                        <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200" id="calculatorForm">
 
                                                                             <!-- Source Time Input -->
                                                                             <div class="space-y-4">
@@ -47,7 +47,7 @@
                                                                                             type="date" 
                                                                                             id="sourceDate" 
                                                                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono"
-                                                                                            value="2025-07-23"
+                                                                                            value="{{ now('UTC')->format('Y-m-d') }}"
                                                                                         >
                                                                                     </div>
 
@@ -60,7 +60,7 @@
                                                                                             id="sourceTime" 
                                                                                             class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono"
                                                                                             step="1"
-                                                                                            value="14:46:06"
+                                                                                            value="{{ now('UTC')->format('H:i:s') }}"
                                                                                         >
                                                                                     </div>
                                                                                 </div>
@@ -207,7 +207,7 @@
                                                                             <div class="p-6 bg-gradient-to-r from-amber-50 to-yellow-50 rounded-xl border-l-4 border-amber-500">
                                                                                 <div class="text-center">
                                                                                     <h4 class="text-lg font-semibold text-gray-800 mb-1">Source Time</h4>
-                                                                                    <div class="text-2xl font-bold text-amber-600 font-mono" id="sourceDisplay">2025-07-23 14:46:06 UTC</div>
+                                                                                    <div class="text-2xl font-bold text-amber-600 font-mono" id="sourceDisplay">--</div>
                                                                                     <p class="text-sm text-gray-600 mt-2" id="sourceDescription">Coordinated Universal Time</p>
                                                                                 </div>
                                                                             </div>
@@ -225,7 +225,7 @@
                                                                                 </div>
                                                                             </div>
 
-                                                                            <div class="hidden">
+                                                                            <div class="space-y-4">
                                                                                 <!-- DST Information -->
                                                                                 <div class="p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-200">
                                                                                     <h4 class="text-sm font-semibold text-green-800 mb-2 text-center">Daylight Saving Time Status</h4>
@@ -298,35 +298,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Time Zone Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Global Time Standards</h4>
-                                    <p>Time zones are regions that observe a uniform standard time. The world is divided into 24 time zones, each typically 15 degrees of longitude apart. UTC (Coordinated Universal Time) serves as the primary time standard from which all time zones are calculated.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Daylight Saving Time</h4>
-                                    <p>Many regions observe Daylight Saving Time (DST), shifting clocks forward by one hour during warmer months. This affects time zone calculations and can create temporary offset changes. Our converter automatically accounts for DST rules.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
-                                <p class="text-sm text-amber-800">
-                                    <strong>Global Tip:</strong> When scheduling international meetings, consider business hours and cultural working patterns in addition to time zone differences!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- World Clock -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">World Clock (Live)</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="worldClock">
-                                <!-- Dynamic world clock will be populated here -->
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -339,7 +310,7 @@
                         const useCurrentTime = document.getElementById('useCurrentTime');
                         const selectAllMajor = document.getElementById('selectAllMajor');
                         const clearSelections = document.getElementById('clearSelections');
-                        
+
                         // Output elements
                         const currentUTC = document.getElementById('currentUTC');
                         const currentLocal = document.getElementById('currentLocal');
@@ -350,36 +321,25 @@
                         const dstInfo = document.getElementById('dstInfo');
                         const businessHours = document.getElementById('businessHours');
                         const meetingTimes = document.getElementById('meetingTimes');
-                        const worldClock = document.getElementById('worldClock');
 
+                        const defaultTargetTimezones = ['America/New_York', 'Europe/London', 'Asia/Tokyo'];
                         let updateInterval;
 
-                        // Major time zones for world clock
-                        const majorTimezones = [
-                            { name: 'New York', timezone: 'America/New_York', code: 'ET' },
-                            { name: 'London', timezone: 'Europe/London', code: 'GMT/BST' },
-                            { name: 'Tokyo', timezone: 'Asia/Tokyo', code: 'JST' },
-                            { name: 'Sydney', timezone: 'Australia/Sydney', code: 'AEST/AEDT' },
-                            { name: 'Los Angeles', timezone: 'America/Los_Angeles', code: 'PT' },
-                            { name: 'Dubai', timezone: 'Asia/Dubai', code: 'GST' }
-                        ];
+                        function padNumber(value) {
+                            return value.toString().padStart(2, '0');
+                        }
 
                         function updateCurrentTime() {
                             const now = new Date();
-                            
-                            // Update UTC time
+                            const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
                             currentUTC.textContent = now.toISOString().replace('T', ' ').slice(0, 19);
-                            
-                            // Update local time
-                            const localTime = now.toLocaleString('sv-SE', { 
-                                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone 
-                            });
-                            currentLocal.textContent = localTime + ' (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
+                            currentLocal.textContent = formatDateTimeForTimezone(now, localTimezone) + ' (' + localTimezone + ')';
                         }
 
                         function formatDateTimeForTimezone(date, timezone) {
                             try {
-                                const options = {
+                                const formatted = new Intl.DateTimeFormat('sv-SE', {
                                     timeZone: timezone,
                                     year: 'numeric',
                                     month: '2-digit',
@@ -388,27 +348,61 @@
                                     minute: '2-digit',
                                     second: '2-digit',
                                     hour12: false
-                                };
-                                
-                                const formatted = new Intl.DateTimeFormat('sv-SE', options).format(date);
+                                }).format(date);
+
                                 return formatted.replace(',', '');
                             } catch (e) {
-                                return 'Invalid timezone';
+                                return 'Invalid time zone';
                             }
                         }
 
-                        function getTimezoneOffset(date, timezone) {
-                            try {
-                                const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
-                                const tzDate = new Date(date.toLocaleString('en-US', { timeZone: timezone }));
-                                const offset = (tzDate.getTime() - utcDate.getTime()) / (1000 * 60);
-                                const hours = Math.floor(Math.abs(offset) / 60);
-                                const minutes = Math.abs(offset) % 60;
-                                const sign = offset >= 0 ? '+' : '-';
-                                return `${sign}${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-                            } catch (e) {
-                                return '+00:00';
-                            }
+                        /**
+                         * Offset of the given time zone from UTC, in minutes, at the given instant.
+                         */
+                        function getOffsetMinutes(date, timezone) {
+                            const parts = {};
+                            new Intl.DateTimeFormat('en-US', {
+                                timeZone: timezone,
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                second: '2-digit',
+                                hourCycle: 'h23'
+                            }).formatToParts(date).forEach(part => {
+                                parts[part.type] = part.value;
+                            });
+
+                            const asUtc = Date.UTC(Number(parts.year), Number(parts.month) - 1, Number(parts.day), Number(parts.hour), Number(parts.minute), Number(parts.second));
+                            const instant = Math.floor(date.getTime() / 1000) * 1000;
+
+                            return Math.round((asUtc - instant) / 60000);
+                        }
+
+                        function formatOffset(offsetMinutes) {
+                            const sign = offsetMinutes >= 0 ? '+' : '-';
+                            const absolute = Math.abs(offsetMinutes);
+
+                            return `${sign}${padNumber(Math.floor(absolute / 60))}:${padNumber(absolute % 60)}`;
+                        }
+
+                        /**
+                         * Convert a wall-clock date and time in a time zone to the matching instant.
+                         */
+                        function zonedTimeToDate(dateStr, timeStr, timezone) {
+                            const [year, month, day] = dateStr.split('-').map(Number);
+                            const [hour, minute, second] = (timeStr + ':00:00').split(':').map(Number);
+                            const wallClockAsUtc = Date.UTC(year, month - 1, day, hour, minute, second || 0);
+
+                            let instant = wallClockAsUtc - getOffsetMinutes(new Date(wallClockAsUtc), timezone) * 60000;
+                            instant = wallClockAsUtc - getOffsetMinutes(new Date(instant), timezone) * 60000;
+
+                            return new Date(instant);
+                        }
+
+                        function getHourInTimezone(date, timezone) {
+                            return Number(new Intl.DateTimeFormat('en-US', { timeZone: timezone, hour: '2-digit', hourCycle: 'h23' }).format(date));
                         }
 
                         function getTimezoneAbbreviation(date, timezone) {
@@ -423,166 +417,147 @@
                         }
 
                         function isDST(date, timezone) {
-                            try {
-                                // Create dates for January and July to compare offsets
-                                const jan = new Date(date.getFullYear(), 0, 1);
-                                const jul = new Date(date.getFullYear(), 6, 1);
-                                
-                                const janOffset = getTimezoneOffset(jan, timezone);
-                                const julOffset = getTimezoneOffset(jul, timezone);
-                                const currentOffset = getTimezoneOffset(date, timezone);
-                                
-                                return currentOffset !== janOffset || currentOffset !== julOffset;
-                            } catch (e) {
+                            const year = date.getUTCFullYear();
+                            const januaryOffset = getOffsetMinutes(new Date(Date.UTC(year, 0, 1)), timezone);
+                            const julyOffset = getOffsetMinutes(new Date(Date.UTC(year, 6, 1)), timezone);
+
+                            if (januaryOffset === julyOffset) {
                                 return false;
                             }
+
+                            return getOffsetMinutes(date, timezone) === Math.max(januaryOffset, julyOffset);
                         }
 
-                        function analyzeBusinessHours(sourceDate, sourceTimezone, targetTimezones) {
-                            const businessStart = 9; // 9 AM
-                            const businessEnd = 17; // 5 PM
-                            
-                            const sourceTime = new Date(`${sourceDate.toDateString()} ${businessStart}:00:00`);
-                            const analysis = [];
-                            
-                            targetTimezones.forEach(tz => {
-                                const tzTime = new Date(sourceTime.toLocaleString('en-US', { timeZone: tz }));
-                                const hour = tzTime.getHours();
-                                
-                                let status = 'Outside business hours';
-                                if (hour >= businessStart && hour < businessEnd) {
-                                    status = 'Business hours';
-                                } else if (hour >= 6 && hour < businessStart) {
-                                    status = 'Early morning';
-                                } else if (hour >= businessEnd && hour < 22) {
-                                    status = 'Evening';
-                                } else {
-                                    status = 'Night time';
-                                }
-                                
-                                analysis.push(`${tz.split('/')[1]}: ${status}`);
-                            });
-                            
-                            return analysis;
+                        function getTimezoneLabel(timezone) {
+                            const checkbox = Array.from(targetTimezoneCheckboxes).find(cb => cb.value === timezone);
+                            const label = checkbox ? checkbox.parentElement.querySelector('span') : null;
+
+                            return label ? label.textContent.trim() : timezone.split('/').pop().replace(/_/g, ' ');
                         }
 
-                        function suggestMeetingTimes(sourceTimezone, targetTimezones) {
+                        function getCityName(timezone) {
+                            return timezone.split('/').pop().replace(/_/g, ' ');
+                        }
+
+                        function getDayStatus(hour) {
+                            if (hour >= 9 && hour < 17) {
+                                return 'Business hours';
+                            }
+
+                            if (hour >= 6 && hour < 9) {
+                                return 'Early morning';
+                            }
+
+                            if (hour >= 17 && hour < 22) {
+                                return 'Evening';
+                            }
+
+                            return 'Night time';
+                        }
+
+                        function suggestMeetingTimes(dateStr, sourceTz, selectedTimezones) {
                             const suggestions = [];
-                            const timeSlots = [8, 9, 10, 11, 14, 15, 16, 17]; // Potential meeting hours
-                            
-                            timeSlots.forEach(hour => {
-                                const testTime = new Date();
-                                testTime.setHours(hour, 0, 0, 0);
-                                
-                                let suitableCount = 0;
-                                targetTimezones.forEach(tz => {
-                                    const tzTime = new Date(testTime.toLocaleString('en-US', { timeZone: tz }));
-                                    const tzHour = tzTime.getHours();
-                                    
-                                    if (tzHour >= 8 && tzHour <= 18) {
-                                        suitableCount++;
-                                    }
-                                });
-                                
-                                if (suitableCount >= Math.floor(targetTimezones.length * 0.7)) {
-                                    suggestions.push(`${hour}:00 ${sourceTimezone.split('/')[1]} time`);
+
+                            [8, 9, 10, 11, 14, 15, 16, 17].forEach(hour => {
+                                const meetingInstant = zonedTimeToDate(dateStr, `${padNumber(hour)}:00:00`, sourceTz);
+                                const suitableCount = selectedTimezones.filter(tz => {
+                                    const targetHour = getHourInTimezone(meetingInstant, tz);
+
+                                    return targetHour >= 8 && targetHour <= 18;
+                                }).length;
+
+                                if (suitableCount >= Math.ceil(selectedTimezones.length * 0.7)) {
+                                    suggestions.push(`${padNumber(hour)}:00 ${getCityName(sourceTz)} time`);
                                 }
                             });
-                            
+
                             return suggestions.length > 0 ? suggestions : ['No ideal time found for all zones'];
                         }
 
                         function convert() {
-                            try {
-                                // Get source date and time
-                                const dateStr = sourceDate.value;
-                                const timeStr = sourceTime.value;
-                                const sourceTz = sourceTimezone.value;
-                                
-                                if (!dateStr || !timeStr) {
-                                    return;
-                                }
-                                
-                                // Create source date
-                                const sourceDateTime = new Date(`${dateStr}T${timeStr}`);
-                                
-                                // Update source display
-                                const sourceFormatted = formatDateTimeForTimezone(sourceDateTime, sourceTz);
-                                const sourceAbbr = getTimezoneAbbreviation(sourceDateTime, sourceTz);
-                                sourceDisplay.textContent = `${sourceFormatted} ${sourceAbbr}`;
-                                sourceDescription.textContent = sourceTz.replace('_', ' ');
-                                
-                                // Get selected target time zones
-                                const selectedTimezones = Array.from(targetTimezoneCheckboxes)
-                                    .filter(cb => cb.checked)
-                                    .map(cb => cb.value);
-                                
-                                // Clear previous results
-                                targetTimezones.innerHTML = '';
-                                timeDifferences.innerHTML = '';
-                                dstInfo.innerHTML = '';
-                                
-                                if (selectedTimezones.length === 0) {
-                                    targetTimezones.innerHTML = '<div class="text-center text-gray-500 py-4">Select target time zones to see conversions</div>';
-                                    return;
-                                }
-                                
-                                // Convert to each target timezone
-                                selectedTimezones.forEach((tz, index) => {
-                                    const targetFormatted = formatDateTimeForTimezone(sourceDateTime, tz);
-                                    const targetAbbr = getTimezoneAbbreviation(sourceDateTime, tz);
-                                    const offset = getTimezoneOffset(sourceDateTime, tz);
-                                    const isDstActive = isDST(sourceDateTime, tz);
-                                    
-                                    // Create target timezone card
-                                    const card = document.createElement('div');
-                                    card.className = `p-4 bg-gradient-to-r ${getCardColor(index)} rounded-lg border-l-4 ${getBorderColor(index)}`;
-                                    card.innerHTML = `
-                                        <div class="flex justify-between items-center">
-                                            <div>
-                                                <h5 class="text-sm font-semibold text-gray-700 mb-1">${tz.replace('_', ' ')}</h5>
-                                                <div class="text-lg font-bold ${getTextColor(index)} font-mono">${targetFormatted}</div>
-                                                <div class="text-xs text-gray-500 mt-1">${targetAbbr}</div>
-                                            </div>
-                                            <div class="text-right">
-                                                <div class="text-sm font-mono text-gray-600">${offset}</div>
-                                                ${isDstActive ? '<div class="text-xs text-blue-600">DST</div>' : ''}
-                                            </div>
-                                        </div>
-                                    `;
-                                    targetTimezones.appendChild(card);
-                                    
-                                    // Add time difference
-                                    const diffElement = document.createElement('div');
-                                    diffElement.className = 'flex justify-between text-sm';
-                                    diffElement.innerHTML = `
-                                        <span>${tz.split('/')[1]}:</span>
-                                        <span class="font-mono">${offset} from UTC</span>
-                                    `;
-                                    timeDifferences.appendChild(diffElement);
-                                    
-                                    // Add DST info
-                                    const dstElement = document.createElement('div');
-                                    dstElement.className = 'flex justify-between text-sm';
-                                    dstElement.innerHTML = `
-                                        <span>${tz.split('/')[1]}:</span>
-                                        <span class="${isDstActive ? 'text-blue-600' : 'text-gray-600'}">${isDstActive ? 'DST Active' : 'Standard Time'}</span>
-                                    `;
-                                    dstInfo.appendChild(dstElement);
-                                });
-                                
-                                // Business hours analysis
-                                const businessAnalysis = analyzeBusinessHours(sourceDateTime, sourceTz, selectedTimezones);
-                                businessHours.innerHTML = businessAnalysis.join(' • ');
-                                
-                                // Meeting time suggestions
-                                const meetingSuggestions = suggestMeetingTimes(sourceTz, selectedTimezones);
-                                meetingTimes.innerHTML = `Best times: ${meetingSuggestions.slice(0, 3).join(', ')}`;
-                                
-                            } catch (error) {
-                                console.error('Conversion error:', error);
-                                targetTimezones.innerHTML = '<div class="text-center text-red-500 py-4">Error in time conversion</div>';
+                            const dateStr = sourceDate.value;
+                            const timeStr = sourceTime.value;
+                            const sourceTz = sourceTimezone.value;
+
+                            if (!dateStr || !timeStr) {
+                                sourceDisplay.textContent = '--';
+                                sourceDescription.textContent = 'Enter a date and time to convert';
+                                return;
                             }
+
+                            const sourceDateTime = zonedTimeToDate(dateStr, timeStr, sourceTz);
+
+                            if (isNaN(sourceDateTime.getTime())) {
+                                sourceDisplay.textContent = '--';
+                                sourceDescription.textContent = 'Enter a valid date and time';
+                                return;
+                            }
+
+                            const sourceOffset = getOffsetMinutes(sourceDateTime, sourceTz);
+                            sourceDisplay.textContent = `${formatDateTimeForTimezone(sourceDateTime, sourceTz)} ${getTimezoneAbbreviation(sourceDateTime, sourceTz)}`;
+                            sourceDescription.textContent = `${sourceTz.replace(/_/g, ' ')} (UTC${formatOffset(sourceOffset)})`;
+
+                            const selectedTimezones = Array.from(targetTimezoneCheckboxes)
+                                .filter(cb => cb.checked)
+                                .map(cb => cb.value);
+
+                            targetTimezones.innerHTML = '';
+                            timeDifferences.innerHTML = '';
+                            dstInfo.innerHTML = '';
+
+                            if (selectedTimezones.length === 0) {
+                                targetTimezones.innerHTML = '<div class="text-center text-gray-500 py-4">Select target time zones to see conversions</div>';
+                                timeDifferences.innerHTML = '<div class="text-center text-sm text-gray-500">--</div>';
+                                dstInfo.innerHTML = '<div class="text-center text-sm text-gray-500">--</div>';
+                                businessHours.textContent = 'Select time zones to see business hours overlap';
+                                meetingTimes.textContent = 'Best meeting times will appear here';
+                                return;
+                            }
+
+                            const businessAnalysis = [];
+
+                            selectedTimezones.forEach((tz, index) => {
+                                const targetOffset = getOffsetMinutes(sourceDateTime, tz);
+                                const isDstActive = isDST(sourceDateTime, tz);
+
+                                const card = document.createElement('div');
+                                card.className = `p-4 bg-gradient-to-r ${getCardColor(index)} rounded-lg border-l-4 ${getBorderColor(index)}`;
+                                card.innerHTML = `
+                                    <div class="flex justify-between items-center gap-3">
+                                        <div class="min-w-0">
+                                            <h5 class="text-sm font-semibold text-gray-700 mb-1">${getTimezoneLabel(tz)}</h5>
+                                            <div class="text-lg font-bold ${getTextColor(index)} font-mono">${formatDateTimeForTimezone(sourceDateTime, tz)}</div>
+                                            <div class="text-xs text-gray-500 mt-1">${getTimezoneAbbreviation(sourceDateTime, tz)}</div>
+                                        </div>
+                                        <div class="text-right">
+                                            <div class="text-sm font-mono text-gray-600">UTC${formatOffset(targetOffset)}</div>
+                                            ${isDstActive ? '<div class="text-xs text-blue-600">DST</div>' : ''}
+                                        </div>
+                                    </div>
+                                `;
+                                targetTimezones.appendChild(card);
+
+                                const diffElement = document.createElement('div');
+                                diffElement.className = 'flex justify-between gap-3 text-sm';
+                                diffElement.innerHTML = `
+                                    <span>${getCityName(tz)}:</span>
+                                    <span class="font-mono">${targetOffset === sourceOffset ? 'Same time' : formatOffset(targetOffset - sourceOffset) + ' h'}</span>
+                                `;
+                                timeDifferences.appendChild(diffElement);
+
+                                const dstElement = document.createElement('div');
+                                dstElement.className = 'flex justify-between gap-3 text-sm';
+                                dstElement.innerHTML = `
+                                    <span>${getCityName(tz)}:</span>
+                                    <span class="${isDstActive ? 'text-blue-600' : 'text-gray-600'}">${isDstActive ? 'DST Active' : 'Standard Time'}</span>
+                                `;
+                                dstInfo.appendChild(dstElement);
+
+                                businessAnalysis.push(`${getCityName(tz)}: ${getDayStatus(getHourInTimezone(sourceDateTime, tz))}`);
+                            });
+
+                            businessHours.textContent = businessAnalysis.join(' • ');
+                            meetingTimes.textContent = `Best times: ${suggestMeetingTimes(dateStr, sourceTz, selectedTimezones).slice(0, 3).join(', ')}`;
                         }
 
                         function getCardColor(index) {
@@ -621,29 +596,13 @@
                             return colors[index % colors.length];
                         }
 
-                        function updateWorldClock() {
-                            worldClock.innerHTML = '';
-                            const now = new Date();
-                            
-                            majorTimezones.forEach((tz, index) => {
-                                const timeStr = formatDateTimeForTimezone(now, tz.timezone);
-                                const abbr = getTimezoneAbbreviation(now, tz.timezone);
-                                
-                                const card = document.createElement('div');
-                                card.className = `p-4 bg-gradient-to-r ${getCardColor(index)} rounded-lg text-center`;
-                                card.innerHTML = `
-                                    <h5 class="text-sm font-semibold text-gray-700 mb-1">${tz.name}</h5>
-                                    <div class="text-lg font-bold ${getTextColor(index)} font-mono">${timeStr}</div>
-                                    <div class="text-xs text-gray-500 mt-1">${abbr}</div>
-                                `;
-                                worldClock.appendChild(card);
-                            });
-                        }
-
                         function setCurrentTime() {
                             const now = new Date();
-                            sourceDate.value = now.toISOString().split('T')[0];
-                            sourceTime.value = now.toTimeString().split(' ')[0];
+                            const sourceTz = sourceTimezone.value;
+                            const [datePart, timePart] = formatDateTimeForTimezone(now, sourceTz).split(' ');
+
+                            sourceDate.value = datePart;
+                            sourceTime.value = timePart;
                             convert();
                         }
 
@@ -663,38 +622,35 @@
                         }
 
                         function clearAll() {
-                            sourceDate.value = '2025-07-23';
-                            sourceTime.value = '14:46:06';
                             sourceTimezone.value = 'UTC';
-                            clearAllSelections();
+                            targetTimezoneCheckboxes.forEach(cb => {
+                                cb.checked = defaultTargetTimezones.includes(cb.value);
+                            });
+                            setCurrentTime();
                         }
 
                         // Event listeners
                         sourceDate.addEventListener('change', convert);
                         sourceTime.addEventListener('change', convert);
+                        sourceTime.addEventListener('input', convert);
                         sourceTimezone.addEventListener('change', convert);
-                        
+
                         targetTimezoneCheckboxes.forEach(cb => {
                             cb.addEventListener('change', convert);
                         });
-                        
+
                         useCurrentTime.addEventListener('click', setCurrentTime);
                         selectAllMajor.addEventListener('click', selectMajorCities);
                         clearSelections.addEventListener('click', clearAllSelections);
                         clearButton.addEventListener('click', clearAll);
 
                         // Initialize
-                        convert();
                         updateCurrentTime();
-                        updateWorldClock();
-                        
-                        // Update current time and world clock every second
-                        updateInterval = setInterval(() => {
-                            updateCurrentTime();
-                            updateWorldClock();
-                        }, 1000);
+                        convert();
 
-                        // Cleanup interval on page unload
+                        // Keep the real-time clock ticking every second
+                        updateInterval = setInterval(updateCurrentTime, 1000);
+
                         window.addEventListener('beforeunload', function() {
                             if (updateInterval) {
                                 clearInterval(updateInterval);

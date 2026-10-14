@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Number to Million Converter - ConvertPro"
+    title="Number to Million Converter - SolveKit"
     description="Professional number to million converter for medium scale analysis. Convert any number to millions and understand its magnitude in business and everyday contexts."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Million-Scale Analysis Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Number to Million</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -72,7 +72,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result - Millions -->
                                                                             <div class="p-6 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border-l-4 border-amber-500">
@@ -179,56 +179,6 @@
 
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Million-Scale Analysis</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Business Applications</h4>
-                                    <p>Million-scale analysis is crucial for business planning, budgeting, sales targets, and financial projections. It helps in understanding medium-scale business operations, real estate values, and investment amounts in relatable terms.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Everyday Context</h4>
-                                    <p>Converting numbers to millions makes large figures more comprehensible in everyday contexts like house prices, salaries, population of cities, and business revenues. It bridges the gap between abstract numbers and practical understanding.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200">
-                                <p class="text-sm text-amber-800">
-                                    <strong>Context Tip:</strong> Million-scale numbers are most relatable in business and real estate contexts. Use domain-specific comparisons to make the scale more meaningful!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Domain-Specific Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Million-Scale Examples by Domain</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Business & Finance</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="5000000">$5 Million Revenue</div>
-                                        <div class="text-xs text-gray-600 mt-1">Mid-size company annual revenue</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="1000000">$1 Million Investment</div>
-                                        <div class="text-xs text-gray-600 mt-1">Seed funding round</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Real Estate & Assets</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="750000">$750K Home</div>
-                                        <div class="text-xs text-gray-600 mt-1">Luxury residential property</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-amber-600 cursor-pointer hover:text-amber-800" data-example="2500000">$2.5M Portfolio</div>
-                                        <div class="text-xs text-gray-600 mt-1">Investment portfolio value</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -250,169 +200,34 @@
                         const scientificDisplay = document.getElementById('scientificDisplay');
                         const lakhDisplay = document.getElementById('lakhDisplay');
                         const croreDisplay = document.getElementById('croreDisplay');
-                        const domainDisplay = document.getElementById('domainDisplay');
-                        const magnitudeLevel = document.getElementById('magnitudeLevel');
-                        const categoryLevel = document.getElementById('categoryLevel');
-                        const interpretationText = document.getElementById('interpretationText');
-                        const businessContext = document.getElementById('businessContext');
-                        const everydayContext = document.getElementById('everydayContext');
-                        const sizeIndicator = document.getElementById('sizeIndicator');
-                        const reachIndicator = document.getElementById('reachIndicator');
-                        const impactIndicator = document.getElementById('impactIndicator');
-                        const complexityIndicator = document.getElementById('complexityIndicator');
-                        const digitCount = document.getElementById('digitCount');
-                        const orderMagnitude = document.getElementById('orderMagnitude');
-                        const numberType = document.getElementById('numberType');
-                        const numberFormat = document.getElementById('numberFormat');
                         const copyResult = document.getElementById('copyResult');
-
-                        // Domain descriptions
-                        const domainDescriptions = {
-                            'general': 'General Numbers',
-                            'business': 'Business & Finance',
-                            'real-estate': 'Real Estate',
-                            'population': 'Population & Demographics',
-                            'sales': 'Sales & Revenue',
-                            'investment': 'Investment & Assets',
-                            'technology': 'Technology & Data',
-                            'manufacturing': 'Manufacturing & Production',
-                            'healthcare': 'Healthcare & Medical',
-                            'education': 'Education & Research'
-                        };
 
                         function getPrecision() {
                             const selected = document.querySelector('input[name="precision"]:checked').value;
                             return selected === 'auto' ? 'auto' : parseInt(selected);
                         }
 
-                        function getBaseline() {
-                            return document.querySelector('input[name="baseline"]:checked').value;
-                        }
-
-                        function getDetailLevel() {
-                            return document.querySelector('input[name="detailLevel"]:checked').value;
-                        }
-
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (Math.abs(num) >= 1e12) {
-                                    return num.toExponential(3);
-                                } else if (Math.abs(num) >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (Math.abs(num) >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 8 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function getMagnitudeLevel(num) {
-                            const absNum = Math.abs(num);
-                            if (absNum >= 1e9) return 'Billion Scale';
-                            if (absNum >= 1e6) return 'Million Scale';
-                            if (absNum >= 1e3) return 'Thousand Scale';
-                            if (absNum >= 100) return 'Hundred Scale';
-                            if (absNum >= 10) return 'Ten Scale';
-                            return 'Unit Scale';
-                        }
-
-                        function getCategoryLevel(num, selectedDomain) {
-                            const millions = num / 1e6;
-                            
-                            switch(selectedDomain) {
-                                case 'business':
-                                    if (millions >= 100) return 'Large Enterprise';
-                                    if (millions >= 10) return 'Mid-size Company';
-                                    if (millions >= 1) return 'Small Business';
-                                    return 'Startup Scale';
-                                    
-                                case 'real-estate':
-                                    if (millions >= 5) return 'Luxury Property';
-                                    if (millions >= 1) return 'Premium Property';
-                                    if (millions >= 0.5) return 'High-end Property';
-                                    return 'Standard Property';
-                                    
-                                case 'investment':
-                                    if (millions >= 50) return 'Major Investment';
-                                    if (millions >= 10) return 'Significant Investment';
-                                    if (millions >= 1) return 'Standard Investment';
-                                    return 'Small Investment';
-                                    
-                                default:
-                                    if (millions >= 100) return 'Very Large Scale';
-                                    if (millions >= 10) return 'Large Scale';
-                                    if (millions >= 1) return 'Medium Scale';
-                                    return 'Small Scale';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
                             }
-                        }
 
-                        function getInterpretation(num, selectedDomain) {
-                            const millions = num / 1e6;
-                            
-                            switch(selectedDomain) {
-                                case 'business':
-                                    return `This represents ${formatNumber(millions, 1)} million in business terms - ${getCategoryLevel(num, selectedDomain).toLowerCase()} range`;
-                                    
-                                case 'real-estate':
-                                    return `In real estate terms, this is ${formatNumber(millions, 1)} million - ${getCategoryLevel(num, selectedDomain).toLowerCase()} range`;
-                                    
-                                case 'population':
-                                    return `This population size of ${formatNumber(num, 0)} represents ${formatNumber(millions, 2)} million people`;
-                                    
-                                case 'technology':
-                                    return `In technology metrics, this represents ${formatNumber(millions, 1)} million data points or transactions`;
-                                    
-                                default:
-                                    return `This number converts to ${formatNumber(millions, 2)} million units in standard measurement`;
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
-                        }
 
-                        function getBusinessContext(num, selectedDomain) {
-                            const millions = num / 1e6;
-                            
-                            switch(selectedDomain) {
-                                case 'business':
-                                    return `Annual revenue of ${formatNumber(millions, 1)}M suggests ${getCategoryLevel(num, selectedDomain).toLowerCase()} operations`;
-                                case 'investment':
-                                    return `Investment amount of ${formatNumber(millions, 1)}M indicates ${getCategoryLevel(num, selectedDomain).toLowerCase()} funding round`;
-                                case 'sales':
-                                    return `Sales figure of ${formatNumber(millions, 1)}M represents ${getCategoryLevel(num, selectedDomain).toLowerCase()} performance`;
-                                default:
-                                    return `Business equivalent of ${formatNumber(millions, 1)}M in operational terms`;
-                            }
-                        }
-
-                        function getEverydayContext(num, selectedDomain) {
-                            const millions = num / 1e6;
-                            
-                            if (millions >= 10) {
-                                return `Equivalent to buying ${Math.floor(millions/2)} luxury homes or ${Math.floor(millions/0.05)} annual salaries`;
-                            } else if (millions >= 1) {
-                                return `Similar to a luxury home purchase or ${Math.floor(millions/0.05)} years of average salary`;
-                            } else {
-                                return `Comparable to ${Math.floor(num/50000)} annual salaries or a luxury car purchase`;
-                            }
-                        }
-
-                        function getScaleIndicators(num) {
-                            const millions = num / 1e6;
-                            
-                            return {
-                                size: millions >= 100 ? 'Massive' : millions >= 10 ? 'Large' : millions >= 1 ? 'Medium' : 'Small',
-                                reach: millions >= 50 ? 'Global' : millions >= 10 ? 'National' : millions >= 1 ? 'Regional' : 'Local',
-                                impact: millions >= 100 ? 'High' : millions >= 10 ? 'Significant' : millions >= 1 ? 'Moderate' : 'Limited',
-                                complexity: millions >= 50 ? 'Complex' : millions >= 10 ? 'Involved' : millions >= 1 ? 'Moderate' : 'Simple'
-                            };
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function convert() {
                             const inputVal = parseFloat(inputNumber.value);
                             const precision = getPrecision();
-                            const selectedDomain = domain.value;
-                            const detailLevel = getDetailLevel();
 
                             if (!isNaN(inputVal)) {
                                 // Basic conversions
@@ -435,30 +250,6 @@
                                 scientificDisplay.textContent = inputVal.toExponential(3);
                                 lakhDisplay.textContent = formatNumber(lakhs, precision);
                                 croreDisplay.textContent = formatNumber(crores, precision);
-
-                                // Domain analysis
-                                domainDisplay.textContent = domainDescriptions[selectedDomain];
-                                magnitudeLevel.textContent = getMagnitudeLevel(inputVal);
-                                categoryLevel.textContent = getCategoryLevel(inputVal, selectedDomain);
-
-                                // Contextual analysis
-                                interpretationText.textContent = getInterpretation(inputVal, selectedDomain);
-                                businessContext.textContent = getBusinessContext(inputVal, selectedDomain);
-                                everydayContext.textContent = getEverydayContext(inputVal, selectedDomain);
-
-                                // Scale indicators
-                                const indicators = getScaleIndicators(inputVal);
-                                sizeIndicator.textContent = indicators.size;
-                                reachIndicator.textContent = indicators.reach;
-                                impactIndicator.textContent = indicators.impact;
-                                complexityIndicator.textContent = indicators.complexity;
-
-                                // Number properties
-                                digitCount.textContent = Math.abs(inputVal).toString().replace(/[^0-9]/g, '').length;
-                                orderMagnitude.textContent = Math.floor(Math.log10(Math.abs(inputVal) || 1));
-                                numberType.textContent = Number.isInteger(inputVal) ? 'Integer' : 'Decimal';
-                                numberFormat.textContent = inputVal.toLocaleString();
-
                             } else {
                                 clearOutputs();
                             }
@@ -474,19 +265,6 @@
                             scientificDisplay.textContent = '--';
                             lakhDisplay.textContent = '--';
                             croreDisplay.textContent = '--';
-                            magnitudeLevel.textContent = '--';
-                            categoryLevel.textContent = '--';
-                            interpretationText.textContent = '--';
-                            businessContext.textContent = '--';
-                            everydayContext.textContent = '--';
-                            sizeIndicator.textContent = '--';
-                            reachIndicator.textContent = '--';
-                            impactIndicator.textContent = '--';
-                            complexityIndicator.textContent = '--';
-                            digitCount.textContent = '--';
-                            orderMagnitude.textContent = '--';
-                            numberType.textContent = '--';
-                            numberFormat.textContent = '--';
                         }
 
                         function clearAll() {
@@ -542,17 +320,6 @@
                                 domainExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-amber-100', 'text-amber-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                inputNumber.value = value;
-                                convert();
-                                inputNumber.focus();
                             });
                         });
 

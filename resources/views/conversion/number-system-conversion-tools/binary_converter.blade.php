@@ -1,11 +1,11 @@
 <x-tool-page-layout
-    title="Binary Converter - ConvertPro"
+    title="Binary Converter - SolveKit"
     description="Professional binary converter for computer science and programming. Convert between binary and decimal with complete base outputs and clear conversion steps."
 >
     <x-slot name="toolUi">
         <div class="space-y-2">
             <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900">Binary Converter</h2>
+                <h1 class="text-sm font-semibold text-slate-900">Binary Converter</h1>
                 <p class="mt-0.5 text-[11px] text-slate-600">Compact binary and decimal conversion with readable output and strict input constraints.</p>
             </section>
 
@@ -94,57 +94,6 @@
         </div>
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <div class="space-y-3 text-sm text-slate-600">
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <div class="flex items-center justify-between gap-2">
-                    <h3 class="text-sm font-semibold text-slate-900">Live Conversion Insights</h3>
-                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">Auto update</span>
-                </div>
-
-                <div id="breakdownDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Breakdown</p>
-                    <p id="conversionSteps" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="rulesDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Rules Applied</p>
-                    <p id="appliedRules" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="historicalContext" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Context Note</p>
-                    <p id="contextInfo" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h4 class="text-sm font-semibold text-slate-900">Binary System Reference</h4>
-                <div class="mt-2 grid grid-cols-2 gap-1.5 text-[11px] text-slate-700 sm:grid-cols-3">
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^0 = 1</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^1 = 2</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^2 = 4</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^3 = 8</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^4 = 16</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">2^8 = 256</div>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h3 class="text-sm font-semibold text-slate-900">Reading Guide</h3>
-                <div class="mt-2 space-y-2 text-xs leading-5 text-slate-700">
-                    <p><span class="font-semibold text-slate-900">Primary Result:</span> Shows the value in the currently selected target mode.</p>
-                    <p><span class="font-semibold text-slate-900">All Bases:</span> Binary, decimal, hexadecimal, and octal stay synchronized.</p>
-                    <p><span class="font-semibold text-slate-900">Breakdown:</span> Displays positional expansion or repeated division steps.</p>
-                    <p><span class="font-semibold text-slate-900">Constraints:</span> Supports only non-negative safe integers for accurate JavaScript math.</p>
-                </div>
-            </section>
-
-            <div class="rounded-md bg-indigo-50 p-3 text-xs text-indigo-800">
-                Binary digits are called bits, and every 4 bits map to one hexadecimal digit.
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -170,12 +119,6 @@
                 const hexDisplay = document.getElementById('hexDisplay');
                 const octalDisplay = document.getElementById('octalDisplay');
                 const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-                const breakdownDisplay = document.getElementById('breakdownDisplay');
-                const conversionSteps = document.getElementById('conversionSteps');
-                const rulesDisplay = document.getElementById('rulesDisplay');
-                const appliedRules = document.getElementById('appliedRules');
-                const historicalContext = document.getElementById('historicalContext');
-                const contextInfo = document.getElementById('contextInfo');
 
                 const strictBinaryPattern = /^[01]+$/;
                 const strictDecimalPattern = /^\d+$/;
@@ -213,71 +156,6 @@
                     return parsed;
                 }
 
-                function buildFromBaseSteps(value, base) {
-                    const chars = value.split('');
-                    const steps = [];
-                    let total = 0;
-
-                    chars.forEach((char, index) => {
-                        const power = chars.length - index - 1;
-                        const digit = parseInt(char, base);
-                        const amount = digit * (base ** power);
-                        total += amount;
-                        steps.push(`${char} x ${base}^${power} = ${amount}`);
-                    });
-
-                    steps.push(`Total = ${total}`);
-                    return steps;
-                }
-
-                function buildToBaseSteps(decimal, base) {
-                    if (decimal === 0) {
-                        return ['0 in any base remains 0.'];
-                    }
-
-                    const alphabet = '0123456789ABCDEF';
-                    const steps = [];
-                    let current = decimal;
-
-                    while (current > 0) {
-                        const quotient = Math.floor(current / base);
-                        const remainder = current % base;
-                        steps.push(`${current} / ${base} = ${quotient}, remainder ${alphabet[remainder]}`);
-                        current = quotient;
-                    }
-
-                    steps.push('Read remainders from bottom to top for the final result.');
-                    return steps;
-                }
-
-                function getRules(mode) {
-                    if (mode === 'binary-to-decimal') {
-                        return [
-                            'Binary digits can only be 0 or 1.',
-                            'Each position contributes a power of 2.',
-                            'Add all positional contributions to get decimal.'
-                        ];
-                    }
-
-                    return [
-                        'Decimal to binary uses repeated division by 2.',
-                        'Each remainder becomes one binary digit.',
-                        'Remainders are read from bottom to top.'
-                    ];
-                }
-
-                function getContextNote(decimal) {
-                    if (decimal <= 255) {
-                        return `${decimal} fits in one unsigned byte (8 bits).`;
-                    }
-
-                    if (decimal <= 65535) {
-                        return `${decimal} fits in 16-bit unsigned integer range.`;
-                    }
-
-                    return `${decimal} is represented across ${decimal.toString(2).length} bits in binary.`;
-                }
-
                 function updateInterface() {
                     const mode = getMode();
 
@@ -297,12 +175,6 @@
                     resultDescription.textContent = 'Decimal converted to binary';
                 }
 
-                function setSectionVisibility() {
-                    breakdownDisplay.style.display = 'block';
-                    rulesDisplay.style.display = 'block';
-                    historicalContext.style.display = 'block';
-                }
-
                 function clearOutputs() {
                     output.textContent = '--';
                     binaryDisplay.textContent = '--';
@@ -310,9 +182,6 @@
                     hexDisplay.textContent = '--';
                     octalDisplay.textContent = '--';
                     bitLengthDisplay.textContent = '--';
-                    conversionSteps.textContent = '--';
-                    appliedRules.textContent = '--';
-                    contextInfo.textContent = '--';
                 }
 
                 function renderInvalid() {
@@ -325,20 +194,17 @@
                     const input = sanitize(inputValue.value);
                     if (!input) {
                         clearOutputs();
-                        setSectionVisibility();
                         return;
                     }
 
                     const mode = getMode();
                     let decimal;
                     let binary;
-                    let steps;
                     let outputValue;
 
                     if (mode === 'binary-to-decimal') {
                         if (!strictBinaryPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -346,24 +212,20 @@
                         const parsed = parseBaseToSafeInteger(binary, 2);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
-                        steps = buildFromBaseSteps(binary, 2);
                         outputValue = String(decimal);
                     } else {
                         const parsed = parseDecimal(input);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         binary = decimal.toString(2);
-                        steps = buildToBaseSteps(decimal, 2);
                         outputValue = groupBinary(binary);
                     }
 
@@ -376,17 +238,11 @@
                     hexDisplay.textContent = hex;
                     octalDisplay.textContent = octal;
                     bitLengthDisplay.textContent = `${binary.length} bits`;
-                    conversionSteps.innerHTML = steps.join('<br>');
-                    appliedRules.innerHTML = '- ' + getRules(mode).join('<br>- ');
-                    contextInfo.textContent = getContextNote(decimal);
-
-                    setSectionVisibility();
                 }
 
                 function clearAll() {
                     inputValue.value = '';
                     clearOutputs();
-                    setSectionVisibility();
                     inputValue.focus();
                 }
 
@@ -437,7 +293,6 @@
 
                 updateInterface();
                 clearOutputs();
-                setSectionVisibility();
             });
         </script>
     </x-slot>

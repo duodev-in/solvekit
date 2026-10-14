@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Million to Thousand Converter - ConvertPro"
+    title="Million to Thousand Converter - SolveKit"
     description="Professional million to thousand converter for financial calculations. Convert between millions, thousands and smaller number denominations with precision."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Scale-Down Number Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Million to Thousand</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -90,7 +90,7 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-teal-50 to-cyan-50 rounded-xl border-l-4 border-teal-500">
@@ -188,56 +188,6 @@
 
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Million to Thousand Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Financial Planning</h4>
-                                    <p>Essential for budget breakdowns, expense planning, and financial analysis. Converting millions to thousands helps in detailed planning, departmental budgets, and making large numbers more comprehensible for operational teams.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Business Applications</h4>
-                                    <p>Critical for project management, resource allocation, and financial reporting. Understanding different scales helps in effective communication with various stakeholders and precise financial planning.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-teal-50 rounded-lg border border-teal-200">
-                                <p class="text-sm text-teal-800">
-                                    <strong>Planning Tip:</strong> When budgeting, break down millions into thousands for departmental allocation. $1M = 1,000 units of $1K each for easier management!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Financial Context Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Financial Context Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Business Operations</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-example="5">$5 Million Budget</div>
-                                        <div class="text-xs text-gray-600 mt-1">= 5,000 thousand-dollar units</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-example="10">$10 Million Project</div>
-                                        <div class="text-xs text-gray-600 mt-1">= 10,000 thousand-dollar allocations</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Investment Planning</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-example="2.5">$2.5 Million Fund</div>
-                                        <div class="text-xs text-gray-600 mt-1">= 2,500 thousand-dollar investments</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-teal-600 cursor-pointer hover:text-teal-800" data-example="1">$1 Million Portfolio</div>
-                                        <div class="text-xs text-gray-600 mt-1">= 1,000 thousand-dollar positions</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -263,26 +213,7 @@
                         const unitDisplay = document.getElementById('unitDisplay');
                         const billionDisplay = document.getElementById('billionDisplay');
                         const scientificDisplay = document.getElementById('scientificDisplay');
-                        const categoryDisplay = document.getElementById('categoryDisplay');
-                        const scaleFactor = document.getElementById('scaleFactor');
-                        const magnitude = document.getElementById('magnitude');
-                        const budgetingTip = document.getElementById('budgetingTip');
-                        const communicationTip = document.getElementById('communicationTip');
-                        const standardFormat = document.getElementById('standardFormat');
-                        const commaFormat = document.getElementById('commaFormat');
                         const copyResult = document.getElementById('copyResult');
-
-                        // Category descriptions
-                        const categoryDescriptions = {
-                            'general': 'General Numbers',
-                            'budget': 'Budget Planning',
-                            'salary': 'Salary & Compensation',
-                            'investment': 'Investment Amount',
-                            'revenue': 'Revenue & Sales',
-                            'cost': 'Cost Analysis',
-                            'loan': 'Loan & Financing',
-                            'insurance': 'Insurance Coverage'
-                        };
 
                         function getPrecision() {
                             const selected = document.querySelector('input[name="precision"]:checked').value;
@@ -293,81 +224,39 @@
                             return document.querySelector('input[name="mode"]:checked').value;
                         }
 
-                        function getFormat() {
-                            return document.querySelector('input[name="format"]:checked').value;
-                        }
-
                         function formatNumber(num, precision = 'auto') {
-                            if (precision === 'auto') {
-                                if (num >= 1e15) {
-                                    return num.toExponential(3);
-                                } else if (num >= 1000) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                } else if (num >= 1) {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
-                                } else {
-                                    return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
-                                }
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: precision });
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
 
-                        function getMagnitude(num) {
-                            if (num >= 1e9) return 'Billion Scale';
-                            if (num >= 1e6) return 'Million Scale';
-                            if (num >= 1e3) return 'Thousand Scale';
-                            if (num >= 1e2) return 'Hundred Scale';
-                            if (num >= 10) return 'Ten Scale';
-                            return 'Unit Scale';
-                        }
-
-                        function updateApplicationTips(selectedCategory, millions) {
-                            const thousands = millions * 1000;
-                            
-                            switch(selectedCategory) {
-                                case 'budget':
-                                    budgetingTip.textContent = `Allocate ${thousands}K across departments and projects`;
-                                    communicationTip.textContent = `Present as "${thousands} thousand-dollar budget items"`;
-                                    break;
-                                case 'salary':
-                                    budgetingTip.textContent = `Plan for ${thousands} positions at $1K average cost`;
-                                    communicationTip.textContent = `Discuss as "salary budget of ${thousands}K total"`;
-                                    break;
-                                case 'investment':
-                                    budgetingTip.textContent = `Divide ${millions}M into ${thousands} investment units`;
-                                    communicationTip.textContent = `Structure as "${thousands} thousand-dollar investments"`;
-                                    break;
-                                case 'revenue':
-                                    budgetingTip.textContent = `Target ${thousands}K in thousand-dollar revenue chunks`;
-                                    communicationTip.textContent = `Report as "${thousands} thousand-dollar sales"`;
-                                    break;
-                                default:
-                                    budgetingTip.textContent = 'Break down large amounts into manageable units';
-                                    communicationTip.textContent = 'Use appropriate scale for audience understanding';
+                            const absolute = Math.abs(num);
+                            if (absolute >= 1e21 || (absolute !== 0 && absolute < 1e-9)) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
                             }
+
+                            if (absolute !== 0 && absolute < 1) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
+                            }
+
+                            const fractionDigits = precision === 'auto' ? 6 : precision;
+                            return num.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
                         }
 
                         function updateInterface() {
                             const mode = getMode();
-                            const selectedCategory = category.value;
-                            
-                            categoryDisplay.textContent = categoryDescriptions[selectedCategory] || 'General';
-                            
+
                             if (mode === 'million-to-thousand') {
                                 inputLabel.textContent = 'Enter Millions';
                                 inputUnit.textContent = 'Million';
                                 inputHelp.textContent = 'Enter the number of millions to convert';
                                 resultTitle.textContent = 'Thousands';
                                 resultDescription.textContent = 'Converted to thousands';
-                                scaleFactor.textContent = '1:1000';
                             } else {
                                 inputLabel.textContent = 'Enter Thousands';
                                 inputUnit.textContent = 'Thousand';
                                 inputHelp.textContent = 'Enter the number of thousands to convert';
                                 resultTitle.textContent = 'Millions';
                                 resultDescription.textContent = 'Converted to millions';
-                                scaleFactor.textContent = '1000:1';
                             }
                         }
 
@@ -375,7 +264,6 @@
                             const inputVal = parseFloat(inputValue.value);
                             const mode = getMode();
                             const precision = getPrecision();
-                            const selectedCategory = category.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
                                 let millions, thousands, hundreds, tens, units, billions;
@@ -411,16 +299,6 @@
                                 // Scientific notation
                                 const baseValue = millions * 1e6;
                                 scientificDisplay.textContent = baseValue.toExponential(3);
-                                
-                                // Analysis
-                                magnitude.textContent = getMagnitude(baseValue);
-                                
-                                // Formatting
-                                standardFormat.textContent = baseValue.toString();
-                                commaFormat.textContent = baseValue.toLocaleString();
-                                
-                                // Update application tips
-                                updateApplicationTips(selectedCategory, millions);
 
                             } else {
                                 clearOutputs();
@@ -436,11 +314,6 @@
                             unitDisplay.textContent = '--';
                             billionDisplay.textContent = '--';
                             scientificDisplay.textContent = '--';
-                            magnitude.textContent = '--';
-                            standardFormat.textContent = '--';
-                            commaFormat.textContent = '--';
-                            budgetingTip.textContent = 'Break down large amounts into manageable units';
-                            communicationTip.textContent = 'Use appropriate scale for audience understanding';
                         }
 
                         function clearAll() {
@@ -503,17 +376,6 @@
                                 financialValues.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-teal-100', 'text-teal-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                inputValue.value = value;
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

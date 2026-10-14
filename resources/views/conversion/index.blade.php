@@ -1,13 +1,13 @@
 <x-app-layout 
-    title="ConvertPro - Professional Conversion Tools"
+    title="SolveKit - Professional Conversion Tools"
     description="Professional-grade calculators for accurate unit conversions across length, weight, pressure, torque, and more.">
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-br from-primary-50 to-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold text-gray-900 mb-4">
+            <h1 class="text-4xl font-bold text-gray-900 mb-4">
                 Precision Conversion Tools
-            </h2>
+            </h1>
             <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
                 Professional-grade calculators for accurate unit conversions across length, weight, pressure, torque, and more.
             </p>
@@ -45,7 +45,7 @@
             <!-- Length & Area Conversions -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Length & Area Conversions</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Length & Area Conversions</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Precise conversions for length, area, and spatial measurements</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -58,7 +58,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">BASIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Length Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Length Converter</h3>
                         <p class="text-sm text-gray-600">Meters, feet, inches, kilometers</p>
                     </a>
 
@@ -71,7 +71,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">BASIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Area Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Area Converter</h3>
                         <p class="text-sm text-gray-600">Square units, acres, hectares</p>
                     </a>
 
@@ -84,7 +84,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">LAND</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Acreage Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Acreage Calculator</h3>
                         <p class="text-sm text-gray-600">Acres to various area units</p>
                     </a>
 
@@ -97,7 +97,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">METRIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Ares to Hectares</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Ares to Hectares</h3>
                         <p class="text-sm text-gray-600">Metric area unit conversions</p>
                     </a>
 
@@ -110,7 +110,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">SPACE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Astronomical Units</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Astronomical Units</h3>
                         <p class="text-sm text-gray-600">AU, light-years, parsecs</p>
                     </a>
 
@@ -123,7 +123,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">METRIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Decimeter to Meter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Decimeter to Meter</h3>
                         <p class="text-sm text-gray-600">Simple metric conversions</p>
                     </a>
 
@@ -136,7 +136,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-violet-500 px-2 py-1 rounded-full">IMPERIAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Feet & Inches</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Feet & Inches</h3>
                         <p class="text-sm text-gray-600">Imperial to metric conversions</p>
                     </a>
 
@@ -149,7 +149,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">HEIGHT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Height in Inches</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Height in Inches</h3>
                         <p class="text-sm text-gray-600">Human height conversions</p>
                     </a>
 
@@ -162,7 +162,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-amber-500 px-2 py-1 rounded-full">FRACTION</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Inches to Fraction</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Inches to Fraction</h3>
                         <p class="text-sm text-gray-600">Decimal to fraction conversion</p>
                     </a>
 
@@ -175,7 +175,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">COSMIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Light Year Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Light Year Converter</h3>
                         <p class="text-sm text-gray-600">Astronomical distance units</p>
                     </a>
 
@@ -188,7 +188,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-sky-500 px-2 py-1 rounded-full">MESH</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Mesh to Micron</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Mesh to Micron</h3>
                         <p class="text-sm text-gray-600">Screen mesh conversions</p>
                     </a>
 
@@ -201,16 +201,18 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">DIGITAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Pixels to Inches</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pixels to Inches</h3>
                         <p class="text-sm text-gray-600">Digital to physical units</p>
                     </a>
+
+                    <x-ads type="feed" placement="index-length-and-area-grid" />
                 </div>
             </div>
 
             <!-- Volume & Weight Conversions -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Volume & Weight Conversions</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Volume & Weight Conversions</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Comprehensive tools for mass, weight, and volume calculations</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -223,7 +225,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">BASIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Weight Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Weight Converter</h3>
                         <p class="text-sm text-gray-600">Grams, pounds, kilograms, ounces</p>
                     </a>
 
@@ -236,7 +238,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-cyan-500 px-2 py-1 rounded-full">BASIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Volume Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Volume Converter</h3>
                         <p class="text-sm text-gray-600">Liters, gallons, cubic units</p>
                     </a>
 
@@ -249,7 +251,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">VOLUME</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">CCF to Gallons</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">CCF to Gallons</h3>
                         <p class="text-sm text-gray-600">Hundred cubic feet conversions</p>
                     </a>
 
@@ -262,7 +264,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">CUBIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Cubic Feet Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Cubic Feet Calculator</h3>
                         <p class="text-sm text-gray-600">Volume calculations in ft³</p>
                     </a>
 
@@ -275,7 +277,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">METRIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Cubic Meter Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Cubic Meter Calculator</h3>
                         <p class="text-sm text-gray-600">Volume calculations in m³</p>
                     </a>
 
@@ -288,7 +290,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">MATERIAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Cubic Yards to Tons</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Cubic Yards to Tons</h3>
                         <p class="text-sm text-gray-600">Volume to weight for materials</p>
                     </a>
 
@@ -301,7 +303,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">WEIGHT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Decagram to Gram</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Decagram to Gram</h3>
                         <p class="text-sm text-gray-600">Metric weight conversions</p>
                     </a>
 
@@ -314,7 +316,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">DROPS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Drops to mL</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Drops to mL</h3>
                         <p class="text-sm text-gray-600">Small volume measurements</p>
                     </a>
 
@@ -327,7 +329,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">FLUID</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Gallon Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Gallon Calculator</h3>
                         <p class="text-sm text-gray-600">Comprehensive gallon conversions</p>
                     </a>
 
@@ -340,7 +342,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-amber-500 px-2 py-1 rounded-full">LIQUID</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Gallons to Pounds</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Gallons to Pounds</h3>
                         <p class="text-sm text-gray-600">Liquid volume to weight</p>
                     </a>
 
@@ -353,7 +355,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">WEIGHT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Grams to Ounces</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Grams to Ounces</h3>
                         <p class="text-sm text-gray-600">Metric to imperial weight</p>
                     </a>
 
@@ -366,7 +368,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">WATER</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Kg to Gallons</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Kg to Gallons</h3>
                         <p class="text-sm text-gray-600">Weight to volume for water</p>
                     </a>
 
@@ -379,7 +381,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">METRIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Liters to Centiliters</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Liters to Centiliters</h3>
                         <p class="text-sm text-gray-600">Metric volume conversions</p>
                     </a>
 
@@ -392,7 +394,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-pink-500 px-2 py-1 rounded-full">MICRO</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">mcg to mg</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">mcg to mg</h3>
                         <p class="text-sm text-gray-600">Microgram to milligram</p>
                     </a>
 
@@ -405,7 +407,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-pink-500 px-2 py-1 rounded-full">MEDICAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">mg to mL</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">mg to mL</h3>
                         <p class="text-sm text-gray-600">Medical dosage conversions</p>
                     </a>
 
@@ -418,7 +420,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">COOKING</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">mL to Cups</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">mL to Cups</h3>
                         <p class="text-sm text-gray-600">Cooking measurement conversion</p>
                     </a>
 
@@ -431,7 +433,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-cyan-500 px-2 py-1 rounded-full">COOKING</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Oz to Cups</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Oz to Cups</h3>
                         <p class="text-sm text-gray-600">Fluid ounce conversions</p>
                     </a>
 
@@ -444,7 +446,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">LIQUID</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Pints to Pounds</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pints to Pounds</h3>
                         <p class="text-sm text-gray-600">Volume to weight conversion</p>
                     </a>
 
@@ -457,7 +459,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">MIXED</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Pounds & Ounces</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pounds & Ounces</h3>
                         <p class="text-sm text-gray-600">Mixed unit conversions</p>
                     </a>
 
@@ -470,7 +472,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-fuchsia-500 px-2 py-1 rounded-full">LIQUID</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Quarts to Pounds</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Quarts to Pounds</h3>
                         <p class="text-sm text-gray-600">Volume to weight conversion</p>
                     </a>
                 </div>
@@ -479,7 +481,7 @@
             <!-- Engineering & Technical Conversions -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Engineering & Technical Conversions</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Engineering & Technical Conversions</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for force, pressure, torque, and power calculations</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -492,7 +494,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full">PRO</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Pressure Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pressure Converter</h3>
                         <p class="text-sm text-gray-600">PSI, bar, pascal, atmosphere</p>
                     </a>
 
@@ -505,7 +507,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">PRO</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Torque to HP</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Torque to HP</h3>
                         <p class="text-sm text-gray-600">Power calculations from torque</p>
                     </a>
 
@@ -518,7 +520,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">PRO</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Nm to in-lbs</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Nm to in-lbs</h3>
                         <p class="text-sm text-gray-600">Torque unit conversions</p>
                     </a>
 
@@ -531,7 +533,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">FLOW</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">PSI to GPM</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">PSI to GPM</h3>
                         <p class="text-sm text-gray-600">Flow rate calculations</p>
                     </a>
 
@@ -544,7 +546,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-gray-500 px-2 py-1 rounded-full">VACUUM</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Torr to atm</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Torr to atm</h3>
                         <p class="text-sm text-gray-600">Vacuum pressure units</p>
                     </a>
 
@@ -557,7 +559,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">FORCE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Force Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Force Converter</h3>
                         <p class="text-sm text-gray-600">Newtons, pounds-force, kgf</p>
                     </a>
 
@@ -570,7 +572,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">TORQUE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">in-lbs ↔ Nm</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">in-lbs ↔ Nm</h3>
                         <p class="text-sm text-gray-600">Torque unit conversion</p>
                     </a>
 
@@ -583,7 +585,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">TORQUE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">in-lbs ↔ ft-lbs</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">in-lbs ↔ ft-lbs</h3>
                         <p class="text-sm text-gray-600">Torque converter</p>
                     </a>
 
@@ -596,7 +598,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-pink-500 px-2 py-1 rounded-full">FORCE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Lbs ↔ Newtons</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Lbs ↔ Newtons</h3>
                         <p class="text-sm text-gray-600">Force converter</p>
                     </a>
 
@@ -609,7 +611,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">CALC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Torque (Nm)</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Torque (Nm)</h3>
                         <p class="text-sm text-gray-600">Newton Meter Calculator</p>
                     </a>
 
@@ -622,7 +624,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">TORQUE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Torque (ft-lbs)</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Torque (ft-lbs)</h3>
                         <p class="text-sm text-gray-600">Nm to ft-lbs Converter</p>
                     </a>
                 </div>
@@ -631,7 +633,7 @@
             <!-- Geographic & Mapping Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Geographic & Mapping Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Geographic & Mapping Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for geographic coordinate conversion and mapping tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -644,7 +646,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-emerald-500 px-2 py-1 rounded-full">GEO</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Coordinates</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Coordinates</h3>
                         <p class="text-sm text-gray-600">Geographic coordinate conversion</p>
                     </a>
 
@@ -657,7 +659,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">ANGLE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">DMS Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">DMS Calculator</h3>
                         <p class="text-sm text-gray-600">Degrees Minutes Seconds</p>
                     </a>
 
@@ -671,7 +673,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full">UTM</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Lat/Long to UTM</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Lat/Long to UTM</h3>
                         <p class="text-sm text-gray-600">Coordinate projection</p>
                     </a>
 
@@ -685,16 +687,18 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-cyan-500 px-2 py-1 rounded-full">SCALE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Scale Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Scale Calculator</h3>
                         <p class="text-sm text-gray-600">Calculate map scales and ratios</p>
                     </a>
+
+                    <x-ads type="feed" placement="index-geographic-and-mapping-grid" />
                 </div>
             </div>
 
             <!-- Number Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Number Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Number Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for number conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -707,7 +711,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">NUMBERS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Billion to Trillion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Billion to Trillion</h3>
                         <p class="text-sm text-gray-600">Convert billions to trillions</p>
                     </a>
 
@@ -720,7 +724,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">INDIAN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Crore to Lakh</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Crore to Lakh</h3>
                         <p class="text-sm text-gray-600">Convert crores to lakhs</p>
                     </a>
 
@@ -733,7 +737,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">GLOBAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Crore to Million</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Crore to Million</h3>
                         <p class="text-sm text-gray-600">Convert between Indian and Western systems</p>
                     </a>
 
@@ -746,7 +750,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">WESTERN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Million to Billion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Million to Billion</h3>
                         <p class="text-sm text-gray-600">Convert millions to billions</p>
                     </a>
 
@@ -759,7 +763,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">CROSS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Million to Lakh</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Million to Lakh</h3>
                         <p class="text-sm text-gray-600">Convert between Western and Indian systems</p>
                     </a>
 
@@ -772,7 +776,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">SCALE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Million to Thousand</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Million to Thousand</h3>
                         <p class="text-sm text-gray-600">Convert millions to thousands</p>
                     </a>
 
@@ -785,7 +789,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-amber-500 px-2 py-1 rounded-full">SCALE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Number to Billion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Number to Billion</h3>
                         <p class="text-sm text-gray-600">Convert any number to billions</p>
                     </a>
 
@@ -798,7 +802,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-amber-500 px-2 py-1 rounded-full">SCALE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Number to Million</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Number to Million</h3>
                         <p class="text-sm text-gray-600">Convert any number to millions</p>
                     </a>
                 </div>
@@ -807,7 +811,7 @@
             <!-- Number System Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Number System Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Number System Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for number system conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -820,7 +824,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">BINARY</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Binary Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Binary Converter</h3>
                         <p class="text-sm text-gray-600">Convert binary to decimal and other systems</p>
                     </a>
 
@@ -833,7 +837,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">BIN→HEX</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Binary to Hexadecimal</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Binary to Hexadecimal</h3>
                         <p class="text-sm text-gray-600">Convert binary to hexadecimal</p>
                     </a>
 
@@ -846,7 +850,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">BIN→OCT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Binary to Octal</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Binary to Octal</h3>
                         <p class="text-sm text-gray-600">Convert binary to octal</p>
                     </a>
 
@@ -859,7 +863,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full">DEC→HEX</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Decimal to Hexadecimal</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Decimal to Hexadecimal</h3>
                         <p class="text-sm text-gray-600">Convert decimal to hexadecimal</p>
                     </a>
 
@@ -872,7 +876,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">DEC→OCT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Decimal to Octal</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Decimal to Octal</h3>
                         <p class="text-sm text-gray-600">Convert decimal to octal</p>
                     </a>
 
@@ -885,7 +889,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">ROMAN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Roman Numerals</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Roman Numerals</h3>
                         <p class="text-sm text-gray-600">Convert Roman numerals to decimal</p>
                     </a>
                 </div>
@@ -894,7 +898,7 @@
             <!-- Data & Technical Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Data & Technical Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Data & Technical Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for data and technical conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -907,7 +911,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">BYTES</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Byte Conversion Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Byte Conversion Calculator</h3>
                         <p class="text-sm text-gray-600">Convert between all byte units (B, KB, MB, GB, TB)</p>
                     </a>
 
@@ -920,7 +924,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">ELECTRICAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Capacitance Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Capacitance Converter</h3>
                         <p class="text-sm text-gray-600">Convert capacitance units (F, mF, μF, nF, pF)</p>
                     </a>
 
@@ -933,7 +937,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-cyan-500 px-2 py-1 rounded-full">KB→MB</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">kB to MB Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">kB to MB Converter</h3>
                         <p class="text-sm text-gray-600">Convert kilobytes to megabytes</p>
                     </a>
 
@@ -946,7 +950,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">SPEED</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Mbps Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Mbps Calculator</h3>
                         <p class="text-sm text-gray-600">Calculate network speeds and data transfer rates</p>
                     </a>
 
@@ -959,7 +963,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">MBPS→GBPS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Mbps to Gbps Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Mbps to Gbps Converter</h3>
                         <p class="text-sm text-gray-600">Convert megabits to gigabits per second</p>
                     </a>
 
@@ -972,7 +976,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">MB→GB</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">MB to GB Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">MB to GB Converter</h3>
                         <p class="text-sm text-gray-600">Convert megabytes to gigabytes</p>
                     </a>
 
@@ -985,16 +989,18 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">UNIX</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Unix Time Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Unix Time Converter</h3>
                         <p class="text-sm text-gray-600">Convert Unix timestamps to human-readable dates</p>
                     </a>
+
+                    <x-ads type="feed" placement="index-data-and-technical-grid" />
                 </div>
             </div>
 
             <!-- Time & Date Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Time & Date Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Time & Date Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for time and date conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1007,7 +1013,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-emerald-500 px-2 py-1 rounded-full">MILITARY</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Military Time Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Military Time Converter</h3>
                         <p class="text-sm text-gray-600">Convert between 12-hour and 24-hour time formats</p>
                     </a>
 
@@ -1020,7 +1026,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">MIN→HR</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Minutes to Hours Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Minutes to Hours Converter</h3>
                         <p class="text-sm text-gray-600">Convert minutes to hours and vice versa</p>
                     </a>
 
@@ -1033,7 +1039,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-violet-500 px-2 py-1 rounded-full">UNITS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Time Unit Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Time Unit Converter</h3>
                         <p class="text-sm text-gray-600">Convert between all time units (seconds, minutes, hours, days)</p>
                     </a>
 
@@ -1046,7 +1052,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-amber-500 px-2 py-1 rounded-full">ZONES</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Time Zones Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Time Zones Converter</h3>
                         <p class="text-sm text-gray-600">Convert time between different time zones worldwide</p>
                     </a>
 
@@ -1059,7 +1065,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">YEARS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Years to Decades Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Years to Decades Calculator</h3>
                         <p class="text-sm text-gray-600">Convert years to decades, centuries, and millennia</p>
                     </a>
                 </div>
@@ -1068,7 +1074,7 @@
             <!-- Specialized Measurement Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Specialized Measurement Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Specialized Measurement Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for specialized measurement conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1081,7 +1087,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">ANGLE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Angle Conversion Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Angle Conversion Calculator</h3>
                         <p class="text-sm text-gray-600">Degrees, radians, gradians conversions</p>
                     </a>
 
@@ -1094,7 +1100,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">DENSITY</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Density Conversion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Density Conversion</h3>
                         <p class="text-sm text-gray-600">Mass per unit volume calculations</p>
                     </a>
 
@@ -1107,7 +1113,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">MATERIAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Hardness Conversion Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Hardness Conversion Calculator</h3>
                         <p class="text-sm text-gray-600">Rockwell, Brinell, Vickers scales</p>
                     </a>
 
@@ -1120,7 +1126,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">NUCLEAR</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Radiation Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Radiation Converter</h3>
                         <p class="text-sm text-gray-600">Radiation dose and exposure units</p>
                     </a>
 
@@ -1133,7 +1139,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">GAS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Natural Gas Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Natural Gas Converter</h3>
                         <p class="text-sm text-gray-600">Gas volume and energy conversions</p>
                     </a>
 
@@ -1146,7 +1152,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">ANALYSIS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Dimensional Analysis Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Dimensional Analysis Calculator</h3>
                         <p class="text-sm text-gray-600">Unit analysis and conversions</p>
                     </a>
 
@@ -1159,7 +1165,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-rose-500 px-2 py-1 rounded-full">CGS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">CGS System of Units Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">CGS System of Units Converter</h3>
                         <p class="text-sm text-gray-600">Centimeter-gram-second conversions</p>
                     </a>
 
@@ -1172,7 +1178,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">WEIRD</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Weird Units Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Weird Units Converter</h3>
                         <p class="text-sm text-gray-600">Unusual and fun unit conversions</p>
                     </a>
                 </div>
@@ -1181,7 +1187,7 @@
             <!-- Speed & Motion Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Speed & Motion Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Speed & Motion Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for speed and motion conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1194,7 +1200,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">SPEED</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">m/s to km/h Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">m/s to km/h Converter</h3>
                         <p class="text-sm text-gray-600">Meters per second to kilometers per hour</p>
                     </a>
 
@@ -1207,7 +1213,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">NAUTICAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Knots to kph Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Knots to kph Converter</h3>
                         <p class="text-sm text-gray-600">Nautical speed to metric conversion</p>
                     </a>
 
@@ -1220,7 +1226,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">NAUTICAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Knots to mph Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Knots to mph Converter</h3>
                         <p class="text-sm text-gray-600">Nautical to imperial speed conversion</p>
                     </a>
 
@@ -1233,7 +1239,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">FUEL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">MPG to L/100 km Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">MPG to L/100 km Converter</h3>
                         <p class="text-sm text-gray-600">Fuel economy conversions</p>
                     </a>
 
@@ -1246,16 +1252,18 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">SPEED</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Speed Conversion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Speed Conversion</h3>
                         <p class="text-sm text-gray-600">Universal speed unit converter</p>
                     </a>
+
+                    <x-ads type="feed" placement="index-speed-and-motion-grid" />
                 </div>
             </div>
 
             <!-- Energy & Power Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Energy & Power Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Energy & Power Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for energy and power conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1268,7 +1276,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full">ENERGY</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Energy Conversion Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Energy Conversion Calculator</h3>
                         <p class="text-sm text-gray-600">Joules, calories, BTU, kWh conversions</p>
                     </a>
 
@@ -1281,7 +1289,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">POWER</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Power Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Power Converter</h3>
                         <p class="text-sm text-gray-600">Watts, horsepower, BTU/h conversions</p>
                     </a>
 
@@ -1294,7 +1302,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">ELECTRIC</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Joules to Volts Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Joules to Volts Calculator</h3>
                         <p class="text-sm text-gray-600">Energy to electrical potential conversion</p>
                     </a>
 
@@ -1307,7 +1315,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">TORQUE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Nm to Joules Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Nm to Joules Calculator</h3>
                         <p class="text-sm text-gray-600">Torque to energy conversion</p>
                     </a>
 
@@ -1320,7 +1328,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">RF</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">dBm to Watts Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">dBm to Watts Calculator</h3>
                         <p class="text-sm text-gray-600">RF power conversion calculator</p>
                     </a>
 
@@ -1333,7 +1341,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">RMS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">RMS to Watts Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">RMS to Watts Converter</h3>
                         <p class="text-sm text-gray-600">RMS power calculations</p>
                     </a>
                 </div>
@@ -1342,7 +1350,7 @@
             <!-- Currency & Financial Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Currency & Financial Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Currency & Financial Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for currency and financial conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1355,7 +1363,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">MONEY</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Cents to Dollars Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Cents to Dollars Calculator</h3>
                         <p class="text-sm text-gray-600">Convert cents to dollar amounts</p>
                     </a>
 
@@ -1368,7 +1376,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">COIN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Dimes to Dollars Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Dimes to Dollars Calculator</h3>
                         <p class="text-sm text-gray-600">Convert dimes to dollar amounts</p>
                     </a>
 
@@ -1381,7 +1389,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">COIN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Nickels to Dollars Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Nickels to Dollars Calculator</h3>
                         <p class="text-sm text-gray-600">Convert nickels to dollar amounts</p>
                     </a>
 
@@ -1394,7 +1402,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">COIN</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Pennies to Dollars Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Pennies to Dollars Calculator</h3>
                         <p class="text-sm text-gray-600">Convert pennies to dollar amounts</p>
                     </a>
                 </div>
@@ -1403,7 +1411,7 @@
             <!-- Digital & Technical Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Digital & Technical Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Digital & Technical Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for digital and technical conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1416,7 +1424,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-indigo-500 px-2 py-1 rounded-full">WEB</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Px to Em Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Px to Em Converter</h3>
                         <p class="text-sm text-gray-600">CSS pixel to em unit conversion</p>
                     </a>
 
@@ -1429,7 +1437,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-teal-500 px-2 py-1 rounded-full">PPM</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">PPM Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">PPM Calculator</h3>
                         <p class="text-sm text-gray-600">Parts per million calculations</p>
                     </a>
 
@@ -1442,7 +1450,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-cyan-500 px-2 py-1 rounded-full">WATER</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">PPM to mg/L Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">PPM to mg/L Converter</h3>
                         <p class="text-sm text-gray-600">Water quality concentration units</p>
                     </a>
 
@@ -1455,7 +1463,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-pink-500 px-2 py-1 rounded-full">RATE</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">CPS Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">CPS Calculator</h3>
                         <p class="text-sm text-gray-600">Cycles per second calculations</p>
                     </a>
 
@@ -1468,16 +1476,18 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-orange-500 px-2 py-1 rounded-full">PAPER</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Paper Quantity Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Paper Quantity Converter</h3>
                         <p class="text-sm text-gray-600">Ream, sheet, and paper conversions</p>
                     </a>
+
+                    <x-ads type="feed" placement="index-digital-and-technical-grid" />
                 </div>
             </div>
 
             <!-- Utility & General Conversion Tools -->
             <div class="mb-16">
                 <div class="text-center mb-12">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Utility & General Conversion Tools</h3>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-4">Utility & General Conversion Tools</h2>
                     <p class="text-gray-600 max-w-2xl mx-auto">Professional tools for utility and general conversion tasks</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -1490,7 +1500,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-blue-500 px-2 py-1 rounded-full">GAS</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">CCF to Therms Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">CCF to Therms Calculator</h3>
                         <p class="text-sm text-gray-600">Gas volume to energy conversion</p>
                     </a>
 
@@ -1503,7 +1513,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-purple-500 px-2 py-1 rounded-full">GENERAL</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Conversion Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Conversion Calculator</h3>
                         <p class="text-sm text-gray-600">General purpose conversion tool</p>
                     </a>
 
@@ -1516,7 +1526,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-green-500 px-2 py-1 rounded-full">FOOD</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Grams To Calories Calculator</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Grams To Calories Calculator</h3>
                         <p class="text-sm text-gray-600">Food weight to energy conversion</p>
                     </a>
 
@@ -1529,7 +1539,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-yellow-500 px-2 py-1 rounded-full">COUNT</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Quantity Converter</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Quantity Converter</h3>
                         <p class="text-sm text-gray-600">Count and quantity conversions</p>
                     </a>
 
@@ -1542,7 +1552,7 @@
                             </div>
                             <span class="text-xs font-medium text-white bg-red-500 px-2 py-1 rounded-full">TEMP</span>
                         </div>
-                        <h4 class="font-semibold text-gray-900 mb-2">Temperature Conversion</h4>
+                        <h3 class="font-semibold text-gray-900 mb-2">Temperature Conversion</h3>
                         <p class="text-sm text-gray-600">Celsius, Fahrenheit, Kelvin conversions</p>
                     </a>
                 </div>
@@ -1554,7 +1564,7 @@
     <section class="bg-gray-50 py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Trusted by Professionals</h3>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Trusted by Professionals</h2>
                 <p class="text-gray-600">Precision tools for engineers, scientists, and technical professionals worldwide</p>
             </div>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -1582,7 +1592,7 @@
     <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h3 class="text-2xl font-bold text-gray-900 mb-4">Why Choose ConvertPro?</h3>
+                <h2 class="text-2xl font-bold text-gray-900 mb-4">Why Choose SolveKit?</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Professional-grade conversion tools designed for accuracy and reliability</p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -1592,7 +1602,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Precision Accuracy</h4>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Precision Accuracy</h3>
                     <p class="text-gray-600">Industry-standard conversion factors ensure precise results for all calculations</p>
                 </div>
                 <div class="text-center">
@@ -1601,7 +1611,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Lightning Fast</h4>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Lightning Fast</h3>
                     <p class="text-gray-600">Instant calculations with real-time conversion as you type</p>
                 </div>
                 <div class="text-center">
@@ -1610,10 +1620,12 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                         </svg>
                     </div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">Mobile Friendly</h4>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Mobile Friendly</h3>
                     <p class="text-gray-600">Responsive design works perfectly on all devices and screen sizes</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <x-ads type="multiplex" placement="index-bottom" class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" />
 </x-app-layout>

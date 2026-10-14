@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="CPS Calculator - ConvertPro"
+    title="CPS Calculator - SolveKit"
     description="Professional CPS calculator for cycles per second calculations. Convert frequency units, analyze periodic signals, and calculate timing parameters for engineering applications."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Frequency Analysis Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">CPS Calculator</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -117,24 +117,6 @@
                                                                                 <p class="text-xs text-gray-500">Wave propagation speed in medium</p>
                                                                             </div>
 
-                                                                            <!-- Application Type -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Application Type
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="applicationType" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General frequency analysis</option>
-                                                                                    <option value="electrical">Electrical/Power Systems</option>
-                                                                                    <option value="mechanical">Mechanical Systems</option>
-                                                                                    <option value="audio">Audio/Acoustics</option>
-                                                                                    <option value="radio">Radio/RF Communications</option>
-                                                                                    <option value="vibration">Vibration Analysis</option>
-                                                                                    <option value="timing">Timing/Clock Systems</option>
-                                                                                </select>
-                                                                            </div>
 
 
 
@@ -163,8 +145,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl border-l-4 border-pink-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Cycles Per Second</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Frequency calculation result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Cycles Per Second (CPS)</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a value to calculate the frequency</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-pink-600 font-mono" id="output">--</div>
@@ -309,56 +291,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About CPS and Frequency Calculations</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Understanding CPS</h4>
-                                    <p>Cycles per second (CPS) is synonymous with Hertz (Hz), the standard unit of frequency. It represents how many complete cycles of a periodic event occur in one second. This fundamental concept applies to mechanical vibrations, electrical signals, electromagnetic waves, and many other phenomena.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Engineering Applications</h4>
-                                    <p>CPS calculations are essential in electrical engineering, mechanical design, acoustics, and communications. Understanding frequency relationships helps in designing filters, analyzing vibrations, setting up timing systems, and working with RF communications.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-pink-50 rounded-lg border border-pink-200">
-                                <p class="text-sm text-pink-800">
-                                    <strong>Engineering Note:</strong> Frequency and period are reciprocals (f = 1/T). Angular frequency ω = 2πf relates linear frequency to rotational motion in radians per second.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Frequency Applications</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Power & Electrical</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-pink-600 cursor-pointer hover:text-pink-800" data-value="60" data-method="frequency_input">AC Power: 60 Hz</div>
-                                        <div class="text-xs text-gray-600 mt-1">North American power grid frequency</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-pink-600 cursor-pointer hover:text-pink-800" data-value="50" data-method="frequency_input">European Power: 50 Hz</div>
-                                        <div class="text-xs text-gray-600 mt-1">European power grid frequency</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Audio & Communications</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-pink-600 cursor-pointer hover:text-pink-800" data-value="440" data-method="frequency_input">Musical A4: 440 Hz</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard musical note frequency</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-pink-600 cursor-pointer hover:text-pink-800" data-value="2400000000" data-method="frequency_input">WiFi: 2.4 GHz</div>
-                                        <div class="text-xs text-gray-600 mt-1">Common WiFi frequency band</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -368,7 +300,6 @@
                         const secondaryValue = document.getElementById('secondaryValue');
                         const waveType = document.getElementById('waveType');
                         const customSpeed = document.getElementById('customSpeed');
-                        const applicationType = document.getElementById('applicationType');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Container elements
@@ -395,10 +326,6 @@
                         const wavelengthDisplay = document.getElementById('wavelengthDisplay');
                         const waveNumberDisplay = document.getElementById('waveNumberDisplay');
                         const waveSpeedDisplay = document.getElementById('waveSpeedDisplay');
-                        const frequencyRangeDisplay = document.getElementById('frequencyRangeDisplay');
-                        const applicationDisplay = document.getElementById('applicationDisplay');
-                        const photonEnergyDisplay = document.getElementById('photonEnergyDisplay');
-                        const commonUseDisplay = document.getElementById('commonUseDisplay');
                         const copyResult = document.getElementById('copyResult');
 
                         // Wave speeds (m/s)
@@ -410,20 +337,26 @@
                             custom: 343
                         };
 
-                        function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e12 || (Math.abs(num) <= 1e-12 && num !== 0)) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'G';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'k';
-                            } else if (Math.abs(num) >= 1) {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6, minimumFractionDigits: 0 });
+                        function formatNumber(num, decimals = 6) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
+
+                            const abs = Math.abs(num);
+
+                            if (abs === 0) {
+                                return '0';
+                            }
+
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return num.toExponential(4).replace(/\.?0+e/, 'e');
+                            }
+
+                            if (abs >= 1) {
+                                return num.toLocaleString('en-US', { maximumFractionDigits: decimals });
+                            }
+
+                            return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
                         }
 
                         function updateInputLabels() {
@@ -490,35 +423,25 @@
                             return waveSpeeds[type] || 343;
                         }
 
-                        function getFrequencyRange(freq) {
-                            if (freq < 20) return 'Infrasonic';
-                            if (freq < 20000) return 'Audio';
-                            if (freq < 1e6) return 'Ultrasonic';
-                            if (freq < 1e9) return 'Radio';
-                            if (freq < 1e12) return 'Microwave';
-                            if (freq < 1e15) return 'Infrared';
-                            if (freq < 8e14) return 'Visible';
-                            if (freq < 1e17) return 'Ultraviolet';
-                            if (freq < 1e19) return 'X-ray';
-                            return 'Gamma ray';
-                        }
-
-                        function getApplication(freq, appType) {
-                            if (appType === 'electrical' && freq >= 50 && freq <= 60) return 'Power grid';
-                            if (appType === 'audio' && freq >= 20 && freq <= 20000) return 'Human hearing';
-                            if (appType === 'radio' && freq >= 1e6 && freq <= 1e9) return 'Broadcasting';
-                            if (freq === 60) return 'AC power (US)';
-                            if (freq === 50) return 'AC power (EU)';
-                            if (freq === 440) return 'Musical A4';
-                            if (freq >= 88e6 && freq <= 108e6) return 'FM radio';
-                            return 'General';
+                        function describeInput(method, primary, secondary) {
+                            switch (method) {
+                                case 'period_input':
+                                    return `Period of ${formatNumber(primary)} s`;
+                                case 'rpm_input':
+                                    return `${formatNumber(primary)} RPM`;
+                                case 'wavelength_input':
+                                    return `Wavelength of ${formatNumber(primary)} m`;
+                                case 'event_counting':
+                                    return `${formatNumber(primary)} events in ${formatNumber(secondary)} s`;
+                                default:
+                                    return `${formatNumber(primary)} Hz`;
+                            }
                         }
 
                         function calculate() {
                             const method = calculationMethod.value;
                             const primary = parseFloat(primaryValue.value);
                             const secondary = parseFloat(secondaryValue.value);
-                            const appType = applicationType.value;
                             
                             if (!isNaN(primary) && primary > 0) {
                                 let frequency = 0;
@@ -551,7 +474,7 @@
                                     // Update primary output
                                     output.textContent = formatNumber(frequency) + ' Hz';
                                     resultTitle.textContent = 'Cycles Per Second (CPS)';
-                                    resultDescription.textContent = `Frequency: ${formatNumber(frequency)} Hz`;
+                                    resultDescription.textContent = `${describeInput(method, primary, secondary)} = ${formatNumber(frequency)} cycles per second`;
 
                                     // Display frequency units
                                     hertzDisplay.textContent = formatNumber(frequency) + ' Hz';
@@ -574,25 +497,6 @@
                                     waveNumberDisplay.textContent = formatNumber(waveNumber) + ' m⁻¹';
                                     waveSpeedDisplay.textContent = formatNumber(currentWaveSpeed) + ' m/s';
 
-                                    // Application analysis
-                                    frequencyRangeDisplay.textContent = getFrequencyRange(frequency);
-                                    applicationDisplay.textContent = getApplication(frequency, appType);
-                                    
-                                    // Photon energy (E = hf, h = 6.626e-34 J⋅s)
-                                    const photonEnergy = 6.626e-34 * frequency;
-                                    if (photonEnergy > 1.602e-19) {
-                                        photonEnergyDisplay.textContent = formatNumber(photonEnergy / 1.602e-19) + ' eV';
-                                    } else {
-                                        photonEnergyDisplay.textContent = formatNumber(photonEnergy) + ' J';
-                                    }
-                                    
-                                    // Common use
-                                    if (frequency === 60) commonUseDisplay.textContent = 'US power grid';
-                                    else if (frequency === 50) commonUseDisplay.textContent = 'EU power grid';
-                                    else if (frequency === 440) commonUseDisplay.textContent = 'Musical tuning';
-                                    else if (frequency >= 2.4e9 && frequency <= 2.5e9) commonUseDisplay.textContent = 'WiFi/Bluetooth';
-                                    else commonUseDisplay.textContent = getFrequencyRange(frequency);
-
                                 } else {
                                     clearOutputs();
                                 }
@@ -603,8 +507,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Cycles Per Second';
-                            resultDescription.textContent = 'Frequency calculation result';
+                            resultTitle.textContent = 'Cycles Per Second (CPS)';
+                            resultDescription.textContent = 'Enter a value to calculate the frequency';
                             hertzDisplay.textContent = '--';
                             kilohertzDisplay.textContent = '--';
                             megahertzDisplay.textContent = '--';
@@ -614,10 +518,6 @@
                             wavelengthDisplay.textContent = '--';
                             waveNumberDisplay.textContent = '--';
                             waveSpeedDisplay.textContent = '--';
-                            frequencyRangeDisplay.textContent = '--';
-                            applicationDisplay.textContent = '--';
-                            photonEnergyDisplay.textContent = '--';
-                            commonUseDisplay.textContent = '--';
                         }
 
                         function clearAll() {
@@ -626,7 +526,6 @@
                             calculationMethod.value = 'frequency_input';
                             waveType.value = 'sound_air';
                             customSpeed.value = '343';
-                            applicationType.value = '';
                             updateInputLabels();
                             clearOutputs();
                             primaryValue.focus();
@@ -645,7 +544,6 @@
                             calculate();
                         });
                         customSpeed.addEventListener('input', calculate);
-                        applicationType.addEventListener('change', calculate);
 
                         clearButton.addEventListener('click', clearAll);
 

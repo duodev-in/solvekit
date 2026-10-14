@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Minutes to Hours Converter - ConvertPro"
+    title="Minutes to Hours Converter - SolveKit"
     description="Professional minutes to hours converter for time calculations. Convert between minutes and hours with decimal precision and practical time examples."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Minutes ↔ Hours Time Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Minutes to Hours Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -88,10 +88,10 @@
                                                                                         id="precision" 
                                                                                         min="0" 
                                                                                         max="6" 
-                                                                                        value="2" 
+                                                                                        value="4" 
                                                                                         class="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                                                                                     >
-                                                                                    <span class="text-sm font-mono text-gray-700 min-w-[3rem]" id="precisionValue">2 digits</span>
+                                                                                    <span class="text-sm font-mono text-gray-700 min-w-[3rem]" id="precisionValue">4 digits</span>
                                                                                 </div>
                                                                                 <p class="text-xs text-gray-500">Adjust decimal places for calculations</p>
                                                                             </div>
@@ -274,56 +274,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Minutes to Hours Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Time Calculations</h4>
-                                    <p>Converting between minutes and hours is essential for time management, work scheduling, project planning, and understanding duration. The relationship is simple: 1 hour equals exactly 60 minutes, making calculations straightforward with division or multiplication.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Practical Applications</h4>
-                                    <p>This conversion is useful for payroll calculations, meeting planning, workout tracking, cooking times, travel duration, academic scheduling, and any situation where time needs to be expressed in different units for clarity or calculation purposes.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                <p class="text-sm text-blue-800">
-                                    <strong>Time Tip:</strong> Remember that 0.5 hours = 30 minutes, 0.25 hours = 15 minutes, and 0.75 hours = 45 minutes for quick mental calculations!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Common Time Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Time Duration Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Daily Activities</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="480" data-mode="min-to-hour">Work Day: 480 minutes</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard 8-hour work day</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="90" data-mode="min-to-hour">Movie: 90 minutes</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical movie duration</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Exercise & Learning</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="45" data-mode="min-to-hour">Workout: 45 minutes</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard fitness session</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-blue-600 cursor-pointer hover:text-blue-800" data-example="50" data-mode="min-to-hour">Class Period: 50 minutes</div>
-                                        <div class="text-xs text-gray-600 mt-1">University lecture duration</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -370,7 +320,11 @@
 
                         function formatNumber(num, decimals = null) {
                             const precision = decimals !== null ? decimals : getPrecision();
-                            return num.toLocaleString(undefined, { maximumFractionDigits: precision, minimumFractionDigits: precision });
+                            if (num !== 0 && Math.abs(num) < Math.pow(10, -precision)) {
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 3 });
+                            }
+
+                            return num.toLocaleString(undefined, { maximumFractionDigits: precision });
                         }
 
                         function formatTime(totalMinutes) {
@@ -453,9 +407,9 @@
 
                                 // Update primary output
                                 output.textContent = formatNumber(mode === 'min-to-hour' ? hours : minutes);
-                                resultDescription.textContent = mode === 'min-to-hour' ? 
-                                    `${inputVal} minutes = ${formatNumber(hours)} hours` : 
-                                    `${inputVal} hours = ${formatNumber(minutes)} minutes`;
+                                resultDescription.textContent = mode === 'min-to-hour' ?
+                                    `${formatNumber(inputVal)} ${inputVal === 1 ? 'minute' : 'minutes'} = ${formatNumber(hours)} ${hours === 1 ? 'hour' : 'hours'}` :
+                                    `${formatNumber(inputVal)} ${inputVal === 1 ? 'hour' : 'hours'} = ${formatNumber(minutes)} ${minutes === 1 ? 'minute' : 'minutes'}`;
 
                                 // Update displays
                                 minutesDisplay.textContent = formatNumber(minutes);
@@ -529,8 +483,8 @@
                             showDecimal.checked = true;
                             showHourMin.checked = true;
                             showWorded.checked = true;
-                            precision.value = 2;
-                            precisionValue.textContent = '2 digits';
+                            precision.value = 4;
+                            precisionValue.textContent = '4 digits';
                             updateInterface();
                             clearOutputs();
                             inputValue.focus();
@@ -587,23 +541,6 @@
                                 timeExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
                                 this.classList.remove('bg-gray-100', 'text-gray-700');
                                 this.classList.add('bg-blue-100', 'text-blue-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const mode = this.getAttribute('data-mode');
-                                
-                                inputValue.value = value;
-                                if (mode) {
-                                    document.querySelector(`input[value="${mode}"]`).checked = true;
-                                    updateInterface();
-                                }
-                                convert();
-                                inputValue.focus();
                             });
                         });
 

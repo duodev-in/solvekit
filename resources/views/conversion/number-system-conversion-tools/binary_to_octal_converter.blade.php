@@ -1,11 +1,11 @@
 <x-tool-page-layout
-    title="Binary to Octal Converter - ConvertPro"
+    title="Binary to Octal Converter - SolveKit"
     description="Professional binary and octal converter for computer science and digital systems. Convert both ways with complete base outputs and transparent calculation steps."
 >
     <x-slot name="toolUi">
         <div class="space-y-2">
             <section class="rounded-lg bg-white p-2.5 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900">Binary and Octal Converter</h2>
+                <h1 class="text-sm font-semibold text-slate-900">Binary to Octal</h1>
                 <p class="mt-0.5 text-[11px] text-slate-600">Compact two-way conversion between binary and octal with strong visibility and constraints.</p>
             </section>
 
@@ -94,59 +94,6 @@
         </div>
     </x-slot>
 
-    <x-slot name="aboutContent">
-        <div class="space-y-3 text-sm text-slate-600">
-            <section class="rounded-xl border border-slate-200 bg-slate-50 p-3">
-                <div class="flex items-center justify-between gap-2">
-                    <h3 class="text-sm font-semibold text-slate-900">Live Conversion Insights</h3>
-                    <span class="rounded-full bg-emerald-100 px-2 py-0.5 text-[10px] font-semibold text-emerald-700">Auto update</span>
-                </div>
-
-                <div id="breakdownDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Breakdown</p>
-                    <p id="conversionSteps" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="rulesDisplay" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Rules Applied</p>
-                    <p id="appliedRules" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-
-                <div id="historicalContext" class="mt-2 rounded-md border border-slate-200 bg-white p-2">
-                    <p class="text-[11px] font-semibold text-slate-700">Context Note</p>
-                    <p id="contextInfo" class="mt-1 text-[11px] leading-5 text-slate-600">--</p>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h4 class="text-sm font-semibold text-slate-900">Binary to Octal Mapping</h4>
-                <div class="mt-2 grid grid-cols-2 gap-1.5 text-[11px] text-slate-700 sm:grid-cols-4">
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">000 = 0</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">001 = 1</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">010 = 2</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">011 = 3</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">100 = 4</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">101 = 5</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">110 = 6</div>
-                    <div class="rounded-md border border-slate-200 bg-slate-50 px-2 py-1">111 = 7</div>
-                </div>
-            </section>
-
-            <section class="rounded-xl border border-slate-200 bg-white p-3">
-                <h3 class="text-sm font-semibold text-slate-900">Reading Guide</h3>
-                <div class="mt-2 space-y-2 text-xs leading-5 text-slate-700">
-                    <p><span class="font-semibold text-slate-900">Octal digits:</span> each octal symbol maps to exactly 3 binary bits.</p>
-                    <p><span class="font-semibold text-slate-900">Breakdown:</span> shows place-value math for the active base input.</p>
-                    <p><span class="font-semibold text-slate-900">All Bases:</span> binary, decimal, hexadecimal, and octal stay synchronized.</p>
-                    <p><span class="font-semibold text-slate-900">Constraints:</span> input is validated to safe integer precision.</p>
-                </div>
-            </section>
-
-            <div class="rounded-md bg-indigo-50 p-3 text-xs text-indigo-800">
-                Octal is compact for binary because every 3 bits combine into one octal digit.
-            </div>
-        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -172,12 +119,6 @@
                 const hexDisplay = document.getElementById('hexDisplay');
                 const octalDisplay = document.getElementById('octalDisplay');
                 const bitLengthDisplay = document.getElementById('bitLengthDisplay');
-                const breakdownDisplay = document.getElementById('breakdownDisplay');
-                const conversionSteps = document.getElementById('conversionSteps');
-                const rulesDisplay = document.getElementById('rulesDisplay');
-                const appliedRules = document.getElementById('appliedRules');
-                const historicalContext = document.getElementById('historicalContext');
-                const contextInfo = document.getElementById('contextInfo');
 
                 const strictBinaryPattern = /^[01]+$/;
                 const strictOctalPattern = /^[0-7]+$/;
@@ -202,51 +143,6 @@
                     return parsed;
                 }
 
-                function buildFromBaseSteps(value, base) {
-                    const chars = value.split('');
-                    const steps = [];
-                    let total = 0;
-
-                    chars.forEach((char, index) => {
-                        const power = chars.length - index - 1;
-                        const digit = parseInt(char, base);
-                        const amount = digit * (base ** power);
-                        total += amount;
-                        steps.push(`${char} x ${base}^${power} = ${amount}`);
-                    });
-
-                    steps.push(`Total = ${total}`);
-                    return steps;
-                }
-
-                function getRules(mode) {
-                    if (mode === 'binary-to-octal') {
-                        return [
-                            'Group binary digits in sets of 3 from right to left.',
-                            'Each 3-bit set maps to one octal digit (0 to 7).',
-                            'Octal is a compact shorthand for binary.'
-                        ];
-                    }
-
-                    return [
-                        'Each octal digit expands to exactly 3 binary bits.',
-                        'Octal input accepts digits 0 through 7 only.',
-                        'Leading zeros can appear in grouped binary output.'
-                    ];
-                }
-
-                function getContextNote(decimal) {
-                    if (decimal <= 511) {
-                        return `${decimal} can be represented in at most three octal digits.`;
-                    }
-
-                    if (decimal <= 4095) {
-                        return `${decimal} fits well in octal groups for low-level permissions and masks.`;
-                    }
-
-                    return `${decimal} uses ${decimal.toString(2).length} bits in binary representation.`;
-                }
-
                 function updateInterface() {
                     const mode = getMode();
 
@@ -266,12 +162,6 @@
                     resultDescription.textContent = 'Octal converted to binary';
                 }
 
-                function setSectionVisibility() {
-                    breakdownDisplay.style.display = 'block';
-                    rulesDisplay.style.display = 'block';
-                    historicalContext.style.display = 'block';
-                }
-
                 function clearOutputs() {
                     output.textContent = '--';
                     binaryDisplay.textContent = '--';
@@ -279,9 +169,6 @@
                     hexDisplay.textContent = '--';
                     octalDisplay.textContent = '--';
                     bitLengthDisplay.textContent = '--';
-                    conversionSteps.textContent = '--';
-                    appliedRules.textContent = '--';
-                    contextInfo.textContent = '--';
                 }
 
                 function renderInvalid() {
@@ -294,7 +181,6 @@
                     const input = sanitize(inputValue.value);
                     if (!input) {
                         clearOutputs();
-                        setSectionVisibility();
                         return;
                     }
 
@@ -302,13 +188,11 @@
                     let decimal;
                     let binary;
                     let octal;
-                    let steps;
                     let outputValue;
 
                     if (mode === 'binary-to-octal') {
                         if (!strictBinaryPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -316,19 +200,15 @@
                         const parsed = parseBaseToSafeInteger(binary, 2);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         octal = decimal.toString(8);
-                        steps = buildFromBaseSteps(binary, 2);
-                        steps.push(`Convert decimal ${decimal} to base 8 = ${octal}`);
                         outputValue = octal;
                     } else {
                         if (!strictOctalPattern.test(input)) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
@@ -336,14 +216,11 @@
                         const parsed = parseBaseToSafeInteger(octal, 8);
                         if (parsed === null) {
                             renderInvalid();
-                            setSectionVisibility();
                             return;
                         }
 
                         decimal = parsed;
                         binary = decimal.toString(2);
-                        steps = buildFromBaseSteps(octal, 8);
-                        steps.push(`Convert decimal ${decimal} to base 2 = ${binary}`);
                         outputValue = groupBinary(binary);
                     }
 
@@ -357,17 +234,11 @@
                     hexDisplay.textContent = hex;
                     octalDisplay.textContent = octal;
                     bitLengthDisplay.textContent = `${binary.length} bits`;
-                    conversionSteps.innerHTML = steps.join('<br>');
-                    appliedRules.innerHTML = '- ' + getRules(mode).join('<br>- ');
-                    contextInfo.textContent = getContextNote(decimal);
-
-                    setSectionVisibility();
                 }
 
                 function clearAll() {
                     inputValue.value = '';
                     clearOutputs();
-                    setSectionVisibility();
                     inputValue.focus();
                 }
 
@@ -418,7 +289,6 @@
 
                 updateInterface();
                 clearOutputs();
-                setSectionVisibility();
             });
         </script>
     </x-slot>

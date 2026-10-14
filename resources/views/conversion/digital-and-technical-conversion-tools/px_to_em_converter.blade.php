@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Px to Em Converter - ConvertPro"
+    title="Px to Em Converter - SolveKit"
     description="Professional px to em converter for CSS unit conversion. Convert pixels to em units for responsive web design and scalable typography with base font size calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">CSS Unit Conversion Calculator</h2>
+                                <h1 class="text-lg font-semibold text-white">Px to Em Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -144,8 +144,8 @@
                                                                             <div class="p-6 bg-gradient-to-r from-indigo-50 to-blue-50 rounded-xl border-l-4 border-indigo-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Converted Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="result-description">Conversion result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="result-title">Em (em)</h4>
+                                                                                        <p class="text-sm text-gray-600" id="result-description">Enter a value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-indigo-600 font-mono" id="output">--</div>
@@ -322,56 +322,6 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About CSS Unit Conversion</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Responsive Design Units</h4>
-                                    <p>CSS units are crucial for responsive web design. Relative units like em and rem scale with font sizes, making layouts adaptable. Pixels provide precise control, while viewport units create truly responsive designs that adapt to screen sizes.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Best Practices</h4>
-                                    <p>Use rem for consistent spacing, em for components that should scale with their context, pixels for borders and fine details, and viewport units for full-screen layouts. Understanding unit relationships helps create accessible, scalable designs.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-indigo-50 rounded-lg border border-indigo-200">
-                                <p class="text-sm text-indigo-800">
-                                    <strong>Design Tip:</strong> Base your design system on rem units for consistency, but use em for components that need to scale with their context.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Practical Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common CSS Unit Examples</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Typography</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="18" data-direction="px_to_em">Body Text: 18px</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard body text size</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="32" data-direction="px_to_rem">Heading: 32px</div>
-                                        <div class="text-xs text-gray-600 mt-1">Large heading size</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Layout Spacing</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="24" data-direction="px_to_rem">Margin: 24px</div>
-                                        <div class="text-xs text-gray-600 mt-1">Standard spacing unit</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-indigo-600 cursor-pointer hover:text-indigo-800" data-value="1.5" data-direction="em_to_px">Line Height: 1.5em</div>
-                                        <div class="text-xs text-gray-600 mt-1">Readable line spacing</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
@@ -410,8 +360,18 @@
                         const copyCssCode = document.getElementById('copyCssCode');
 
                         function formatNumber(num, decimals = 3) {
+                            if (num !== 0 && Math.abs(num) < Math.pow(10, -decimals)) {
+                                return Number(num.toPrecision(3));
+                            }
+
                             return parseFloat(num.toFixed(decimals));
                         }
+
+                        const unitNames = {
+                            px: 'Pixels (px)',
+                            em: 'Em (em)',
+                            rem: 'Rem (rem)'
+                        };
 
                         function updateInputLabels() {
                             const direction = conversionDirection.value;
@@ -516,8 +476,8 @@
                                 
                                 // Update primary output
                                 output.textContent = primaryResult + primaryUnit;
-                                resultTitle.textContent = `Converted to ${primaryUnit.toUpperCase()}`;
-                                resultDescription.textContent = `${value}${inputUnit.textContent} = ${primaryResult}${primaryUnit}`;
+                                resultTitle.textContent = unitNames[primaryUnit];
+                                resultDescription.textContent = `${formatNumber(value)}${inputUnit.textContent} = ${primaryResult}${primaryUnit} (base font size ${formatNumber(baseSize)}px)`;
 
                                 // Display all units
                                 emDisplay.textContent = formatNumber(em) + 'em';
@@ -549,8 +509,8 @@
 
                         function clearOutputs() {
                             output.textContent = '--';
-                            resultTitle.textContent = 'Converted Value';
-                            resultDescription.textContent = 'Conversion result';
+                            resultTitle.textContent = unitNames[conversionDirection.value.split('_to_')[1]] || 'Converted Value';
+                            resultDescription.textContent = 'Enter a value to convert';
                             emDisplay.textContent = '--';
                             remDisplay.textContent = '--';
                             percentDisplay.textContent = '--';

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Radiation Converter - ConvertPro"
+    title="Radiation Converter - SolveKit"
     description="Professional radiation converter for dose and exposure units. Convert between Sievert, Gray, Rem, Rad, and other radiation measurement units for safety and medical applications."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Radiation Dose & Exposure Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Radiation Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,6 +18,7 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
+                                                                            <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                                                                             <!-- Input Value -->
                                                                             <div class="space-y-2">
                                                                                 <label for="inputValue" class="block text-sm font-semibold text-gray-700">
@@ -119,26 +120,7 @@
                                                                                 </select>
                                                                             </div>
 
-                                                                            <!-- Radiation Context -->
-                                                                            <div class="space-y-2 hidden">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    Radiation Context
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="radiationContext" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="">General conversion</option>
-                                                                                    <option value="medical">Medical applications</option>
-                                                                                    <option value="occupational">Occupational safety</option>
-                                                                                    <option value="environmental">Environmental monitoring</option>
-                                                                                    <option value="nuclear">Nuclear industry</option>
-                                                                                    <option value="research">Research applications</option>
-                                                                                    <option value="emergency">Emergency response</option>
-                                                                                </select>
                                                                             </div>
-
-
 
                                                                             <!-- Clear Button -->
                                                                             <div class="flex justify-center">
@@ -298,64 +280,12 @@
         </div>
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Radiation Measurement</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Radiation Quantities</h4>
-                                    <p>Radiation measurement involves several quantities: Activity (radioactive decay rate), Absorbed Dose (energy deposited), Equivalent Dose (biological effect), and Exposure (ionization in air). Each has specific units and applications in radiation protection and medical physics.</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Safety Applications</h4>
-                                    <p>Radiation measurements are critical for medical imaging, nuclear medicine, occupational health, environmental monitoring, and emergency response. Understanding dose limits and risk levels helps ensure safe practices in radiation-related work and medical procedures.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                                <p class="text-sm text-yellow-800">
-                                    <strong>Safety Note:</strong> Always follow ALARA principle (As Low As Reasonably Achievable) when working with radiation sources!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Dose Limit Guidelines -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Radiation Dose Guidelines</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Occupational Limits</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="20" data-from="millisievert" data-to="millirem">Annual: 20 mSv/year</div>
-                                        <div class="text-xs text-gray-600 mt-1">Radiation workers limit</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="500" data-from="millisievert" data-to="rem">Emergency: 500 mSv</div>
-                                        <div class="text-xs text-gray-600 mt-1">Life-saving operations</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Medical Procedures</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="0.1" data-from="millisievert" data-to="millirem">Chest X-ray: 0.1 mSv</div>
-                                        <div class="text-xs text-gray-600 mt-1">Common diagnostic procedure</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="10" data-from="millisievert" data-to="millirem">CT Scan: 10 mSv</div>
-                                        <div class="text-xs text-gray-600 mt-1">Typical CT examination</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
-
     <x-slot name="scripts">
         <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const inputValue = document.getElementById('inputValue');
                         const fromUnit = document.getElementById('fromUnit');
                         const toUnit = document.getElementById('toUnit');
-                        const radiationContext = document.getElementById('radiationContext');
                         const clearButton = document.getElementById('clearButton');
                         
                         // Output elements
@@ -370,14 +300,6 @@
                         const curieDisplay = document.getElementById('curieDisplay');
                         const roentgenDisplay = document.getElementById('roentgenDisplay');
                         const msievertDisplay = document.getElementById('msievertDisplay');
-                        const riskLevel = document.getElementById('riskLevel');
-                        const safetyCategory = document.getElementById('safetyCategory');
-                        const protectionRequired = document.getElementById('protectionRequired');
-                        const contextInfo = document.getElementById('contextInfo');
-                        const chestXrayComparison = document.getElementById('chestXrayComparison');
-                        const annualLimitComparison = document.getElementById('annualLimitComparison');
-                        const backgroundComparison = document.getElementById('backgroundComparison');
-                        const ctScanComparison = document.getElementById('ctScanComparison');
                         const copyResult = document.getElementById('copyResult');
 
                         // Radiation unit multipliers (to base SI units)
@@ -434,143 +356,42 @@
                             microcurie: 'μCi'
                         };
 
-                        function formatNumber(num, decimals = 3) {
-                            if (Math.abs(num) >= 1e15 || (Math.abs(num) <= 1e-10 && num !== 0)) {
-                                return num.toExponential(2);
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'B';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 2 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: decimals, minimumFractionDigits: 0 });
+                        function formatNumber(num) {
+                            if (!Number.isFinite(num)) {
+                                return '--';
                             }
-                        }
-
-                        function getRiskLevel(sievertValue) {
-                            if (sievertValue < 0.001) return 'Negligible';
-                            if (sievertValue < 0.01) return 'Very Low';
-                            if (sievertValue < 0.1) return 'Low';
-                            if (sievertValue < 1) return 'Moderate';
-                            if (sievertValue < 4) return 'High';
-                            return 'Severe';
-                        }
-
-                        function getSafetyCategory(sievertValue) {
-                            if (sievertValue < 0.001) return 'Background level';
-                            if (sievertValue < 0.02) return 'Below annual limit';
-                            if (sievertValue < 0.1) return 'Occupational range';
-                            if (sievertValue < 1) return 'Medical procedure';
-                            if (sievertValue < 4) return 'Acute exposure';
-                            return 'Life threatening';
-                        }
-
-                        function getProtectionRequired(sievertValue) {
-                            if (sievertValue < 0.001) return 'None required';
-                            if (sievertValue < 0.02) return 'Standard precautions';
-                            if (sievertValue < 0.1) return 'Radiation area controls';
-                            if (sievertValue < 1) return 'High radiation area';
-                            if (sievertValue < 4) return 'Emergency protocols';
-                            return 'Immediate evacuation';
-                        }
-
-                        function getContextInfo(value, unit, context) {
-                            const contexts = {
-                                medical: {
-                                    name: 'Medical Applications',
-                                    getInfo: (val, un) => {
-                                        if (un.includes('sievert') || un.includes('rem')) {
-                                            const sv = val * radiationMultipliers[un];
-                                            if (sv < 0.0001) return 'Dental X-ray level dose';
-                                            if (sv < 0.001) return 'Chest X-ray equivalent dose';
-                                            if (sv < 0.01) return 'CT scan range dose';
-                                            if (sv < 0.1) return 'Nuclear medicine diagnostic';
-                                            return 'Therapeutic radiation treatment level';
-                                        }
-                                        return 'Medical radiation exposure measurement';
-                                    }
-                                },
-                                occupational: {
-                                    name: 'Occupational Safety',
-                                    getInfo: (val, un) => {
-                                        if (un.includes('sievert') || un.includes('rem')) {
-                                            const sv = val * radiationMultipliers[un];
-                                            if (sv < 0.02) return 'Below annual occupational limit';
-                                            if (sv < 0.05) return 'Requires monitoring and controls';
-                                            if (sv < 0.5) return 'High exposure - investigation required';
-                                            return 'Emergency exposure level';
-                                        }
-                                        return 'Workplace radiation safety measurement';
-                                    }
-                                },
-                                environmental: {
-                                    name: 'Environmental Monitoring',
-                                    getInfo: (val, un) => {
-                                        if (un.includes('becquerel') || un.includes('curie')) {
-                                            const bq = val * radiationMultipliers[un];
-                                            if (bq < 1000) return 'Low environmental activity';
-                                            if (bq < 1000000) return 'Detectable contamination';
-                                            if (bq < 1000000000) return 'Significant contamination';
-                                            return 'High-level environmental contamination';
-                                        }
-                                        return 'Environmental radiation monitoring';
-                                    }
-                                },
-                                nuclear: {
-                                    name: 'Nuclear Industry',
-                                    getInfo: (val, un) => {
-                                        if (un.includes('sievert') || un.includes('rem')) {
-                                            const sv = val * radiationMultipliers[un];
-                                            if (sv < 0.02) return 'Normal operational exposure';
-                                            if (sv < 0.1) return 'Elevated but controlled exposure';
-                                            if (sv < 1) return 'Accident scenario exposure';
-                                            return 'Emergency response exposure';
-                                        }
-                                        return 'Nuclear facility radiation measurement';
-                                    }
-                                },
-                                research: {
-                                    name: 'Research Applications',
-                                    getInfo: (val, un) => {
-                                        return 'Research-grade radiation measurement for scientific studies and experiments';
-                                    }
-                                },
-                                emergency: {
-                                    name: 'Emergency Response',
-                                    getInfo: (val, un) => {
-                                        if (un.includes('sievert') || un.includes('rem')) {
-                                            const sv = val * radiationMultipliers[un];
-                                            if (sv < 0.05) return 'Evacuation not required';
-                                            if (sv < 0.5) return 'Consider sheltering or evacuation';
-                                            if (sv < 5) return 'Immediate evacuation required';
-                                            return 'Life-threatening emergency exposure';
-                                        }
-                                        return 'Emergency radiation response measurement';
-                                    }
-                                }
-                            };
-
-                            if (context && contexts[context]) {
-                                const ctx = contexts[context];
-                                return `${ctx.name}: ${ctx.getInfo(value, unit)}`;
+                            if (num === 0) {
+                                return '0';
                             }
-                            return 'Select a radiation context for specific information';
+                            const abs = Math.abs(num);
+                            if (abs >= 1e12 || abs < 1e-6) {
+                                return parseFloat(num.toPrecision(5)).toExponential();
+                            }
+                            if (abs >= 1) {
+                                return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            }
+                            return num.toLocaleString(undefined, { maximumSignificantDigits: 5 });
                         }
 
-                        function getDoseComparisons(sievertValue) {
-                            // Reference doses in Sievert
-                            const chestXray = 0.0001; // 0.1 mSv
-                            const annualLimit = 0.02;  // 20 mSv (occupational)
-                            const background = 0.0025; // 2.5 mSv/year (average)
-                            const ctScan = 0.01;      // 10 mSv
+                        function syncTargetUnits() {
+                            const fromGroup = fromUnit.options[fromUnit.selectedIndex].parentElement.label;
+                            let firstCompatible = null;
 
-                            return {
-                                chestXray: formatNumber(sievertValue / chestXray, 1) + 'x',
-                                annualLimit: formatNumber(sievertValue / annualLimit, 2) + 'x',
-                                background: formatNumber(sievertValue / background, 1) + 'x',
-                                ctScan: formatNumber(sievertValue / ctScan, 2) + 'x'
-                            };
+                            Array.from(toUnit.querySelectorAll('optgroup')).forEach(group => {
+                                const isCompatible = group.label === fromGroup;
+                                group.hidden = !isCompatible;
+                                Array.from(group.children).forEach(option => {
+                                    option.disabled = !isCompatible;
+                                    option.hidden = !isCompatible;
+                                    if (isCompatible && option.value !== fromUnit.value && !firstCompatible) {
+                                        firstCompatible = option.value;
+                                    }
+                                });
+                            });
+
+                            if (toUnit.options[toUnit.selectedIndex].disabled) {
+                                toUnit.value = firstCompatible || fromUnit.value;
+                            }
                         }
 
                         function canConvert(fromUnit, toUnit) {
@@ -596,12 +417,12 @@
                             const inputVal = parseFloat(inputValue.value);
                             const from = fromUnit.value;
                             const to = toUnit.value;
-                            const context = radiationContext.value;
 
                             if (!isNaN(inputVal) && inputVal >= 0) {
                                 if (!canConvert(from, to)) {
-                                    output.textContent = 'Cannot convert between different radiation quantities';
-                                    resultDescription.textContent = 'Incompatible unit types';
+                                    output.textContent = 'Incompatible units';
+                                    resultTitle.textContent = 'Converted Radiation';
+                                    resultDescription.textContent = 'Cannot convert between different radiation quantities';
                                     return;
                                 }
 
@@ -611,8 +432,8 @@
                                 
                                 // Update primary output
                                 output.textContent = formatNumber(result) + ' ' + unitLabels[to];
-                                resultTitle.textContent = `${unitLabels[to]}`;
-                                resultDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+                                resultTitle.textContent = toUnit.options[toUnit.selectedIndex].text.split(' - ')[0];
+                                resultDescription.textContent = `${formatNumber(inputVal)} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
 
                                 // Convert to common units for display
                                 grayDisplay.textContent = formatNumber(baseValue);
@@ -639,34 +460,6 @@
                                     roentgenDisplay.textContent = 'N/A';
                                 }
 
-                                // Safety assessment (for dose units)
-                                if (['sievert', 'rem', 'millisievert', 'microsievert', 'millirem'].includes(from) ||
-                                    ['gray', 'rad', 'milligray', 'microgray', 'centigray'].includes(from)) {
-                                    const sievertValue = baseValue; // Assume equivalent dose = absorbed dose for simplicity
-                                    
-                                    riskLevel.textContent = getRiskLevel(sievertValue);
-                                    safetyCategory.textContent = getSafetyCategory(sievertValue);
-                                    protectionRequired.textContent = getProtectionRequired(sievertValue);
-
-                                    // Dose comparisons
-                                    const comparisons = getDoseComparisons(sievertValue);
-                                    chestXrayComparison.textContent = comparisons.chestXray;
-                                    annualLimitComparison.textContent = comparisons.annualLimit;
-                                    backgroundComparison.textContent = comparisons.background;
-                                    ctScanComparison.textContent = comparisons.ctScan;
-                                } else {
-                                    riskLevel.textContent = 'N/A';
-                                    safetyCategory.textContent = 'N/A';
-                                    protectionRequired.textContent = 'N/A';
-                                    chestXrayComparison.textContent = 'N/A';
-                                    annualLimitComparison.textContent = 'N/A';
-                                    backgroundComparison.textContent = 'N/A';
-                                    ctScanComparison.textContent = 'N/A';
-                                }
-
-                                // Context information
-                                contextInfo.textContent = getContextInfo(inputVal, from, context);
-
                             } else {
                                 clearOutputs();
                             }
@@ -684,30 +477,24 @@
                             curieDisplay.textContent = '--';
                             roentgenDisplay.textContent = '--';
                             msievertDisplay.textContent = '--';
-                            riskLevel.textContent = '--';
-                            safetyCategory.textContent = '--';
-                            protectionRequired.textContent = '--';
-                            contextInfo.textContent = 'Select a radiation context for specific information';
-                            chestXrayComparison.textContent = '--';
-                            annualLimitComparison.textContent = '--';
-                            backgroundComparison.textContent = '--';
-                            ctScanComparison.textContent = '--';
                         }
 
                         function clearAll() {
                             inputValue.value = '';
                             fromUnit.value = 'gray';
+                            syncTargetUnits();
                             toUnit.value = 'rad';
-                            radiationContext.value = '';
                             clearOutputs();
                             inputValue.focus();
                         }
 
                         // Event listeners
                         inputValue.addEventListener('input', convert);
-                        fromUnit.addEventListener('change', convert);
+                        fromUnit.addEventListener('change', function() {
+                            syncTargetUnits();
+                            convert();
+                        });
                         toUnit.addEventListener('change', convert);
-                        radiationContext.addEventListener('change', convert);
 
                         clearButton.addEventListener('click', clearAll);
 
@@ -734,6 +521,7 @@
                                 
                                 inputValue.value = value;
                                 fromUnit.value = from;
+                                syncTargetUnits();
                                 toUnit.value = to;
                                 convert();
                                 
@@ -745,23 +533,8 @@
                             });
                         });
 
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
-                                inputValue.focus();
-                            });
-                        });
-
                         // Initialize
+                        syncTargetUnits();
                         inputValue.focus();
 
                         // Keyboard shortcuts

@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="mg to mL Converter - ConvertPro"
+    title="mg to mL Converter - SolveKit"
     description="Professional mg to mL converter for concentration-based calculations. Convert between weight and volume using substance concentration values."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Concentration-Based Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">mg to mL</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -313,8 +313,10 @@
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 3 });
                             } else if (num >= 1) {
                                 return num.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                            } else if (num !== 0 && Math.abs(num) < 0.000001) {
+                                return Number(num.toPrecision(4)).toExponential();
                             } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 6 });
+                                return num.toLocaleString(undefined, { maximumSignificantDigits: 6 });
                             }
                         }
 

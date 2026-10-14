@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Capacitance Converter - ConvertPro"
+    title="Capacitance Converter - SolveKit"
     description="Professional capacitance converter for electrical engineering and electronics. Convert between farads, millifarads, microfarads, nanofarads, and picofarads with detailed calculations."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="border-b border-slate-200 bg-slate-900 px-5 py-3">
-                                <h2 class="text-lg font-semibold text-white">Electrical Capacitance Unit Converter</h2>
+                                <h1 class="text-lg font-semibold text-white">Capacitance Converter</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -18,69 +18,61 @@
                                     <div class="lg:col-span-5">
                                         <form class="space-y-5 rounded-xl border border-slate-200 bg-white p-4 shadow-sm focus-within:ring-2 focus-within:ring-slate-200 lg:sticky lg:top-24 lg:z-20 lg:max-h-[calc(100vh-7.5rem)] lg:overflow-y-auto" id="calculatorForm">
 
-                                                                            <!-- Input Value -->
-                                                                            <div class="space-y-2">
-                                                                                <label for="inputValue" class="block text-sm font-semibold text-gray-700">
-                                                                                    Enter Capacitance Value
-                                                                                </label>
-                                                                                <div class="relative">
-                                                                                    <input 
-                                                                                        type="number" 
-                                                                                        id="inputValue" 
-                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono" 
-                                                                                        placeholder="Enter value (e.g., 100)"
+                                                                            <!-- Value and Units -->
+                                                                            <div class="grid gap-3 sm:grid-cols-3">
+                                                                                <!-- Input Value -->
+                                                                                <div class="space-y-2">
+                                                                                    <label for="inputValue" class="block text-sm font-semibold text-gray-700">
+                                                                                        Capacitance Value
+                                                                                    </label>
+                                                                                    <input
+                                                                                        type="number"
+                                                                                        id="inputValue"
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-mono"
+                                                                                        placeholder="e.g. 100"
                                                                                         step="any"
                                                                                     >
-                                                                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                                                                        <span class="text-gray-500 text-sm font-medium">Capacitance</span>
-                                                                                    </div>
                                                                                 </div>
-                                                                                <p class="text-xs text-gray-500">Enter any positive number</p>
+
+                                                                                <!-- From Unit -->
+                                                                                <div class="space-y-2">
+                                                                                    <label for="fromUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        From Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="fromUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="farad">Farad (F)</option>
+                                                                                        <option value="millifarad">Millifarad (mF)</option>
+                                                                                        <option value="microfarad" selected>Microfarad (μF)</option>
+                                                                                        <option value="nanofarad">Nanofarad (nF)</option>
+                                                                                        <option value="picofarad">Picofarad (pF)</option>
+                                                                                        <option value="femtofarad">Femtofarad (fF)</option>
+                                                                                        <option value="attofarad">Attofarad (aF)</option>
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <!-- To Unit -->
+                                                                                <div class="space-y-2">
+                                                                                    <label for="toUnit" class="block text-sm font-semibold text-gray-700">
+                                                                                        To Unit
+                                                                                    </label>
+                                                                                    <select 
+                                                                                        id="toUnit" 
+                                                                                        class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
+                                                                                    >
+                                                                                        <option value="farad">Farad (F)</option>
+                                                                                        <option value="millifarad">Millifarad (mF)</option>
+                                                                                        <option value="microfarad">Microfarad (μF)</option>
+                                                                                        <option value="nanofarad" selected>Nanofarad (nF)</option>
+                                                                                        <option value="picofarad">Picofarad (pF)</option>
+                                                                                        <option value="femtofarad">Femtofarad (fF)</option>
+                                                                                        <option value="attofarad">Attofarad (aF)</option>
+                                                                                    </select>
+                                                                                </div>
                                                                             </div>
 
-                                                                            <!-- From Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    From Unit (Source)
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="fromUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="farad">Farad (F)</option>
-                                                                                    <option value="millifarad">Millifarad (mF)</option>
-                                                                                    <option value="microfarad" selected>Microfarad (μF)</option>
-                                                                                    <option value="nanofarad">Nanofarad (nF)</option>
-                                                                                    <option value="picofarad">Picofarad (pF)</option>
-                                                                                    <option value="femtofarad">Femtofarad (fF)</option>
-                                                                                    <option value="attofarad">Attofarad (aF)</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <!-- To Unit -->
-                                                                            <div class="space-y-2">
-                                                                                <label class="block text-sm font-semibold text-gray-700">
-                                                                                    To Unit (Target)
-                                                                                </label>
-                                                                                <select 
-                                                                                    id="toUnit" 
-                                                                                    class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-slate-400 focus:ring-2 focus:ring-slate-200 transition-all duration-200 text-lg font-medium bg-white"
-                                                                                >
-                                                                                    <option value="farad">Farad (F)</option>
-                                                                                    <option value="millifarad">Millifarad (mF)</option>
-                                                                                    <option value="microfarad">Microfarad (μF)</option>
-                                                                                    <option value="nanofarad" selected>Nanofarad (nF)</option>
-                                                                                    <option value="picofarad">Picofarad (pF)</option>
-                                                                                    <option value="femtofarad">Femtofarad (fF)</option>
-                                                                                    <option value="attofarad">Attofarad (aF)</option>
-                                                                                </select>
-                                                                            </div>
-
-                                                                            <div class="hidden" aria-hidden="true">
-                                                                                <input type="radio" name="context" value="general" checked>
-                                                                                <input type="radio" name="context" value="electronics">
-                                                                                <input type="radio" name="context" value="power">
-                                                                            </div>
 
 
 
@@ -103,14 +95,14 @@
                                     <div class="space-y-4 lg:col-span-7">
                                         <!-- Results Display -->
                                                                         <div class="mt-8 space-y-4">
-                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Values</h3>
+                                                                            <h3 class="text-lg font-semibold text-gray-800 text-center mb-4">Converted Value</h3>
 
                                                                             <!-- Primary Result -->
                                                                             <div class="p-6 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-xl border-l-4 border-yellow-500">
                                                                                 <div class="flex items-center justify-between">
                                                                                     <div>
-                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1">Converted Value</h4>
-                                                                                        <p class="text-sm text-gray-600" id="conversionDescription">Primary conversion result</p>
+                                                                                        <h4 class="text-lg font-semibold text-gray-800 mb-1" id="resultTitle">Nanofarads (nF)</h4>
+                                                                                        <p class="text-sm text-gray-600" id="conversionDescription">Enter a capacitance value to convert</p>
                                                                                     </div>
                                                                                     <div class="text-right">
                                                                                         <div class="text-2xl font-bold text-yellow-600 font-mono" id="output">--</div>
@@ -191,337 +183,158 @@
     
 </x-slot>
 
-    <x-slot name="aboutContent">
-        <!-- Additional Information -->
-                        <div class="mt-8 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">About Capacitance</h3>
-                            <div class="grid md:grid-cols-2 gap-6 text-sm text-gray-600">
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Electrical Property</h4>
-                                    <p>Capacitance is the ability of a component to store electrical charge. It's measured in farads (F), named after Michael Faraday. The farad is a very large unit, so most practical capacitors are measured in microfarads (μF), nanofarads (nF), or picofarads (pF).</p>
-                                </div>
-                                <div>
-                                    <h4 class="font-semibold text-gray-700 mb-2">Engineering Applications</h4>
-                                    <p>Capacitors are essential in electronics for energy storage, filtering, timing circuits, and power factor correction. Understanding capacitance units is crucial for circuit design, component selection, and electrical system analysis.</p>
-                                </div>
-                            </div>
-                            <div class="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                                <p class="text-sm text-yellow-800">
-                                    <strong>Engineering Tip:</strong> Remember that 1 farad is extremely large - a 1F capacitor at 1V stores the same energy as lifting 1kg by 1 meter!
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Electronics Examples -->
-                        <div class="mt-6 bg-white rounded-xl shadow-lg p-6">
-                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Common Electronics Applications</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">Power Supply Filtering</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="470" data-from="microfarad" data-to="nanofarad">470 μF</div>
-                                        <div class="text-xs text-gray-600 mt-1">Electrolytic capacitor for power filtering</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="100" data-from="nanofarad" data-to="picofarad">100 nF</div>
-                                        <div class="text-xs text-gray-600 mt-1">Ceramic capacitor for decoupling</div>
-                                    </div>
-                                </div>
-                                <div class="space-y-2">
-                                    <h4 class="font-semibold text-gray-700">RF & Timing Circuits</h4>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="22" data-from="picofarad" data-to="femtofarad">22 pF</div>
-                                        <div class="text-xs text-gray-600 mt-1">NPO capacitor for oscillator circuits</div>
-                                    </div>
-                                    <div class="p-3 bg-gray-50 rounded-lg">
-                                        <div class="font-medium text-yellow-600 cursor-pointer hover:text-yellow-800" data-example="1" data-from="nanofarad" data-to="picofarad">1 nF</div>
-                                        <div class="text-xs text-gray-600 mt-1">Film capacitor for audio coupling</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    </x-slot>
 
     <x-slot name="scripts">
         <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const inputValue = document.getElementById('inputValue');
-                        const fromUnit = document.getElementById('fromUnit');
-                        const toUnit = document.getElementById('toUnit');
-                        const contextRadios = document.getElementsByName('context');
-                        const clearButton = document.getElementById('clearButton');
-                        
-                        // Output elements
-                        const output = document.getElementById('output');
-                        const conversionDescription = document.getElementById('conversionDescription');
-                        const faradDisplay = document.getElementById('faradDisplay');
-                        const millifaradDisplay = document.getElementById('millifaradDisplay');
-                        const microfaradDisplay = document.getElementById('microfaradDisplay');
-                        const nanofaradDisplay = document.getElementById('nanofaradDisplay');
-                        const picofaradDisplay = document.getElementById('picofaradDisplay');
-                        const femtofaradDisplay = document.getElementById('femtofaradDisplay');
-                        const scientificInput = document.getElementById('scientificInput');
-                        const scientificOutput = document.getElementById('scientificOutput');
-                        const conversionFormula = document.getElementById('conversionFormula');
-                        const contextInfo = document.getElementById('contextInfo');
-                        const capacitorTypes = document.getElementById('capacitorTypes');
-                        const copyResult = document.getElementById('copyResult');
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const inputValue = document.getElementById('inputValue');
+                            const fromUnit = document.getElementById('fromUnit');
+                            const toUnit = document.getElementById('toUnit');
+                            const clearButton = document.getElementById('clearButton');
 
-                        // Unit multipliers (in farads)
-                        const unitMultipliers = {
-                            farad: 1,
-                            millifarad: 1e-3,
-                            microfarad: 1e-6,
-                            nanofarad: 1e-9,
-                            picofarad: 1e-12,
-                            femtofarad: 1e-15,
-                            attofarad: 1e-18
-                        };
+                            // Output elements
+                            const output = document.getElementById('output');
+                            const resultTitle = document.getElementById('resultTitle');
+                            const conversionDescription = document.getElementById('conversionDescription');
+                            const faradDisplay = document.getElementById('faradDisplay');
+                            const millifaradDisplay = document.getElementById('millifaradDisplay');
+                            const microfaradDisplay = document.getElementById('microfaradDisplay');
+                            const nanofaradDisplay = document.getElementById('nanofaradDisplay');
+                            const picofaradDisplay = document.getElementById('picofaradDisplay');
+                            const femtofaradDisplay = document.getElementById('femtofaradDisplay');
+                            const copyResult = document.getElementById('copyResult');
 
-                        const unitLabels = {
-                            farad: 'F',
-                            millifarad: 'mF',
-                            microfarad: 'μF',
-                            nanofarad: 'nF',
-                            picofarad: 'pF',
-                            femtofarad: 'fF',
-                            attofarad: 'aF'
-                        };
+                            // Unit multipliers (in farads)
+                            const unitMultipliers = {
+                                farad: 1,
+                                millifarad: 1e-3,
+                                microfarad: 1e-6,
+                                nanofarad: 1e-9,
+                                picofarad: 1e-12,
+                                femtofarad: 1e-15,
+                                attofarad: 1e-18
+                            };
 
-                        const unitExponents = {
-                            farad: '10⁰',
-                            millifarad: '10⁻³',
-                            microfarad: '10⁻⁶',
-                            nanofarad: '10⁻⁹',
-                            picofarad: '10⁻¹²',
-                            femtofarad: '10⁻¹⁵',
-                            attofarad: '10⁻¹⁸'
-                        };
+                            const unitLabels = {
+                                farad: 'F',
+                                millifarad: 'mF',
+                                microfarad: 'μF',
+                                nanofarad: 'nF',
+                                picofarad: 'pF',
+                                femtofarad: 'fF',
+                                attofarad: 'aF'
+                            };
 
-                        function getContext() {
-                            return document.querySelector('input[name="context"]:checked').value;
-                        }
+                            const unitNames = {
+                                farad: 'Farads',
+                                millifarad: 'Millifarads',
+                                microfarad: 'Microfarads',
+                                nanofarad: 'Nanofarads',
+                                picofarad: 'Picofarads',
+                                femtofarad: 'Femtofarads',
+                                attofarad: 'Attofarads'
+                            };
 
-                        function formatNumber(num) {
-                            if (Math.abs(num) >= 1e15 || Math.abs(num) <= 1e-15) {
-                                return num.toExponential(3);
-                            } else if (Math.abs(num) >= 1e12) {
-                                return (num / 1e12).toLocaleString(undefined, { maximumFractionDigits: 3 }) + 'T';
-                            } else if (Math.abs(num) >= 1e9) {
-                                return (num / 1e9).toLocaleString(undefined, { maximumFractionDigits: 3 }) + 'G';
-                            } else if (Math.abs(num) >= 1e6) {
-                                return (num / 1e6).toLocaleString(undefined, { maximumFractionDigits: 3 }) + 'M';
-                            } else if (Math.abs(num) >= 1e3) {
-                                return (num / 1e3).toLocaleString(undefined, { maximumFractionDigits: 3 }) + 'K';
-                            } else {
-                                return num.toLocaleString(undefined, { maximumFractionDigits: 9 });
-                            }
-                        }
-
-                        function formatScientific(num) {
-                            return num.toExponential(3);
-                        }
-
-                        function getApplicationContext(value, unit, context) {
-                            const valueInFarads = value * unitMultipliers[unit];
-                            
-                            switch (context) {
-                                case 'electronics':
-                                    if (valueInFarads >= 1e-3) {
-                                        return 'Large electrolytic capacitors for power supply filtering and energy storage applications.';
-                                    } else if (valueInFarads >= 1e-6) {
-                                        return 'Common electrolytic and tantalum capacitors for power decoupling and filtering circuits.';
-                                    } else if (valueInFarads >= 1e-9) {
-                                        return 'Ceramic and film capacitors for decoupling, timing circuits, and signal processing.';
-                                    } else if (valueInFarads >= 1e-12) {
-                                        return 'Small ceramic capacitors for high-frequency circuits, oscillators, and RF applications.';
-                                    } else {
-                                        return 'Parasitic capacitances in ICs, PCB traces, and ultra-high frequency circuits.';
-                                    }
-                                    
-                                case 'power':
-                                    if (valueInFarads >= 1e-3) {
-                                        return 'Power factor correction capacitors and motor start/run capacitors in AC systems.';
-                                    } else if (valueInFarads >= 1e-6) {
-                                        return 'Switching power supply output filtering and DC link capacitors.';
-                                    } else {
-                                        return 'EMI/RFI suppression capacitors and high-frequency noise filtering.';
-                                    }
-                                    
-                                default:
-                                    if (valueInFarads >= 1e-3) {
-                                        return 'Very large capacitance - typically used in power applications and energy storage.';
-                                    } else if (valueInFarads >= 1e-6) {
-                                        return 'Medium capacitance - common in electronic circuits for filtering and coupling.';
-                                    } else if (valueInFarads >= 1e-9) {
-                                        return 'Small capacitance - used in timing circuits and signal processing.';
-                                    } else if (valueInFarads >= 1e-12) {
-                                        return 'Very small capacitance - found in high-frequency and RF circuits.';
-                                    } else {
-                                        return 'Extremely small capacitance - typically parasitic or specialized applications.';
-                                    }
-                            }
-                        }
-
-                        function getCapacitorTypes(value, unit) {
-                            const valueInFarads = value * unitMultipliers[unit];
-                            
-                            if (valueInFarads >= 1e-3) {
-                                return 'Electrolytic, supercapacitors, or large film capacitors';
-                            } else if (valueInFarads >= 1e-6) {
-                                return 'Electrolytic, tantalum, or large ceramic capacitors';
-                            } else if (valueInFarads >= 1e-9) {
-                                return 'Ceramic (X7R, Y5V), film (polyester, polypropylene), or tantalum capacitors';
-                            } else if (valueInFarads >= 1e-12) {
-                                return 'Ceramic (NPO/C0G), mica, or small film capacitors';
-                            } else {
-                                return 'Variable capacitors, trimmer capacitors, or parasitic capacitances';
-                            }
-                        }
-
-                        function convert() {
-                            const inputVal = parseFloat(inputValue.value);
-                            const from = fromUnit.value;
-                            const to = toUnit.value;
-                            const context = getContext();
-
-                            if (!isNaN(inputVal) && inputVal >= 0) {
-                                // Convert input to farads first
-                                const inputInFarads = inputVal * unitMultipliers[from];
-                                
-                                // Convert farads to target unit
-                                const result = inputInFarads / unitMultipliers[to];
-                                
-                                // Update primary output
-                                output.textContent = formatNumber(result);
-                                conversionDescription.textContent = `${inputVal} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
-
-                                // Convert to all units and display
-                                const farads = inputInFarads;
-                                faradDisplay.textContent = formatNumber(farads);
-                                millifaradDisplay.textContent = formatNumber(farads / unitMultipliers.millifarad);
-                                microfaradDisplay.textContent = formatNumber(farads / unitMultipliers.microfarad);
-                                nanofaradDisplay.textContent = formatNumber(farads / unitMultipliers.nanofarad);
-                                picofaradDisplay.textContent = formatNumber(farads / unitMultipliers.picofarad);
-                                femtofaradDisplay.textContent = formatNumber(farads / unitMultipliers.femtofarad);
-
-                                // Scientific notation
-                                scientificInput.textContent = `${formatScientific(inputVal)} ${unitLabels[from]}`;
-                                scientificOutput.textContent = `${formatScientific(result)} ${unitLabels[to]}`;
-
-                                // Conversion formula
-                                const factor = unitMultipliers[to] / unitMultipliers[from];
-                                if (factor > 1) {
-                                    conversionFormula.textContent = `Multiply by ${formatScientific(factor)} (${unitExponents[from]} → ${unitExponents[to]})`;
-                                } else {
-                                    conversionFormula.textContent = `Divide by ${formatScientific(1/factor)} (${unitExponents[from]} → ${unitExponents[to]})`;
+                            function formatNumber(num) {
+                                if (!Number.isFinite(num)) {
+                                    return '--';
                                 }
 
-                                // Context information
-                                contextInfo.textContent = getApplicationContext(inputVal, from, context);
-                                capacitorTypes.textContent = getCapacitorTypes(inputVal, from);
+                                const abs = Math.abs(num);
 
-                            } else {
-                                clearOutputs();
+                                if (abs === 0) {
+                                    return '0';
+                                }
+
+                                if (abs >= 1e15 || abs < 1e-6) {
+                                    return num.toExponential(6).replace(/\.?0+e/, 'e');
+                                }
+
+                                if (abs >= 1) {
+                                    return num.toLocaleString('en-US', { maximumFractionDigits: 6 });
+                                }
+
+                                return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
                             }
-                        }
 
-                        function clearOutputs() {
-                            output.textContent = '--';
-                            conversionDescription.textContent = 'Primary conversion result';
-                            faradDisplay.textContent = '--';
-                            millifaradDisplay.textContent = '--';
-                            microfaradDisplay.textContent = '--';
-                            nanofaradDisplay.textContent = '--';
-                            picofaradDisplay.textContent = '--';
-                            femtofaradDisplay.textContent = '--';
-                            scientificInput.textContent = '--';
-                            scientificOutput.textContent = '--';
-                            conversionFormula.textContent = '--';
-                            contextInfo.textContent = '--';
-                            capacitorTypes.textContent = '--';
-                        }
+                            /**
+                             * Divide using exponent-aligned factors to avoid floating point noise such as 123000.00000000001.
+                             */
+                            function convertValue(value, from, to) {
+                                return Number((value * (unitMultipliers[from] / unitMultipliers[to])).toPrecision(12));
+                            }
 
-                        function clearAll() {
-                            inputValue.value = '';
-                            fromUnit.value = 'microfarad';
-                            toUnit.value = 'nanofarad';
-                            document.querySelector('input[value="general"]').checked = true;
-                            clearOutputs();
-                            inputValue.focus();
-                        }
+                            function convert() {
+                                const inputVal = parseFloat(inputValue.value);
+                                const from = fromUnit.value;
+                                const to = toUnit.value;
 
-                        // Event listeners
-                        inputValue.addEventListener('input', convert);
-                        fromUnit.addEventListener('change', convert);
-                        toUnit.addEventListener('change', convert);
-                        
-                        contextRadios.forEach(radio => {
-                            radio.addEventListener('change', convert);
-                        });
+                                if (Number.isNaN(inputVal) || inputVal < 0) {
+                                    clearOutputs();
+                                    return;
+                                }
 
-                        clearButton.addEventListener('click', clearAll);
+                                const result = convertValue(inputVal, from, to);
 
-                        // Copy functionality
-                        copyResult.addEventListener('click', function() {
-                            const text = output.textContent;
-                            if (text !== '--') {
-                                navigator.clipboard.writeText(text).then(() => {
-                                    this.textContent = 'Copied!';
-                                    setTimeout(() => {
-                                        this.textContent = 'Copy Result';
-                                    }, 2000);
+                                output.textContent = `${formatNumber(result)} ${unitLabels[to]}`;
+                                resultTitle.textContent = `${unitNames[to]} (${unitLabels[to]})`;
+                                conversionDescription.textContent = `${formatNumber(inputVal)} ${unitLabels[from]} = ${formatNumber(result)} ${unitLabels[to]}`;
+
+                                faradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'farad'));
+                                millifaradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'millifarad'));
+                                microfaradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'microfarad'));
+                                nanofaradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'nanofarad'));
+                                picofaradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'picofarad'));
+                                femtofaradDisplay.textContent = formatNumber(convertValue(inputVal, from, 'femtofarad'));
+                            }
+
+                            function clearOutputs() {
+                                output.textContent = '--';
+                                resultTitle.textContent = `${unitNames[toUnit.value]} (${unitLabels[toUnit.value]})`;
+                                conversionDescription.textContent = 'Enter a capacitance value to convert';
+                                [faradDisplay, millifaradDisplay, microfaradDisplay, nanofaradDisplay, picofaradDisplay, femtofaradDisplay].forEach(display => {
+                                    display.textContent = '--';
                                 });
                             }
-                        });
 
-                        // Example buttons
-                        const capExamples = document.querySelectorAll('.cap-example');
-                        capExamples.forEach(button => {
-                            button.addEventListener('click', function() {
-                                const value = this.getAttribute('data-value');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                fromUnit.value = from;
-                                toUnit.value = to;
-                                convert();
-                                
-                                // Update button styles
-                                capExamples.forEach(btn => btn.classList.remove('bg-yellow-100', 'text-yellow-700'));
-                                capExamples.forEach(btn => btn.classList.add('bg-gray-100', 'text-gray-700'));
-                                this.classList.remove('bg-gray-100', 'text-gray-700');
-                                this.classList.add('bg-yellow-100', 'text-yellow-700');
-                            });
-                        });
-
-                        // Clickable examples
-                        const examples = document.querySelectorAll('[data-example]');
-                        examples.forEach(element => {
-                            element.addEventListener('click', function() {
-                                const value = this.getAttribute('data-example');
-                                const from = this.getAttribute('data-from');
-                                const to = this.getAttribute('data-to');
-                                
-                                inputValue.value = value;
-                                if (from) fromUnit.value = from;
-                                if (to) toUnit.value = to;
-                                convert();
+                            function clearAll() {
+                                inputValue.value = '';
+                                fromUnit.value = 'microfarad';
+                                toUnit.value = 'nanofarad';
+                                clearOutputs();
                                 inputValue.focus();
+                            }
+
+                            // Event listeners
+                            inputValue.addEventListener('input', convert);
+                            fromUnit.addEventListener('change', convert);
+                            toUnit.addEventListener('change', convert);
+                            clearButton.addEventListener('click', clearAll);
+
+                            // Copy functionality
+                            copyResult.addEventListener('click', function() {
+                                const text = output.textContent;
+                                if (text !== '--') {
+                                    navigator.clipboard.writeText(text).then(() => {
+                                        this.textContent = 'Copied!';
+                                        setTimeout(() => {
+                                            this.textContent = 'Copy Result';
+                                        }, 2000);
+                                    });
+                                }
+                            });
+
+                            // Initialize
+                            clearOutputs();
+                            inputValue.focus();
+
+                            // Keyboard shortcuts
+                            document.addEventListener('keydown', function(e) {
+                                if (e.key === 'Escape') {
+                                    clearAll();
+                                }
                             });
                         });
-
-                        // Initialize
-                        inputValue.focus();
-
-                        // Keyboard shortcuts
-                        document.addEventListener('keydown', function(e) {
-                            if (e.key === 'Escape') {
-                                clearAll();
-                            }
-                        });
-                    });
                 </script>
     </x-slot>
 </x-tool-page-layout>

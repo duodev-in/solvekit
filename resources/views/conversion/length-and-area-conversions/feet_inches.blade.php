@@ -1,5 +1,5 @@
 <x-tool-page-layout
-    title="Feet &amp; Inches Calculator - ConvertPro"
+    title="Feet &amp; Inches Calculator - SolveKit"
     description="Professional feet and inches calculator to convert imperial measurements to metric units. Convert feet and inches to centimeters, meters, and total inches."
 >
     <x-slot name="toolUi">
@@ -8,7 +8,7 @@
                             
                             <!-- Calculator Header -->
                             <div class="rounded-md bg-white p-2.5 shadow-sm">
-                                <h2 class="text-sm font-semibold text-slate-900">Imperial to Metric Conversion</h2>
+                                <h1 class="text-sm font-semibold text-slate-900">Feet &amp; Inches</h1>
                             </div>
 
                             <!-- Calculator Body -->
@@ -188,6 +188,16 @@
                         const centimeters = document.getElementById('centimeters');
                         const meters = document.getElementById('meters');
 
+                        function formatMeasurement(value, fractionDigits) {
+                            if (value !== 0 && Math.abs(value) < 0.000001) {
+                                return Number(value.toPrecision(4)).toExponential();
+                            } else if (Math.abs(value) < 1) {
+                                return value.toLocaleString(undefined, { maximumSignificantDigits: 4 });
+                            }
+
+                            return value.toLocaleString(undefined, { maximumFractionDigits: fractionDigits });
+                        }
+
                         function convert() {
                             const feet = parseFloat(feetInput.value) || 0;
                             const inches = parseFloat(inchesInput.value) || 0;
@@ -203,9 +213,9 @@
                                 centimeters.textContent = "--";
                                 meters.textContent = "--";
                             } else {
-                                totalInches.textContent = total.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                centimeters.textContent = cm.toLocaleString(undefined, { maximumFractionDigits: 2 });
-                                meters.textContent = m.toLocaleString(undefined, { maximumFractionDigits: 4 });
+                                totalInches.textContent = formatMeasurement(total, 2);
+                                centimeters.textContent = formatMeasurement(cm, 2);
+                                meters.textContent = formatMeasurement(m, 4);
                             }
                         }
 
