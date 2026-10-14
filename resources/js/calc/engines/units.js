@@ -2,7 +2,9 @@
  * Unit-table engine: drives every unit converter (V1) and fixed-pair converter (V2).
  *
  * Config (built by the Blade components from config/units.php):
- *   units:     { key: { name, symbol, factor } }  factor = base units per one of this unit
+ *   units:     { key: { name, symbol, factor, offset?, inverse? } }  factor = base units per one
+ *              of this unit. `offset` units (temperature) convert as (value + offset) × factor;
+ *              `inverse` units (L/100 km) convert as factor ÷ value.
  *   list:      keys shown in the right-panel list
  *   quickRef:  input values for the quick-reference table (fixed-pair tools), or an object
  *              of such lists keyed by direction value when each direction needs its own scale
@@ -42,6 +44,33 @@ export function kitchenFraction(value) {
 
 export function convert(value, fromFactor, toFactor) {
     return (value * fromFactor) / toFactor;
+}
+
+export function toBase(value, unit) {
+    if (unit.inverse) {
+        return unit.factor / value;
+    }
+
+    return (value + (unit.offset ?? 0)) * unit.factor;
+}
+
+export function fromBase(base, unit) {
+    if (unit.inverse) {
+        return unit.factor / base;
+    }
+
+    return base / unit.factor - (unit.offset ?? 0);
+}
+
+/**
+ * Converts between two units of one table, handling offset and inverse units.
+ */
+export function convertUnit(value, fromUnit, toUnit) {
+    return fromBase(toBase(value, fromUnit), toUnit);
+}
+
+export function isLinear(unit) {
+    return !unit.inverse && !unit.offset;
 }
 
 /**
@@ -85,14 +114,15 @@ export default function unitsEngine(ctx, config) {
 
         ctx.setText('value-suffix', fromUnit.symbol);
         ctx.setText('list-heading', Number.isNaN(value) ? `1 ${fromUnit.symbol} in other units` : `${ctx.format(value)} ${fromUnit.symbol} in other units`);
-        ctx.setText('ratio', `1 ${fromUnit.symbol} = ${ctx.format(unitRatio(units, from, to))} ${toUnit.symbol}`);
+        const linear = isLinear(fromUnit) && isLinear(toUnit);
+        ctx.setText('ratio', linear ? `1 ${fromUnit.symbol} = ${ctx.format(unitRatio(units, from, to))} ${toUnit.symbol}` : '');
 
         const quickInputs = Array.isArray(quickRef) ? quickRef : (quickRef[ctx.choice('direction')] ?? []);
 
         if (quickInputs.length) {
             ctx.renderRows('quick-ref', quickInputs.map((input) => ({
                 label: `${ctx.format(input)} ${fromUnit.symbol}`,
-                value: `${ctx.format(convert(input, fromUnit.factor, toUnit.factor))} ${toUnit.symbol}`,
+                value: `${ctx.format(convertUnit(input, fromUnit, toUnit))} ${toUnit.symbol}`,
                 highlight: input === value,
             })));
         }
@@ -109,7 +139,13 @@ export default function unitsEngine(ctx, config) {
             return;
         }
 
-        const converted = convert(value, fromUnit.factor, toUnit.factor);
+        if (value === 0 && (fromUnit.inverse || toUnit.inverse)) {
+            ctx.showError(`${fromUnit.name} must be greater than 0 for this conversion.`);
+
+            return;
+        }
+
+        const converted = convertUnit(value, fromUnit, toUnit);
         const shown = ctx.format(converted);
 
         const fraction = withFraction ? kitchenFraction(converted) : null;
@@ -117,16 +153,24 @@ export default function unitsEngine(ctx, config) {
         ctx.showResult({
             value: shown,
             unit: toUnit.symbol,
-            sub: `${ctx.format(value)} ${fromUnit.symbol} × ${ctx.format(unitRatio(units, from, to))} = ${shown} ${toUnit.symbol}${fraction ? ` · about ${fraction} ${toUnit.symbol}` : ''}`,
+            sub: linear
+                ? `${ctx.format(value)} ${fromUnit.symbol} × ${ctx.format(unitRatio(units, from, to))} = ${shown} ${toUnit.symbol}${fraction ? ` · about ${fraction} ${toUnit.symbol}` : ''}`
+                : `${ctx.format(value)} ${fromUnit.symbol} = ${shown} ${toUnit.symbol}`,
             label: `${toUnit.name}`,
         });
 
-        list.forEach((key) => ctx.setRow(key, ctx.format(convert(value, fromUnit.factor, units[key].factor))));
+        list.forEach((key) => ctx.setRow(key, ctx.format(convertUnit(value, fromUnit, units[key]))));
 
-        ctx.renderSteps('steps', [
-            `Start with ${ctx.format(value)} ${fromUnit.symbol}.`,
-            `1 ${fromUnit.symbol} = ${ctx.format(unitRatio(units, from, to))} ${toUnit.symbol}.`,
-            `${ctx.format(value)} × ${ctx.format(unitRatio(units, from, to))} = ${shown} ${toUnit.symbol}.`,
-        ]);
+        ctx.renderSteps('steps', linear
+            ? [
+                `Start with ${ctx.format(value)} ${fromUnit.symbol}.`,
+                `1 ${fromUnit.symbol} = ${ctx.format(unitRatio(units, from, to))} ${toUnit.symbol}.`,
+                `${ctx.format(value)} × ${ctx.format(unitRatio(units, from, to))} = ${shown} ${toUnit.symbol}.`,
+            ]
+            : [
+                `Start with ${ctx.format(value)} ${fromUnit.symbol}.`,
+                `Convert to the common base unit, then to ${toUnit.name.toLowerCase()}.`,
+                `Result: ${shown} ${toUnit.symbol}.`,
+            ]);
     });
 }

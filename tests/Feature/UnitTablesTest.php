@@ -51,6 +51,30 @@ class UnitTablesTest extends TestCase
             'cubic yard' => ['volume', 'yd3', $yard ** 3 * 1000],
             'cubic inch' => ['volume', 'in3', 0.0254 ** 3 * 1000],
             'CCF' => ['volume', 'ccf', 100 * 0.3048 ** 3 * 1000],
+            'psi' => ['pressure', 'psi', 0.45359237 * 9.80665 / 0.0254 ** 2],
+            'torr' => ['pressure', 'torr', 101325 / 760],
+            'bar' => ['pressure', 'bar', 100000],
+            'inch of water' => ['pressure', 'inh2o', 25.4 * 9.80665],
+            'pound-force' => ['force', 'lbf', 0.45359237 * 9.80665],
+            'kip' => ['force', 'kip', 1000 * 0.45359237 * 9.80665],
+            'poundal' => ['force', 'pdl', 0.45359237 * 0.3048],
+            'foot-pound torque' => ['torque', 'lbfft', 0.45359237 * 9.80665 * 0.3048],
+            'inch-pound torque' => ['torque', 'lbfin', 0.45359237 * 9.80665 * 0.0254],
+            'mile per hour' => ['speed', 'mph', 1609.344 / 3600],
+            'knot' => ['speed', 'knot', 1852 / 3600],
+            'kilometer per hour' => ['speed', 'kmh', 1000 / 3600],
+            'mile per US gallon' => ['fuel_economy', 'mpg_us', 1.609344 / 3.785411784],
+            'kilowatt-hour' => ['energy', 'kwh', 3.6e6],
+            'thermochemical calorie' => ['energy', 'cal', 4.184],
+            'IT BTU' => ['energy', 'btu', 1055.05585262],
+            'electronvolt' => ['energy', 'ev', 1.602176634e-19],
+            'ton of TNT' => ['energy', 'tnt', 4.184e9],
+            'mechanical horsepower' => ['power', 'hp', 550 * 0.45359237 * 9.80665 * 0.3048],
+            'metric horsepower' => ['power', 'ps', 75 * 9.80665],
+            'ton of refrigeration' => ['power', 'tr', 12000 * 1055.05585262 / 3600],
+            'ampere-hour' => ['charge', 'ah', 3600],
+            'degree' => ['angle', 'deg', M_PI / 180],
+            'NATO mil' => ['angle', 'mil', 2 * M_PI / 6400],
         ];
     }
 
@@ -66,7 +90,7 @@ class UnitTablesTest extends TestCase
     public function test_every_table_has_one_base_unit_and_complete_entries(): void
     {
         foreach (config('units') as $tableName => $units) {
-            $baseUnits = array_filter($units, fn (array $unit) => $unit['factor'] == 1);
+            $baseUnits = array_filter($units, fn (array $unit) => $unit['factor'] == 1 && empty($unit['inverse']) && empty($unit['offset']));
             $this->assertCount(1, $baseUnits, "Table [{$tableName}] must have exactly one base unit.");
 
             foreach ($units as $key => $unit) {

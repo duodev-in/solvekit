@@ -124,6 +124,12 @@ export function createCalculator(root, config) {
         },
 
         update() {
+            // <… data-show-when="method:vr,vi"> is shown only while that control has one of those values.
+            root.querySelectorAll('[data-show-when]').forEach((element) => {
+                const [name, values] = element.dataset.showWhen.split(':');
+                element.hidden = !values.split(',').includes(ctx.choice(name));
+            });
+
             updateHandler(ctx);
         },
 
