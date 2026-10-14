@@ -9,7 +9,7 @@ class AuthService
 {
     public function login(array $credentials): ?User
     {
-        if (! Auth::attempt($credentials, true)) {
+        if (! Auth::attempt($credentials)) {
             return null;
         }
 

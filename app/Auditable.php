@@ -34,10 +34,18 @@ trait Auditable
             'auditable_id' => $this->getKey(),
             'event' => $event,
             'user_id' => Auth::id(),
-            'old_values' => $oldValues,
-            'new_values' => $newValues ?: $this->getAttributes(),
+            'old_values' => $this->withoutHiddenAttributes($oldValues),
+            'new_values' => $this->withoutHiddenAttributes($newValues ?: $this->getAttributes()),
             'ip_address' => request()?->ip(),
             'user_agent' => request()?->userAgent(),
         ]);
+    }
+
+    /**
+     * Strip attributes the model hides from serialization (e.g. password hashes) before they are logged.
+     */
+    protected function withoutHiddenAttributes(array $values): array
+    {
+        return array_diff_key($values, array_flip($this->getHidden()));
     }
 }

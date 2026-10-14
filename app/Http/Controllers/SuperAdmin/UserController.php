@@ -20,6 +20,8 @@ class UserController extends Controller
 
     public function index(Request $request): View
     {
+        abort_unless(auth()->user()->can('manage users'), 403);
+
         $users = User::query()->with('roles')
             ->when($request->filled('search'), fn ($query) => $query->where(fn ($query) => $query->where('name', 'like', '%'.$request->string('search').'%')->orWhere('email', 'like', '%'.$request->string('search').'%')))
             ->when($request->filled('status'), fn ($query) => $query->where('status', $request->string('status')))
@@ -30,11 +32,15 @@ class UserController extends Controller
 
     public function create(): View
     {
+        abort_unless(auth()->user()->can('manage users'), 403);
+
         return view('superadmin.users.form', ['user' => new User, 'roles' => Role::orderBy('name')->get()]);
     }
 
     public function show(User $user): View
     {
+        abort_unless(auth()->user()->can('manage users'), 403);
+
         $user->load('roles.permissions');
 
         $activities = AuditLog::query()
@@ -66,6 +72,8 @@ class UserController extends Controller
 
     public function edit(User $user): View
     {
+        abort_unless(auth()->user()->can('manage users'), 403);
+
         return view('superadmin.users.form', ['user' => $user->load('roles'), 'roles' => Role::orderBy('name')->get()]);
     }
 
@@ -89,6 +97,8 @@ class UserController extends Controller
 
     public function destroy(User $user): RedirectResponse
     {
+        abort_unless(auth()->user()->can('manage users'), 403);
+
         if ($user->is(auth()->user())) {
             return back()->with('toast', ['type' => 'error', 'message' => 'You cannot delete your own account.']);
         }

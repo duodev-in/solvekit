@@ -46,16 +46,16 @@ Route::get('/', function () {
 });
 
 Route::get('/report-a-bug', [ReportBugController::class, 'create'])->name('report-bug.create');
-Route::post('/report-a-bug', [ReportBugController::class, 'store'])->name('report-bug.store');
+Route::post('/report-a-bug', [ReportBugController::class, 'store'])->middleware('throttle:5,1')->name('report-bug.store');
 Route::get('/request-a-feature', [FeatureRequestController::class, 'create'])->name('feature-request.create');
-Route::post('/request-a-feature', [FeatureRequestController::class, 'store'])->name('feature-request.store');
+Route::post('/request-a-feature', [FeatureRequestController::class, 'store'])->middleware('throttle:5,1')->name('feature-request.store');
 Route::get('/contact', [ContactMessageController::class, 'create'])->name('contact.create');
-Route::post('/contact', [ContactMessageController::class, 'store'])->name('contact.store');
+Route::post('/contact', [ContactMessageController::class, 'store'])->middleware('throttle:5,1')->name('contact.store');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('guest')->group(function () {
         Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-        Route::post('/login', [AuthController::class, 'login'])->name('login.store');
+        Route::post('/login', [AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.store');
     });
 
     Route::middleware('auth')->group(function () {
