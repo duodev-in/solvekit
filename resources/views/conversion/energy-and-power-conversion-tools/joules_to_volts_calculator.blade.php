@@ -53,7 +53,6 @@
             'j' => ['label' => 'Energy in joules', 'unit' => 'J'],
             'c' => ['label' => 'Charge in coulombs', 'unit' => 'C'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

@@ -85,6 +85,5 @@ export default function roman(ctx) {
         ctx.setRow('numeral', numeral);
         ctx.setRow('length', `${numeral.length} characters`);
         ctx.setRow('symbols', [...new Set(numeral)].join(', '));
-        ctx.renderSteps('steps', parts.map(([symbol, value]) => `${symbol} = ${value}`));
     });
 }

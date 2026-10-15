@@ -11,22 +11,15 @@ foreach ($categories as $category) {
     }
 
     $title = $category['title'] ?? null;
+    $slug = $category['slug'] ?? null;
     $tools = $category['tools'] ?? [];
-    $toolCount = is_array($tools) ? count($tools) : 0;
-    $firstTool = $toolCount > 0 && is_array($tools[0] ?? null) ? $tools[0] : null;
-    $routeName = $firstTool['route_name'] ?? null;
 
-    if (
-        is_string($title)
-        && $title !== ''
-        && is_string($routeName)
-        && $routeName !== ''
-        && \Illuminate\Support\Facades\Route::has($routeName)
-    ) {
+    // Each category links to its own section of the tools index.
+    if (is_string($title) && $title !== '' && is_string($slug) && $slug !== '') {
         $quickLinks[] = [
             'title' => $title,
-            'route' => $routeName,
-            'count' => $toolCount,
+            'url' => route('conversion.index').'#'.$slug,
+            'count' => is_array($tools) ? count($tools) : 0,
         ];
     }
 }
@@ -81,7 +74,7 @@ foreach ($categories as $category) {
                             <div class="max-h-64 overflow-y-auto">
                                 @foreach($quickLinks as $link)
                                     <a
-                                        href="{{ route($link['route']) }}"
+                                        href="{{ $link['url'] }}"
                                         class="flex items-center justify-between rounded-lg px-2 py-1.5 text-[13px] text-slate-600 transition-colors duration-200 hover:bg-slate-50 hover:text-slate-900"
                                     >
                                         <span class="truncate">{{ $link['title'] }}</span>
@@ -168,7 +161,7 @@ foreach ($categories as $category) {
                         <div class="space-y-1 border-l border-slate-200 pl-3">
                             @foreach($quickLinks as $link)
                                 <a
-                                    href="{{ route($link['route']) }}"
+                                    href="{{ $link['url'] }}"
                                     class="flex items-center justify-between rounded-lg px-2 py-1.5 text-[13px] text-slate-600 transition-colors duration-200 hover:bg-white hover:text-slate-900"
                                 >
                                     <span class="truncate">{{ $link['title'] }}</span>

@@ -36,11 +36,5 @@ export default function joulesToVolts(ctx, config) {
         ctx.setRow('kv', ctx.format(voltage / 1000));
         ctx.setRow('j', ctx.format(energyJ));
         ctx.setRow('c', ctx.format(chargeC));
-
-        ctx.renderSteps('steps', [
-            `E = ${ctx.format(energyJ)} J`,
-            `Q = ${ctx.format(chargeC)} C`,
-            `V = E ÷ Q = ${ctx.format(voltage)} V`,
-        ]);
     });
 }

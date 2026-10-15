@@ -7,7 +7,7 @@
     :how-to="[
         ['name' => 'Choose a direction', 'text' => 'Decimal to hexadecimal, or the reverse.'],
         ['name' => 'Type the number', 'text' => 'Whole numbers of any length. Spaces and underscores are ignored.'],
-        ['name' => 'Read the working', 'text' => 'Every base is listed, with the steps of the conversion below.'],
+        ['name' => 'Read every base', 'text' => 'Binary, octal, decimal and hexadecimal are all listed beside the result.'],
     ]"
     :faqs="[
         ['question' => 'How do I convert decimal to hex?', 'answer' => 'Divide by 16 and keep the remainders: 255 ÷ 16 = 15 r 15, so 255 = FF.'],
@@ -35,7 +35,6 @@
             'bits' => ['label' => 'Bit length'],
             'bytes' => ['label' => 'Bytes needed'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

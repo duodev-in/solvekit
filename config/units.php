@@ -118,6 +118,7 @@ return [
         'psi' => ['name' => 'Pounds per square inch', 'symbol' => 'psi', 'factor' => 6894.757293168361],
         'psf' => ['name' => 'Pounds per square foot', 'symbol' => 'psf', 'factor' => 47.88025898033584],
         'ksi' => ['name' => 'Kilopounds per square inch', 'symbol' => 'ksi', 'factor' => 6894757.293168361],
+        'ba' => ['name' => 'Barye (CGS)', 'symbol' => 'Ba', 'factor' => 0.1],
     ],
 
     // Base: newton. lbf = 0.45359237 kg × 9.80665 m/s² exactly.
@@ -305,6 +306,199 @@ return [
         'pf' => ['name' => 'Picofarads', 'symbol' => 'pF', 'factor' => 1e-12],
         'ff' => ['name' => 'Femtofarads', 'symbol' => 'fF', 'factor' => 1e-15],
         'af' => ['name' => 'Attofarads', 'symbol' => 'aF', 'factor' => 1e-18],
+    ],
+
+    // Base: second. Month and year are Gregorian calendar averages (365.2425 days per year).
+    'time' => [
+        'ns' => ['name' => 'Nanoseconds', 'symbol' => 'ns', 'factor' => 1e-9],
+        'us' => ['name' => 'Microseconds', 'symbol' => 'µs', 'factor' => 1e-6],
+        'ms' => ['name' => 'Milliseconds', 'symbol' => 'ms', 'factor' => 1e-3],
+        's' => ['name' => 'Seconds', 'symbol' => 's', 'factor' => 1],
+        'min' => ['name' => 'Minutes', 'symbol' => 'min', 'factor' => 60],
+        'h' => ['name' => 'Hours', 'symbol' => 'h', 'factor' => 3600],
+        'day' => ['name' => 'Days', 'symbol' => 'd', 'factor' => 86400],
+        'week' => ['name' => 'Weeks', 'symbol' => 'wk', 'factor' => 604800],
+        'fortnight' => ['name' => 'Fortnights', 'symbol' => 'fn', 'factor' => 1209600],
+        'month' => ['name' => 'Months (average)', 'symbol' => 'mo', 'factor' => 2629746],
+        'year' => ['name' => 'Years (average)', 'symbol' => 'yr', 'factor' => 31556952],
+        'decade' => ['name' => 'Decades', 'symbol' => 'dec', 'factor' => 315569520],
+        'century' => ['name' => 'Centuries', 'symbol' => 'c', 'factor' => 3155695200],
+        'millennium' => ['name' => 'Millennia', 'symbol' => 'ka', 'factor' => 31556952000],
+    ],
+
+    // Base: degree Celsius. value → °C as (value + offset) × factor.
+    'temperature' => [
+        'c' => ['name' => 'Celsius', 'symbol' => '°C', 'factor' => 1],
+        'f' => ['name' => 'Fahrenheit', 'symbol' => '°F', 'factor' => 5 / 9, 'offset' => -32],
+        'k' => ['name' => 'Kelvin', 'symbol' => 'K', 'factor' => 1, 'offset' => -273.15],
+        'r' => ['name' => 'Rankine', 'symbol' => '°R', 'factor' => 5 / 9, 'offset' => -491.67],
+        'de' => ['name' => 'Delisle', 'symbol' => '°De', 'factor' => -2 / 3, 'offset' => -150],
+        'n' => ['name' => 'Newton', 'symbol' => '°N', 'factor' => 100 / 33],
+        're' => ['name' => 'Réaumur', 'symbol' => '°Ré', 'factor' => 5 / 4],
+        'ro' => ['name' => 'Rømer', 'symbol' => '°Rø', 'factor' => 40 / 21, 'offset' => -7.5],
+    ],
+
+    // Base: kg/m³ (= g/L). Specific gravity, API and Baumé are relative to water at 60 °F (999.016 kg/m³).
+    'density' => [
+        'kgm3' => ['name' => 'Kilograms per cubic meter', 'symbol' => 'kg/m³', 'factor' => 1],
+        'gcm3' => ['name' => 'Grams per cubic centimeter (= g/mL, kg/L)', 'symbol' => 'g/cm³', 'factor' => 1000],
+        'mgl' => ['name' => 'Milligrams per liter', 'symbol' => 'mg/L', 'factor' => 0.001],
+        'lbft3' => ['name' => 'Pounds per cubic foot', 'symbol' => 'lb/ft³', 'factor' => 0.45359237 / 0.028316846592],
+        'lbin3' => ['name' => 'Pounds per cubic inch', 'symbol' => 'lb/in³', 'factor' => 0.45359237 / 0.000016387064],
+        'lbgal' => ['name' => 'Pounds per US gallon', 'symbol' => 'lb/gal', 'factor' => 0.45359237 / 0.003785411784],
+        'lbgal_uk' => ['name' => 'Pounds per imperial gallon', 'symbol' => 'lb/imp gal', 'factor' => 0.45359237 / 0.00454609],
+        'ozin3' => ['name' => 'Ounces per cubic inch', 'symbol' => 'oz/in³', 'factor' => 0.028349523125 / 0.000016387064],
+        'slugft3' => ['name' => 'Slugs per cubic foot', 'symbol' => 'slug/ft³', 'factor' => 14.593902937206364 / 0.028316846592],
+        'sg' => ['name' => 'Specific gravity', 'symbol' => 'SG', 'factor' => 999.016],
+        'api' => ['name' => 'API gravity', 'symbol' => '°API', 'factor' => 141.5 * 999.016, 'inverse' => true, 'offset' => 131.5],
+        'be_light' => ['name' => 'Baumé (lighter than water)', 'symbol' => '°Bé', 'factor' => 140 * 999.016, 'inverse' => true, 'offset' => 130],
+        'be_heavy' => ['name' => 'Baumé (heavier than water)', 'symbol' => '°Bé', 'factor' => 145 * 999.016, 'inverse' => true, 'offset' => 145, 'scale' => -1],
+    ],
+
+    // Base: BTU. Volumes use a heating value of 1,037 BTU per cubic foot (US average).
+    'natural_gas' => [
+        'ft3' => ['name' => 'Cubic feet', 'symbol' => 'ft³', 'factor' => 1037],
+        'ccf' => ['name' => 'Hundred cubic feet', 'symbol' => 'CCF', 'factor' => 103700],
+        'mcf' => ['name' => 'Thousand cubic feet', 'symbol' => 'Mcf', 'factor' => 1037000],
+        'm3' => ['name' => 'Cubic meters', 'symbol' => 'm³', 'factor' => 1037 / 0.028316846592],
+        'btu' => ['name' => 'British thermal units', 'symbol' => 'BTU', 'factor' => 1],
+        'therm' => ['name' => 'Therms', 'symbol' => 'thm', 'factor' => 100000],
+        'dth' => ['name' => 'Dekatherms (MMBtu)', 'symbol' => 'Dth', 'factor' => 1e6],
+        'kwh' => ['name' => 'Kilowatt-hours', 'symbol' => 'kWh', 'factor' => 3.6e6 / 1055.05585262],
+        'mj' => ['name' => 'Megajoules', 'symbol' => 'MJ', 'factor' => 1e6 / 1055.05585262],
+        'gj' => ['name' => 'Gigajoules', 'symbol' => 'GJ', 'factor' => 1e9 / 1055.05585262],
+    ],
+
+    // Radiation: one table per quantity, because units only convert within a quantity.
+    'radiation_dose' => [
+        'gy' => ['name' => 'Gray', 'symbol' => 'Gy', 'factor' => 1],
+        'mgy' => ['name' => 'Milligray', 'symbol' => 'mGy', 'factor' => 1e-3],
+        'ugy' => ['name' => 'Microgray', 'symbol' => 'µGy', 'factor' => 1e-6],
+        'rad' => ['name' => 'Rad', 'symbol' => 'rad', 'factor' => 0.01],
+        'mrad' => ['name' => 'Millirad', 'symbol' => 'mrad', 'factor' => 1e-5],
+    ],
+
+    'radiation_equivalent' => [
+        'sv' => ['name' => 'Sievert', 'symbol' => 'Sv', 'factor' => 1],
+        'msv' => ['name' => 'Millisievert', 'symbol' => 'mSv', 'factor' => 1e-3],
+        'usv' => ['name' => 'Microsievert', 'symbol' => 'µSv', 'factor' => 1e-6],
+        'rem' => ['name' => 'Rem', 'symbol' => 'rem', 'factor' => 0.01],
+        'mrem' => ['name' => 'Millirem', 'symbol' => 'mrem', 'factor' => 1e-5],
+    ],
+
+    'radiation_activity' => [
+        'bq' => ['name' => 'Becquerel', 'symbol' => 'Bq', 'factor' => 1],
+        'kbq' => ['name' => 'Kilobecquerel', 'symbol' => 'kBq', 'factor' => 1e3],
+        'mbq' => ['name' => 'Megabecquerel', 'symbol' => 'MBq', 'factor' => 1e6],
+        'gbq' => ['name' => 'Gigabecquerel', 'symbol' => 'GBq', 'factor' => 1e9],
+        'tbq' => ['name' => 'Terabecquerel', 'symbol' => 'TBq', 'factor' => 1e12],
+        'ci' => ['name' => 'Curie', 'symbol' => 'Ci', 'factor' => 3.7e10],
+        'mci' => ['name' => 'Millicurie', 'symbol' => 'mCi', 'factor' => 3.7e7],
+        'uci' => ['name' => 'Microcurie', 'symbol' => 'µCi', 'factor' => 3.7e4],
+        'dpm' => ['name' => 'Disintegrations per minute', 'symbol' => 'dpm', 'factor' => 1 / 60],
+    ],
+
+    'radiation_exposure' => [
+        'ckg' => ['name' => 'Coulombs per kilogram', 'symbol' => 'C/kg', 'factor' => 1],
+        'mckg' => ['name' => 'Millicoulombs per kilogram', 'symbol' => 'mC/kg', 'factor' => 1e-3],
+        'r' => ['name' => 'Roentgen', 'symbol' => 'R', 'factor' => 2.58e-4],
+        'mr' => ['name' => 'Milliroentgen', 'symbol' => 'mR', 'factor' => 2.58e-7],
+    ],
+
+    // CGS quantities that have no table above. Oersted = 1000/(4π) A/m; statcoulomb = 0.1/c C.
+    'cgs_extra' => [
+        'p' => ['name' => 'Poise', 'symbol' => 'P', 'factor' => 0.1, 'base' => 'viscosity'],
+        'cp' => ['name' => 'Centipoise', 'symbol' => 'cP', 'factor' => 0.001, 'base' => 'viscosity'],
+        'pas' => ['name' => 'Pascal seconds', 'symbol' => 'Pa·s', 'factor' => 1, 'base' => 'viscosity'],
+        'st' => ['name' => 'Stokes', 'symbol' => 'St', 'factor' => 1e-4, 'base' => 'kinematic'],
+        'cst' => ['name' => 'Centistokes', 'symbol' => 'cSt', 'factor' => 1e-6, 'base' => 'kinematic'],
+        'm2s' => ['name' => 'Square meters per second', 'symbol' => 'm²/s', 'factor' => 1, 'base' => 'kinematic'],
+        'gal' => ['name' => 'Gal', 'symbol' => 'Gal', 'factor' => 0.01, 'base' => 'acceleration'],
+        'ms2' => ['name' => 'Meters per second squared', 'symbol' => 'm/s²', 'factor' => 1, 'base' => 'acceleration'],
+        'g0' => ['name' => 'Standard gravity', 'symbol' => 'g₀', 'factor' => 9.80665, 'base' => 'acceleration'],
+        'gauss' => ['name' => 'Gauss', 'symbol' => 'G', 'factor' => 1e-4, 'base' => 'flux_density'],
+        'tesla' => ['name' => 'Tesla', 'symbol' => 'T', 'factor' => 1, 'base' => 'flux_density'],
+        'mx' => ['name' => 'Maxwell', 'symbol' => 'Mx', 'factor' => 1e-8, 'base' => 'flux'],
+        'wb' => ['name' => 'Weber', 'symbol' => 'Wb', 'factor' => 1, 'base' => 'flux'],
+        'oe' => ['name' => 'Oersted', 'symbol' => 'Oe', 'factor' => 1000 / (4 * M_PI), 'base' => 'field'],
+        'am' => ['name' => 'Amperes per meter', 'symbol' => 'A/m', 'factor' => 1, 'base' => 'field'],
+        'statc' => ['name' => 'Statcoulomb', 'symbol' => 'statC', 'factor' => 0.1 / 299792458, 'base' => 'charge'],
+        'coulomb' => ['name' => 'Coulomb', 'symbol' => 'C', 'factor' => 1, 'base' => 'charge'],
+        'ergs' => ['name' => 'Ergs per second', 'symbol' => 'erg/s', 'factor' => 1e-7, 'base' => 'power'],
+        'watt' => ['name' => 'Watts', 'symbol' => 'W', 'factor' => 1, 'base' => 'power'],
+    ],
+
+    // Base: hertz (cycles per second). Periods are inverse units.
+    'frequency' => [
+        'hz' => ['name' => 'Hertz (cycles per second)', 'symbol' => 'Hz', 'factor' => 1],
+        'khz' => ['name' => 'Kilohertz', 'symbol' => 'kHz', 'factor' => 1e3],
+        'mhz' => ['name' => 'Megahertz', 'symbol' => 'MHz', 'factor' => 1e6],
+        'ghz' => ['name' => 'Gigahertz', 'symbol' => 'GHz', 'factor' => 1e9],
+        'rpm' => ['name' => 'Revolutions per minute', 'symbol' => 'rpm', 'factor' => 1 / 60],
+        'rads' => ['name' => 'Radians per second', 'symbol' => 'rad/s', 'factor' => 1 / (2 * M_PI)],
+        'bpm' => ['name' => 'Beats per minute', 'symbol' => 'bpm', 'factor' => 1 / 60],
+        'period_s' => ['name' => 'Period in seconds', 'symbol' => 's', 'factor' => 1, 'inverse' => true],
+        'period_ms' => ['name' => 'Period in milliseconds', 'symbol' => 'ms', 'factor' => 1000, 'inverse' => true],
+        'period_us' => ['name' => 'Period in microseconds', 'symbol' => 'µs', 'factor' => 1e6, 'inverse' => true],
+    ],
+
+    // Base: one item.
+    'count' => [
+        'each' => ['name' => 'Single items', 'symbol' => 'pcs', 'factor' => 1],
+        'pair' => ['name' => 'Pairs', 'symbol' => 'pr', 'factor' => 2],
+        'half_dozen' => ['name' => 'Half dozens', 'symbol' => '½ doz', 'factor' => 6],
+        'dozen' => ['name' => 'Dozens', 'symbol' => 'doz', 'factor' => 12],
+        'bakers_dozen' => ['name' => "Baker's dozens", 'symbol' => "baker's doz", 'factor' => 13],
+        'score' => ['name' => 'Scores', 'symbol' => 'score', 'factor' => 20],
+        'quire' => ['name' => 'Quires (paper)', 'symbol' => 'quire', 'factor' => 25],
+        'hundred' => ['name' => 'Hundreds', 'symbol' => 'C', 'factor' => 100],
+        'gross' => ['name' => 'Gross', 'symbol' => 'gr', 'factor' => 144],
+        'ream' => ['name' => 'Reams (paper)', 'symbol' => 'ream', 'factor' => 500],
+        'thousand' => ['name' => 'Thousands', 'symbol' => 'M', 'factor' => 1000],
+        'great_gross' => ['name' => 'Great gross', 'symbol' => 'great gr', 'factor' => 1728],
+    ],
+
+    // Quirky units: approximate by nature, grouped by quantity.
+    'weird_length' => [
+        'm' => ['name' => 'Meters', 'symbol' => 'm', 'factor' => 1],
+        'ft' => ['name' => 'Feet', 'symbol' => 'ft', 'factor' => 0.3048],
+        'smoot' => ['name' => 'Smoots', 'symbol' => 'smoot', 'factor' => 1.7018],
+        'banana' => ['name' => 'Bananas (7 in)', 'symbol' => 'banana', 'factor' => 0.1778],
+        'football_field' => ['name' => 'US football fields (100 yd)', 'symbol' => 'field', 'factor' => 91.44],
+        'cubit' => ['name' => 'Cubits', 'symbol' => 'cubit', 'factor' => 0.4572],
+        'furlong' => ['name' => 'Furlongs', 'symbol' => 'fur', 'factor' => 201.168],
+        'light_ns' => ['name' => 'Light-nanoseconds', 'symbol' => 'light-ns', 'factor' => 0.299792458],
+        'attoparsec' => ['name' => 'Attoparsecs', 'symbol' => 'apc', 'factor' => 0.030856775814913673],
+        'beard_second' => ['name' => 'Beard-seconds (5 nm)', 'symbol' => 'beard-s', 'factor' => 5e-9],
+    ],
+
+    'weird_time' => [
+        's' => ['name' => 'Seconds', 'symbol' => 's', 'factor' => 1],
+        'min' => ['name' => 'Minutes', 'symbol' => 'min', 'factor' => 60],
+        'day' => ['name' => 'Days', 'symbol' => 'd', 'factor' => 86400],
+        'jiffy' => ['name' => 'Jiffies (1/60 s)', 'symbol' => 'jiffy', 'factor' => 1 / 60],
+        'moment' => ['name' => 'Medieval moments (90 s)', 'symbol' => 'moment', 'factor' => 90],
+        'microcentury' => ['name' => 'Microcenturies', 'symbol' => 'µcentury', 'factor' => 3155.6952],
+        'fortnight' => ['name' => 'Fortnights', 'symbol' => 'fortnight', 'factor' => 1209600],
+    ],
+
+    'weird_data' => [
+        'b' => ['name' => 'Bytes', 'symbol' => 'B', 'factor' => 1],
+        'mb' => ['name' => 'Megabytes', 'symbol' => 'MB', 'factor' => 1e6],
+        'gb' => ['name' => 'Gigabytes', 'symbol' => 'GB', 'factor' => 1e9],
+        'floppy' => ['name' => 'Floppy disks (1.44 MB)', 'symbol' => 'floppy', 'factor' => 1474560],
+        'cd' => ['name' => 'CDs (700 MB)', 'symbol' => 'CD', 'factor' => 700 * 1024 ** 2],
+        'dvd' => ['name' => 'DVDs (4.7 GB)', 'symbol' => 'DVD', 'factor' => 4.7e9],
+        'library_of_congress' => ['name' => 'Libraries of Congress (10 TB, informal)', 'symbol' => 'LoC', 'factor' => 1e13],
+    ],
+
+    'weird_mass' => [
+        'kg' => ['name' => 'Kilograms', 'symbol' => 'kg', 'factor' => 1],
+        'lb' => ['name' => 'Pounds', 'symbol' => 'lb', 'factor' => 0.45359237],
+        'penny' => ['name' => 'US pennies (2.5 g)', 'symbol' => 'penny', 'factor' => 0.0025],
+        'paperclip' => ['name' => 'Paper clips (1 g)', 'symbol' => 'clip', 'factor' => 0.001],
+        'elephant' => ['name' => 'African elephants (6 t)', 'symbol' => 'elephant', 'factor' => 6000],
+        'blue_whale' => ['name' => 'Blue whales (150 t)', 'symbol' => 'whale', 'factor' => 150000],
     ],
 
 ];

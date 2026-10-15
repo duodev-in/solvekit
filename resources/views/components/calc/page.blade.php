@@ -32,7 +32,7 @@
     $breadcrumbs = collect([
         ['name' => 'Home', 'item' => url('/')],
         ['name' => 'Conversion Tools', 'item' => route('conversion.index')],
-        $category ? ['name' => $category['title'], 'item' => route('conversion.index')] : null,
+        $category ? ['name' => $category['title'], 'item' => route('conversion.index').'#'.$category['slug']] : null,
         ['name' => $toolTitle, 'item' => url()->current()],
     ])->filter()->values();
 
@@ -118,6 +118,8 @@
                 </section>
             </div>
 
+            <x-ads type="in-article" placement="tool-after-result" class="lg:hidden" />
+
             <div class="calc-info">
                 <section aria-label="About this tool" class="calc-panel calc-tabs flex flex-col" data-calc-tabs>
                     <div role="tablist" aria-label="About this tool" class="flex shrink-0 gap-1 border-b border-slate-200 px-3">
@@ -170,6 +172,7 @@
                         @endforeach
                         <a href="{{ route('conversion.index') }}" class="shrink-0 rounded-lg px-3 py-2 text-[13px] font-medium text-primary-700 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">All tools</a>
                     </nav>
+                    <x-ads type="display" placement="tool-sidebar" class="mt-auto hidden lg:block" />
                 </section>
             </div>
 

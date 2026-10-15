@@ -45,7 +45,6 @@
 
     <x-slot:panel>
         <x-calc.quick-ref heading="Same amount in" name="also" :generated="true" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

@@ -35,7 +35,6 @@
             'st' => ['label' => 'Stone and pounds', 'unit' => ''],
             't' => ['label' => 'Metric tons', 'unit' => 't'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

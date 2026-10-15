@@ -35,7 +35,6 @@
             'feet' => ['label' => 'Decimal feet', 'unit' => 'ft'],
             'yards' => ['label' => 'Yards', 'unit' => 'yd'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

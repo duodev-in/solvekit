@@ -33,7 +33,6 @@
     <x-slot:panel>
         <x-calc.quick-ref heading="Also weighs" name="also" :generated="true" />
         <x-calc.quick-ref heading="Same volume of other liquids" name="compare" :generated="true" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

@@ -39,7 +39,7 @@ export default function psiToGpm(ctx, config) {
             return;
         }
 
-        const { area, velocity, flow } = orificeFlow(pressure * pressureUnit.factor, diameter * lengthUnit.factor, coefficient);
+        const { flow } = orificeFlow(pressure * pressureUnit.factor, diameter * lengthUnit.factor, coefficient);
 
         ctx.showResult({
             value: ctx.format(flow / flowUnits.gpm.factor),
@@ -48,11 +48,5 @@ export default function psiToGpm(ctx, config) {
         });
 
         rows.forEach((key) => ctx.setRow(key, ctx.format(flow / flowUnits[key].factor)));
-
-        ctx.renderSteps('steps', [
-            `Opening area A = π × d² ÷ 4 = ${ctx.format(area * 1e4)} cm²`,
-            `Jet velocity v = √(2 × ΔP ÷ ρ) = ${ctx.format(velocity)} m/s`,
-            `Q = Cd × A × v = ${ctx.format(flow * 1000)} L/s`,
-        ]);
     });
 }

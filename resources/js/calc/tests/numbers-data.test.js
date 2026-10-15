@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { groupDigits, integerDigits } from '../engines/number-scale.js';
-import { bitLength, conversionSteps, groupFromRight, parseRadix, toRadix } from '../engines/radix.js';
+import { bitLength, groupFromRight, parseRadix, toRadix } from '../engines/radix.js';
 import { downloadSeconds, formatDuration } from '../tools/mbps-calculator.js';
 import { fromRoman, toRoman } from '../tools/roman.js';
 import { isoWeek, zonedToEpoch, zoneOffsetMinutes } from '../tools/unix-time.js';
@@ -28,10 +28,9 @@ test('radix input is validated per base', () => {
     assert.equal(parseRadix('1.5', 10), null);
 });
 
-test('grouping and worked steps', () => {
+test('grouping', () => {
     assert.equal(groupFromRight('101101', 4), '10 1101');
     assert.equal(groupFromRight('1234567', 3, ','), '1,234,567');
-    assert.deepEqual(conversionSteps(13n, 10, 2).slice(0, 2), ['13 ÷ 2 = 6 remainder 1', '6 ÷ 2 = 3 remainder 0']);
 });
 
 test('roman numerals round-trip and reject non-standard forms', () => {

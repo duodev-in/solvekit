@@ -50,7 +50,6 @@
 
     <x-slot:panel>
         <x-calc.rows heading="Same work in" :rows="$rows" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

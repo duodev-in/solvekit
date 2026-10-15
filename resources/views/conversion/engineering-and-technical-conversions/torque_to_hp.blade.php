@@ -45,7 +45,6 @@
     <x-slot:panel>
         <x-calc.rows heading="Same power in" :rows="$rows" />
         <x-calc.quick-ref heading="At other speeds" :generated="true" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

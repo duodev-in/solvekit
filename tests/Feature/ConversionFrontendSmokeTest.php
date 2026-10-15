@@ -7,6 +7,11 @@ use Tests\TestCase;
 
 class ConversionFrontendSmokeTest extends TestCase
 {
+    public function test_home_page_loads_successfully(): void
+    {
+        $this->get('/')->assertOk();
+    }
+
     public function test_conversion_index_page_loads_successfully(): void
     {
         $response = $this->get(route('conversion.index'));

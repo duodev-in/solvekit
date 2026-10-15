@@ -39,11 +39,5 @@ export default function boxVolume(ctx, config) {
         });
 
         rows.forEach((key) => ctx.setRow(key, ctx.format(liters / volumeUnits[key].factor)));
-
-        ctx.renderSteps('steps', [
-            `In meters: ${meters.map((value) => ctx.format(value)).join(' × ')}`,
-            `Volume = ${ctx.format(liters / 1000)} m³`,
-            `${ctx.format(liters / 1000)} m³ = ${ctx.format(liters / target.factor)} ${target.symbol}`,
-        ]);
     });
 }

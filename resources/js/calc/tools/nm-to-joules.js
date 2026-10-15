@@ -27,11 +27,5 @@ export default function nmToJoules(ctx, config) {
 
         ctx.showResult({ value: ctx.format(joules), unit: 'J', sub: `${ctx.format(torque)} ${torqueUnit.symbol} through ${ctx.format(angle)} ${angleUnit.symbol}` });
         rows.forEach((key) => ctx.setRow(key, ctx.format(joules / energyUnits[key].factor)));
-
-        ctx.renderSteps('steps', [
-            `τ = ${ctx.format(torqueNm)} N·m`,
-            `θ = ${ctx.format(radians)} rad`,
-            `W = τ × θ = ${ctx.format(joules)} J`,
-        ]);
     });
 }

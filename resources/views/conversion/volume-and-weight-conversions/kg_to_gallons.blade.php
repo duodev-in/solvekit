@@ -33,7 +33,6 @@
     <x-slot:panel>
         <x-calc.quick-ref heading="Also fills" name="also" :generated="true" />
         <x-calc.quick-ref heading="Same weight of other substances" name="compare" :generated="true" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

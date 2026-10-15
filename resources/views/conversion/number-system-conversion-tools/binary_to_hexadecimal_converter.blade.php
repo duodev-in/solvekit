@@ -7,7 +7,7 @@
     :how-to="[
         ['name' => 'Choose a direction', 'text' => 'Binary to hexadecimal, or the reverse.'],
         ['name' => 'Type the number', 'text' => 'Whole numbers of any length. Spaces and underscores are ignored.'],
-        ['name' => 'Read the working', 'text' => 'Every base is listed, with the steps of the conversion below.'],
+        ['name' => 'Read every base', 'text' => 'Binary, octal, decimal and hexadecimal are all listed beside the result.'],
     ]"
     :faqs="[
         ['question' => 'How do I convert binary to hex?', 'answer' => 'Group the bits in fours from the right and replace each group: 1010 1111 = AF.'],
@@ -35,7 +35,6 @@
             'bits' => ['label' => 'Bit length'],
             'bytes' => ['label' => 'Bytes needed'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

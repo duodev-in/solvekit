@@ -34,7 +34,6 @@
             'symbols' => ['label' => 'Symbols used'],
             'length' => ['label' => 'Length'],
         ]" />
-        <x-calc.steps heading="Symbol by symbol" />
     </x-slot:panel>
 
     <x-slot:formula>

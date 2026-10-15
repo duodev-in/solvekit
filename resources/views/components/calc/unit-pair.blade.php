@@ -5,10 +5,15 @@
     'value' => null,
     'label' => 'Value',
     'min' => null,
+    'groups' => null,
 ])
 
+{{-- groups: [group label => [unit keys]] renders the menus with option groups. --}}
 @php
-    $options = collect($units)->mapWithKeys(fn ($unit, $key) => [$key => "{$unit['name']} ({$unit['symbol']})"])->all();
+    $optionLabel = fn ($unit) => $unit['symbol'] !== '' ? "{$unit['name']} ({$unit['symbol']})" : $unit['name'];
+    $options = $groups
+        ? collect($groups)->map(fn ($keys) => collect($keys)->mapWithKeys(fn ($key) => [$key => $optionLabel($units[$key])])->all())->all()
+        : collect($units)->mapWithKeys(fn ($unit, $key) => [$key => $optionLabel($unit)])->all();
 @endphp
 
 <div class="grid grid-cols-[minmax(0,1fr)_2.75rem] items-end gap-3 sm:grid-cols-[minmax(0,1.2fr)_2.75rem_minmax(0,1fr)]">
@@ -29,9 +34,7 @@
             >
             <label for="calc-from" class="sr-only">From unit</label>
             <select id="calc-from" name="from" class="max-w-[48%] border-0 border-l border-slate-200 bg-slate-50 px-2.5 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500/40">
-                @foreach($options as $key => $option)
-                    <option value="{{ $key }}" @selected($key === $from)>{{ $option }}</option>
-                @endforeach
+                @include('components.calc.partials.unit-options', ['options' => $options, 'selected' => $from])
             </select>
         </div>
     </div>
@@ -43,9 +46,7 @@
     <div class="col-span-2 flex min-w-0 flex-col gap-1.5 sm:col-span-1">
         <label for="calc-to" class="text-[13px] font-semibold text-slate-700">Convert to</label>
         <select id="calc-to" name="to" class="h-12 w-full min-w-0 rounded-lg border border-slate-300 bg-white px-3 text-[15px] text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
-            @foreach($options as $key => $option)
-                <option value="{{ $key }}" @selected($key === $to)>{{ $option }}</option>
-            @endforeach
+            @include('components.calc.partials.unit-options', ['options' => $options, 'selected' => $to])
         </select>
     </div>
 </div>

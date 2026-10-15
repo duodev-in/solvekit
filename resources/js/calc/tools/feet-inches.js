@@ -51,10 +51,5 @@ export default function feetInches(ctx) {
         ctx.setRow('millimeters', ctx.format(result.millimeters));
         ctx.setRow('feet', ctx.format(result.decimalFeet));
         ctx.setRow('yards', ctx.format(result.yards));
-
-        ctx.renderSteps('steps', [
-            `${ctx.format(ft)} ft × 12 + ${ctx.format(inch)} in = ${ctx.format(result.totalInches)} in`,
-            `${ctx.format(result.totalInches)} in × 2.54 = ${ctx.format(result.centimeters)} cm`,
-        ]);
     });
 }

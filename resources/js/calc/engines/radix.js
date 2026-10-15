@@ -4,7 +4,6 @@
  */
 const DIGITS = { 2: /^[01]+$/, 8: /^[0-7]+$/, 10: /^[0-9]+$/, 16: /^[0-9a-f]+$/i };
 const NAMES = { 2: 'binary', 8: 'octal', 10: 'decimal', 16: 'hexadecimal' };
-const MAX_STEPS = 8;
 
 export function parseRadix(text, radix) {
     const cleaned = String(text).trim().replace(/[\s_]/g, '').replace(/^0[bxo]/i, '');
@@ -47,38 +46,6 @@ export function bitLength(value) {
     return magnitude === 0n ? 1 : magnitude.toString(2).length;
 }
 
-/**
- * Worked steps: repeated division for decimal → base, positional sum for base → decimal.
- */
-export function conversionSteps(value, from, to) {
-    const magnitude = value < 0n ? -value : value;
-
-    if (from === 10) {
-        const steps = [];
-        let quotient = magnitude;
-
-        while (quotient > 0n && steps.length < MAX_STEPS) {
-            const remainder = quotient % BigInt(to);
-            steps.push(`${quotient} ÷ ${to} = ${quotient / BigInt(to)} remainder ${toRadix(remainder, to)}`);
-            quotient /= BigInt(to);
-        }
-
-        if (quotient > 0n) {
-            steps.push('… continue until the quotient is 0');
-        }
-
-        steps.push(`Read the remainders from bottom to top: ${toRadix(magnitude, to)}`);
-
-        return steps;
-    }
-
-    const digits = [...toRadix(magnitude, from)];
-    const terms = digits.map((digit, index) => `${digit}×${from}^${digits.length - 1 - index}`);
-    const shown = terms.length > MAX_STEPS ? [...terms.slice(0, MAX_STEPS), '…'] : terms;
-
-    return [`${shown.join(' + ')}`, `= ${magnitude.toString(10)} in decimal`, ...(to === 10 ? [] : [`= ${toRadix(magnitude, to)} in ${NAMES[to]}`])];
-}
-
 export default function radixEngine(ctx) {
     ctx.onUpdate(() => {
         const [from, to] = ctx.choice('direction').split(':').map(Number);
@@ -116,6 +83,5 @@ export default function radixEngine(ctx) {
         ctx.setRow('hex', groupFromRight(toRadix(value, 16), 4));
         ctx.setRow('bits', `${bitLength(value)} bits`);
         ctx.setRow('bytes', `${Math.ceil(bitLength(value) / 8)} bytes`);
-        ctx.renderSteps('steps', conversionSteps(value, from, to));
     });
 }

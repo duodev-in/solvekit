@@ -1,127 +1,21 @@
-# Tool UI Migration
+# Design A Calculator Migration
 
-Shared tool-page layout, viewport behavior, SEO schema, related tools, and consistent tool content are being migrated across the complete registered catalog.
+All 106 registered calculators use the shared Design A frame (`resources/views/components/calc/`),
+with conversion factors in `config/units.php` and calculation code in `resources/js/calc/`.
+Tests: `php artisan test` (factors, pages, labels) and `npm run test:js` (calculation logic).
 
-## Design phases
+- [x] Shared frame, components, runtime and unit engine
+- [x] Length & Area (12)
+- [x] Volume & Weight (20)
+- [x] Engineering & Technical (11), Speed & Motion (5), Energy & Power (6)
+- [x] Number (8), Number System (6), Data & Technical (7)
+- [x] Time & Date (5), Specialized Measurement (8), Currency & Financial (4), Digital & Technical (5), Utility & General (5)
+- [x] Geographic & Mapping (4)
+- [x] Old tool layout removed; tools index rendered from config with category anchors
 
-- [x] Phase 1: Length & Area Conversions (12 tools)
-- [x] Phase 2: Volume & Weight Conversions (20 tools)
-- [x] Phase 3: Engineering & Technical Conversions (11 tools)
-- [x] Phase 4: Geographic & Mapping Tools (4 tools)
-- [x] Phase 5: Number and Number System Conversion Tools (14 tools)
-- [x] Phase 6: Data and Time & Date Conversion Tools (12 tools)
-- [x] Phase 7: Specialized Measurement Conversion Tools (8 tools)
-- [x] Phase 8: Speed & Motion Conversion Tools (5 tools)
-- [x] Phase 9: Energy & Power Conversion Tools (6 tools)
-- [x] Phase 10: Currency & Financial Conversion Tools (4 tools)
-- [x] Phase 11: Digital & Technical Conversion Tools (5 tools)
-- [x] Phase 12: Utility & General Conversion Tools (5 tools)
+## Open items
 
-## Registered Tools
-
-- [x] Length Converter
-- [x] Area Converter
-- [x] Acreage Calculator
-- [x] Ares to Hectares
-- [x] Astronomical Units
-- [x] Decimeter to Meter
-- [x] Feet & Inches
-- [x] Height in Inches
-- [x] Inches to Fraction
-- [x] Light Year Converter
-- [x] Mesh to Micron
-- [x] Pixels to Inches
-- [x] Weight Converter
-- [x] Volume Converter
-- [x] CCF to Gallons
-- [x] Cubic Feet Calculator
-- [x] Cubic Meter Calculator
-- [x] Cubic Yards to Tons
-- [x] Decagram to Gram
-- [x] Drops to mL
-- [x] Gallon Calculator
-- [x] Gallons to Pounds
-- [x] Grams to Ounces
-- [x] Kg to Gallons
-- [x] Liters to Centiliters
-- [x] mcg to mg
-- [x] mg to mL
-- [x] mL to Cups
-- [x] Oz to Cups
-- [x] Pints to Pounds
-- [x] Pounds & Ounces
-- [x] Quarts to Pounds
-- [x] Pressure Converter
-- [x] Torque to HP
-- [x] Nm to in-lbs
-- [x] PSI to GPM
-- [x] Torr to atm
-- [x] Force Converter
-- [x] in-lbs ↔ Nm
-- [x] in-lbs ↔ ft-lbs
-- [x] Lbs ↔ Newtons
-- [x] Torque (Nm)
-- [x] Torque (ft-lbs)
-- [x] Coordinates
-- [x] DMS Calculator
-- [x] Lat/Long to UTM
-- [x] Scale Calculator
-- [x] Billion to Trillion
-- [x] Crore to Lakh
-- [x] Crore to Million
-- [x] Million to Billion
-- [x] Million to Lakh
-- [x] Million to Thousand
-- [x] Number to Billion
-- [x] Number to Million
-- [x] Binary Converter
-- [x] Binary to Hexadecimal
-- [x] Binary to Octal
-- [x] Decimal to Hexadecimal
-- [x] Decimal to Octal
-- [x] Roman Numerals
-- [x] Byte Conversion Calculator
-- [x] Capacitance Converter
-- [x] kB to MB Converter
-- [x] Mbps Calculator
-- [x] Mbps to Gbps Converter
-- [x] MB to GB Converter
-- [x] Unix Time Converter
-- [x] Military Time Converter
-- [x] Minutes to Hours Converter
-- [x] Time Unit Converter
-- [x] Time Zones Converter
-- [x] Years to Decades Calculator
-- [x] Angle Conversion Calculator
-- [x] Density Conversion
-- [x] Hardness Conversion Calculator
-- [x] Radiation Converter
-- [x] Natural Gas Converter
-- [x] Dimensional Analysis Calculator
-- [x] CGS System of Units Converter
-- [x] Weird Units Converter
-- [x] m/s to km/h Converter
-- [x] Knots to kph Converter
-- [x] Knots to mph Converter
-- [x] MPG to L/100 km Converter
-- [x] Speed Conversion
-- [x] Energy Conversion Calculator
-- [x] Power Converter
-- [x] Joules to Volts Calculator
-- [x] Nm to Joules Calculator
-- [x] dBm to Watts Calculator
-- [x] RMS to Watts Converter
-- [x] Cents to Dollars Calculator
-- [x] Dimes to Dollars Calculator
-- [x] Nickels to Dollars Calculator
-- [x] Pennies to Dollars Calculator
-- [x] Px to Em Converter
-- [x] PPM Calculator
-- [x] PPM to mg/L Converter
-- [x] CPS Calculator
-- [x] Paper Quantity Converter
-- [x] CCF to Therms Calculator
-- [x] Conversion Calculator
-- [x] Grams To Calories Calculator
-- [x] Quantity Converter
-- [x] Temperature Conversion
+- [ ] Install the PHP sqlite driver (`php8.3-sqlite3`) so the 12 database-backed tests run locally
+- [ ] Remove password hashes already stored in `audit_logs` before the Auditable fix
+- [ ] Add the missing social preview images (`public/images/og-image.jpg`, `twitter-image.jpg`)
+- [ ] Add a privacy policy page (required for AdSense)

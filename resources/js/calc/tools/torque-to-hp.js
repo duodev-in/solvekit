@@ -47,11 +47,5 @@ export default function torqueToHp(ctx, config) {
             highlight: speed === rpm,
         })));
         ctx.setText('quick-ref-heading', `${ctx.format(torque)} ${torqueUnit.symbol} at other speeds`);
-
-        ctx.renderSteps('steps', [
-            `Torque = ${ctx.format(torqueNm)} N·m`,
-            `ω = ${ctx.format(rpm)} rpm × 2π ÷ 60 = ${ctx.format((rpm * 2 * Math.PI) / 60)} rad/s`,
-            `P = τ × ω = ${ctx.format(watts)} W = ${ctx.format(watts / powerUnit.factor)} ${powerUnit.symbol}`,
-        ]);
     });
 }

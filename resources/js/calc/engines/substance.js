@@ -109,17 +109,5 @@ export default function substanceEngine(ctx, config) {
             highlight: key === select.value,
         })));
         ctx.setText('compare-heading', `${ctx.format(value)} ${fromUnit.symbol} of other substances`);
-
-        ctx.renderSteps('steps', toMass
-            ? [
-                `${ctx.format(value)} ${fromUnit.symbol} = ${ctx.format(liters * 1000)} mL`,
-                `${ctx.format(liters * 1000)} mL × ${ctx.format(density)} g/mL = ${ctx.format(grams)} g`,
-                `${ctx.format(grams)} g = ${ctx.format(result)} ${toUnit.symbol}`,
-            ]
-            : [
-                `${ctx.format(value)} ${fromUnit.symbol} = ${ctx.format(grams)} g`,
-                `${ctx.format(grams)} g ÷ ${ctx.format(density)} g/mL = ${ctx.format(liters * 1000)} mL`,
-                `${ctx.format(liters * 1000)} mL = ${ctx.format(result)} ${toUnit.symbol}`,
-            ]);
     });
 }

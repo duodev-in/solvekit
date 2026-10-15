@@ -68,11 +68,6 @@ export default function mbpsCalculator(ctx, config) {
             ctx.setRow('minutes', ctx.format(seconds / 60));
             ctx.setRow('hours', ctx.format(seconds / 3600));
             ctx.setRow('throughput', ctx.format((rate * efficiency) / 8e6));
-            ctx.renderSteps('steps', [
-                `Size = ${ctx.format(bytes * 8)} bits`,
-                `Effective speed = ${ctx.format(rate / 1e6)} Mbit/s × ${ctx.format(efficiency * 100)}% = ${ctx.format((rate * efficiency) / 1e6)} Mbit/s`,
-                `Time = bits ÷ speed = ${ctx.format(seconds)} s`,
-            ]);
 
             return;
         }
@@ -101,11 +96,6 @@ export default function mbpsCalculator(ctx, config) {
             ctx.setRow('minutes', ctx.format(minutes));
             ctx.setRow('hours', ctx.format(minutes / 60));
             ctx.setRow('throughput', ctx.format(required / 8e6));
-            ctx.renderSteps('steps', [
-                `Size = ${ctx.format(bytes * 8)} bits`,
-                `Bits ÷ ${ctx.format(minutes * 60)} s = ${ctx.format((bytes * 8) / (minutes * 60) / 1e6)} Mbit/s`,
-                `÷ ${ctx.format(efficiency * 100)}% efficiency = ${ctx.format(required / 1e6)} Mbit/s`,
-            ]);
 
             return;
         }
@@ -131,6 +121,5 @@ export default function mbpsCalculator(ctx, config) {
         ctx.setRow('minutes', '—');
         ctx.setRow('hours', '—');
         ctx.setRow('throughput', ctx.format(total / 8));
-        ctx.renderSteps('steps', [`${ctx.format(users)} × ${ctx.format(perUser)} = ${ctx.format(users * perUser)} Mbit/s`, `÷ ${ctx.format(efficiency * 100)}% efficiency = ${ctx.format(total)} Mbit/s`]);
     });
 }

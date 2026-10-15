@@ -2,9 +2,12 @@
  * Unit-table engine: drives every unit converter (V1) and fixed-pair converter (V2).
  *
  * Config (built by the Blade components from config/units.php):
- *   units:     { key: { name, symbol, factor, offset?, inverse? } }  factor = base units per one
- *              of this unit. `offset` units (temperature) convert as (value + offset) × factor;
- *              `inverse` units (L/100 km) convert as factor ÷ value.
+ *   units:     { key: { name, symbol, factor, offset?, inverse?, scale? } }  factor = base units
+ *              per one of this unit. `offset` units (temperature) convert as (value + offset) × factor;
+ *              `inverse` units (L/100 km, API gravity) as factor ÷ (scale × value + offset).
+ *   groups:    { groupKey: [unit keys] } when one converter holds several quantities (radiation:
+ *              dose, activity…). Units only convert within their group.
+ *   minBase:   lowest allowed value in base units (e.g. absolute zero), with minBaseMessage
  *   list:      keys shown in the right-panel list
  *   quickRef:  input values for the quick-reference table (fixed-pair tools), or an object
  *              of such lists keyed by direction value when each direction needs its own scale
@@ -50,7 +53,7 @@ export function convert(value, fromFactor, toFactor) {
 
 export function toBase(value, unit) {
     if (unit.inverse) {
-        return unit.factor / value;
+        return unit.factor / ((unit.scale ?? 1) * value + (unit.offset ?? 0));
     }
 
     return (value + (unit.offset ?? 0)) * unit.factor;
@@ -58,7 +61,7 @@ export function toBase(value, unit) {
 
 export function fromBase(base, unit) {
     if (unit.inverse) {
-        return unit.factor / base;
+        return (unit.factor / base - (unit.offset ?? 0)) / (unit.scale ?? 1);
     }
 
     return base / unit.factor - (unit.offset ?? 0);
@@ -73,6 +76,26 @@ export function convertUnit(value, fromUnit, toUnit) {
 
 export function isLinear(unit) {
     return !unit.inverse && !unit.offset;
+}
+
+/**
+ * Keeps the "to" unit in the same group as the "from" unit and hides list rows of other groups.
+ */
+function syncGroups(ctx, groups, changed) {
+    const groupOf = (key) => Object.keys(groups).find((group) => groups[group].includes(key));
+    const from = ctx.field('from');
+    const to = ctx.field('to');
+
+    if (changed === 'to' && groupOf(to.value) !== groupOf(from.value)) {
+        from.value = groups[groupOf(to.value)].find((key) => key !== to.value);
+    } else if (groupOf(to.value) !== groupOf(from.value)) {
+        to.value = groups[groupOf(from.value)].find((key) => key !== from.value) ?? from.value;
+    }
+
+    const active = groupOf(from.value);
+    ctx.root.querySelectorAll('[data-calc-row]').forEach((row) => {
+        row.hidden = groupOf(row.dataset.calcRow) !== active;
+    });
 }
 
 /**
@@ -99,8 +122,14 @@ function readPair(ctx) {
 }
 
 export default function unitsEngine(ctx, config) {
-    const { list = [], quickRef = [], min, kitchenFraction: withFraction = false, unitSets, unitSetControl } = config;
+    const { list = [], quickRef = [], min, kitchenFraction: withFraction = false, unitSets, unitSetControl, groups, minBase, minBaseMessage } = config;
     const activeUnits = () => (unitSets ? unitSets[ctx.choice(unitSetControl)] : config.units);
+
+    if (groups) {
+        ctx.field('from').addEventListener('change', () => syncGroups(ctx, groups, 'from'));
+        ctx.field('to').addEventListener('change', () => syncGroups(ctx, groups, 'to'));
+        syncGroups(ctx, groups, 'from');
+    }
 
     ctx.root.querySelector('[data-calc-swap]')?.addEventListener('click', () => {
         const from = ctx.field('from');
@@ -149,7 +178,19 @@ export default function unitsEngine(ctx, config) {
             return;
         }
 
+        if (minBase !== undefined && toBase(value, fromUnit) < minBase) {
+            ctx.showError(minBaseMessage ?? 'That value is below the lowest possible value.');
+
+            return;
+        }
+
         const converted = convertUnit(value, fromUnit, toUnit);
+
+        if (!Number.isFinite(converted) || (toUnit.inverse && converted < 0) || (fromUnit.inverse && toBase(value, fromUnit) <= 0)) {
+            ctx.showError(`${ctx.format(value)} ${fromUnit.symbol} is outside the range of this scale.`);
+
+            return;
+        }
         const shown = ctx.format(converted);
 
         const fraction = withFraction ? kitchenFraction(converted) : null;
@@ -163,18 +204,7 @@ export default function unitsEngine(ctx, config) {
             label: `${toUnit.name}`,
         });
 
-        list.forEach((key) => ctx.setRow(key, ctx.format(convertUnit(value, fromUnit, units[key])), unitSets ? units[key] : undefined));
-
-        ctx.renderSteps('steps', linear
-            ? [
-                `Start with ${ctx.format(value)} ${fromUnit.symbol}.`,
-                `1 ${fromUnit.symbol} = ${ctx.format(unitRatio(units, from, to))} ${toUnit.symbol}.`,
-                `${ctx.format(value)} × ${ctx.format(unitRatio(units, from, to))} = ${shown} ${toUnit.symbol}.`,
-            ]
-            : [
-                `Start with ${ctx.format(value)} ${fromUnit.symbol}.`,
-                `Convert to the common base unit, then to ${toUnit.name.toLowerCase()}.`,
-                `Result: ${shown} ${toUnit.symbol}.`,
-            ]);
+        const inGroup = (key) => !groups || Object.values(groups).some((keys) => keys.includes(key) && keys.includes(from));
+        list.filter(inGroup).forEach((key) => ctx.setRow(key, ctx.format(convertUnit(value, fromUnit, units[key])), unitSets ? units[key] : undefined));
     });
 }

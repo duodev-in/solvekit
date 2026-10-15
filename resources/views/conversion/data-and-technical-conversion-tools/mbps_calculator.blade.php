@@ -65,7 +65,6 @@
             'hours' => ['label' => 'Hours', 'unit' => 'h'],
             'throughput' => ['label' => 'Throughput', 'unit' => 'MB/s'],
         ]" />
-        <x-calc.steps />
     </x-slot:panel>
 
     <x-slot:formula>

@@ -49,10 +49,5 @@ export default function poundsOunces(ctx) {
         ctx.setRow('lb', ctx.format(grams / POUND_G));
         ctx.setRow('st', `${stone} st ${ctx.format(stonePounds)} lb`);
         ctx.setRow('t', ctx.format(grams / 1e6));
-
-        ctx.renderSteps('steps', [
-            `${ctx.format(lb)} lb × 16 + ${ctx.format(oz)} oz = ${ctx.format(totalOunces)} oz`,
-            `${ctx.format(totalOunces)} oz × 28.349523125 = ${ctx.format(grams)} g`,
-        ]);
     });
 }

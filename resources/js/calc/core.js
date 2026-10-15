@@ -183,7 +183,7 @@ export function createCalculator(root, config) {
         },
 
         /**
-         * Replaces a generated list (quick reference, steps) with label/value rows.
+         * Replaces a generated list (quick reference, comparisons) with label/value rows.
          */
         renderRows(name, rows) {
             const list = ctx.ref(name);
@@ -211,20 +211,6 @@ export function createCalculator(root, config) {
             }));
         },
 
-        renderSteps(name, steps) {
-            const list = ctx.ref(name);
-
-            if (!list) {
-                return;
-            }
-
-            list.replaceChildren(...steps.map((step) => {
-                const item = document.createElement('li');
-                item.textContent = step;
-
-                return item;
-            }));
-        },
 
         announce(text) {
             if (announcer) {

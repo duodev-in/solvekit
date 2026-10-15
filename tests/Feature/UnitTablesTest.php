@@ -90,13 +90,18 @@ class UnitTablesTest extends TestCase
     public function test_every_table_has_one_base_unit_and_complete_entries(): void
     {
         foreach (config('units') as $tableName => $units) {
-            $baseUnits = array_filter($units, fn (array $unit) => $unit['factor'] == 1 && empty($unit['inverse']) && empty($unit['offset']));
-            $this->assertCount(1, $baseUnits, "Table [{$tableName}] must have exactly one base unit.");
+            // A table may hold several quantities (each unit names its `base`); each needs one base unit.
+            $quantities = collect($units)->groupBy(fn (array $unit) => $unit['base'] ?? $tableName);
+            foreach ($quantities as $quantity => $quantityUnits) {
+                $baseUnits = $quantityUnits->filter(fn (array $unit) => $unit['factor'] == 1 && empty($unit['inverse']) && empty($unit['offset']));
+                $this->assertCount(1, $baseUnits, "[{$tableName}] quantity [{$quantity}] must have exactly one base unit.");
+            }
 
             foreach ($units as $key => $unit) {
                 $this->assertNotEmpty($unit['name'] ?? null, "[{$tableName}.{$key}] needs a name.");
                 $this->assertIsString($unit['symbol'] ?? null, "[{$tableName}.{$key}] needs a symbol (empty only for plain counts).");
-                $this->assertGreaterThan(0, $unit['factor'], "[{$tableName}.{$key}] needs a positive factor.");
+                // Reversed scales such as Delisle have a negative factor; zero is never valid.
+                $this->assertNotEquals(0, $unit['factor'], "[{$tableName}.{$key}] needs a non-zero factor.");
             }
         }
     }
