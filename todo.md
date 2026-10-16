@@ -12,6 +12,7 @@ Tests: `php artisan test` (factors, pages, labels) and `npm run test:js` (calcul
 - [x] Time & Date (5), Specialized Measurement (8), Currency & Financial (4), Digital & Technical (5), Utility & General (5)
 - [x] Geographic & Mapping (4)
 - [x] Old tool layout removed; tools index rendered from config with category anchors
+- [x] Biology & Nature section (/biology): 131 calculators in 11 categories on the same frame (`config/biology.php`, `resources/js/calc/tools/`)
 
 ## Open items
 

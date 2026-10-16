@@ -7,4 +7,4 @@
 - Use compact, side-panel flyouts for account and user actions when the page already provides a full dashboard shell.
 - Avoid large border radii in admin UI; use square edges or a minimal `rounded-sm` treatment, and do not use rounded containers for dashboard cards.
 - Permission configuration rules are documented in [permissions.md](permissions.md).
-- Tool redesign decisions are documented in [tool-ui.md](tool-ui.md).
+- Calculator page layout (Design A split panel), components and data rules are documented in [tool-ui.md](tool-ui.md).

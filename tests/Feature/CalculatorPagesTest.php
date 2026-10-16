@@ -2,10 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Services\CalculatorCatalog;
 use Tests\TestCase;
 
 /**
- * Covers every calculator already moved to the shared Design A frame (<x-calc.page>).
+ * Covers every calculator in every section that uses the shared Design A frame (<x-calc.page>).
  */
 class CalculatorPagesTest extends TestCase
 {
@@ -14,7 +15,8 @@ class CalculatorPagesTest extends TestCase
      */
     private function migratedCalculators(): array
     {
-        return collect(config('conversion.calculators'))
+        return collect(CalculatorCatalog::SECTIONS)
+            ->flatMap(fn (array $section) => config("{$section['config']}.calculators"))
             ->filter(function (array $tool) {
                 $path = resource_path('views/'.str_replace('.', '/', $tool['view']).'.blade.php');
 

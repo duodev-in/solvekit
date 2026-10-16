@@ -1,26 +1,25 @@
 @php
-$categories = config('conversion.categories', []);
-$calculatorCount = is_array(config('conversion.calculators')) ? count(config('conversion.calculators')) : 0;
+$sections = \App\Services\CalculatorCatalog::SECTIONS;
+$calculatorCount = collect($sections)->sum(fn ($section) => count(config("{$section['config']}.calculators", [])));
 $isHomeActive = request()->is('/');
 $isConversionActive = request()->routeIs('conversion.*');
+$isBiologyActive = request()->routeIs('biology.*');
 $quickLinks = [];
 
-foreach ($categories as $category) {
-    if (!is_array($category)) {
-        continue;
-    }
+foreach ($sections as $section) {
+    foreach (config("{$section['config']}.categories", []) as $category) {
+        $title = $category['title'] ?? null;
+        $slug = $category['slug'] ?? null;
+        $tools = $category['tools'] ?? [];
 
-    $title = $category['title'] ?? null;
-    $slug = $category['slug'] ?? null;
-    $tools = $category['tools'] ?? [];
-
-    // Each category links to its own section of the tools index.
-    if (is_string($title) && $title !== '' && is_string($slug) && $slug !== '') {
-        $quickLinks[] = [
-            'title' => $title,
-            'url' => route('conversion.index').'#'.$slug,
-            'count' => is_array($tools) ? count($tools) : 0,
-        ];
+        // Each category links to its own section of that section's tools index.
+        if (is_string($title) && $title !== '' && is_string($slug) && $slug !== '') {
+            $quickLinks[] = [
+                'title' => $title,
+                'url' => route($section['index']).'#'.$slug,
+                'count' => is_array($tools) ? count($tools) : 0,
+            ];
+        }
     }
 }
 @endphp
@@ -53,6 +52,13 @@ foreach ($categories as $category) {
                     class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Conversion Tools
+                </a>
+
+                <a
+                    href="{{ route('biology.index') }}"
+                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Biology &amp; Nature
                 </a>
 
                 <div class="relative group">
@@ -141,6 +147,13 @@ foreach ($categories as $category) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Conversion Tools
+                </a>
+
+                <a
+                    href="{{ route('biology.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Biology &amp; Nature
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">

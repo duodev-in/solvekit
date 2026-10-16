@@ -179,7 +179,7 @@ export function createCalculator(root, config) {
             root.querySelectorAll('[data-row-value]').forEach((cell) => {
                 cell.textContent = '—';
             });
-            root.querySelectorAll('[data-calc-generated]').forEach((list) => list.replaceChildren());
+            root.querySelectorAll('[data-calc-generated], [data-calc-grid]').forEach((list) => list.replaceChildren());
         },
 
         /**
@@ -209,8 +209,40 @@ export function createCalculator(root, config) {
 
                 return item;
             }));
+
+            if (list.hasAttribute('data-collapse-long')) {
+                const expand = list.parentElement.querySelector('[data-calc-expand]');
+                expand.hidden = rows.length <= 8 || list.hasAttribute('data-expanded');
+                expand.textContent = `Show all ${rows.length}`;
+            }
         },
 
+
+        /**
+         * Fills a <table data-calc-grid>: { columns: [...], rows: [{ header, cells: [...] }] }.
+         */
+        renderGrid(name, grid) {
+            const table = ctx.ref(name);
+
+            if (!table) {
+                return;
+            }
+
+            const cell = (tag, text, className) => Object.assign(document.createElement(tag), { textContent: text, className });
+            // Large squares (8 × 8) use tighter cells so they fit the panel.
+            const spacing = grid.columns.length > 4 ? 'px-0.5 py-1 text-[10.5px]' : 'px-2 py-1.5';
+            const headerClass = `border border-slate-200 bg-slate-100 ${spacing} font-semibold text-slate-700`;
+            const head = document.createElement('tr');
+            head.append(cell('th', '', ''), ...grid.columns.map((column) => cell('th', column, headerClass)));
+            const rows = grid.rows.map((row) => {
+                const tr = document.createElement('tr');
+                tr.append(cell('th', row.header, headerClass), ...row.cells.map((text) => cell('td', text, `border border-slate-200 ${spacing} text-slate-900`)));
+
+                return tr;
+            });
+
+            table.replaceChildren(head, ...rows);
+        },
 
         announce(text) {
             if (announcer) {

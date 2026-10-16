@@ -9,21 +9,17 @@
 ])
 
 @php
-    $routeName = request()->route()?->getName();
-    $calculators = collect(config('conversion.calculators', []));
-    $current = $calculators->first(fn ($tool) => ($tool['route_name'] ?? null) === $routeName) ?? [];
-    $category = collect(config('conversion.categories', []))->firstWhere('slug', $current['category_slug'] ?? null);
+    $catalog = app(\App\Services\CalculatorCatalog::class);
+    $found = $catalog->forRoute(request()->route()?->getName());
+    $section = $found['section'] ?? \App\Services\CalculatorCatalog::SECTIONS['conversion'];
+    $current = $found['tool'] ?? [];
+    $category = $found['category'] ?? null;
 
     $toolTitle = $current['title'] ?? 'Calculator';
     $pageTitle = $title ?? "{$toolTitle} - SolveKit";
     $lede ??= $description;
 
-    $relatedTools = $calculators
-        ->filter(fn ($tool) => ($tool['category_slug'] ?? null) === ($current['category_slug'] ?? false)
-            && ($tool['route_name'] ?? null) !== $routeName
-            && \Illuminate\Support\Facades\Route::has($tool['route_name'] ?? ''))
-        ->take(4)
-        ->values();
+    $relatedTools = $found ? $catalog->related($section, $current) : collect();
 
     $faqs = collect($faqs)->filter(fn ($faq) => filled($faq['question'] ?? null) && filled($faq['answer'] ?? null))->values();
     $howTo = collect($howTo)->filter(fn ($step) => filled($step['name'] ?? null) && filled($step['text'] ?? null))->values();
@@ -31,8 +27,8 @@
 
     $breadcrumbs = collect([
         ['name' => 'Home', 'item' => url('/')],
-        ['name' => 'Conversion Tools', 'item' => route('conversion.index')],
-        $category ? ['name' => $category['title'], 'item' => route('conversion.index').'#'.$category['slug']] : null,
+        ['name' => $section['title'], 'item' => route($section['index'])],
+        $category ? ['name' => $category['title'], 'item' => route($section['index']).'#'.$category['slug']] : null,
         ['name' => $toolTitle, 'item' => url()->current()],
     ])->filter()->values();
 
@@ -170,7 +166,7 @@
                         @foreach($relatedTools as $tool)
                             <a href="{{ route($tool['route_name']) }}" class="shrink-0 rounded-lg border border-slate-200 px-3 py-2 text-[13px] font-medium text-slate-700 hover:border-primary-500 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-primary-600">{{ $tool['title'] }}</a>
                         @endforeach
-                        <a href="{{ route('conversion.index') }}" class="shrink-0 rounded-lg px-3 py-2 text-[13px] font-medium text-primary-700 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">All tools</a>
+                        <a href="{{ route($section['index']) }}" class="shrink-0 rounded-lg px-3 py-2 text-[13px] font-medium text-primary-700 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">All tools</a>
                     </nav>
                     <x-ads type="display" placement="tool-sidebar" class="mt-auto hidden lg:block" />
                 </section>

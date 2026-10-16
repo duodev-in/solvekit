@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BiologyController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\FeatureRequestController;
@@ -13,33 +14,42 @@ use App\Http\Controllers\SuperAdmin\RoleController;
 use App\Http\Controllers\SuperAdmin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('conversion')->group(function () {
-    Route::get('/', [ConversionController::class, 'index'])->name('conversion.index');
-    $categories = config('conversion.categories', []);
+/**
+ * Registers a calculator section: its index page and one route per tool listed in its config.
+ *
+ * @param  class-string  $controller
+ */
+$registerCalculatorSection = function (string $section, string $controller): void {
+    Route::prefix($section)->group(function () use ($section, $controller) {
+        Route::get('/', [$controller, 'index'])->name("{$section}.index");
 
-    foreach ($categories as $category) {
-        $categorySlug = $category['slug'] ?? null;
-        $tools = $category['tools'] ?? [];
+        foreach (config("{$section}.categories", []) as $category) {
+            $categorySlug = $category['slug'] ?? null;
+            $tools = $category['tools'] ?? [];
 
-        if (! is_string($categorySlug) || $categorySlug === '' || ! is_array($tools)) {
-            continue;
-        }
-
-        foreach ($tools as $tool) {
-            $toolSlug = $tool['slug'] ?? null;
-            $routeName = $tool['route_name'] ?? null;
-            $toolKey = $tool['key'] ?? null;
-
-            if (! is_string($toolSlug) || $toolSlug === '' || ! is_string($routeName) || $routeName === '' || ! is_string($toolKey) || $toolKey === '') {
+            if (! is_string($categorySlug) || $categorySlug === '' || ! is_array($tools)) {
                 continue;
             }
 
-            Route::get("/{$categorySlug}/{$toolSlug}", [ConversionController::class, 'show'])
-                ->defaults('calculator', $toolKey)
-                ->name($routeName);
+            foreach ($tools as $tool) {
+                $toolSlug = $tool['slug'] ?? null;
+                $routeName = $tool['route_name'] ?? null;
+                $toolKey = $tool['key'] ?? null;
+
+                if (! is_string($toolSlug) || $toolSlug === '' || ! is_string($routeName) || $routeName === '' || ! is_string($toolKey) || $toolKey === '') {
+                    continue;
+                }
+
+                Route::get("/{$categorySlug}/{$toolSlug}", [$controller, 'show'])
+                    ->defaults('calculator', $toolKey)
+                    ->name($routeName);
+            }
         }
-    }
-});
+    });
+};
+
+$registerCalculatorSection('conversion', ConversionController::class);
+$registerCalculatorSection('biology', BiologyController::class);
 
 Route::get('/', function () {
     return view('welcome');

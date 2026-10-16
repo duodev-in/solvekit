@@ -151,6 +151,10 @@
         border-right: 1px solid var(--color-slate-100);
     }
 
+    [data-collapse-long]:not([data-expanded]) > :nth-child(n + 9) {
+        display: none;
+    }
+
     @media (max-width: 1023px) {
         .calc-list[data-collapsible]:not([data-expanded]) > :nth-child(n + 5) {
             display: none;
@@ -163,7 +167,8 @@
             grid-template-columns: 7fr 5fr;
         }
 
-        [data-calc-expand] {
+        /* Static lists only collapse on small screens; long generated lists collapse everywhere. */
+        :not([data-collapse-long]) + [data-calc-expand] {
             display: none;
         }
     }
