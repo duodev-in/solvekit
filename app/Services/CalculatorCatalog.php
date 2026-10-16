@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Looks up calculators across every calculator section (Conversions, Biology & Nature).
+ * Looks up calculators across every calculator section (Conversions, Biology & Nature, Chemistry).
  */
 class CalculatorCatalog
 {
@@ -18,6 +18,7 @@ class CalculatorCatalog
     public const SECTIONS = [
         'conversion' => ['config' => 'conversion', 'title' => 'Conversion Tools', 'index' => 'conversion.index'],
         'biology' => ['config' => 'biology', 'title' => 'Biology & Nature', 'index' => 'biology.index'],
+        'chemistry' => ['config' => 'chemistry', 'title' => 'Chemistry', 'index' => 'chemistry.index'],
     ];
 
     /**

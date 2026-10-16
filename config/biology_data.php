@@ -100,19 +100,6 @@ return [
         'clay' => ['name' => 'Clay', 'lb' => 70],
     ],
 
-    // Common biological buffers: pKa at 25 °C (phosphate is pKa2). CRC Handbook / Good et al. (1966).
-    'buffers' => [
-        'acetate' => ['name' => 'Acetate', 'pka' => 4.76],
-        'mes' => ['name' => 'MES', 'pka' => 6.15],
-        'bicarbonate' => ['name' => 'Bicarbonate', 'pka' => 6.35],
-        'pipes' => ['name' => 'PIPES', 'pka' => 6.76],
-        'mops' => ['name' => 'MOPS', 'pka' => 7.20],
-        'phosphate' => ['name' => 'Phosphate', 'pka' => 7.21],
-        'hepes' => ['name' => 'HEPES', 'pka' => 7.48],
-        'tris' => ['name' => 'Tris', 'pka' => 8.07],
-        'ammonium' => ['name' => 'Ammonium', 'pka' => 9.25],
-    ],
-
     /*
     | Gestation in days from breeding: average, normal range and typical milestones [day, text].
     | Merck Veterinary Manual and breed-society guidance; individual animals vary.

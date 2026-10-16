@@ -17,6 +17,7 @@ import { toBase } from './units.js';
  *       lists: { ref: [{ label, value, highlight? }] } fills <x-calc.quick-ref> lists
  *       texts: { ref: 'text' }               fills data-ref text
  *       grids: { ref: { columns, rows } }    fills <x-calc.grid> tables
+ *       plots: { ref: { series, markers } }  draws <x-calc.plot> charts
  */
 export function readInputs(ctx, fields, unitFields = {}) {
     return Object.fromEntries(fields.map((name) => {
@@ -77,6 +78,7 @@ export function applyOutcome(ctx, outcome) {
     Object.entries(outcome.lists ?? {}).forEach(([ref, rows]) => ctx.renderRows(ref, rows));
     Object.entries(outcome.texts ?? {}).forEach(([ref, text]) => ctx.setText(ref, text));
     Object.entries(outcome.grids ?? {}).forEach(([ref, grid]) => ctx.renderGrid(ref, grid));
+    Object.entries(outcome.plots ?? {}).forEach(([ref, plot]) => ctx.renderPlot(ref, plot));
 }
 
 /**

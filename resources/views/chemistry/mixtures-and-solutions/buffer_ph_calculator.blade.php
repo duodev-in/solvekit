@@ -3,7 +3,7 @@
     description="Free buffer pH calculator: Henderson-Hasselbalch pH from acid and base, or the base to acid ratio for a target pH, with common buffer pKa values."
     lede="Work out a buffer's pH, or the acid and base needed for a target pH."
     about="The Henderson–Hasselbalch equation links pH to the pKa and the ratio of the base form [A⁻] to the acid form [HA]. A buffer works best within about 1 pH unit of its pKa. pKa values are at 25 °C and shift with temperature and ionic strength, so check the final pH with a meter."
-    :calc="['engine' => 'lab', 'tool' => 'buffer', 'fields' => ['buffer', 'pka', 'mode', 'base', 'acid', 'target', 'total'], 'data' => config('biology_data.buffers')]"
+    :calc="['engine' => 'lab', 'tool' => 'buffer', 'fields' => ['buffer', 'pka', 'mode', 'base', 'acid', 'target', 'total'], 'data' => config('chemistry_data.buffers')]"
     :how-to="[
         ['name' => 'Pick a buffer', 'text' => 'Or choose Custom and enter a pKa.'],
         ['name' => 'Choose what to find', 'text' => 'The pH of a mix, or the split for a target pH.'],
@@ -16,7 +16,7 @@
     ]"
 >
     <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <x-calc.select name="buffer" label="Buffer" :options="collect(config('biology_data.buffers'))->map(fn ($item) => $item['name'].' (pKa '.$item['pka'].')')->put('custom', 'Custom pKa')->all()" selected="tris" />
+        <x-calc.select name="buffer" label="Buffer" :options="collect(config('chemistry_data.buffers'))->map(fn ($item) => $item['name'].' (pKa '.$item['pka'].')')->put('custom', 'Custom pKa')->all()" selected="tris" />
         <div data-show-when="buffer:custom" hidden>
             <x-calc.field name="pka" label="pKa" value="7" min="0" max="14" />
         </div>

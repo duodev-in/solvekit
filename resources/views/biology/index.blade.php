@@ -1,11 +1,11 @@
 <x-app-layout
     title="Biology & Nature Calculators - SolveKit"
-    description="Calculators for gardening, crops, trees, forestry and water treatment, with formulas and sources you can check.">
+    description="Calculators for gardening, trees, lab work, genetics, ecology, pets and livestock, with formulas and sources you can check.">
 
     <section class="bg-gradient-to-br from-primary-50 to-white py-16">
         <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <h1 class="mb-4 text-4xl font-bold text-gray-900">Biology &amp; Nature Calculators</h1>
-            <p class="mx-auto max-w-3xl text-xl text-gray-600">Gardening, crops, trees, forestry and water treatment calculators, each with the formula it uses.</p>
+            <p class="mx-auto max-w-3xl text-xl text-gray-600">Gardening, trees, laboratory, genetics, ecology, animal and livestock calculators, each with the formula it uses.</p>
         </div>
     </section>
 

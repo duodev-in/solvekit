@@ -4,6 +4,7 @@ $calculatorCount = collect($sections)->sum(fn ($section) => count(config("{$sect
 $isHomeActive = request()->is('/');
 $isConversionActive = request()->routeIs('conversion.*');
 $isBiologyActive = request()->routeIs('biology.*');
+$isChemistryActive = request()->routeIs('chemistry.*');
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -12,8 +13,8 @@ foreach ($sections as $section) {
         $slug = $category['slug'] ?? null;
         $tools = $category['tools'] ?? [];
 
-        // Each category links to its own section of that section's tools index.
-        if (is_string($title) && $title !== '' && is_string($slug) && $slug !== '') {
+        // Each category links to its own section of that section's tools index; empty categories are not shown there.
+        if (is_string($title) && $title !== '' && is_string($slug) && $slug !== '' && is_array($tools) && $tools !== []) {
             $quickLinks[] = [
                 'title' => $title,
                 'url' => route($section['index']).'#'.$slug,
@@ -59,6 +60,13 @@ foreach ($sections as $section) {
                     class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Biology &amp; Nature
+                </a>
+
+                <a
+                    href="{{ route('chemistry.index') }}"
+                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Chemistry
                 </a>
 
                 <div class="relative group">
@@ -154,6 +162,13 @@ foreach ($sections as $section) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Biology &amp; Nature
+                </a>
+
+                <a
+                    href="{{ route('chemistry.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Chemistry
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">

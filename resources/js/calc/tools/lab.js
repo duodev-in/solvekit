@@ -1,3 +1,4 @@
+import { FormulaError, molarMass, parseFormula } from '../chemistry/formula.js';
 import { defineTools, missing } from '../engines/formula.js';
 
 /**
@@ -35,7 +36,22 @@ export function molarText(molar, f) {
 }
 
 export const handlers = {
-    molarity: (i, c, f) => {
+    molarity: (input, c, f) => {
+        const i = { ...input };
+
+        // A formula, when given, sets the molar mass (NaCl instead of 58.44).
+        if (String(i.formula ?? '').trim() && c.data?.elements) {
+            try {
+                i.weight = molarMass(parseFormula(i.formula, c.data.elements), c.data.elements).total;
+            } catch (error) {
+                if (error instanceof FormulaError) {
+                    return { error: error.message };
+                }
+
+                throw error;
+            }
+        }
+
         const molar = i.concentration * MOLAR[i.conc_unit];
 
         if (i.mode === 'mass') {

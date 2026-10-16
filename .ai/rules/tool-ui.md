@@ -14,7 +14,7 @@ Every calculator page (Conversion Tools and Biology & Nature) uses one layout, "
 ## Components
 
 - Inputs: `x-calc.field` (number, text or date), `x-calc.select`, `x-calc.segmented`, `x-calc.unit-pair`, `x-calc.textarea` (sequences, lists), `x-calc.substance`.
-- Results: `x-calc.result`, `x-calc.rows` (fixed labelled values), `x-calc.quick-ref` (lists the script fills), `x-calc.unit-list`, `x-calc.grid` (Punnett squares and other tables).
+- Results: `x-calc.result`, `x-calc.rows` (fixed labelled values), `x-calc.quick-ref` (lists the script fills), `x-calc.unit-list`, `x-calc.grid` (Punnett squares and other tables), `x-calc.plot` (SVG line charts drawn by the script; no chart library).
 - Use `data-show-when="field:value1,value2"` to show inputs only for the mode that uses them, rather than separate pages or custom script.
 - Long `x-calc.rows` and `x-calc.unit-list` lists collapse to 4 rows below 1024px. Long generated lists use `x-calc.quick-ref :collapse="true"`, which shows 8 rows and a "Show all" button at every width.
 - Every select with a default must mark it with `@selected`; config order is not a default.
@@ -23,7 +23,7 @@ Every calculator page (Conversion Tools and Biology & Nature) uses one layout, "
 
 - Pages pass a `calc` config to the shared runtime (`resources/js/calc/core.js`). Pick an engine in `resources/js/calc/engines/` (`units`, `substance`, `number-scale`, `radix`, `geo`, `formula`) instead of writing page scripts.
 - Formula tools are pure handlers in `resources/js/calc/tools/*.js` returning `{ value, unit, label, sub, rows, lists, grids }`, or `{ empty }` / `{ error }`. Cover new handlers with unit tests in `resources/js/calc/tests/`.
-- Keep reference data in config (`config/units.php`, `config/biology_data.php` and similar), never in views or scripts, and cite its source in a comment.
+- Keep reference data in config (`config/units.php`, `config/biology_data.php`, `config/elements.php`, `config/chemistry_data.php`), never in views or scripts, and cite its source in a comment. Take values from a published source rather than typing them from memory, and do not extrapolate data outside its stated range.
 - Register tools in `config/conversion.php` or `config/biology.php`. Routes, navigation, breadcrumbs, related tools and the section index are derived from there.
 
 ## Results and content

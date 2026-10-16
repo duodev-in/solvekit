@@ -179,7 +179,7 @@ export function createCalculator(root, config) {
             root.querySelectorAll('[data-row-value]').forEach((cell) => {
                 cell.textContent = '—';
             });
-            root.querySelectorAll('[data-calc-generated], [data-calc-grid]').forEach((list) => list.replaceChildren());
+            root.querySelectorAll('[data-calc-generated], [data-calc-grid], [data-calc-plot]').forEach((list) => list.replaceChildren());
         },
 
         /**
@@ -244,6 +244,83 @@ export function createCalculator(root, config) {
             table.replaceChildren(head, ...rows);
         },
 
+        /**
+         * Draws a line chart into an <svg data-calc-plot>: { series: [[x, y], …], xLabel, yLabel, markers: [{ x, y, label }], yTicks? }.
+         */
+        renderPlot(name, plot) {
+            const svg = ctx.ref(name);
+
+            if (!svg || !plot.series?.length) {
+                return;
+            }
+
+            const width = 400;
+            const height = 220;
+            const margin = { left: 44, right: 14, top: 12, bottom: 34 };
+            const xs = plot.series.map(([x]) => x);
+            const ys = plot.series.map(([, y]) => y);
+            const ticks = (min, max) => {
+                const span = max - min || Math.abs(max) || 1;
+                const raw = span / 5;
+                const power = 10 ** Math.floor(Math.log10(raw));
+                const step = [1, 2, 2.5, 5, 10].map((m) => m * power).find((m) => m >= raw);
+                const first = Math.floor(min / step) * step;
+                const list = [];
+
+                for (let value = first; value <= max + step * 0.5; value += step) {
+                    list.push(Number(value.toPrecision(12)));
+                }
+
+                return list;
+            };
+            const xTicks = ticks(plot.xMin ?? Math.min(...xs), plot.xMax ?? Math.max(...xs));
+            const yTicks = plot.yTicks ?? ticks(plot.yMin ?? Math.min(...ys), plot.yMax ?? Math.max(...ys));
+            const [x0, x1] = [xTicks[0], xTicks[xTicks.length - 1]];
+            const [y0, y1] = [yTicks[0], yTicks[yTicks.length - 1]];
+            const sx = (x) => margin.left + ((x - x0) / (x1 - x0 || 1)) * (width - margin.left - margin.right);
+            const sy = (y) => height - margin.bottom - ((y - y0) / (y1 - y0 || 1)) * (height - margin.top - margin.bottom);
+            const make = (tag, attributes, text) => {
+                const element = document.createElementNS('http://www.w3.org/2000/svg', tag);
+                Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+
+                if (text !== undefined) {
+                    element.textContent = text;
+                }
+
+                return element;
+            };
+            const label = (value) => (Math.abs(value) >= 1e4 || (Math.abs(value) < 1e-2 && value !== 0) ? value.toExponential(0) : String(value));
+            const nodes = [];
+
+            yTicks.forEach((value) => {
+                nodes.push(make('line', { x1: margin.left, x2: width - margin.right, y1: sy(value), y2: sy(value), class: 'stroke-slate-200' }));
+                nodes.push(make('text', { x: margin.left - 6, y: sy(value) + 3.5, 'text-anchor': 'end', class: 'fill-slate-500', 'font-size': 10 }, label(value)));
+            });
+            xTicks.forEach((value) => {
+                nodes.push(make('text', { x: sx(value), y: height - margin.bottom + 14, 'text-anchor': 'middle', class: 'fill-slate-500', 'font-size': 10 }, label(value)));
+            });
+            nodes.push(make('line', { x1: margin.left, x2: width - margin.right, y1: height - margin.bottom, y2: height - margin.bottom, class: 'stroke-slate-400' }));
+            nodes.push(make('polyline', { points: plot.series.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round', class: 'stroke-primary-600' }));
+            (plot.markers ?? []).forEach((marker) => {
+                nodes.push(make('circle', { cx: sx(marker.x), cy: sy(marker.y), r: 3.5, class: 'fill-white stroke-slate-900', 'stroke-width': 1.5 }));
+
+                if (marker.label) {
+                    nodes.push(make('text', { x: sx(marker.x) + 6, y: sy(marker.y) - 6, class: 'fill-slate-700', 'font-size': 10 }, marker.label));
+                }
+            });
+
+            if (plot.xLabel) {
+                nodes.push(make('text', { x: (margin.left + width - margin.right) / 2, y: height - 4, 'text-anchor': 'middle', class: 'fill-slate-600', 'font-size': 11 }, plot.xLabel));
+            }
+
+            if (plot.yLabel) {
+                nodes.push(make('text', { x: 12, y: (margin.top + height - margin.bottom) / 2, 'text-anchor': 'middle', transform: `rotate(-90 12 ${(margin.top + height - margin.bottom) / 2})`, class: 'fill-slate-600', 'font-size': 11 }, plot.yLabel));
+            }
+
+            svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+            svg.replaceChildren(...nodes);
+        },
+
         announce(text) {
             if (announcer) {
                 announcer.textContent = text;
@@ -276,7 +353,8 @@ export function createCalculator(root, config) {
             const values = JSON.parse(chip.dataset.calcExample);
 
             Object.entries(values).forEach(([name, value]) => {
-                const radio = root.querySelector(`input[name="calc-${name}"][value="${value}"]`);
+                // Compare values directly: example values can hold newlines or quotes that break a selector.
+                const radio = [...root.querySelectorAll(`input[name="calc-${name}"]`)].find((input) => input.type === 'radio' && input.value === String(value));
 
                 if (radio) {
                     radio.checked = true;
