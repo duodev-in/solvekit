@@ -80,7 +80,7 @@ export const handlers = {
 
                 const svi = (i.settled * 1000) / i.mlss;
 
-                return { value: f(svi), unit: 'mL/g', label: 'Sludge volume index', sub: svi < 80 ? 'Below 80: dense, fast-settling sludge' : svi <= 150 ? '80 to 150: good settling' : 'Above 150: bulking sludge', rows: {} };
+                return { value: f(svi), unit: 'mL/g', label: 'Sludge volume index', sub: svi < 80 ? 'Below 80: dense, fast-settling sludge' : svi <= 150 ? '80 to 150: good settling' : 'Above 150: bulking sludge', rows: { food: `${f(i.settled)} mL/L settled in 30 min`, micro: `${f(i.mlss)} mg/L MLSS (${f(i.mlss / 1000)} g/L)` } };
             }
 
             case 'detention': {
@@ -100,7 +100,7 @@ export const handlers = {
                     return { empty: 'Enter BOD and flow.' };
                 }
 
-                return { value: f(pounds(i.bod, i.flow)), unit: 'lb/day', label: 'BOD loading', sub: 'mg/L × MGD × 8.34', rows: { food: `${f((i.bod * i.flow * MG_M3) / 1000)} kg/day` } };
+                return { value: f(pounds(i.bod, i.flow)), unit: 'lb/day', label: 'BOD loading', sub: 'mg/L × MGD × 8.34', rows: { food: `${f((i.bod * i.flow * MG_M3) / 1000)} kg/day`, micro: 'Not used for BOD loading' } };
             }
         }
     },

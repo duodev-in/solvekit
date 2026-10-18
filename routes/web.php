@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BiologyController;
 use App\Http\Controllers\ChemistryController;
+use App\Http\Controllers\ConstructionController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\FeatureRequestController;
@@ -52,6 +53,7 @@ $registerCalculatorSection = function (string $section, string $controller): voi
 $registerCalculatorSection('conversion', ConversionController::class);
 $registerCalculatorSection('biology', BiologyController::class);
 $registerCalculatorSection('chemistry', ChemistryController::class);
+$registerCalculatorSection('construction', ConstructionController::class);
 
 Route::get('/', function () {
     return view('welcome');

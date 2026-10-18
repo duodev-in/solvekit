@@ -139,7 +139,7 @@ export const handlers = {
             rows: {
                 dm: `${f(100 - i.moisture)}%`,
                 second: second === null ? 'Enter a second food to compare' : `${f(second)}% DM`,
-                compare: second === null ? '—' : Math.abs(dry - second) < 0.05 ? 'About the same' : `${dry > second ? 'First' : 'Second'} food is higher by ${f(Math.abs(dry - second))} points`,
+                compare: second === null ? 'Enter a second food to compare' : Math.abs(dry - second) < 0.05 ? 'About the same' : `${dry > second ? 'First' : 'Second'} food is higher by ${f(Math.abs(dry - second))} points`,
             },
         };
     },

@@ -235,7 +235,7 @@ export const handlers = {
 
         const empirical = parseFormula([...result.counts].map(([symbol, count]) => symbol + (count === 1 ? '' : count)).join(''), c.data.elements);
         const empiricalMass = weightOf(empirical, c.data.elements);
-        let molecular = '—';
+        let molecular = 'Enter the molar mass for the molecular formula';
 
         if (i.molar_mass > 0) {
             const n = i.molar_mass / empiricalMass;

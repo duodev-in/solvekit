@@ -59,12 +59,19 @@
     ]" />
 
     <x-slot:panel>
-        <x-calc.rows heading="Details" :rows="[
-            'seconds' => ['label' => 'Seconds', 'unit' => 's'],
-            'minutes' => ['label' => 'Minutes', 'unit' => 'min'],
-            'hours' => ['label' => 'Hours', 'unit' => 'h'],
-            'throughput' => ['label' => 'Throughput', 'unit' => 'MB/s'],
-        ]" />
+        <div data-show-when="mode:time,speed">
+            <x-calc.rows heading="Details" :rows="[
+                'seconds' => ['label' => 'Seconds', 'unit' => 's'],
+                'minutes' => ['label' => 'Minutes', 'unit' => 'min'],
+                'hours' => ['label' => 'Hours', 'unit' => 'h'],
+                'throughput' => ['label' => 'Throughput', 'unit' => 'MB/s'],
+            ]" />
+        </div>
+        <div data-show-when="mode:bandwidth" hidden>
+            <x-calc.rows heading="Details" :rows="[
+                'throughput' => ['label' => 'Throughput', 'unit' => 'MB/s'],
+            ]" />
+        </div>
     </x-slot:panel>
 
     <x-slot:formula>

@@ -232,7 +232,7 @@ export const handlers = {
             // Distance in µm.
             const d = ((i.distance * 1e-6) ** 2) / (2 * i.time);
 
-            return { value: f(d), unit: 'm²/s', label: 'Diffusion coefficient', sub: 'From ⟨x²⟩ = 2Dt (one dimension)', rows: { cm: `${f(d * 1e4)} cm²/s`, time_mm: `${f(1e-6 / (2 * d))} s to move 1 mm`, radius: '—' } };
+            return { value: f(d), unit: 'm²/s', label: 'Diffusion coefficient', sub: 'From ⟨x²⟩ = 2Dt (one dimension)', rows: { cm: `${f(d * 1e4)} cm²/s`, time_mm: `${f(1e-6 / (2 * d))} s to move 1 mm`, radius: 'Not needed for bead tracking' } };
         }
 
         if (missing(i, 'temperature', 'viscosity', 'radius') || !(i.viscosity > 0) || !(i.radius > 0)) {
@@ -299,7 +299,7 @@ export const handlers = {
 
         const lambda = Math.LN2 / half;
         const left = i.initial * Math.exp(-lambda * i.time);
-        let activity = '—';
+        let activity = 'Pick an isotope and give the amount in grams or Bq';
 
         if (isotope && i.amount_unit === 'g') {
             const atoms = (left / isotope.a) * AVOGADRO;
@@ -340,7 +340,7 @@ export const handlers = {
                 unit: 'q max',
                 label: 'Langmuir fit: maximum adsorption',
                 sub: `K = ${f(fit.q)}; R² = ${f(Math.round(fit.r2 * 1e6) / 1e6)} (non-linear least squares)`,
-                rows: { k: f(fit.q), r2: f(fit.r2), coverage: '—' },
+                rows: { k: f(fit.q), r2: f(fit.r2), coverage: 'Switch to coverage to get θ at a pressure' },
                 plots: { isotherm: { series: Array.from({ length: 81 }, (_, k) => { const p = (Math.max(...read.pairs.map(([x]) => x)) * k) / 80; return [p, (fit.p * fit.q * p) / (1 + fit.q * p)]; }), markers: read.pairs.map(([x, y]) => ({ x, y })), xLabel: 'Pressure or concentration', yLabel: 'Adsorbed' } },
             };
         }
@@ -366,7 +366,7 @@ export const handlers = {
             const molar = i.pressure / (factor * R * T);
             const weight = i.mass / (molar * (i.volume / 1000) * 1000);
 
-            return { value: f(weight), unit: 'g/mol', label: 'Molar mass of the solute', sub: 'From Π = iMRT', rows: { atm: `${f(i.pressure / 101325)} atm`, molar: `${f(molar / 1000)} mol/L`, mmhg: '—' } };
+            return { value: f(weight), unit: 'g/mol', label: 'Molar mass of the solute', sub: 'From Π = iMRT', rows: { atm: `${f(i.pressure / 101325)} atm`, molar: `${f(molar / 1000)} mol/L`, mmhg: `${f(i.pressure / 133.322368)} mmHg` } };
         }
 
         if (!(i.molarity > 0) || !(T > 0)) {

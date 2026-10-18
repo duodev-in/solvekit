@@ -1,4 +1,5 @@
 import { formatNumber, parseNumber } from './format.js';
+import { initRowsEditor } from './rows-editor.js';
 
 const COPY_FEEDBACK_MS = 1200;
 
@@ -358,8 +359,12 @@ export function createCalculator(root, config) {
 
                 if (radio) {
                     radio.checked = true;
+                } else if (ctx.field(name)?.type === 'checkbox') {
+                    ctx.field(name).checked = Boolean(value);
                 } else if (ctx.field(name)) {
                     ctx.field(name).value = value;
+                    // Let widgets built on a hidden field (rows editors) redraw from the new value.
+                    ctx.field(name).dispatchEvent(new Event('calc:set'));
 
                     // Let modules that react to a select (e.g. a substance filling its density) see the change.
                     if (ctx.field(name).tagName === 'SELECT') {
@@ -404,6 +409,7 @@ export function createCalculator(root, config) {
         });
     });
 
+    root.querySelectorAll('[data-rows-editor]').forEach(initRowsEditor);
     initTabs(root);
 
     return ctx;

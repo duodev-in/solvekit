@@ -50,7 +50,7 @@ class ChemistryFrontendSmokeTest extends TestCase
 
     public function test_no_calculator_is_listed_in_two_sections(): void
     {
-        $slugs = collect(['conversion', 'biology', 'chemistry'])
+        $slugs = collect(['conversion', 'biology', 'chemistry', 'construction'])
             ->flatMap(fn (string $section) => collect(config("{$section}.calculators"))->pluck('slug'));
 
         $this->assertSame($slugs->count(), $slugs->unique()->count(), 'Duplicate tools: '.$slugs->duplicates()->implode(', '));

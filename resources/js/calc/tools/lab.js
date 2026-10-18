@@ -276,7 +276,7 @@ export const handlers = {
             unit: 'base : acid',
             label: 'Base to acid ratio',
             sub: Math.abs(i.target - pKa) > 1 ? 'More than 1 pH unit from the pKa: buffering will be weak' : `For pH ${f(i.target)} with pKa ${f(pKa)}`,
-            rows: { acid: `${f(acid)} mM`, base_amount: `${f(i.total - acid)} mM`, pka: f(pKa), range: `${f(pKa - 1)} to ${f(pKa + 1)}` },
+            rows: { ratio: f(ratio), acid: `${f(acid)} mM`, base_amount: `${f(i.total - acid)} mM`, pka: f(pKa), range: `${f(pKa - 1)} to ${f(pKa + 1)}` },
         };
     },
 

@@ -299,12 +299,12 @@ export const handlers = {
             if (i.mode === 'name') {
                 const result = formulaFromName(text, c.data.elements);
 
-                return { value: result.display, unit: '', label: 'Formula', sub: result.type, rows: { type: result.type, detail: '—' } };
+                return { value: result.display, unit: '', label: 'Formula', sub: result.type, rows: { type: result.type, detail: 'Charges balance to zero' } };
             }
 
             const result = nameFromFormula(text, c.data.elements);
 
-            return { value: result.name, unit: '', label: 'IUPAC name', sub: result.type, rows: { type: result.type, detail: result.alternative ? `Also written ${result.alternative}` : result.ions ? result.ions.join(' · ') : '—' } };
+            return { value: result.name, unit: '', label: 'IUPAC name', sub: result.type, rows: { type: result.type, detail: result.alternative ? `Also written ${result.alternative}` : result.ions ? result.ions.join(' · ') : 'No other common name' } };
         } catch (error) {
             if (error instanceof NameError) {
                 return { error: error.message };

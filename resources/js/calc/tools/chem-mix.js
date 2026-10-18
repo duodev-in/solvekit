@@ -622,7 +622,7 @@ export const handlers = {
                 unit: 'mol/L',
                 label: `Concentration of ${probe.label}`,
                 sub: `${f(i.titrant_concentration * i.titrant_volume * 1000)} mmol titrant ÷ ${steps} per analyte ÷ ${f(analyteVolume * 1000)} mL`,
-                rows: { equivalence: `${f(i.titrant_volume * 1000)} mL`, moles: `${f(concentration * analyteVolume * 1000)} mmol analyte`, half: '—' },
+                rows: { equivalence: `${f(i.titrant_volume * 1000)} mL`, moles: `${f(concentration * analyteVolume * 1000)} mmol analyte`, half: 'Shown when the analyte is chosen' },
             };
         }
 

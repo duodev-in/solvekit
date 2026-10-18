@@ -1,5 +1,5 @@
 <x-calc.page
-    title="Board Feet Calculator - SolveKit"
+    title="Board Foot Calculator - SolveKit"
     description="Free board feet calculator: lumber board feet and log scale (Doyle, Scribner, International ¼″)."
     lede="Work out board feet for lumber, or estimate a log's volume with the standard log rules."
     about="A board foot is 144 cubic inches: 1 in × 12 in × 1 ft. For logs, the Doyle, Scribner and International ¼-inch rules estimate the lumber a log will saw out; Doyle underestimates small logs, International is the most accurate. Scribner here uses its standard formula approximation, which can read up to about 10% below the printed Scribner tables."

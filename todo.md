@@ -12,8 +12,9 @@ Tests: `php artisan test` (factors, pages, labels) and `npm run test:js` (calcul
 - [x] Time & Date (5), Specialized Measurement (8), Currency & Financial (4), Digital & Technical (5), Utility & General (5)
 - [x] Geographic & Mapping (4)
 - [x] Old tool layout removed; tools index rendered from config with category anchors
-- [x] Biology & Nature section (/biology): 125 calculators in 11 categories on the same frame (`config/biology.php`, `resources/js/calc/tools/`)
+- [x] Biology & Nature section (/biology): 124 calculators in 11 categories on the same frame (`config/biology.php`, `resources/js/calc/tools/`)
 - [x] Chemistry section (/chemistry): 112 calculators in 9 categories; reference data in `config/elements.php` and `config/chemistry_data.php` (sources cited in each file)
+- [x] Construction section (/construction): 135 calculators in 9 categories; reference data in `config/construction_data.php` (Caterpillar, USDA Wood Handbook, ASME B36.10M, ASTM A615, NEC, ISO and ASTM tables, sources cited); Board Foot moved here from Biology
 
 ## Open items
 

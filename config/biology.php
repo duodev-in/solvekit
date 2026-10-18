@@ -59,7 +59,6 @@ $categories = [
             ['slug' => 'tree-age-calculator', 'title' => 'Tree Age Calculator', 'description' => 'Age from trunk size and species'],
             ['slug' => 'tree-spacing-calculator', 'title' => 'Tree Spacing Calculator', 'description' => 'Trees per acre by spacing'],
             ['slug' => 'tree-value-calculator', 'title' => 'Tree Value Calculator', 'description' => 'Appraised value by the trunk formula'],
-            ['slug' => 'board-feet-calculator', 'title' => 'Board Feet Calculator', 'description' => 'Lumber and log board feet'],
             ['slug' => 'firewood-cord-calculator', 'title' => 'Firewood Cord Calculator', 'description' => 'Cords in a woodpile'],
             ['slug' => 'tree-carbon-calculator', 'title' => 'Tree Carbon Sequestration Calculator', 'description' => 'CO₂ stored in a tree'],
             ['slug' => 'tree-leaves-calculator', 'title' => 'Tree Leaves Calculator', 'description' => 'Estimated leaves on a tree'],

@@ -85,6 +85,15 @@ function pressureRows(pascal, f) {
     return { kpa: `${f(pascal / 1000)} kPa`, mmhg: `${f(pascal / 133.322368)} mmHg`, atm: `${f(pascal / 101325)} atm`, psi: `${f(pascal / 6894.757293)} psi` };
 }
 
+/**
+ * K = exp(−ΔG ÷ RT), written as a power of ten when it is too large or small for a number.
+ */
+export function equilibriumConstant(gKj, kelvin, f) {
+    const log10 = (-gKj * 1000) / (R * kelvin * Math.LN10);
+
+    return Math.abs(log10) > 300 ? `10^${f(Math.round(log10 * 10) / 10)}` : f(10 ** log10);
+}
+
 export const handlers = {
     vapor_pressure: (i, c, f) => {
         if (i.mode === 'clausius') {
@@ -335,7 +344,7 @@ export const handlers = {
             unit: 'kJ/mol',
             label: 'Gibbs free energy change ΔG',
             sub: g < 0 ? 'Negative: spontaneous in the forward direction' : g > 0 ? 'Positive: not spontaneous as written' : 'Zero: at equilibrium',
-            rows: { k: `${f(Math.exp((-g * 1000) / (R * T)))}`, kelvin: `${f(T)} K`, crossover: extra.crossover ?? '—' },
+            rows: { k: equilibriumConstant(g, T, f), kelvin: `${f(T)} K`, crossover: extra.crossover ?? 'Needs ΔH and ΔS' },
         };
     },
 
@@ -376,7 +385,7 @@ export const handlers = {
                 }
             }
 
-            return { value: f(perGram), unit: 'kJ/g', label: 'Heat of combustion', sub: `q = C × ΔT = ${f(heat)} kJ released by ${f(i.sample)} g`, rows: { molar: perMole === null ? 'Enter the fuel formula' : `${f(perMole)} kJ/mol`, lhv: '—', equation: 'Bomb calorimeter (constant volume, ΔU)' } };
+            return { value: f(perGram), unit: 'kJ/g', label: 'Heat of combustion', sub: `q = C × ΔT = ${f(heat)} kJ released by ${f(i.sample)} g`, rows: { molar: perMole === null ? 'Enter the fuel formula' : `${f(perMole)} kJ/mol`, lhv: 'Needs the fuel formula and heats of formation', equation: 'Bomb calorimeter (constant volume, ΔU)' } };
         }
 
         let fuel;
@@ -532,7 +541,7 @@ export const handlers = {
             unit: 'kJ/mol',
             label: 'Standard enthalpy of reaction ΔH°',
             sub: `${quantities.h < 0 ? 'Exothermic' : 'Endothermic'}: ${formatEquation(read.result)}`,
-            rows: { s: `${f(Math.round(quantities.s * 10) / 10)} J/(mol·K)`, g: `${f(Math.round(quantities.g * 10) / 10)} kJ/mol${quantities.gFromTable ? '' : ' (from ΔH° − TΔS°)'}`, k: f(Math.exp((-quantities.g * 1000) / (R * 298.15))) },
+            rows: { s: `${f(Math.round(quantities.s * 10) / 10)} J/(mol·K)`, g: `${f(Math.round(quantities.g * 10) / 10)} kJ/mol${quantities.gFromTable ? '' : ' (from ΔH° − TΔS°)'}`, k: equilibriumConstant(quantities.g, 298.15, f) },
             lists: { terms: quantities.rows },
         };
     },

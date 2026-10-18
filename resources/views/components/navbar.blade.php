@@ -5,6 +5,7 @@ $isHomeActive = request()->is('/');
 $isConversionActive = request()->routeIs('conversion.*');
 $isBiologyActive = request()->routeIs('biology.*');
 $isChemistryActive = request()->routeIs('chemistry.*');
+$isConstructionActive = request()->routeIs('construction.*');
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -67,6 +68,14 @@ foreach ($sections as $section) {
                     class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Chemistry
+                </a>
+
+
+                <a
+                    href="{{ route('construction.index') }}"
+                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Construction
                 </a>
 
                 <div class="relative group">
@@ -169,6 +178,14 @@ foreach ($sections as $section) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Chemistry
+                </a>
+
+
+                <a
+                    href="{{ route('construction.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Construction
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">
