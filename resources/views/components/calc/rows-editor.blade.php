@@ -8,15 +8,16 @@
     'unitLabel' => 'Unit',
     'addLabel' => 'Add row',
     'help' => null,
+    'text' => [],
 ])
 
 {{--
     Editable rows of numbers (rooms, walls, pieces). The values live in a hidden textarea,
-    one row per line separated by spaces, so the formula runtime reads them like any field and
-    example chips can set them. columns: [key => label]; rows: [[value, …], …];
+    one row per line separated by spaces (tabs when some columns are text, listed in `text`),
+    so the formula runtime reads them like any field and example chips can set them. columns: [key => label]; rows: [[value, …], …];
     units: [unitKey => ['symbol' => …]] for an optional unit menu named {name}_unit.
 --}}
-<div class="flex min-w-0 flex-col gap-1.5" data-rows-editor="{{ $name }}">
+<div class="flex min-w-0 flex-col gap-1.5" data-rows-editor="{{ $name }}" @if($text) data-rows-text @endif>
     <div class="flex items-end justify-between gap-3">
         <span id="calc-{{ $name }}-label" class="text-[13px] font-semibold text-slate-700">{{ $label }}</span>
         @if($units)
@@ -49,7 +50,11 @@
             <th scope="row" class="px-2 py-1.5 text-center font-mono text-[12px] font-medium text-slate-500" data-row-number></th>
             @foreach($columns as $key => $columnLabel)
                 <td class="px-1 py-1">
-                    <input type="number" inputmode="decimal" step="any" min="0" data-column="{{ $columnLabel }}" class="h-10 w-full min-w-[4.5rem] rounded-md border border-slate-300 bg-white px-2 font-mono text-[15px] font-semibold text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
+                    @if(in_array($key, $text, true))
+                        <input type="text" autocomplete="off" data-column="{{ $columnLabel }}" class="h-10 w-full min-w-[8rem] rounded-md border border-slate-300 bg-white px-2 text-[15px] font-medium text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
+                    @else
+                        <input type="number" inputmode="decimal" step="any" min="0" data-column="{{ $columnLabel }}" class="h-10 w-full min-w-[4.5rem] rounded-md border border-slate-300 bg-white px-2 font-mono text-[15px] font-semibold text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
+                    @endif
                 </td>
             @endforeach
             <td class="px-1 py-1 text-center">
@@ -65,5 +70,5 @@
             <p class="text-xs text-slate-500">{{ $help }}</p>
         @endif
     </div>
-    <textarea id="calc-{{ $name }}" name="{{ $name }}" hidden aria-hidden="true" tabindex="-1">{{ collect($rows)->map(fn ($row) => implode(' ', $row))->implode("\n") }}</textarea>
+    <textarea id="calc-{{ $name }}" name="{{ $name }}" hidden aria-hidden="true" tabindex="-1">{{ collect($rows)->map(fn ($row) => implode($text ? "\t" : ' ', $row))->implode("\n") }}</textarea>
 </div>

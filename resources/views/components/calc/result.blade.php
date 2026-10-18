@@ -10,8 +10,8 @@
             Copy
         </button>
     </div>
-    <p class="min-w-0 font-mono text-[clamp(1.75rem,3.2vw,2.75rem)] leading-tight font-semibold tracking-tight text-slate-900 [overflow-wrap:anywhere]">
-        <span data-result-value>—</span>
+    <p class="min-w-0 font-mono text-[clamp(1.75rem,3.2vw,2.75rem)] leading-tight font-semibold tracking-tight text-slate-900 [overflow-wrap:anywhere] in-data-[long=true]:text-xl in-data-[long=true]:leading-snug in-data-[long=true]:font-medium">
+        <span data-result-value class="in-data-[long=true]:whitespace-pre-wrap">—</span>
         <span data-result-unit class="text-[0.5em] font-medium text-slate-500"></span>
     </p>
     <p data-result-sub class="min-w-0 text-sm text-slate-600 [overflow-wrap:anywhere] in-data-[state=error]:text-red-700">Enter a value to see the result.</p>

@@ -7,6 +7,7 @@ $isBiologyActive = request()->routeIs('biology.*');
 $isChemistryActive = request()->routeIs('chemistry.*');
 $isConstructionActive = request()->routeIs('construction.*');
 $isEcologyActive = request()->routeIs('ecology.*');
+$isEverydayActive = request()->routeIs('everyday.*');
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -45,7 +46,7 @@ foreach ($sections as $section) {
             <nav class="hidden lg:flex items-center gap-0.5 whitespace-nowrap xl:gap-1" aria-label="Primary navigation">
                 <a
                     href="{{ url('/') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="hidden xl:inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Home
                 </a>
@@ -86,6 +87,13 @@ foreach ($sections as $section) {
                     class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Ecology
+                </a>
+
+                <a
+                    href="{{ route('everyday.index') }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isEverydayActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Everyday Life
                 </a>
 
                 <div class="relative group">
@@ -129,10 +137,10 @@ foreach ($sections as $section) {
             </nav>
 
             <div class="hidden lg:flex items-center gap-2 whitespace-nowrap">
-                <span class="hidden xl:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
+                <span class="hidden 2xl:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
                 <a
                     href="{{ route('conversion.index') }}"
-                    class="inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    class="hidden xl:inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                 >
                     Browse Tools
                     <svg class="ml-1 h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,6 +213,13 @@ foreach ($sections as $section) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Ecology
+                </a>
+
+                <a
+                    href="{{ route('everyday.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isEverydayActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Everyday Life
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">

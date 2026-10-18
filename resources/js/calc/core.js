@@ -136,6 +136,8 @@ export function createCalculator(root, config) {
 
         showResult({ value, unit = '', sub = '', label }) {
             result.dataset.state = 'ready';
+            // Long text results (dates, converted text) use a smaller type size.
+            result.dataset.long = String(value).length > 26 || String(value).includes('\n') ? 'true' : 'false';
             result.querySelector('[data-result-value]').textContent = value;
             result.querySelector('[data-result-unit]').textContent = unit;
             result.querySelector('[data-result-sub]').textContent = sub;
@@ -231,7 +233,7 @@ export function createCalculator(root, config) {
 
             const cell = (tag, text, className) => Object.assign(document.createElement(tag), { textContent: text, className });
             // Large squares (8 × 8) use tighter cells so they fit the panel.
-            const spacing = grid.columns.length > 4 ? 'px-0.5 py-1 text-[10.5px]' : 'px-2 py-1.5';
+            const spacing = grid.columns.length > 4 && !grid.roomy ? 'px-0.5 py-1 text-[10.5px]' : 'px-2 py-1.5';
             const headerClass = `border border-slate-200 bg-slate-100 ${spacing} font-semibold text-slate-700`;
             const head = document.createElement('tr');
             head.append(cell('th', '', ''), ...grid.columns.map((column) => cell('th', column, headerClass)));

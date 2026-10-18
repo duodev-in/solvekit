@@ -16,6 +16,7 @@ Tests: `php artisan test` (factors, pages, labels) and `npm run test:js` (calcul
 - [x] Chemistry section (/chemistry): 112 calculators in 9 categories; reference data in `config/elements.php` and `config/chemistry_data.php` (sources cited in each file)
 - [x] Construction section (/construction): 135 calculators in 9 categories; reference data in `config/construction_data.php` (Caterpillar, USDA Wood Handbook, ASME B36.10M, ASTM A615, NEC, ISO and ASTM tables, sources cited); Board Foot moved here from Biology
 - [x] Ecology section (/ecology): 42 calculators in 4 categories (footprints, renewable energy, sustainable living, ecology and environment); data in `config/ecology_data.php` (DESNZ 2025, EPA, Ember via Our World in Data, Poore & Nemecek, FDA, EPA AQI, PVGIS for 260 cities) and `public/data/airports.json` (OurAirports); Biology's Ecology tools moved here
+- [x] Everyday Life section (/everyday-life): 210 calculators in 9 categories (time and date, books and reading, transportation, clothing and sewing, home economics, personal hygiene, office and school, leisure and fun, other); data in `config/everyday_data.php` (Chinese New Year 1900–2099, IRS mileage rates, EPA fueleconomy.gov Tesla data, GMAC and College Board percentiles, ENERGY STAR EUI medians and dryer data, Open Library page counts, Wikipedia/Wikidata and TVmaze runtimes, US Mint/ECB/Royal Mint coin weights); shared date, astronomy (Meeus) and text engines in `resources/js/calc/everyday/`
 
 ## Open items
 

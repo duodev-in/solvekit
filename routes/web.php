@@ -6,6 +6,7 @@ use App\Http\Controllers\ConstructionController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ConversionController;
 use App\Http\Controllers\EcologyController;
+use App\Http\Controllers\EverydayController;
 use App\Http\Controllers\FeatureRequestController;
 use App\Http\Controllers\ReportBugController;
 use App\Http\Controllers\SuperAdmin\AuditLogController;
@@ -19,11 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 /**
  * Registers a calculator section: its index page and one route per tool listed in its config.
+ * The URL prefix defaults to the section name.
  *
  * @param  class-string  $controller
  */
-$registerCalculatorSection = function (string $section, string $controller): void {
-    Route::prefix($section)->group(function () use ($section, $controller) {
+$registerCalculatorSection = function (string $section, string $controller, ?string $prefix = null): void {
+    Route::prefix($prefix ?? $section)->group(function () use ($section, $controller) {
         Route::get('/', [$controller, 'index'])->name("{$section}.index");
 
         foreach (config("{$section}.categories", []) as $category) {
@@ -56,6 +58,7 @@ $registerCalculatorSection('biology', BiologyController::class);
 $registerCalculatorSection('chemistry', ChemistryController::class);
 $registerCalculatorSection('construction', ConstructionController::class);
 $registerCalculatorSection('ecology', EcologyController::class);
+$registerCalculatorSection('everyday', EverydayController::class, 'everyday-life');
 
 Route::get('/', function () {
     return view('welcome');

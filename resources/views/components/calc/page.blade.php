@@ -164,7 +164,7 @@
                     <h2 class="text-sm font-semibold text-slate-900">Related tools</h2>
                     <nav aria-label="Related tools" class="flex flex-wrap gap-2">
                         @foreach($relatedTools as $tool)
-                            <a href="{{ route($tool['route_name']) }}" class="shrink-0 rounded-lg border border-slate-200 px-3 py-2 text-[13px] font-medium text-slate-700 hover:border-primary-500 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-primary-600">{{ $tool['title'] }}</a>
+                            <a href="{{ route($tool['route_name']) }}" class="max-w-full shrink-0 rounded-lg border border-slate-200 px-3 py-2 text-[13px] font-medium text-slate-700 hover:border-primary-500 hover:text-primary-700 focus-visible:outline-2 focus-visible:outline-primary-600">{{ $tool['title'] }}</a>
                         @endforeach
                         <a href="{{ route($section['index']) }}" class="shrink-0 rounded-lg px-3 py-2 text-[13px] font-medium text-primary-700 hover:underline focus-visible:outline-2 focus-visible:outline-primary-600">All tools</a>
                     </nav>

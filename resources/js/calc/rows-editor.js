@@ -8,7 +8,8 @@ export function parseRows(text) {
         .split('\n')
         .map((line) => line.trim())
         .filter(Boolean)
-        .map((line) => line.split(/\s+/).map((value) => (value === '-' ? '' : value)));
+        // Editors with text columns separate cells with tabs, so names may contain spaces.
+        .map((line) => (line.includes('\t') ? line.split('\t').map((value) => value.trim()) : line.split(/\s+/)).map((value) => (value === '-' ? '' : value)));
 }
 
 export function initRowsEditor(editor) {
@@ -16,6 +17,7 @@ export function initRowsEditor(editor) {
     const body = editor.querySelector('[data-rows-body]');
     const template = editor.querySelector('[data-rows-template]');
     const columns = template.content.querySelectorAll('input').length;
+    const separator = editor.hasAttribute('data-rows-text') ? '\t' : ' ';
 
     const renumber = () => {
         body.querySelectorAll('tr').forEach((row, index) => {
@@ -39,7 +41,7 @@ export function initRowsEditor(editor) {
 
     const save = () => {
         store.value = [...body.querySelectorAll('tr')]
-            .map((row) => [...row.querySelectorAll('input')].map((input) => (input.value.trim() === '' ? '-' : input.value.trim())).join(' '))
+            .map((row) => [...row.querySelectorAll('input')].map((input) => (input.value.trim() === '' ? '-' : input.value.trim().replace(/\s+/g, separator === ' ' ? '' : ' '))).join(separator))
             .join('\n');
     };
 
