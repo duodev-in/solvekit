@@ -258,8 +258,10 @@ export function createCalculator(root, config) {
             const width = 400;
             const height = 220;
             const margin = { left: 44, right: 14, top: 12, bottom: 34 };
-            const xs = plot.series.map(([x]) => x);
-            const ys = plot.series.map(([, y]) => y);
+            // An optional second line (plot.series2) shares the axes; plot.legend names the two lines.
+            const all = [...plot.series, ...(plot.series2 ?? [])];
+            const xs = all.map(([x]) => x);
+            const ys = all.map(([, y]) => y);
             const ticks = (min, max) => {
                 const span = max - min || Math.abs(max) || 1;
                 const raw = span / 5;
@@ -302,6 +304,15 @@ export function createCalculator(root, config) {
             });
             nodes.push(make('line', { x1: margin.left, x2: width - margin.right, y1: height - margin.bottom, y2: height - margin.bottom, class: 'stroke-slate-400' }));
             nodes.push(make('polyline', { points: plot.series.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round', class: 'stroke-primary-600' }));
+
+            if (plot.series2?.length) {
+                nodes.push(make('polyline', { points: plot.series2.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-dasharray': '5 3', 'stroke-linejoin': 'round', class: 'stroke-amber-500' }));
+            }
+
+            (plot.legend ?? []).forEach((text, index) => {
+                nodes.push(make('line', { x1: margin.left + 8 + index * 150, x2: margin.left + 26 + index * 150, y1: margin.top + 4, y2: margin.top + 4, 'stroke-width': 2, class: index ? 'stroke-amber-500' : 'stroke-primary-600', 'stroke-dasharray': index ? '5 3' : '' }));
+                nodes.push(make('text', { x: margin.left + 30 + index * 150, y: margin.top + 7.5, class: 'fill-slate-600', 'font-size': 10 }, text));
+            });
             (plot.markers ?? []).forEach((marker) => {
                 nodes.push(make('circle', { cx: sx(marker.x), cy: sy(marker.y), r: 3.5, class: 'fill-white stroke-slate-900', 'stroke-width': 1.5 }));
 

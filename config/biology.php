@@ -118,17 +118,6 @@ $categories = [
         ],
     ],
     [
-        'slug' => 'ecology',
-        'title' => 'Ecology',
-        'description' => 'Diversity indexes, population growth and mark–recapture',
-        'tools' => [
-            ['slug' => 'shannon-diversity-index-calculator', 'title' => 'Shannon Diversity Index Calculator', 'description' => 'H′, evenness and richness'],
-            ['slug' => 'simpson-diversity-index-calculator', 'title' => 'Simpson\'s Diversity Index Calculator', 'description' => 'D, 1 − D and 1/D'],
-            ['slug' => 'population-growth-calculator', 'title' => 'Population Growth Calculator', 'description' => 'Exponential and logistic growth'],
-            ['slug' => 'mark-recapture-calculator', 'title' => 'Mark–Recapture Calculator', 'description' => 'Lincoln–Petersen and Chapman estimates'],
-        ],
-    ],
-    [
         'slug' => 'animal-pregnancy',
         'title' => 'Animal Pregnancy',
         'description' => 'Due dates and pregnancy timelines for pets and farm animals',

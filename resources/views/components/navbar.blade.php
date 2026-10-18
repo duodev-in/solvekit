@@ -6,6 +6,7 @@ $isConversionActive = request()->routeIs('conversion.*');
 $isBiologyActive = request()->routeIs('biology.*');
 $isChemistryActive = request()->routeIs('chemistry.*');
 $isConstructionActive = request()->routeIs('construction.*');
+$isEcologyActive = request()->routeIs('ecology.*');
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -29,7 +30,7 @@ foreach ($sections as $section) {
 <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between gap-3 py-2 md:py-2.5">
-            <a href="{{ url('/') }}" class="group flex min-w-0 items-center gap-2.5 rounded-lg px-1.5 py-0.5 transition-colors duration-200 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+            <a href="{{ url('/') }}" class="group flex min-w-0 shrink-0 items-center gap-2.5 rounded-lg px-1.5 py-0.5 transition-colors duration-200 hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
                 <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 transition-colors duration-200 group-hover:bg-blue-100">
                     <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
@@ -37,35 +38,35 @@ foreach ($sections as $section) {
                 </div>
                 <div class="min-w-0">
                     <p class="truncate text-sm font-semibold leading-tight tracking-tight text-slate-900 sm:text-base">SolveKit</p>
-                    <p class="hidden truncate text-[10px] text-slate-500 lg:block">Professional Calculation Tools</p>
+                    <p class="hidden truncate text-[10px] text-slate-500 xl:block">Professional Calculation Tools</p>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center gap-1" aria-label="Primary navigation">
+            <nav class="hidden lg:flex items-center gap-0.5 whitespace-nowrap xl:gap-1" aria-label="Primary navigation">
                 <a
                     href="{{ url('/') }}"
-                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Home
                 </a>
 
                 <a
                     href="{{ route('conversion.index') }}"
-                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Conversion Tools
                 </a>
 
                 <a
                     href="{{ route('biology.index') }}"
-                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Biology &amp; Nature
                 </a>
 
                 <a
                     href="{{ route('chemistry.index') }}"
-                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Chemistry
                 </a>
@@ -73,15 +74,24 @@ foreach ($sections as $section) {
 
                 <a
                     href="{{ route('construction.index') }}"
-                    class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Construction
+                </a>
+
+
+
+                <a
+                    href="{{ route('ecology.index') }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Ecology
                 </a>
 
                 <div class="relative group">
                     <button
                         type="button"
-                        class="inline-flex items-center rounded-lg px-2.5 py-1.5 text-[13px] font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium text-slate-600 transition-colors duration-200 hover:bg-slate-100 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         aria-haspopup="menu"
                     >
                         Quick Access
@@ -118,8 +128,8 @@ foreach ($sections as $section) {
                 </div>
             </nav>
 
-            <div class="hidden md:flex items-center gap-2">
-                <span class="hidden lg:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
+            <div class="hidden lg:flex items-center gap-2 whitespace-nowrap">
+                <span class="hidden xl:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
                 <a
                     href="{{ route('conversion.index') }}"
                     class="inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -131,7 +141,7 @@ foreach ($sections as $section) {
                 </a>
             </div>
 
-            <div class="md:hidden">
+            <div class="lg:hidden">
                 <button
                     type="button"
                     id="mobile-menu-button"
@@ -150,7 +160,7 @@ foreach ($sections as $section) {
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden border-t border-slate-200 pb-3 md:hidden">
+        <div id="mobile-menu" class="hidden border-t border-slate-200 pb-3 lg:hidden">
             <div class="space-y-1 pt-3">
                 <a
                     href="{{ url('/') }}"
@@ -186,6 +196,15 @@ foreach ($sections as $section) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Construction
+                </a>
+
+
+
+                <a
+                    href="{{ route('ecology.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Ecology
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">

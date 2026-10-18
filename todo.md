@@ -12,9 +12,10 @@ Tests: `php artisan test` (factors, pages, labels) and `npm run test:js` (calcul
 - [x] Time & Date (5), Specialized Measurement (8), Currency & Financial (4), Digital & Technical (5), Utility & General (5)
 - [x] Geographic & Mapping (4)
 - [x] Old tool layout removed; tools index rendered from config with category anchors
-- [x] Biology & Nature section (/biology): 124 calculators in 11 categories on the same frame (`config/biology.php`, `resources/js/calc/tools/`)
+- [x] Biology & Nature section (/biology): 120 calculators in 10 categories on the same frame (`config/biology.php`, `resources/js/calc/tools/`)
 - [x] Chemistry section (/chemistry): 112 calculators in 9 categories; reference data in `config/elements.php` and `config/chemistry_data.php` (sources cited in each file)
 - [x] Construction section (/construction): 135 calculators in 9 categories; reference data in `config/construction_data.php` (Caterpillar, USDA Wood Handbook, ASME B36.10M, ASTM A615, NEC, ISO and ASTM tables, sources cited); Board Foot moved here from Biology
+- [x] Ecology section (/ecology): 42 calculators in 4 categories (footprints, renewable energy, sustainable living, ecology and environment); data in `config/ecology_data.php` (DESNZ 2025, EPA, Ember via Our World in Data, Poore & Nemecek, FDA, EPA AQI, PVGIS for 260 cities) and `public/data/airports.json` (OurAirports); Biology's Ecology tools moved here
 
 ## Open items
 

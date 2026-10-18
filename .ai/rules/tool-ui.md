@@ -1,6 +1,6 @@
 # Tool UI Decisions
 
-Every calculator page (Conversion Tools, Biology & Nature, Chemistry and Construction) uses one layout, "Design A (Split Panel)". Build new tools with the same components; do not hand-roll page markup.
+Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Construction and Ecology) uses one layout, "Design A (Split Panel)". Build new tools with the same components; do not hand-roll page markup.
 
 ## Page frame
 
@@ -25,8 +25,8 @@ Every calculator page (Conversion Tools, Biology & Nature, Chemistry and Constru
 
 - Pages pass a `calc` config to the shared runtime (`resources/js/calc/core.js`). Pick an engine in `resources/js/calc/engines/` (`units`, `substance`, `number-scale`, `radix`, `geo`, `formula`) instead of writing page scripts.
 - Formula tools are pure handlers in `resources/js/calc/tools/*.js` returning `{ value, unit, label, sub, rows, lists, grids }`, or `{ empty }` / `{ error }`. Cover new handlers with unit tests in `resources/js/calc/tests/`.
-- Keep reference data in config (`config/units.php`, `config/biology_data.php`, `config/elements.php`, `config/chemistry_data.php`, `config/construction_data.php`), never in views or scripts, and cite its source in a comment. Take values from a published source rather than typing them from memory, and do not extrapolate data outside its stated range.
-- Register tools in `config/conversion.php`, `config/biology.php`, `config/chemistry.php` or `config/construction.php`, and add a new section to `CalculatorCatalog::SECTIONS` and `routes/web.php`. Routes, navigation, breadcrumbs, related tools and the section index are derived from there.
+- Keep reference data in config (`config/units.php`, `config/biology_data.php`, `config/elements.php`, `config/chemistry_data.php`, `config/construction_data.php`, `config/ecology_data.php`), never in views or scripts, and cite its source in a comment. Take values from a published source rather than typing them from memory, and do not extrapolate data outside its stated range.
+- Register tools in `config/conversion.php`, `config/biology.php`, `config/chemistry.php`, `config/construction.php` or `config/ecology.php`, and add a new section to `CalculatorCatalog::SECTIONS` and `routes/web.php`. Routes, navigation, breadcrumbs, related tools and the section index are derived from there.
 
 ## Results and content
 
@@ -36,3 +36,4 @@ Every calculator page (Conversion Tools, Biology & Nature, Chemistry and Constru
 - Do not build veterinary medication-dose or toxicity calculators: their outputs would be clinical recommendations from ranges.
 - Code-based answers (IRC, NEC, ADA, OSHA, AWS) cite the section and say local codes may differ; do not build structural sizing tools (beam, joist, header, snow or fire-flow design) that would stand in for an engineer.
 - Rows that only apply to one mode go in their own `x-calc.rows` block wrapped in `data-show-when`, so no visible row is left empty.
+- Footprint figures come from a named, dated public dataset stored once in config; show the source and year on the page and let the viewer replace any factor. Large lookup lists (airports) live in `public/data/` and are fetched only by the page that needs them.

@@ -5,6 +5,7 @@ use App\Http\Controllers\ChemistryController;
 use App\Http\Controllers\ConstructionController;
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\ConversionController;
+use App\Http\Controllers\EcologyController;
 use App\Http\Controllers\FeatureRequestController;
 use App\Http\Controllers\ReportBugController;
 use App\Http\Controllers\SuperAdmin\AuditLogController;
@@ -54,6 +55,7 @@ $registerCalculatorSection('conversion', ConversionController::class);
 $registerCalculatorSection('biology', BiologyController::class);
 $registerCalculatorSection('chemistry', ChemistryController::class);
 $registerCalculatorSection('construction', ConstructionController::class);
+$registerCalculatorSection('ecology', EcologyController::class);
 
 Route::get('/', function () {
     return view('welcome');
