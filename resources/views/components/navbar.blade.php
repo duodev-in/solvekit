@@ -2,14 +2,15 @@
 $sections = \App\Services\CalculatorCatalog::SECTIONS;
 $calculatorCount = collect($sections)->sum(fn ($section) => count(config("{$section['config']}.calculators", [])));
 $isHomeActive = request()->is('/');
-$isConversionActive = request()->routeIs('conversion.*');
-$isBiologyActive = request()->routeIs('biology.*');
-$isChemistryActive = request()->routeIs('chemistry.*');
-$isConstructionActive = request()->routeIs('construction.*');
-$isEcologyActive = request()->routeIs('ecology.*');
-$isEverydayActive = request()->routeIs('everyday.*');
-$isFinanceActive = request()->routeIs('finance.*');
-$isFoodActive = request()->routeIs('food.*');
+// Short navigation labels; sections without one use their catalogue title.
+$navLabels = ['conversion' => 'Conversion Tools', 'food' => 'Food'];
+$navSections = collect($sections)->map(fn ($section, $key) => [
+    'label' => $navLabels[$key] ?? $section['title'],
+    'url' => route($section['index']),
+    'active' => request()->routeIs("{$key}.*"),
+    'count' => count(config("{$section['config']}.calculators", [])),
+])->values();
+$activeSection = $navSections->firstWhere('active', true);
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -41,76 +42,46 @@ foreach ($sections as $section) {
                 </div>
                 <div class="min-w-0">
                     <p class="truncate text-sm font-semibold leading-tight tracking-tight text-slate-900 sm:text-base">SolveKit</p>
-                    <p class="hidden truncate text-[10px] text-slate-500 2xl:block">Professional Calculation Tools</p>
+                    <p class="hidden truncate text-[10px] text-slate-500 xl:block">Professional Calculation Tools</p>
                 </div>
             </a>
 
             <nav class="hidden lg:flex items-center gap-0.5 whitespace-nowrap xl:gap-1" aria-label="Primary navigation">
                 <a
                     href="{{ url('/') }}"
-                    class="hidden 2xl:inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isHomeActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Home
                 </a>
 
-                <a
-                    href="{{ route('conversion.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Conversion Tools
-                </a>
+                <div class="relative group">
+                    <button
+                        type="button"
+                        class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 {{ $activeSection ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                        aria-haspopup="menu"
+                    >
+                        {{ $activeSection ? $activeSection['label'] : 'Sections' }}
+                        <svg class="ml-1 h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
 
-                <a
-                    href="{{ route('biology.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Biology &amp; Nature
-                </a>
-
-                <a
-                    href="{{ route('chemistry.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Chemistry
-                </a>
-
-
-                <a
-                    href="{{ route('construction.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Construction
-                </a>
-
-
-
-                <a
-                    href="{{ route('ecology.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Ecology
-                </a>
-
-                <a
-                    href="{{ route('everyday.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isEverydayActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Everyday Life
-                </a>
-
-                <a
-                    href="{{ route('finance.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isFinanceActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Finance
-                </a>
-
-                <a
-                    href="{{ route('food.index') }}"
-                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isFoodActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Food
-                </a>
+                    <div class="pointer-events-none absolute left-0 top-full z-50 pt-2 opacity-0 transition duration-200 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                        <div class="w-64 rounded-xl border border-slate-200 bg-white p-1.5 shadow-xl shadow-slate-900/10">
+                            <p class="px-2 py-1.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500">Calculator sections</p>
+                            @foreach($navSections as $navSection)
+                                <a
+                                    href="{{ $navSection['url'] }}"
+                                    class="flex items-center justify-between rounded-lg px-2 py-1.5 text-[13px] transition-colors duration-200 {{ $navSection['active'] ? 'bg-blue-50 font-semibold text-blue-700' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900' }}"
+                                    @if($navSection['active']) aria-current="page" @endif
+                                >
+                                    <span class="truncate">{{ $navSection['label'] }}</span>
+                                    <span class="ml-2 inline-flex items-center rounded-full bg-slate-100 px-1.5 py-0.5 text-[10px] font-semibold text-slate-500">{{ $navSection['count'] }}</span>
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
 
                 <div class="relative group">
                     <button
@@ -153,7 +124,7 @@ foreach ($sections as $section) {
             </nav>
 
             <div class="hidden lg:flex items-center gap-2 whitespace-nowrap">
-                <span class="hidden min-[1800px]:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
+                <span class="hidden xl:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
                 <a
                     href="{{ route('conversion.index') }}"
                     class="hidden xl:inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -193,64 +164,16 @@ foreach ($sections as $section) {
                     Home
                 </a>
 
-                <a
-                    href="{{ route('conversion.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConversionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Conversion Tools
-                </a>
-
-                <a
-                    href="{{ route('biology.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isBiologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Biology &amp; Nature
-                </a>
-
-                <a
-                    href="{{ route('chemistry.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isChemistryActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Chemistry
-                </a>
-
-
-                <a
-                    href="{{ route('construction.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isConstructionActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Construction
-                </a>
-
-
-
-                <a
-                    href="{{ route('ecology.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isEcologyActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Ecology
-                </a>
-
-                <a
-                    href="{{ route('everyday.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isEverydayActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Everyday Life
-                </a>
-
-                <a
-                    href="{{ route('finance.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isFinanceActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Finance
-                </a>
-
-                <a
-                    href="{{ route('food.index') }}"
-                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isFoodActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
-                >
-                    Food
-                </a>
+                @foreach($navSections as $navSection)
+                    <a
+                        href="{{ $navSection['url'] }}"
+                        class="flex items-center justify-between rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $navSection['active'] ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                        @if($navSection['active']) aria-current="page" @endif
+                    >
+                        <span>{{ $navSection['label'] }}</span>
+                        <span class="text-[11px] font-semibold text-slate-400">{{ $navSection['count'] }}</span>
+                    </a>
+                @endforeach
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">
                     <button

@@ -1,0 +1,51 @@
+<x-calc.page
+    title="Head Circumference Percentile Calculator - SolveKit"
+    description="Free head circumference percentile calculator: head circumference-for-age from birth to 36 months (WHO and CDC charts)."
+    lede="Find a baby's head circumference percentile."
+    about="Percentiles compare a child with others of the same age and sex. Under 2 years the WHO Child Growth Standards (2006) are used, from 2 to 20 years the CDC 2000 growth charts, as CDC and the American Academy of Pediatrics recommend. The z-score comes from the published LMS parameters: z = ((X ÷ M)^L − 1) ÷ (L × S). One measurement matters less than the trend across visits. For information and education, not a diagnosis or medical advice."
+    :calc="['engine' => 'hl-body', 'tool' => 'head_percentile', 'fields' => ['years', 'months', 'sex', 'head'], 'unitFields' => ['head' => collect(config('units.length'))->only(['cm', 'in'])->all()], 'data' => ['growth' => config('health_data.growth')]]"
+    :how-to="[
+        ['name' => 'Enter age and sex', 'text' => ''],
+        ['name' => 'Measure around the widest part of the head', 'text' => ''],
+    ]"
+    :faqs="[
+        ['question' => 'What percentile is a 43.3 cm head at 6 months (boy)?', 'answer' => '49th percentile.'],
+    ]"
+>
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <x-calc.field name="years" label="Age (years)" value="0" min="0" max="3" step="1" />
+        <x-calc.field name="months" label="and months" value="6" min="0" max="11" step="1" />
+        <x-calc.segmented name="sex" legend="Sex" :options="['male' => 'Male', 'female' => 'Female']" selected="male" />
+    </div>
+
+    <x-calc.field name="head" label="Head circumference" value="43.3" min="0" placeholder="Head circumference">
+        <label for="calc-head-unit" class="sr-only">Head circumference unit</label>
+        <select id="calc-head-unit" name="head-unit" class="h-full border-0 border-l border-slate-200 bg-slate-50 px-2 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500/40">
+            @foreach(collect(config('units.length'))->only(['cm', 'in']) as $key => $unit)
+                <option value="{{ $key }}" @selected($key === 'cm')>{{ $unit['symbol'] }}</option>
+            @endforeach
+        </select>
+    </x-calc.field>
+
+    <x-calc.result label="Head circumference-for-age" />
+
+    <x-calc.options :decimals="false" :examples="[
+        '6 months' => ['years' => 0, 'months' => 6, 'sex' => 'male', 'head' => 43.3, 'head-unit' => 'cm'],
+        'Girl 30 months' => ['years' => 2, 'months' => 6, 'sex' => 'female', 'head' => 48, 'head-unit' => 'cm'],
+    ]" />
+
+    <x-slot:panel>
+        <x-calc.rows heading="Details" :grow="true" :rows="[
+            'z' => ['label' => 'Z-score'],
+            'p50' => ['label' => 'Median'],
+            'range' => ['label' => '3rd–97th percentile'],
+            'flag' => ['label' => 'Note'],
+        ]" />
+    </x-slot:panel>
+
+    <x-slot:formula>
+        <ul class="space-y-1 font-mono text-[13px]">
+            <li>z from WHO or CDC LMS</li>
+        </ul>
+    </x-slot:formula>
+</x-calc.page>
