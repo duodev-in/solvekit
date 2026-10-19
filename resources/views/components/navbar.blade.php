@@ -9,6 +9,7 @@ $isConstructionActive = request()->routeIs('construction.*');
 $isEcologyActive = request()->routeIs('ecology.*');
 $isEverydayActive = request()->routeIs('everyday.*');
 $isFinanceActive = request()->routeIs('finance.*');
+$isFoodActive = request()->routeIs('food.*');
 $quickLinks = [];
 
 foreach ($sections as $section) {
@@ -40,7 +41,7 @@ foreach ($sections as $section) {
                 </div>
                 <div class="min-w-0">
                     <p class="truncate text-sm font-semibold leading-tight tracking-tight text-slate-900 sm:text-base">SolveKit</p>
-                    <p class="hidden truncate text-[10px] text-slate-500 xl:block">Professional Calculation Tools</p>
+                    <p class="hidden truncate text-[10px] text-slate-500 2xl:block">Professional Calculation Tools</p>
                 </div>
             </a>
 
@@ -104,6 +105,13 @@ foreach ($sections as $section) {
                     Finance
                 </a>
 
+                <a
+                    href="{{ route('food.index') }}"
+                    class="inline-flex items-center rounded-lg px-2 py-1.5 xl:px-2.5 text-[13px] font-medium transition-colors duration-200 {{ $isFoodActive ? 'bg-blue-50 text-blue-700' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Food
+                </a>
+
                 <div class="relative group">
                     <button
                         type="button"
@@ -145,7 +153,7 @@ foreach ($sections as $section) {
             </nav>
 
             <div class="hidden lg:flex items-center gap-2 whitespace-nowrap">
-                <span class="hidden min-[1700px]:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
+                <span class="hidden min-[1800px]:inline-flex rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">{{ $calculatorCount }} calculators</span>
                 <a
                     href="{{ route('conversion.index') }}"
                     class="hidden xl:inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-[13px] font-semibold text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
@@ -235,6 +243,13 @@ foreach ($sections as $section) {
                     class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isFinanceActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
                 >
                     Finance
+                </a>
+
+                <a
+                    href="{{ route('food.index') }}"
+                    class="block rounded-lg px-3 py-1.5 text-[13px] font-medium transition-colors duration-200 {{ $isFoodActive ? 'bg-blue-50 text-blue-700' : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900' }}"
+                >
+                    Food
                 </a>
 
                 <div class="rounded-xl border border-slate-200 bg-slate-50/70">

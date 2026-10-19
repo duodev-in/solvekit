@@ -9,6 +9,7 @@
     'addLabel' => 'Add row',
     'help' => null,
     'text' => [],
+    'lists' => [],
 ])
 
 {{--
@@ -16,6 +17,7 @@
     one row per line separated by spaces (tabs when some columns are text, listed in `text`),
     so the formula runtime reads them like any field and example chips can set them. columns: [key => label]; rows: [[value, …], …];
     units: [unitKey => ['symbol' => …]] for an optional unit menu named {name}_unit.
+    lists: [text column key => [suggestion, …]] turns that column into a searchable picker (a datalist); any text is still allowed.
 --}}
 <div class="flex min-w-0 flex-col gap-1.5" data-rows-editor="{{ $name }}" @if($text) data-rows-text @endif>
     <div class="flex items-end justify-between gap-3">
@@ -51,7 +53,7 @@
             @foreach($columns as $key => $columnLabel)
                 <td class="px-1 py-1">
                     @if(in_array($key, $text, true))
-                        <input type="text" autocomplete="off" data-column="{{ $columnLabel }}" class="h-10 w-full min-w-[8rem] rounded-md border border-slate-300 bg-white px-2 text-[15px] font-medium text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
+                        <input type="text" autocomplete="off" data-column="{{ $columnLabel }}" @isset($lists[$key]) list="calc-{{ $name }}-{{ $key }}-list" @endisset class="h-10 w-full min-w-[8rem] rounded-md border border-slate-300 bg-white px-2 text-[15px] font-medium text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
                     @else
                         <input type="number" inputmode="decimal" step="any" min="0" data-column="{{ $columnLabel }}" class="h-10 w-full min-w-[4.5rem] rounded-md border border-slate-300 bg-white px-2 font-mono text-[15px] font-semibold text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
                     @endif
@@ -64,6 +66,13 @@
             </td>
         </tr>
     </template>
+    @foreach($lists as $key => $suggestions)
+        <datalist id="calc-{{ $name }}-{{ $key }}-list">
+            @foreach($suggestions as $suggestion)
+                <option value="{{ $suggestion }}"></option>
+            @endforeach
+        </datalist>
+    @endforeach
     <div class="flex items-center justify-between gap-3">
         <button type="button" data-row-add class="inline-flex h-9 items-center rounded-lg border border-slate-300 bg-white px-3 text-[13px] font-semibold text-slate-700 hover:border-primary-500 hover:text-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500">+ {{ $addLabel }}</button>
         @if($help)

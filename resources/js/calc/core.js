@@ -223,7 +223,7 @@ export function createCalculator(root, config) {
 
 
         /**
-         * Fills a <table data-calc-grid>: { columns: [...], rows: [{ header, cells: [...] }] }.
+         * Fills a <table data-calc-grid>: { columns: [...], rows: [{ header, cells: [...], highlight? }] }.
          */
         renderGrid(name, grid) {
             const table = ctx.ref(name);
@@ -240,7 +240,9 @@ export function createCalculator(root, config) {
             head.append(cell('th', '', ''), ...grid.columns.map((column) => cell('th', column, headerClass)));
             const rows = grid.rows.map((row) => {
                 const tr = document.createElement('tr');
-                tr.append(cell('th', row.header, headerClass), ...row.cells.map((text) => cell('td', text, `border border-slate-200 ${spacing} text-slate-900`)));
+                // A highlighted row marks the line that matches the result (the nearest table entry).
+                const tone = row.highlight ? 'bg-primary-50 font-semibold text-primary-900' : 'text-slate-900';
+                tr.append(cell('th', row.header, headerClass), ...row.cells.map((text) => cell('td', text, `border border-slate-200 ${spacing} ${tone}`)));
 
                 return tr;
             });

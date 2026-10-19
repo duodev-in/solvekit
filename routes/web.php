@@ -9,6 +9,7 @@ use App\Http\Controllers\EcologyController;
 use App\Http\Controllers\EverydayController;
 use App\Http\Controllers\FeatureRequestController;
 use App\Http\Controllers\FinanceController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\ReportBugController;
 use App\Http\Controllers\SuperAdmin\AuditLogController;
 use App\Http\Controllers\SuperAdmin\AuthController;
@@ -61,6 +62,7 @@ $registerCalculatorSection('construction', ConstructionController::class);
 $registerCalculatorSection('ecology', EcologyController::class);
 $registerCalculatorSection('everyday', EverydayController::class, 'everyday-life');
 $registerCalculatorSection('finance', FinanceController::class);
+$registerCalculatorSection('food', FoodController::class);
 
 Route::get('/', function () {
     return view('welcome');
