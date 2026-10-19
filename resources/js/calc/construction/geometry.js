@@ -1,3 +1,4 @@
+import { formatMoney } from '../currency.js';
 /**
  * Shared geometry and unit helpers for the Construction calculators.
  * Inputs arrive in base units (meters, m², liters, grams); constants below convert for display.
@@ -21,7 +22,8 @@ export const LBF = 4.4482216152605;
 export const PSI = 6894.757293168361;
 export const BTU_H = 0.2930710701722222;
 
-export const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+// Money in the page's display currency (chosen in the currency menu; US dollars by default).
+export const money = (value) => formatMoney(value);
 
 const positive = (...values) => values.every((value) => typeof value === 'number' && Number.isFinite(value) && value > 0);
 

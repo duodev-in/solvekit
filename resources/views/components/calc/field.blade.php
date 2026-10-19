@@ -31,7 +31,8 @@
             {{ $attributes->class(['h-full min-w-0 flex-1 bg-transparent px-3.5 font-mono text-lg font-semibold text-slate-900 outline-none placeholder:font-sans placeholder:text-sm placeholder:font-normal placeholder:text-slate-400']) }}
         >
         @if($suffix !== null || $suffixRef)
-            <span class="shrink-0 pr-3.5 text-sm font-medium text-slate-500" @if($suffixRef) data-ref="{{ $suffixRef }}" @endif>{{ $suffix }}</span>
+            {{-- A "$" in the suffix is the page's display currency; the runtime swaps it for the chosen symbol. --}}
+            <span class="shrink-0 pr-3.5 text-sm font-medium text-slate-500" @if($suffixRef) data-ref="{{ $suffixRef }}" @endif>@if(! $suffixRef && is_string($suffix) && str_contains($suffix, '$')){!! str_replace('$', '<span data-currency-symbol>$</span>', e($suffix)) !!}@else{{ $suffix }}@endif</span>
         @endif
         {{ $slot }}
     </div>

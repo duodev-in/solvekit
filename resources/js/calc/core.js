@@ -1,3 +1,4 @@
+import { currencySymbol, getCurrency, isCurrency, rememberCurrency, setCurrency, storedCurrency } from './currency.js';
 import { formatNumber, parseNumber } from './format.js';
 import { initRowsEditor } from './rows-editor.js';
 
@@ -294,7 +295,9 @@ export function createCalculator(root, config) {
 
                 return element;
             };
-            const label = (value) => (Math.abs(value) >= 1e4 || (Math.abs(value) < 1e-2 && value !== 0) ? value.toExponential(0) : String(value));
+            // Large ticks read as 20K, 1.5M; very large or very small ones in exponent form.
+            const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
+            const label = (value) => (Math.abs(value) >= 1e15 || (Math.abs(value) < 1e-2 && value !== 0) ? value.toExponential(0) : Math.abs(value) >= 1e4 ? compact.format(value) : String(value));
             const nodes = [];
 
             yTicks.forEach((value) => {
@@ -428,6 +431,40 @@ export function createCalculator(root, config) {
     return ctx;
 }
 
+/**
+ * Sets the page's display currency and wires the currency menu. Pages tied to one country's money set
+ * `currencyFixed`; otherwise the viewer's remembered choice wins over the page default (`currency`, else USD).
+ * The menu appears only on pages that show money (fields whose suffix carries the currency symbol).
+ */
+function initCurrency(root, config) {
+    const pageDefault = isCurrency(config.currency) ? config.currency : 'USD';
+    const fixed = Boolean(config.currencyFixed);
+    setCurrency(fixed ? pageDefault : storedCurrency() ?? pageDefault);
+
+    const paint = () => root.querySelectorAll('[data-currency-symbol]').forEach((node) => {
+        node.textContent = currencySymbol().trim();
+    });
+    paint();
+
+    const select = root.querySelector('[data-calc-currency]');
+
+    if (!select || fixed || !root.querySelector('[data-currency-symbol]')) {
+        return;
+    }
+
+    select.closest('[data-calc-currency-wrap]').hidden = false;
+    select.value = getCurrency();
+    // Runs before the runtime's own change listener on the root, so the recalculation already uses the new currency.
+    select.addEventListener('change', () => {
+        setCurrency(select.value);
+        rememberCurrency(select.value);
+        paint();
+    });
+    select.form?.addEventListener('reset', () => window.requestAnimationFrame(() => {
+        select.value = getCurrency();
+    }));
+}
+
 export function bootCalculatorPage(loadModule) {
     const root = document.querySelector('[data-calc-root]');
 
@@ -436,6 +473,7 @@ export function bootCalculatorPage(loadModule) {
     }
 
     const config = JSON.parse(root.dataset.calc || '{}');
+    initCurrency(root, config);
     const ctx = createCalculator(root, config);
 
     loadModule(config.engine)

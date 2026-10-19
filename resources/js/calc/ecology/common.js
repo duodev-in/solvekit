@@ -1,3 +1,5 @@
+import { formatMoney } from '../currency.js';
+
 /**
  * Shared helpers for the Ecology calculators: grid intensity, fuels, distances and finance.
  */
@@ -109,4 +111,7 @@ export function cashFlow({ cost, energy, price, escalation = 0, degradation = 0,
     return { payback, npv, lcoe: pvEnergy > 0 ? pvCost / pvEnergy : null, total, series };
 }
 
-export const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+/**
+ * Money in the page's display currency (chosen in the currency menu; US dollars by default).
+ */
+export const money = (value) => formatMoney(value);

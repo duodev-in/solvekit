@@ -107,5 +107,5 @@ test('daily gain, feed conversion and mortality', () => {
 
 test('fence cost adds wire, posts and gates', () => {
     const outcome = livestock.fence_cost({ perimeter: 1200 * FT, strands: 4, spacing: 12 * FT, wire_price: 0.05, post_price: 10, gates: 1, gate_price: 150, labour: NaN }, {}, f);
-    assert.equal(outcome.value, '$1,400');
+    assert.equal(outcome.value, '$1,400.00');
 });

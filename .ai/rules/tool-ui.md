@@ -1,6 +1,6 @@
 # Tool UI Decisions
 
-Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Construction, Ecology and Everyday Life) uses one layout, "Design A (Split Panel)". Build new tools with the same components; do not hand-roll page markup.
+Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Construction, Ecology, Everyday Life and Finance) uses one layout, "Design A (Split Panel)". Build new tools with the same components; do not hand-roll page markup.
 
 ## Page frame
 
@@ -15,6 +15,7 @@ Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Constructi
 
 - Inputs: `x-calc.field` (number, text or date), `x-calc.select`, `x-calc.segmented`, `x-calc.unit-pair`, `x-calc.textarea` (sequences, lists), `x-calc.substance`, `x-calc.checkbox`.
 - `x-calc.shape` is the plan-shape menu with a small diagram (rectangle, circle, triangle, trapezoid, L-shape, ring, oval); its fields are `length`, `width`, `diameter`, `base`, `height`, `side_a`, `side_b`, `cut_length`, `cut_width`, `outer`, `inner`, read by `shapeArea()` in `resources/js/calc/construction/geometry.js`.
+- `x-calc.grid :scroll="true"` caps long tables (loan and savings schedules) at a fixed height with their own scroll.
 - `x-calc.rows-editor` holds a list of rows (rooms, walls, pieces) in a hidden textarea, one row per line; give it a unit family and pass the same units to the page as `rowUnits` so the handler can convert them. Columns listed in `:text` are free text (names, clock times) and switch the stored separator to tabs; read rows with `parseRows()` from `resources/js/calc/rows-editor.js`. Example chips set it like any field.
 - Results: `x-calc.result`, `x-calc.rows` (fixed labelled values), `x-calc.quick-ref` (lists the script fills), `x-calc.unit-list`, `x-calc.grid` (Punnett squares and other tables), `x-calc.plot` (SVG line charts drawn by the script; no chart library).
 - Use `data-show-when="field:value1,value2"` to show inputs only for the mode that uses them, rather than separate pages or custom script.
@@ -25,13 +26,15 @@ Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Constructi
 
 - Pages pass a `calc` config to the shared runtime (`resources/js/calc/core.js`). Pick an engine in `resources/js/calc/engines/` (`units`, `substance`, `number-scale`, `radix`, `geo`, `formula`) instead of writing page scripts.
 - Formula tools are pure handlers in `resources/js/calc/tools/*.js` returning `{ value, unit, label, sub, rows, lists, grids }`, or `{ empty }` / `{ error }`. Cover new handlers with unit tests in `resources/js/calc/tests/`.
-- Keep reference data in config (`config/units.php`, `config/biology_data.php`, `config/elements.php`, `config/chemistry_data.php`, `config/construction_data.php`, `config/ecology_data.php`, `config/everyday_data.php`), never in views or scripts, and cite its source in a comment. Take values from a published source rather than typing them from memory, and do not extrapolate data outside its stated range.
-- Register tools in `config/conversion.php`, `config/biology.php`, `config/chemistry.php`, `config/construction.php`, `config/ecology.php` or `config/everyday.php`, and add a new section to `CalculatorCatalog::SECTIONS` and `routes/web.php` (pass a URL prefix as the third argument when it differs from the config name, as `everyday-life` does). A category's `elsewhere` entries link to a tool that already lives in another section instead of repeating it. Routes, navigation, breadcrumbs, related tools and the section index are derived from there.
+- Keep reference data in config (`config/units.php`, `config/biology_data.php`, `config/elements.php`, `config/chemistry_data.php`, `config/construction_data.php`, `config/ecology_data.php`, `config/everyday_data.php`, `config/finance_data.php`), never in views or scripts, and cite its source in a comment. Take values from a published source rather than typing them from memory, and do not extrapolate data outside its stated range.
+- Register tools in `config/conversion.php`, `config/biology.php`, `config/chemistry.php`, `config/construction.php`, `config/ecology.php`, `config/everyday.php` or `config/finance.php`, and add a new section to `CalculatorCatalog::SECTIONS` and `routes/web.php` (pass a URL prefix as the third argument when it differs from the config name, as `everyday-life` does). A category's `elsewhere` entries link to a tool that already lives in another section instead of repeating it. Routes, navigation, breadcrumbs, related tools and the section index are derived from there.
 
 ## Results and content
 
 - Keep result typography capped and let long values (sequences, dates) wrap rather than shrink or overflow; values over 26 characters (dates, converted text) switch to a smaller size automatically.
-- Format money as `$1,234` in the value, not as a trailing unit.
+- Format money as `$1,234` in the value, not as a trailing unit, through `formatMoney()` in `resources/js/calc/currency.js` (or the section helpers built on it), never a hard-coded `$` or `Intl` with `currency: 'USD'`.
+- Every page that shows money lets the viewer choose the currency (51 currencies including the Indian rupee, listed in `config/currencies.php` and `currency.js`, kept in step by a test). Give money fields `suffix="$"` (or `$/kWh` and similar); the runtime swaps the `$` for the chosen symbol and shows the Currency menu in the options bar. The choice is remembered in the browser. Amounts are not converted, only labelled, and rupees use lakh/crore grouping.
+- Pages whose figures follow one country's law or data (US tax and payroll, IRS limits, UK tax, Indian schemes, US coins) set `'currency' => 'USD'` (or the country's code) with `'currencyFixed' => true`, which hides the menu. A page may set a different default with `'currency'` alone (EMI calculators default to INR).
 - Every default and example chip must give a real result. When a value is an estimate or a rule of thumb, say so in the result or the About text.
 - Do not build veterinary medication-dose or toxicity calculators: their outputs would be clinical recommendations from ranges.
 - Code-based answers (IRC, NEC, ADA, OSHA, AWS) cite the section and say local codes may differ; do not build structural sizing tools (beam, joist, header, snow or fire-flow design) that would stand in for an engineer.
@@ -39,3 +42,6 @@ Every calculator page (Conversion Tools, Biology & Nature, Chemistry, Constructi
 - Footprint figures come from a named, dated public dataset stored once in config; show the source and year on the page and let the viewer replace any factor. Large lookup lists (airports) live in `public/data/` and are fetched only by the page that needs them.
 - Dates and times use the civil-calendar helpers in `resources/js/calc/everyday/dates.js` (day numbers, never `Date` arithmetic), so results do not shift with time zones or daylight saving; say so when a tool ignores daylight saving. Tools that need the current moment read it once through `nowCivil()` and accept a `now` input in tests.
 - Size charts and rules of thumb (shoe, bra, tie, desk heights, balloon spacing) are labelled as conventions with the formula shown; where no common standard exists (dress or swimwear sizes), do not build the tool.
+- Finance tools use the helpers in `resources/js/calc/finance/` (`money()`, `pct()`, `num()`, `yearGrid()`; TVM and loan engines). Percent fields are entered as percentages and divided by 100 in the handler. Every Finance page states that results are estimates for planning, not financial, tax or legal advice.
+- Tax, limit and rate tables (federal and state brackets, FICA, IRS limits, UK, India, other countries) live once in `config/finance_data.php` with their source and year; pages read them through `data_keys` and show the year. Prices that change daily (metal spot prices, exchange rates, ad RPM) are entered by the viewer, never stored.
+- One-formula Finance tools are entries in the `TOOLS` table of `resources/js/calc/tools/fin-simple.js` (inputs with their kind, the result formula, extra rows and the formula text for the "With your numbers" row); change a tool by editing its entry.

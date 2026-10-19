@@ -1,3 +1,4 @@
+import { formatMoney } from '../currency.js';
 /**
  * CCF ↔ therms: therms = CCF × heating value (BTU/ft³) × 100 ÷ 100,000.
  */
@@ -39,7 +40,7 @@ export default function ccfTherms(ctx, config) {
         ctx.setRow('m3', ctx.format(ccf * 2.8316846592));
         ctx.setRow('btu', ctx.format(therms * 100000));
         ctx.setRow('kwh', ctx.format((therms * 100000 * 1055.05585262) / 3.6e6));
-        ctx.setRow('cost', price > 0 ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(therms * price) : 'Enter a price per therm');
+        ctx.setRow('cost', price > 0 ? formatMoney(therms * price) : 'Enter a price per therm');
         ctx.renderRows('quick-ref', quickRef.map((amount) => ({ label: `${amount} CCF`, value: `${ctx.format(thermsFromCcf(amount, heatingValue))} thm` })));
     });
 }

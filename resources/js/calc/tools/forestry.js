@@ -1,3 +1,4 @@
+import { formatMoney } from '../currency.js';
 import { defineTools, missing } from '../engines/formula.js';
 
 /**
@@ -9,7 +10,7 @@ const ACRE = 4046.8564224;
 const LB = 0.45359237;
 const RAD = Math.PI / 180;
 
-const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+const money = (value) => formatMoney(value, { decimals: 0 });
 
 /**
  * Basal area of one stem in m² from its diameter in meters.

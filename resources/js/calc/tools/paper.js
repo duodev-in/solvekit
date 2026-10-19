@@ -1,3 +1,4 @@
+import { formatMoney } from '../currency.js';
 /**
  * Paper quantities: sheets, quires, reams and cases, with weight from paper size and grammage
  * (GSM = grams per square meter) and optional cost per ream.
@@ -40,7 +41,7 @@ export default function paper(ctx, config) {
         ctx.setRow('kg', ctx.format(kilograms));
         ctx.setRow('lb', ctx.format(kilograms / 0.45359237));
         ctx.setRow('height', ctx.format((sheets * gsm * MICRONS_PER_GSM) / 10000));
-        ctx.setRow('cost', price > 0 ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format((sheets / 500) * price) : 'Enter a price per ream');
-        ctx.setRow('per_sheet', price > 0 ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 4 }).format(price / 500) : 'Enter a price per ream');
+        ctx.setRow('cost', price > 0 ? formatMoney((sheets / 500) * price) : 'Enter a price per ream');
+        ctx.setRow('per_sheet', price > 0 ? formatMoney(price / 500, { decimals: 4 }) : 'Enter a price per ream');
     });
 }

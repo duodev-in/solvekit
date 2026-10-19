@@ -3,7 +3,7 @@
     description="Free Kaya identity calculator: CO₂ emissions from population, GDP per person, energy intensity and carbon intensity, and how much each change drives the total."
     lede="Work out emissions with the Kaya identity, and what drives a change."
     about="The Kaya identity multiplies four factors: CO₂ = population × GDP per person × energy per unit of GDP × CO₂ per unit of energy. It is exact by construction. With percentage changes for each factor, the logarithmic (LMDI) split shows how much of the change in emissions each factor causes."
-    :calc="['engine' => 'eco-footprint', 'tool' => 'kaya', 'fields' => ['population', 'gdp', 'energy', 'carbon', 'd_population', 'd_gdp', 'd_energy', 'd_carbon']]"
+    :calc="['engine' => 'eco-footprint', 'tool' => 'kaya', 'currency' => 'USD', 'currencyFixed' => true, 'fields' => ['population', 'gdp', 'energy', 'carbon', 'd_population', 'd_gdp', 'd_energy', 'd_carbon']]"
     :how-to="[
         ['name' => 'Enter the four factors', 'text' => 'For a country, region or the world.'],
         ['name' => 'Add changes', 'text' => 'To see the new total and what drives it.'],

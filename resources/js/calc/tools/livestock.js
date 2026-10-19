@@ -1,3 +1,4 @@
+import { formatMoney as money } from '../currency.js';
 import { defineTools, missing } from '../engines/formula.js';
 
 /**
@@ -89,7 +90,7 @@ export const handlers = {
             unit: ': 1',
             label: 'Feed conversion ratio',
             sub: `${f(ratio)} units of feed per unit of gain; lower is better`,
-            rows: { efficiency: `${f((i.gain / i.feed) * 100)}% (gain ÷ feed)`, cost: i.price > 0 ? `$${f(ratio * i.price)} per unit of gain` : 'Enter a feed price' },
+            rows: { efficiency: `${f((i.gain / i.feed) * 100)}% (gain ÷ feed)`, cost: i.price > 0 ? `${money(ratio * i.price)} per unit of gain` : 'Enter a feed price' },
         };
     },
 
@@ -181,7 +182,7 @@ export const handlers = {
             unit: 'bales',
             label: 'Hay needed',
             sub: `${f(hay / 2000)} US tons as fed, including ${f(waste * 100)}% waste`,
-            rows: { tons: `${f(hay / 2000)} US tons (${f(hay * LB / 1e6)} t)`, daily: `${f(hay / i.days / i.head)} lb per head per day`, cost: i.price > 0 ? `$${f(bales * i.price)}` : 'Enter a price per bale' },
+            rows: { tons: `${f(hay / 2000)} US tons (${f(hay * LB / 1e6)} t)`, daily: `${f(hay / i.days / i.head)} lb per head per day`, cost: i.price > 0 ? `${money(bales * i.price)}` : 'Enter a price per bale' },
         };
     },
 
@@ -227,11 +228,11 @@ export const handlers = {
         const labour = feet * price(i.labour);
 
         return {
-            value: `$${f(wireCost + postCost + gateCost + labour)}`,
+            value: `${money(wireCost + postCost + gateCost + labour)}`,
             unit: '',
             label: 'Estimated cost',
             sub: `${f(feet)} ft of fence, ${f(Math.round(i.strands))} strands`,
-            rows: { wire: `${f(wire)} ft · $${f(wireCost)}`, posts: `${f(posts)} posts · $${f(postCost)}`, gates: `$${f(gateCost)}`, labour: `$${f(labour)}`, per_foot: `$${f((wireCost + postCost + gateCost + labour) / feet)} per ft` },
+            rows: { wire: `${f(wire)} ft · ${money(wireCost)}`, posts: `${f(posts)} posts · ${money(postCost)}`, gates: `${money(gateCost)}`, labour: `${money(labour)}`, per_foot: `${money((wireCost + postCost + gateCost + labour) / feet)} per ft` },
         };
     },
 };

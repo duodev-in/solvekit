@@ -1,3 +1,4 @@
+import { formatMoney } from '../currency.js';
 import { defineTools, missing } from '../engines/formula.js';
 
 /**
@@ -12,7 +13,7 @@ const GAL_L = 3.785411784;
 const ACRE = 4046.8564224;
 const LB = 0.45359237;
 
-const money = (value) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
+const money = (value) => formatMoney(value);
 
 /**
  * Bulk material for an area at a depth: volume in every unit plus bags and cost.

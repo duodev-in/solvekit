@@ -21,6 +21,16 @@
         </div>
     @endif
 
+    {{-- Shown by the runtime on pages that show money and let the viewer choose the currency. --}}
+    <label data-calc-currency-wrap hidden class="flex min-w-0 flex-col gap-1.5">
+        <span class="text-[13px] font-semibold text-slate-700">Currency</span>
+        <select data-calc-currency aria-label="Currency" class="h-8 rounded-lg border border-slate-300 bg-white px-2 text-[13px] font-medium text-slate-900 focus:border-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500/30">
+            @foreach(config('currencies') as $code => [$name])
+                <option value="{{ $code }}">{{ $code }} · {{ $name }}</option>
+            @endforeach
+        </select>
+    </label>
+
     {{ $slot }}
 
     <button type="button" data-calc-reset class="ml-auto h-8 rounded-lg border border-slate-300 px-3 text-[13px] font-medium text-slate-700 hover:border-slate-400 focus-visible:outline-2 focus-visible:outline-primary-600">Reset</button>

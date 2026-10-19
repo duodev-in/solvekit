@@ -172,6 +172,39 @@ export const handlers = {
     },
 
     dollars_words: (i, c, f) => {
+        if (i.format === 'indian') {
+            // Indian cheque style: "Rupees Twelve Lakh … and Fifty Paise Only", lakh and crore grouping.
+            const text = String(i.amount ?? '').replace(/[,\s]/g, '');
+
+            if (!/^\d+(\.\d+)?$/.test(text)) {
+                return { empty: 'Enter an amount.' };
+            }
+
+            let rupees = BigInt(text.split('.')[0]);
+            let paise = Math.round(Number(`0.${text.split('.')[1] ?? '0'}`) * 100);
+
+            if (paise === 100) {
+                rupees += 1n;
+                paise = 0;
+            }
+
+            const title = (words) => words.replace(/(^|[\s-])([a-z])/g, (m, gap, letter) => gap + letter.toUpperCase());
+            const rupeeWords = numberWords(rupees.toString(), { indian: true });
+
+            if (!rupeeWords) {
+                return { empty: 'Enter an amount.' };
+            }
+
+            const cheque = `${title(i.currency_word && i.currency_word !== 'dollars' ? i.currency_word : 'rupees')} ${title(rupeeWords)}${paise ? ` and ${title(numberWords(String(paise)))} Paise` : ''} Only`;
+
+            return {
+                value: cheque,
+                label: 'For a cheque',
+                sub: 'Indian cheques write the amount in words ending in Only, with lakh and crore',
+                rows: { spoken: capitalize(`${rupeeWords} rupees${paise ? ` and ${numberWords(String(paise))} paise` : ''}`), upper: cheque.toUpperCase(), digits: `₹${Number(text).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` },
+            };
+        }
+
         const check = checkWords(i.amount, i.currency_word || 'dollars');
         const spoken = moneyWords(i.amount);
 

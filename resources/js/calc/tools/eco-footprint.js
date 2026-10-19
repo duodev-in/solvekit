@@ -1,4 +1,4 @@
-import { GAL, KM, MILE, THERM, KWH, fuelPerLiter, greatCircle, gridKg, gridLabel, litersPerMeter } from '../ecology/common.js';
+import { GAL, KM, MILE, THERM, KWH, fuelPerLiter, greatCircle, gridKg, gridLabel, litersPerMeter, money } from '../ecology/common.js';
 import { defineTools, missing } from '../engines/formula.js';
 
 /**
@@ -384,7 +384,7 @@ export const handlers = {
             unit: 'kg plastic avoided a year',
             label: 'Plastic you would avoid',
             sub: `${f((grams / 1000) * (c.data.materials.plastic_average / 1000))} kg CO₂e of plastic production avoided (DESNZ)`,
-            rows: { money: saved > 0 ? `$${f(saved)} a year not spent on the single-use items` : 'Enter prices to see the money saved', items: `${f(swaps.reduce((s, [, n]) => s + (n > 0 ? n : 0), 0) * 52.1775)} items a year`, decade: `${f((grams / 1000) * 10)} kg over 10 years` },
+            rows: { money: saved > 0 ? `${money(saved)} a year not spent on the single-use items` : 'Enter prices to see the money saved', items: `${f(swaps.reduce((s, [, n]) => s + (n > 0 ? n : 0), 0) * 52.1775)} items a year`, decade: `${f((grams / 1000) * 10)} kg over 10 years` },
             lists: { swaps: list },
         };
     },
