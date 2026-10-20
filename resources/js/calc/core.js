@@ -256,15 +256,35 @@ export function createCalculator(root, config) {
         renderPlot(name, plot) {
             const svg = ctx.ref(name);
 
-            if (!svg || !plot.series?.length) {
+            if (!svg) {
                 return;
             }
+
+            if (plot.kind === 'diagram') {
+                drawDiagram(svg, plot);
+
+                return;
+            }
+
+            if (plot.kind === 'numberline') {
+                drawNumberLine(svg, plot);
+
+                return;
+            }
+
+            if (!plot.series?.length && !plot.scatter?.length) {
+                svg.replaceChildren();
+
+                return;
+            }
+
+            plot = { ...plot, series: plot.series ?? [] };
 
             const width = 400;
             const height = 220;
             const margin = { left: 44, right: 14, top: 12, bottom: 34 };
             // An optional second line (plot.series2) shares the axes; plot.legend names the two lines.
-            const all = [...plot.series, ...(plot.series2 ?? [])];
+            const all = [...plot.series, ...(plot.series2 ?? []), ...(plot.scatter ?? []), ...(plot.extra ?? []).flat()].filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
             const xs = all.map(([x]) => x);
             const ys = all.map(([, y]) => y);
             const ticks = (min, max) => {
@@ -310,7 +330,33 @@ export function createCalculator(root, config) {
                 nodes.push(make('text', { x: sx(value), y: height - margin.bottom + 14, 'text-anchor': 'middle', class: 'fill-slate-500', 'font-size': 10 }, label(value)));
             });
             nodes.push(make('line', { x1: margin.left, x2: width - margin.right, y1: height - margin.bottom, y2: height - margin.bottom, class: 'stroke-slate-400' }));
-            nodes.push(make('polyline', { points: plot.series.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round', class: 'stroke-primary-600' }));
+
+            // Axes through the origin (graphs of functions) when zero is inside the range.
+            if (plot.axes) {
+                if (y0 < 0 && y1 > 0) {
+                    nodes.push(make('line', { x1: margin.left, x2: width - margin.right, y1: sy(0), y2: sy(0), class: 'stroke-slate-500' }));
+                }
+
+                if (x0 < 0 && x1 > 0) {
+                    nodes.push(make('line', { x1: sx(0), x2: sx(0), y1: margin.top, y2: height - margin.bottom, class: 'stroke-slate-500' }));
+                }
+            }
+
+            // A series may contain non-finite points (asymptotes, gaps): each finite run is drawn separately.
+            const runs = (series) => series.reduce((list, point) => {
+                if (Number.isFinite(point[0]) && Number.isFinite(point[1]) && point[1] >= y0 - (y1 - y0) && point[1] <= y1 + (y1 - y0)) {
+                    list[list.length - 1].push(point);
+                } else if (list[list.length - 1].length) {
+                    list.push([]);
+                }
+
+                return list;
+            }, [[]]).filter((run) => run.length > 1);
+            const line = (series, cls, dash = '') => runs(series).forEach((run) => nodes.push(make('polyline', { points: run.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round', class: cls, 'stroke-dasharray': dash })));
+
+            line(plot.series, 'stroke-primary-600');
+            (plot.extra ?? []).forEach((series) => line(series, 'stroke-amber-500', '5 3'));
+            (plot.scatter ?? []).forEach(([x, y]) => nodes.push(make('circle', { cx: sx(x), cy: sy(y), r: 3, class: 'fill-primary-600' })));
 
             if (plot.series2?.length) {
                 nodes.push(make('polyline', { points: plot.series2.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' '), fill: 'none', 'stroke-width': 2, 'stroke-dasharray': '5 3', 'stroke-linejoin': 'round', class: 'stroke-amber-500' }));
@@ -484,4 +530,102 @@ export function bootCalculatorPage(loadModule) {
             ctx.update();
         })
         .catch(() => ctx.showError('The calculator could not load. Check your connection and reload the page.'));
+}
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const svgNode = (tag, attributes, text) => {
+    const element = document.createElementNS(SVG_NS, tag);
+    Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
+
+    if (text !== undefined) {
+        element.textContent = text;
+    }
+
+    return element;
+};
+
+/**
+ * A labelled drawing at equal scale (shapes, triangles, vectors): plot.shapes = [{ points, closed, dashed, muted }],
+ * plot.labels = [{ x, y, text }], plot.dots = [[x, y]]. No axes.
+ */
+function drawDiagram(svg, plot) {
+    const width = 400;
+    const height = 240;
+    const pad = 28;
+    const pts = [...(plot.shapes ?? []).flatMap((shape) => shape.points), ...(plot.labels ?? []).map((l) => [l.x, l.y]), ...(plot.dots ?? [])].filter(([x, y]) => Number.isFinite(x) && Number.isFinite(y));
+
+    if (!pts.length) {
+        svg.replaceChildren();
+
+        return;
+    }
+
+    const minX = Math.min(...pts.map((p) => p[0]));
+    const maxX = Math.max(...pts.map((p) => p[0]));
+    const minY = Math.min(...pts.map((p) => p[1]));
+    const maxY = Math.max(...pts.map((p) => p[1]));
+    const scale = Math.min((width - 2 * pad) / (maxX - minX || 1), (height - 2 * pad) / (maxY - minY || 1));
+    const ox = (width - (maxX - minX) * scale) / 2;
+    const oy = (height - (maxY - minY) * scale) / 2;
+    const sx = (x) => ox + (x - minX) * scale;
+    const sy = (y) => height - oy - (y - minY) * scale;
+    const nodes = [];
+
+    (plot.shapes ?? []).forEach((shape) => {
+        const points = shape.points.map(([x, y]) => `${sx(x).toFixed(1)},${sy(y).toFixed(1)}`).join(' ');
+        nodes.push(svgNode(shape.closed ? 'polygon' : 'polyline', { points, 'stroke-width': shape.muted ? 1 : 2, 'stroke-linejoin': 'round', 'stroke-dasharray': shape.dashed ? '4 3' : '', class: `${shape.muted ? 'stroke-slate-400' : 'stroke-primary-600'} ${shape.closed && !shape.muted ? 'fill-primary-50' : 'fill-none'}` }));
+    });
+    (plot.dots ?? []).forEach(([x, y]) => nodes.push(svgNode('circle', { cx: sx(x), cy: sy(y), r: 3, class: 'fill-slate-800' })));
+    (plot.labels ?? []).forEach((label) => nodes.push(svgNode('text', { x: sx(label.x), y: sy(label.y) + 4, 'text-anchor': 'middle', 'font-size': 12, class: 'fill-slate-700' }, label.text)));
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.replaceChildren(...nodes);
+}
+
+/**
+ * A number line with shaded intervals and points: plot.intervals = [{ from, to, fromOpen, toOpen }] (±Infinity for rays),
+ * plot.points = [{ x, open }], plot.range = [min, max].
+ */
+function drawNumberLine(svg, plot) {
+    const width = 400;
+    const height = 90;
+    const left = 24;
+    const right = width - 24;
+    const y = 44;
+    const ends = [...(plot.intervals ?? []).flatMap((i) => [i.from, i.to]), ...(plot.points ?? []).map((p) => p.x)].filter(Number.isFinite);
+    let [min, max] = plot.range ?? [Math.min(...ends, 0), Math.max(...ends, 0)];
+
+    if (min === max) {
+        min -= 5;
+        max += 5;
+    }
+
+    const span = max - min;
+    min -= span * 0.15;
+    max += span * 0.15;
+    const sx = (x) => left + ((x - min) / (max - min)) * (right - left);
+    const clampX = (x) => (x === -Infinity ? left : x === Infinity ? right : sx(x));
+    const nodes = [svgNode('line', { x1: left - 8, x2: right + 8, y1: y, y2: y, class: 'stroke-slate-500', 'stroke-width': 1.5 })];
+    const raw = span / 6;
+    const power = 10 ** Math.floor(Math.log10(raw || 1));
+    const step = [1, 2, 2.5, 5, 10].map((m) => m * power).find((m) => m >= raw) || 1;
+
+    for (let tick = Math.ceil(min / step) * step; tick <= max; tick += step) {
+        const value = Number(tick.toPrecision(12));
+        nodes.push(svgNode('line', { x1: sx(value), x2: sx(value), y1: y - 5, y2: y + 5, class: 'stroke-slate-400' }));
+        nodes.push(svgNode('text', { x: sx(value), y: y + 22, 'text-anchor': 'middle', 'font-size': 11, class: 'fill-slate-500' }, String(value)));
+    }
+
+    (plot.intervals ?? []).forEach((interval) => {
+        nodes.push(svgNode('line', { x1: clampX(interval.from), x2: clampX(interval.to), y1: y, y2: y, 'stroke-width': 5, 'stroke-linecap': 'butt', class: 'stroke-primary-600' }));
+        [[interval.from, interval.fromOpen], [interval.to, interval.toOpen]].forEach(([x, open]) => {
+            if (Number.isFinite(x)) {
+                nodes.push(svgNode('circle', { cx: sx(x), cy: y, r: 5.5, 'stroke-width': 2, class: `stroke-primary-600 ${open ? 'fill-white' : 'fill-primary-600'}` }));
+            } else {
+                nodes.push(svgNode('polygon', { points: x < 0 ? `${left - 10},${y} ${left},${y - 6} ${left},${y + 6}` : `${right + 10},${y} ${right},${y - 6} ${right},${y + 6}`, class: 'fill-primary-600' }));
+            }
+        });
+    });
+    (plot.points ?? []).forEach((point) => nodes.push(svgNode('circle', { cx: sx(point.x), cy: y, r: 5.5, 'stroke-width': 2, class: `stroke-primary-600 ${point.open ? 'fill-white' : 'fill-primary-600'}` })));
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.replaceChildren(...nodes);
 }

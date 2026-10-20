@@ -11,6 +11,7 @@ use App\Http\Controllers\FeatureRequestController;
 use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\HealthController;
+use App\Http\Controllers\MathController;
 use App\Http\Controllers\ReportBugController;
 use App\Http\Controllers\SuperAdmin\AuditLogController;
 use App\Http\Controllers\SuperAdmin\AuthController;
@@ -65,6 +66,7 @@ $registerCalculatorSection('everyday', EverydayController::class, 'everyday-life
 $registerCalculatorSection('finance', FinanceController::class);
 $registerCalculatorSection('food', FoodController::class);
 $registerCalculatorSection('health', HealthController::class);
+$registerCalculatorSection('math', MathController::class);
 
 Route::get('/', function () {
     return view('welcome');
