@@ -131,6 +131,18 @@ export const TOPICS = {
 
         return { q: `Current lags voltage by ${deg}°. What is the power factor (to 2 decimal places)?`, a: Math.cos((deg * Math.PI) / 180), tol: 0.006, unit: '', work: [`PF = cos φ = cos ${deg}° = ${f(Math.cos((deg * Math.PI) / 180), 6)}`] };
     },
+
+    dunk: (r) => {
+        const reach = int(r, 215, 250);
+        const jump = int(r, 40, 95);
+        const kind = pick(r, ['above', 'need']);
+
+        if (kind === 'above') {
+            return { q: `Your standing reach is ${reach} cm and your vertical jump is ${jump} cm. How many cm above a 305 cm rim can you reach (negative if below)?`, a: reach + jump - 305, tol: 0, unit: 'cm', work: [`Top of reach = ${reach} + ${jump} = ${reach + jump} cm`, `Above the rim: ${reach + jump} − 305 = ${reach + jump - 305} cm`] };
+        }
+
+        return { q: `Your standing reach is ${reach} cm. What vertical jump in cm do you need to reach 15 cm above a 305 cm rim?`, a: 320 - reach, tol: 0, unit: 'cm', work: [`Target height = 305 + 15 = 320 cm`, `Jump needed = 320 − ${reach} = ${320 - reach} cm`] };
+    },
 };
 
 /** Physics practice mode: same runner as Math, with the physics questions. */

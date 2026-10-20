@@ -14,6 +14,7 @@ use App\Http\Controllers\HealthController;
 use App\Http\Controllers\MathController;
 use App\Http\Controllers\PhysicsController;
 use App\Http\Controllers\ReportBugController;
+use App\Http\Controllers\SportsController;
 use App\Http\Controllers\SuperAdmin\AuditLogController;
 use App\Http\Controllers\SuperAdmin\AuthController;
 use App\Http\Controllers\SuperAdmin\DashboardController;
@@ -69,6 +70,7 @@ $registerCalculatorSection('food', FoodController::class);
 $registerCalculatorSection('health', HealthController::class);
 $registerCalculatorSection('math', MathController::class);
 $registerCalculatorSection('physics', PhysicsController::class);
+$registerCalculatorSection('sports', SportsController::class);
 
 Route::get('/', function () {
     return view('welcome');
