@@ -1,4 +1,5 @@
 import { defineTools, missing } from '../engines/formula.js';
+import { physicsPractice } from '../physics/practice.js';
 
 /**
  * Ecology calculators: diversity indexes, population growth and mark–recapture.
@@ -63,6 +64,10 @@ export const handlers = {
     },
 
     simpson: (i, c, f) => {
+        if (c.practice && i.mode === 'practice') {
+            return physicsPractice(c.practice, i);
+        }
+
         const read = readCounts(i.counts);
 
         if (!read.values) {

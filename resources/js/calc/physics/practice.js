@@ -143,6 +143,38 @@ export const TOPICS = {
 
         return { q: `Your standing reach is ${reach} cm. What vertical jump in cm do you need to reach 15 cm above a 305 cm rim?`, a: 320 - reach, tol: 0, unit: 'cm', work: [`Target height = 305 + 15 = 320 cm`, `Jump needed = 320 − ${reach} = ${320 - reach} cm`] };
     },
+
+    diceAverage: (r) => {
+        const n = int(r, 1, 8);
+        const s = pick(r, [4, 6, 8, 10, 12, 20]);
+        const mod = pick(r, [0, 0, 1, 2, 3, -1, 5]);
+        const avg = (n * (s + 1)) / 2 + mod;
+        const text = `${n}d${s}${mod > 0 ? `+${mod}` : mod < 0 ? `−${-mod}` : ''}`;
+
+        return { q: `What is the average total of ${text}?`, a: avg, tol: 0, unit: '', work: [`One d${s} averages (${s} + 1) ÷ 2 = ${f((s + 1) / 2)}`, `${n} dice: ${n} × ${f((s + 1) / 2)} = ${f((n * (s + 1)) / 2)}`, ...(mod ? [`${mod > 0 ? 'Add' : 'Subtract'} ${Math.abs(mod)}: ${f(avg)}`] : [])] };
+    },
+
+    lottery: (r) => {
+        const k = int(r, 2, 6);
+        const n = int(r, k + 8, 49);
+        let c = 1;
+
+        for (let j = 1; j <= k; j += 1) {
+            c = (c * (n - k + j)) / j;
+        }
+
+        return { q: `A lottery draws ${k} numbers from 1 to ${n}; order does not matter. How many different tickets are possible (the N in “1 in N”)?`, a: Math.round(c), tol: 0, unit: '', work: [`Tickets = C(${n}, ${k}) = ${n}! ÷ (${k}! × ${n - k}!)`, `= ${Array.from({ length: k }, (_, j) => n - j).join(' × ')} ÷ ${k}!`, `= ${f(Math.round(c))}, so the jackpot odds are 1 in ${f(Math.round(c))}`] };
+    },
+
+    simpson: (r) => {
+        const species = int(r, 2, 4);
+        const counts = Array.from({ length: species }, () => int(r, 1, 12));
+        const N = counts.reduce((a, b) => a + b, 0);
+        const sumNN = counts.reduce((a, n) => a + n * (n - 1), 0);
+        const d = sumNN / (N * (N - 1));
+
+        return { q: `A sample has ${counts.join(', ')} individuals of ${species} species. What is Simpson’s diversity index 1 − D (to 3 decimal places)?`, a: 1 - d, tol: 0.0006, unit: '', work: [`N = ${counts.join(' + ')} = ${N}`, `Σ n(n − 1) = ${counts.map((n) => `${n}×${n - 1}`).join(' + ')} = ${sumNN}`, `D = ${sumNN} ÷ (${N} × ${N - 1}) = ${f(d, 6)}`, `1 − D = ${f(1 - d, 6)}`] };
+    },
 };
 
 /** Physics practice mode: same runner as Math, with the physics questions. */
