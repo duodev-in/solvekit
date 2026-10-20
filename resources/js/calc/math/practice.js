@@ -114,14 +114,15 @@ const TOPICS = {
     },
 };
 
-export function practice(topic, i) {
+/** `topics` lets another section supply its own question generators. */
+export function practice(topic, i, topics = TOPICS) {
     const n = Math.round(Number(i.question ?? 1));
 
     if (!Number.isInteger(n) || n < 1 || n > 100000) {
         return need('Enter a question number (1, 2, 3 …). Change it for a new question.');
     }
 
-    const item = TOPICS[topic](rng(n));
+    const item = topics[topic](rng(n));
     const typed = String(i.answer ?? '').trim();
     const answerText = item.exactText ?? `${f(item.a, item.tol ? 8 : 12)}${item.unit ? ` ${item.unit}` : ''}`;
 
@@ -132,7 +133,7 @@ export function practice(topic, i) {
     let value;
 
     try {
-        value = evalReal(parse(typed.replace(/,/g, '').replace(/°/g, '').replace(/(cm²|cm³|cm|m²|m|L)$/i, '')));
+        value = evalReal(parse(typed.replace(/,/g, '').replace(/°/g, '').replace(/\s*(cm²|cm³|cm|mm|m²|m\/s²|m\/s|rad\/s|kg|m|L|kJ|J|kN|N|Hz|kW|W|A|s)$/i, '')));
     } catch {
         value = NaN;
     }

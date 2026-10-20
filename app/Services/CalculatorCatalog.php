@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Looks up calculators across every calculator section (Conversions, Biology & Nature, Chemistry, Construction, Ecology, Everyday Life, Finance, Food and Cooking, Health, Math).
+ * Looks up calculators across every calculator section (Conversions, Biology & Nature, Chemistry, Construction, Ecology, Everyday Life, Finance, Food and Cooking, Health, Math, Physics).
  */
 class CalculatorCatalog
 {
@@ -26,6 +26,7 @@ class CalculatorCatalog
         'food' => ['config' => 'food', 'title' => 'Food and Cooking', 'index' => 'food.index'],
         'health' => ['config' => 'health', 'title' => 'Health', 'index' => 'health.index'],
         'math' => ['config' => 'math', 'title' => 'Math', 'index' => 'math.index'],
+        'physics' => ['config' => 'physics', 'title' => 'Physics', 'index' => 'physics.index'],
     ];
 
     /**

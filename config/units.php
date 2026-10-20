@@ -49,6 +49,7 @@ return [
 
     // Base: metre. AU is exact (IAU 2012); light year uses the Julian year; parsec is 648000/π AU.
     'astronomical' => [
+        'mpc' => ['name' => 'Megaparsecs', 'symbol' => 'Mpc', 'factor' => 3.0856775814913673e22],
         'pc' => ['name' => 'Parsecs', 'symbol' => 'pc', 'factor' => 3.0856775814913673e16],
         'ly' => ['name' => 'Light years', 'symbol' => 'ly', 'factor' => 9460730472580800],
         'au' => ['name' => 'Astronomical units', 'symbol' => 'AU', 'factor' => 149597870700],
@@ -72,6 +73,7 @@ return [
         'st' => ['name' => 'Stone', 'symbol' => 'st', 'factor' => 6350.29318],
         'lb' => ['name' => 'Pounds', 'symbol' => 'lb', 'factor' => 453.59237],
         'oz' => ['name' => 'Ounces', 'symbol' => 'oz', 'factor' => 28.349523125],
+        'gr' => ['name' => 'Grains', 'symbol' => 'gr', 'factor' => 0.06479891],
     ],
 
     // Base: liter. US gallon = 231 in³ exactly; imperial gallon = 4.54609 L exactly.
@@ -106,6 +108,7 @@ return [
         'hpa' => ['name' => 'Hectopascals', 'symbol' => 'hPa', 'factor' => 100],
         'kpa' => ['name' => 'Kilopascals', 'symbol' => 'kPa', 'factor' => 1000],
         'mpa' => ['name' => 'Megapascals', 'symbol' => 'MPa', 'factor' => 1e6],
+        'gpa' => ['name' => 'Gigapascals', 'symbol' => 'GPa', 'factor' => 1e9],
         'bar' => ['name' => 'Bar', 'symbol' => 'bar', 'factor' => 1e5],
         'mbar' => ['name' => 'Millibar', 'symbol' => 'mbar', 'factor' => 100],
         'atm' => ['name' => 'Atmospheres', 'symbol' => 'atm', 'factor' => 101325],
@@ -499,6 +502,298 @@ return [
         'paperclip' => ['name' => 'Paper clips (1 g)', 'symbol' => 'clip', 'factor' => 0.001],
         'elephant' => ['name' => 'African elephants (6 t)', 'symbol' => 'elephant', 'factor' => 6000],
         'blue_whale' => ['name' => 'Blue whales (150 t)', 'symbol' => 'whale', 'factor' => 150000],
+    ],
+
+    /*
+    | Physics quantities. Each table's base is the SI unit (factor 1); the
+    | Physics section reads them through `physics/core.js`.
+    */
+
+    // Base: m/s². Standard gravity g₀ = 9.80665 m/s² exactly (CGPM 1901).
+    'acceleration' => [
+        'ms2' => ['name' => 'Meters per second squared', 'symbol' => 'm/s²', 'factor' => 1],
+        'cms2' => ['name' => 'Centimeters per second squared (Gal)', 'symbol' => 'cm/s²', 'factor' => 0.01],
+        'fts2' => ['name' => 'Feet per second squared', 'symbol' => 'ft/s²', 'factor' => 0.3048],
+        'ins2' => ['name' => 'Inches per second squared', 'symbol' => 'in/s²', 'factor' => 0.0254],
+        'kmhs' => ['name' => 'Kilometers per hour per second', 'symbol' => 'km/h/s', 'factor' => 1 / 3.6],
+        'mphs' => ['name' => 'Miles per hour per second', 'symbol' => 'mph/s', 'factor' => 0.44704],
+        'g0' => ['name' => 'Standard gravity', 'symbol' => 'g', 'factor' => 9.80665],
+    ],
+
+    // Base: kg·m/s (= N·s).
+    'momentum' => [
+        'kgms' => ['name' => 'Kilogram meters per second (newton seconds)', 'symbol' => 'kg·m/s', 'factor' => 1],
+        'gcms' => ['name' => 'Gram centimeters per second', 'symbol' => 'g·cm/s', 'factor' => 1e-5],
+        'lbfts' => ['name' => 'Pound feet per second', 'symbol' => 'lb·ft/s', 'factor' => 0.45359237 * 0.3048],
+        'lbfs' => ['name' => 'Pound-force seconds', 'symbol' => 'lbf·s', 'factor' => 0.45359237 * 9.80665],
+    ],
+
+    // Base: kg·m²/s.
+    'angular_momentum' => [
+        'kgm2s' => ['name' => 'Kilogram square meters per second (joule seconds)', 'symbol' => 'kg·m²/s', 'factor' => 1],
+        'gcm2s' => ['name' => 'Gram square centimeters per second', 'symbol' => 'g·cm²/s', 'factor' => 1e-7],
+        'lbft2s' => ['name' => 'Pound square feet per second', 'symbol' => 'lb·ft²/s', 'factor' => 0.45359237 * 0.3048 ** 2],
+    ],
+
+    // Base: rad/s.
+    'angular_speed' => [
+        'rads' => ['name' => 'Radians per second', 'symbol' => 'rad/s', 'factor' => 1],
+        'rpm' => ['name' => 'Revolutions per minute', 'symbol' => 'rpm', 'factor' => 2 * M_PI / 60],
+        'rps' => ['name' => 'Revolutions per second', 'symbol' => 'rev/s', 'factor' => 2 * M_PI],
+        'degs' => ['name' => 'Degrees per second', 'symbol' => '°/s', 'factor' => M_PI / 180],
+        'radmin' => ['name' => 'Radians per minute', 'symbol' => 'rad/min', 'factor' => 1 / 60],
+    ],
+
+    // Base: rad/s².
+    'angular_acceleration' => [
+        'rads2' => ['name' => 'Radians per second squared', 'symbol' => 'rad/s²', 'factor' => 1],
+        'degs2' => ['name' => 'Degrees per second squared', 'symbol' => '°/s²', 'factor' => M_PI / 180],
+        'rpms' => ['name' => 'rpm per second', 'symbol' => 'rpm/s', 'factor' => 2 * M_PI / 60],
+        'revs2' => ['name' => 'Revolutions per second squared', 'symbol' => 'rev/s²', 'factor' => 2 * M_PI],
+    ],
+
+    // Base: N/m.
+    'stiffness' => [
+        'npm' => ['name' => 'Newtons per meter', 'symbol' => 'N/m', 'factor' => 1],
+        'npmm' => ['name' => 'Newtons per millimeter', 'symbol' => 'N/mm', 'factor' => 1000],
+        'knpm' => ['name' => 'Kilonewtons per meter', 'symbol' => 'kN/m', 'factor' => 1000],
+        'npcm' => ['name' => 'Newtons per centimeter', 'symbol' => 'N/cm', 'factor' => 100],
+        'lbfpin' => ['name' => 'Pound-force per inch', 'symbol' => 'lbf/in', 'factor' => 0.45359237 * 9.80665 / 0.0254],
+        'lbfpft' => ['name' => 'Pound-force per foot', 'symbol' => 'lbf/ft', 'factor' => 0.45359237 * 9.80665 / 0.3048],
+        'kgfpmm' => ['name' => 'Kilogram-force per millimeter', 'symbol' => 'kgf/mm', 'factor' => 9.80665 * 1000],
+    ],
+
+    // Base: N·m/rad.
+    'rotational_stiffness' => [
+        'nmrad' => ['name' => 'Newton meters per radian', 'symbol' => 'N·m/rad', 'factor' => 1],
+        'nmdeg' => ['name' => 'Newton meters per degree', 'symbol' => 'N·m/°', 'factor' => 180 / M_PI],
+        'knmrad' => ['name' => 'Kilonewton meters per radian', 'symbol' => 'kN·m/rad', 'factor' => 1000],
+        'lbfinrad' => ['name' => 'Pound-force inches per radian', 'symbol' => 'lbf·in/rad', 'factor' => 0.45359237 * 9.80665 * 0.0254],
+        'lbfindeg' => ['name' => 'Pound-force inches per degree', 'symbol' => 'lbf·in/°', 'factor' => 0.45359237 * 9.80665 * 0.0254 * 180 / M_PI],
+    ],
+
+    // Base: ampere.
+    'current' => [
+        'a' => ['name' => 'Amperes', 'symbol' => 'A', 'factor' => 1],
+        'ma' => ['name' => 'Milliamperes', 'symbol' => 'mA', 'factor' => 1e-3],
+        'ua' => ['name' => 'Microamperes', 'symbol' => 'µA', 'factor' => 1e-6],
+        'na' => ['name' => 'Nanoamperes', 'symbol' => 'nA', 'factor' => 1e-9],
+        'ka' => ['name' => 'Kiloamperes', 'symbol' => 'kA', 'factor' => 1e3],
+    ],
+
+    // Base: volt.
+    'voltage' => [
+        'v' => ['name' => 'Volts', 'symbol' => 'V', 'factor' => 1],
+        'mv' => ['name' => 'Millivolts', 'symbol' => 'mV', 'factor' => 1e-3],
+        'uv' => ['name' => 'Microvolts', 'symbol' => 'µV', 'factor' => 1e-6],
+        'kv' => ['name' => 'Kilovolts', 'symbol' => 'kV', 'factor' => 1e3],
+        'megav' => ['name' => 'Megavolts', 'symbol' => 'MV', 'factor' => 1e6],
+    ],
+
+    // Base: ohm.
+    'resistance' => [
+        'ohm' => ['name' => 'Ohms', 'symbol' => 'Ω', 'factor' => 1],
+        'mohm' => ['name' => 'Milliohms', 'symbol' => 'mΩ', 'factor' => 1e-3],
+        'kohm' => ['name' => 'Kilohms', 'symbol' => 'kΩ', 'factor' => 1e3],
+        'megohm' => ['name' => 'Megohms', 'symbol' => 'MΩ', 'factor' => 1e6],
+        'gohm' => ['name' => 'Gigohms', 'symbol' => 'GΩ', 'factor' => 1e9],
+    ],
+
+    // Base: henry.
+    'inductance' => [
+        'h' => ['name' => 'Henries', 'symbol' => 'H', 'factor' => 1],
+        'mh' => ['name' => 'Millihenries', 'symbol' => 'mH', 'factor' => 1e-3],
+        'uh' => ['name' => 'Microhenries', 'symbol' => 'µH', 'factor' => 1e-6],
+        'nh' => ['name' => 'Nanohenries', 'symbol' => 'nH', 'factor' => 1e-9],
+    ],
+
+    // Base: tesla. 1 gauss = 10⁻⁴ T.
+    'magnetic_field' => [
+        't' => ['name' => 'Teslas', 'symbol' => 'T', 'factor' => 1],
+        'mt' => ['name' => 'Milliteslas', 'symbol' => 'mT', 'factor' => 1e-3],
+        'ut' => ['name' => 'Microteslas', 'symbol' => 'µT', 'factor' => 1e-6],
+        'nt' => ['name' => 'Nanoteslas', 'symbol' => 'nT', 'factor' => 1e-9],
+        'gauss' => ['name' => 'Gauss', 'symbol' => 'G', 'factor' => 1e-4],
+        'mgauss' => ['name' => 'Milligauss', 'symbol' => 'mG', 'factor' => 1e-7],
+    ],
+
+    // Base: V/m.
+    'electric_field' => [
+        'vpm' => ['name' => 'Volts per meter', 'symbol' => 'V/m', 'factor' => 1],
+        'kvpm' => ['name' => 'Kilovolts per meter', 'symbol' => 'kV/m', 'factor' => 1e3],
+        'vpcm' => ['name' => 'Volts per centimeter', 'symbol' => 'V/cm', 'factor' => 100],
+        'kvpcm' => ['name' => 'Kilovolts per centimeter', 'symbol' => 'kV/cm', 'factor' => 1e5],
+        'mvpm' => ['name' => 'Megavolts per meter', 'symbol' => 'MV/m', 'factor' => 1e6],
+    ],
+
+    // Base: m³/s.
+    'flow' => [
+        'm3s' => ['name' => 'Cubic meters per second', 'symbol' => 'm³/s', 'factor' => 1],
+        'm3h' => ['name' => 'Cubic meters per hour', 'symbol' => 'm³/h', 'factor' => 1 / 3600],
+        'ls' => ['name' => 'Liters per second', 'symbol' => 'L/s', 'factor' => 1e-3],
+        'lmin' => ['name' => 'Liters per minute', 'symbol' => 'L/min', 'factor' => 1e-3 / 60],
+        'gpm' => ['name' => 'US gallons per minute', 'symbol' => 'gpm', 'factor' => 231 * 0.0254 ** 3 / 60],
+        'cfm' => ['name' => 'Cubic feet per minute', 'symbol' => 'cfm', 'factor' => 0.3048 ** 3 / 60],
+        'cfs' => ['name' => 'Cubic feet per second', 'symbol' => 'ft³/s', 'factor' => 0.3048 ** 3],
+    ],
+
+    // Base: kg/s.
+    'mass_flow' => [
+        'kgs' => ['name' => 'Kilograms per second', 'symbol' => 'kg/s', 'factor' => 1],
+        'gs' => ['name' => 'Grams per second', 'symbol' => 'g/s', 'factor' => 1e-3],
+        'kgmin' => ['name' => 'Kilograms per minute', 'symbol' => 'kg/min', 'factor' => 1 / 60],
+        'kgh' => ['name' => 'Kilograms per hour', 'symbol' => 'kg/h', 'factor' => 1 / 3600],
+        'lbs' => ['name' => 'Pounds per second', 'symbol' => 'lb/s', 'factor' => 0.45359237],
+        'lbmin' => ['name' => 'Pounds per minute', 'symbol' => 'lb/min', 'factor' => 0.45359237 / 60],
+        'lbh' => ['name' => 'Pounds per hour', 'symbol' => 'lb/h', 'factor' => 0.45359237 / 3600],
+    ],
+
+    // Base: Pa·s.
+    'viscosity' => [
+        'pas' => ['name' => 'Pascal seconds', 'symbol' => 'Pa·s', 'factor' => 1],
+        'mpas' => ['name' => 'Millipascal seconds', 'symbol' => 'mPa·s', 'factor' => 1e-3],
+        'cp' => ['name' => 'Centipoise', 'symbol' => 'cP', 'factor' => 1e-3],
+        'p' => ['name' => 'Poise', 'symbol' => 'P', 'factor' => 0.1],
+        'lbfts' => ['name' => 'Pound per foot second', 'symbol' => 'lb/(ft·s)', 'factor' => 0.45359237 / 0.3048],
+    ],
+
+    // Base: m²/s.
+    'kinematic_viscosity' => [
+        'm2s' => ['name' => 'Square meters per second', 'symbol' => 'm²/s', 'factor' => 1],
+        'mm2s' => ['name' => 'Square millimeters per second', 'symbol' => 'mm²/s', 'factor' => 1e-6],
+        'cst' => ['name' => 'Centistokes', 'symbol' => 'cSt', 'factor' => 1e-6],
+        'st' => ['name' => 'Stokes', 'symbol' => 'St', 'factor' => 1e-4],
+        'ft2s' => ['name' => 'Square feet per second', 'symbol' => 'ft²/s', 'factor' => 0.3048 ** 2],
+    ],
+
+    // Base: kg·m².
+    'moment_of_inertia' => [
+        'kgm2' => ['name' => 'Kilogram square meters', 'symbol' => 'kg·m²', 'factor' => 1],
+        'gcm2' => ['name' => 'Gram square centimeters', 'symbol' => 'g·cm²', 'factor' => 1e-7],
+        'kgcm2' => ['name' => 'Kilogram square centimeters', 'symbol' => 'kg·cm²', 'factor' => 1e-4],
+        'lbft2' => ['name' => 'Pound square feet', 'symbol' => 'lb·ft²', 'factor' => 0.45359237 * 0.3048 ** 2],
+        'lbin2' => ['name' => 'Pound square inches', 'symbol' => 'lb·in²', 'factor' => 0.45359237 * 0.0254 ** 2],
+    ],
+
+    // Base: m⁴ (second moment of area).
+    'area_moment' => [
+        'm4' => ['name' => 'Meters to the fourth', 'symbol' => 'm⁴', 'factor' => 1],
+        'cm4' => ['name' => 'Centimeters to the fourth', 'symbol' => 'cm⁴', 'factor' => 1e-8],
+        'mm4' => ['name' => 'Millimeters to the fourth', 'symbol' => 'mm⁴', 'factor' => 1e-12],
+        'in4' => ['name' => 'Inches to the fourth', 'symbol' => 'in⁴', 'factor' => 0.0254 ** 4],
+        'ft4' => ['name' => 'Feet to the fourth', 'symbol' => 'ft⁴', 'factor' => 0.3048 ** 4],
+    ],
+
+    // Base: kelvin (a difference, so no offsets).
+    'temperature_difference' => [
+        'k' => ['name' => 'Kelvins', 'symbol' => 'K', 'factor' => 1],
+        // A step of 1 °C equals 1 K, so this is the same unit under its everyday name.
+        'c' => ['name' => 'Degrees Celsius', 'symbol' => '°C', 'factor' => 1, 'alias' => true],
+        'f' => ['name' => 'Degrees Fahrenheit', 'symbol' => '°F', 'factor' => 5 / 9],
+        'r' => ['name' => 'Rankine', 'symbol' => '°R', 'factor' => 5 / 9],
+    ],
+
+    // Base: lux. 1 fc = 1 lm/ft².
+    'illuminance' => [
+        'lx' => ['name' => 'Lux', 'symbol' => 'lx', 'factor' => 1],
+        'fc' => ['name' => 'Foot-candles', 'symbol' => 'fc', 'factor' => 1 / 0.3048 ** 2],
+        'phot' => ['name' => 'Phot', 'symbol' => 'ph', 'factor' => 1e4],
+        'klx' => ['name' => 'Kilolux', 'symbol' => 'klx', 'factor' => 1e3],
+    ],
+
+    // Base: W/(m·K). 1 BTU/(h·ft·°F) uses the IT BTU.
+    'thermal_conductivity' => [
+        'wmk' => ['name' => 'Watts per meter kelvin', 'symbol' => 'W/(m·K)', 'factor' => 1],
+        'btuhftf' => ['name' => 'BTU per hour foot °F', 'symbol' => 'BTU/(h·ft·°F)', 'factor' => 1055.05585262 / 3600 / 0.3048 / (5 / 9)],
+        'calscmc' => ['name' => 'Calories per second centimeter °C', 'symbol' => 'cal/(s·cm·°C)', 'factor' => 418.4],
+        'mwmk' => ['name' => 'Milliwatts per meter kelvin', 'symbol' => 'mW/(m·K)', 'factor' => 1e-3],
+    ],
+
+    // Base: J/(kg·K).
+    'specific_heat' => [
+        'jkgk' => ['name' => 'Joules per kilogram kelvin', 'symbol' => 'J/(kg·K)', 'factor' => 1],
+        'kjkgk' => ['name' => 'Kilojoules per kilogram kelvin', 'symbol' => 'kJ/(kg·K)', 'factor' => 1000],
+        'jgk' => ['name' => 'Joules per gram kelvin', 'symbol' => 'J/(g·K)', 'factor' => 1000],
+        'calgc' => ['name' => 'Calories per gram °C', 'symbol' => 'cal/(g·°C)', 'factor' => 4184],
+        'btulbf' => ['name' => 'BTU per pound °F', 'symbol' => 'BTU/(lb·°F)', 'factor' => 1055.05585262 / 0.45359237 / (5 / 9)],
+    ],
+
+    // Base: W/(m²·K).
+    'heat_transfer_coefficient' => [
+        'wm2k' => ['name' => 'Watts per square meter kelvin', 'symbol' => 'W/(m²·K)', 'factor' => 1],
+        'kwm2k' => ['name' => 'Kilowatts per square meter kelvin', 'symbol' => 'kW/(m²·K)', 'factor' => 1000],
+        'btuhft2f' => ['name' => 'BTU per hour square foot °F', 'symbol' => 'BTU/(h·ft²·°F)', 'factor' => 1055.05585262 / 3600 / 0.3048 ** 2 / (5 / 9)],
+    ],
+
+    // Base: W/m² (irradiance, intensity, heat flux).
+    'intensity' => [
+        'wm2' => ['name' => 'Watts per square meter', 'symbol' => 'W/m²', 'factor' => 1],
+        'kwm2' => ['name' => 'Kilowatts per square meter', 'symbol' => 'kW/m²', 'factor' => 1e3],
+        'mwcm2' => ['name' => 'Milliwatts per square centimeter', 'symbol' => 'mW/cm²', 'factor' => 10],
+        'wcm2' => ['name' => 'Watts per square centimeter', 'symbol' => 'W/cm²', 'factor' => 1e4],
+        'btuhft2' => ['name' => 'BTU per hour square foot', 'symbol' => 'BTU/(h·ft²)', 'factor' => 1055.05585262 / 3600 / 0.3048 ** 2],
+    ],
+
+    // Base: Ω·m.
+    'resistivity' => [
+        'ohmm' => ['name' => 'Ohm meters', 'symbol' => 'Ω·m', 'factor' => 1],
+        'ohmcm' => ['name' => 'Ohm centimeters', 'symbol' => 'Ω·cm', 'factor' => 0.01],
+        'uohmcm' => ['name' => 'Microhm centimeters', 'symbol' => 'µΩ·cm', 'factor' => 1e-8],
+        'nohmm' => ['name' => 'Nanohm meters', 'symbol' => 'nΩ·m', 'factor' => 1e-9],
+        'ohmmm2m' => ['name' => 'Ohm square millimeters per meter', 'symbol' => 'Ω·mm²/m', 'factor' => 1e-6],
+    ],
+
+    // Base: hertz.
+    'frequency_hz' => [
+        'hz' => ['name' => 'Hertz', 'symbol' => 'Hz', 'factor' => 1],
+        'khz' => ['name' => 'Kilohertz', 'symbol' => 'kHz', 'factor' => 1e3],
+        'mhz' => ['name' => 'Megahertz', 'symbol' => 'MHz', 'factor' => 1e6],
+        'ghz' => ['name' => 'Gigahertz', 'symbol' => 'GHz', 'factor' => 1e9],
+        'thz' => ['name' => 'Terahertz', 'symbol' => 'THz', 'factor' => 1e12],
+        'mhz_milli' => ['name' => 'Millihertz', 'symbol' => 'mHz', 'factor' => 1e-3],
+        'rpm' => ['name' => 'Revolutions per minute', 'symbol' => 'rpm', 'factor' => 1 / 60],
+    ],
+
+    // Base: kilogram. Atomic mass constant and electron mass: CODATA 2018.
+    'particle_mass' => [
+        'kg' => ['name' => 'Kilograms', 'symbol' => 'kg', 'factor' => 1],
+        'g' => ['name' => 'Grams', 'symbol' => 'g', 'factor' => 1e-3],
+        'u' => ['name' => 'Atomic mass units (Da)', 'symbol' => 'u', 'factor' => 1.66053906660e-27],
+        'me' => ['name' => 'Electron masses', 'symbol' => 'mₑ', 'factor' => 9.1093837015e-31],
+        'mevc2' => ['name' => 'MeV/c²', 'symbol' => 'MeV/c²', 'factor' => 1.602176634e-13 / 299792458 ** 2],
+    ],
+
+    // Base: kilogram. Solar mass from the IAU 2015 nominal GM☉ ÷ G (CODATA 2018); Earth and
+    // Jupiter from NASA/JPL GM ÷ G; Moon from NASA Moon Fact Sheet.
+    'astro_mass' => [
+        'kg' => ['name' => 'Kilograms', 'symbol' => 'kg', 'factor' => 1],
+        't' => ['name' => 'Tonnes', 'symbol' => 't', 'factor' => 1000],
+        'mmoon' => ['name' => 'Moon masses', 'symbol' => 'M☾', 'factor' => 7.342e22],
+        'mearth' => ['name' => 'Earth masses', 'symbol' => 'M⊕', 'factor' => 5.9722e24],
+        'mjup' => ['name' => 'Jupiter masses', 'symbol' => 'M♃', 'factor' => 1.89813e27],
+        'msun' => ['name' => 'Solar masses', 'symbol' => 'M☉', 'factor' => 1.32712440018e20 / 6.6743e-11],
+    ],
+
+    // Base: joule. 1 eV = 1.602176634e-19 J exactly (SI 2019).
+    'particle_energy' => [
+        'ev' => ['name' => 'Electronvolts', 'symbol' => 'eV', 'factor' => 1.602176634e-19],
+        'mev_milli' => ['name' => 'Millielectronvolts', 'symbol' => 'meV', 'factor' => 1.602176634e-22],
+        'kev' => ['name' => 'Kiloelectronvolts', 'symbol' => 'keV', 'factor' => 1.602176634e-16],
+        'mev' => ['name' => 'Megaelectronvolts', 'symbol' => 'MeV', 'factor' => 1.602176634e-13],
+        'gev' => ['name' => 'Gigaelectronvolts', 'symbol' => 'GeV', 'factor' => 1.602176634e-10],
+        'j' => ['name' => 'Joules', 'symbol' => 'J', 'factor' => 1],
+        'zj' => ['name' => 'Zeptojoules', 'symbol' => 'zJ', 'factor' => 1e-21],
+    ],
+
+    // Base: second (for short times in circuits and optics).
+    'short_time' => [
+        's' => ['name' => 'Seconds', 'symbol' => 's', 'factor' => 1],
+        'ms' => ['name' => 'Milliseconds', 'symbol' => 'ms', 'factor' => 1e-3],
+        'us' => ['name' => 'Microseconds', 'symbol' => 'µs', 'factor' => 1e-6],
+        'ns' => ['name' => 'Nanoseconds', 'symbol' => 'ns', 'factor' => 1e-9],
+        'ps' => ['name' => 'Picoseconds', 'symbol' => 'ps', 'factor' => 1e-12],
+        'min' => ['name' => 'Minutes', 'symbol' => 'min', 'factor' => 60],
+        'h' => ['name' => 'Hours', 'symbol' => 'h', 'factor' => 3600],
     ],
 
 ];

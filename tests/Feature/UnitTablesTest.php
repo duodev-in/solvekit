@@ -75,6 +75,14 @@ class UnitTablesTest extends TestCase
             'ampere-hour' => ['charge', 'ah', 3600],
             'degree' => ['angle', 'deg', M_PI / 180],
             'NATO mil' => ['angle', 'mil', 2 * M_PI / 6400],
+            'grain' => ['mass', 'gr', 0.06479891],
+            'gigapascal' => ['pressure', 'gpa', 1e9],
+            'megaparsec' => ['astronomical', 'mpc', 1e6 * 648000 / M_PI * $astronomicalUnit],
+            'standard gravity' => ['acceleration', 'g0', 9.80665],
+            'revolution per minute' => ['angular_speed', 'rpm', 2 * M_PI / 60],
+            'pound-force per inch' => ['stiffness', 'lbfpin', 0.45359237 * 9.80665 / 0.0254],
+            'solar mass (IAU GM☉ ÷ G)' => ['astro_mass', 'msun', 1.32712440018e20 / 6.6743e-11],
+            'atomic mass unit' => ['particle_mass', 'u', 1.66053906660e-27],
         ];
     }
 
@@ -91,9 +99,10 @@ class UnitTablesTest extends TestCase
     {
         foreach (config('units') as $tableName => $units) {
             // A table may hold several quantities (each unit names its `base`); each needs one base unit.
+            // An `alias` is the same unit under another name (a 1 °C step is 1 K) and is not a second base.
             $quantities = collect($units)->groupBy(fn (array $unit) => $unit['base'] ?? $tableName);
             foreach ($quantities as $quantity => $quantityUnits) {
-                $baseUnits = $quantityUnits->filter(fn (array $unit) => $unit['factor'] == 1 && empty($unit['inverse']) && empty($unit['offset']));
+                $baseUnits = $quantityUnits->filter(fn (array $unit) => $unit['factor'] == 1 && empty($unit['inverse']) && empty($unit['offset']) && empty($unit['alias']));
                 $this->assertCount(1, $baseUnits, "[{$tableName}] quantity [{$quantity}] must have exactly one base unit.");
             }
 
