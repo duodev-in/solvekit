@@ -166,6 +166,19 @@ export const TOPICS = {
         return { q: `A lottery draws ${k} numbers from 1 to ${n}; order does not matter. How many different tickets are possible (the N in “1 in N”)?`, a: Math.round(c), tol: 0, unit: '', work: [`Tickets = C(${n}, ${k}) = ${n}! ÷ (${k}! × ${n - k}!)`, `= ${Array.from({ length: k }, (_, j) => n - j).join(' × ')} ÷ ${k}!`, `= ${f(Math.round(c))}, so the jackpot odds are 1 in ${f(Math.round(c))}`] };
     },
 
+    portLength: (r) => {
+        const d = pick(r, [5, 6, 7.5, 10]);
+        const fb = int(r, 28, 50);
+        const vb = int(r, 30, 120);
+        const L = (23562.5 * d * d) / (fb * fb * vb) - 0.732 * d;
+
+        if (L <= 2) {
+            return { q: `A ${vb} L box is tuned to ${fb} Hz with one ${d} cm round port (one end flanged). What port area in cm² is that (to 1 decimal place)?`, a: (Math.PI * d * d) / 4, tol: 0.06, unit: '', work: [`Area = π d² ÷ 4 = π × ${d}² ÷ 4 = ${f((Math.PI * d * d) / 4, 6)} cm²`] };
+        }
+
+        return { q: `A ${vb} L ported box is tuned to ${fb} Hz with one ${d} cm round port (one end flanged, k = 0.732). How long is the port in cm (to 1 decimal place)?`, a: L, tol: 0.06, unit: '', work: [`L = 23562.5 × d² × N ÷ (Fb² × Vb) − k × d`, `= 23562.5 × ${d}² ÷ (${fb}² × ${vb}) − 0.732 × ${d}`, `= ${f(L, 6)} cm`] };
+    },
+
     simpson: (r) => {
         const species = int(r, 2, 4);
         const counts = Array.from({ length: species }, () => int(r, 1, 12));

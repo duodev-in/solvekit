@@ -7,12 +7,6 @@
             <h1 class="mb-4 text-4xl font-bold text-gray-900">Food and Cooking Calculators</h1>
             <p class="mx-auto max-w-3xl text-xl text-gray-600">Converters for cups, grams and spoons, recipe and baking maths, coffee, tea and drinks, holiday and party planning, and food safety, each showing its formula and the published tables it uses.</p>
             <p class="mx-auto mt-3 max-w-3xl text-sm text-gray-500">Cooking times are guides: check doneness with a food thermometer. Nutrition figures are estimates, not medical advice.</p>
-            <nav aria-label="Food categories" class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2">
-                @foreach($categories as $category)
-                    @continue(empty($category['tools']))
-                    <a href="#{{ $category['slug'] }}" class="rounded-sm border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-500 hover:text-primary-700">{{ $category['title'] }}</a>
-                @endforeach
-            </nav>
         </div>
     </section>
 

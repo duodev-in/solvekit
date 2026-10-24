@@ -41,6 +41,17 @@ export function sunCoordinates(jd) {
     return { decl, eot, dist };
 }
 
+/** Sun's apparent ecliptic longitude (°, 0–360) at a Julian day: 0, 90, 180, 270 at the equinoxes and solstices. */
+export function sunLongitude(jd) {
+    const T = (jd - 2451545) / 36525;
+    const L0 = 280.46646 + T * (36000.76983 + 0.0003032 * T);
+    const M = 357.52911 + T * (35999.05029 - 0.0001537 * T);
+    const C = sind(M) * (1.914602 - T * (0.004817 + 0.000014 * T)) + sind(2 * M) * (0.019993 - 0.000101 * T) + sind(3 * M) * 0.000289;
+    const omega = 125.04 - 1934.136 * T;
+
+    return ((((L0 + C - 0.00569 - 0.00478 * sind(omega)) % 360) + 360) % 360);
+}
+
 /** Atmospheric refraction (°) for an apparent elevation, NOAA approximation. */
 function refraction(el) {
     if (el > 85) {

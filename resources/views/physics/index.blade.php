@@ -6,12 +6,6 @@
         <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
             <h1 class="mb-4 text-4xl font-bold text-gray-900">Physics Calculators</h1>
             <p class="mx-auto max-w-3xl text-xl text-gray-600">Motion, forces, energy, waves, light, materials, machines, space, electricity, fluids, weather, heat and quantum physics. Every value takes the unit you work in, constants are CODATA 2018, and each tool shows the formula with your numbers.</p>
-            <nav aria-label="Physics categories" class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2">
-                @foreach($categories as $category)
-                    @continue(empty($category['tools']))
-                    <a href="#{{ $category['slug'] }}" class="rounded-sm border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-500 hover:text-primary-700">{{ $category['title'] }}</a>
-                @endforeach
-            </nav>
         </div>
     </section>
 

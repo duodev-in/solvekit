@@ -7,12 +7,6 @@
             <h1 class="mb-4 text-4xl font-bold text-gray-900">Finance Calculators</h1>
             <p class="mx-auto max-w-3xl text-xl text-gray-600">Calculators for loans and mortgages, savings and investing, retirement, tax and pay, business planning, sales and economics, each showing its formula and the dated official tables it uses.</p>
             <p class="mx-auto mt-3 max-w-3xl text-sm text-gray-500">Estimates for planning, not financial, tax or legal advice.</p>
-            <nav aria-label="Finance categories" class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2">
-                @foreach($categories as $category)
-                    @continue(empty($category['tools']))
-                    <a href="#{{ $category['slug'] }}" class="rounded-sm border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-500 hover:text-primary-700">{{ $category['title'] }}</a>
-                @endforeach
-            </nav>
         </div>
     </section>
 

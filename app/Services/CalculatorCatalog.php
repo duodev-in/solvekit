@@ -29,6 +29,8 @@ class CalculatorCatalog
         'physics' => ['config' => 'physics', 'title' => 'Physics', 'index' => 'physics.index'],
         'sports' => ['config' => 'sports', 'title' => 'Sports', 'index' => 'sports.index'],
         'statistics' => ['config' => 'statistics', 'title' => 'Statistics', 'index' => 'statistics.index'],
+        'technology' => ['config' => 'technology', 'title' => 'Technology', 'index' => 'technology.index'],
+        'other' => ['config' => 'other', 'title' => 'Other', 'index' => 'other.index'],
     ];
 
     /**

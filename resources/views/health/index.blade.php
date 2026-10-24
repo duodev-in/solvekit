@@ -7,12 +7,6 @@
             <h1 class="mb-4 text-4xl font-bold text-gray-900">Health Calculators</h1>
             <p class="mx-auto max-w-3xl text-xl text-gray-600">Body measurements, nutrition, metabolism, heart and lung function, kidneys and blood, pregnancy, sleep and validated clinical scores, each showing its published formula or instrument and reference.</p>
             <p class="mx-auto mt-3 max-w-3xl text-sm text-gray-500">For information and education only: not a diagnosis or treatment advice. Talk to a doctor or other qualified clinician about your health.</p>
-            <nav aria-label="Health categories" class="mx-auto mt-8 flex max-w-5xl flex-wrap justify-center gap-2">
-                @foreach($categories as $category)
-                    @continue(empty($category['tools']))
-                    <a href="#{{ $category['slug'] }}" class="rounded-sm border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 hover:border-primary-500 hover:text-primary-700">{{ $category['title'] }}</a>
-                @endforeach
-            </nav>
         </div>
     </section>
 

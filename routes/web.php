@@ -12,6 +12,7 @@ use App\Http\Controllers\FinanceController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\MathController;
+use App\Http\Controllers\OtherController;
 use App\Http\Controllers\PhysicsController;
 use App\Http\Controllers\ReportBugController;
 use App\Http\Controllers\SportsController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\SuperAdmin\FeatureRequestController as AdminFeatureRequ
 use App\Http\Controllers\SuperAdmin\ReportBugController as AdminReportBugController;
 use App\Http\Controllers\SuperAdmin\RoleController;
 use App\Http\Controllers\SuperAdmin\UserController;
+use App\Http\Controllers\TechnologyController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -73,6 +75,8 @@ $registerCalculatorSection('math', MathController::class);
 $registerCalculatorSection('physics', PhysicsController::class);
 $registerCalculatorSection('sports', SportsController::class);
 $registerCalculatorSection('statistics', StatisticsController::class);
+$registerCalculatorSection('technology', TechnologyController::class);
+$registerCalculatorSection('other', OtherController::class);
 
 Route::get('/', function () {
     return view('welcome');
